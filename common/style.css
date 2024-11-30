@@ -1,0 +1,250 @@
+page {
+	padding: 0;
+	margin: 0;
+	background-color: #F3F3F3;
+	/* animation: fadeIn 300ms forwards; */
+	/* transition: fadeIn 1s ease-in-out; */
+}
+
+uni-modal {
+	z-index: 9999;
+}
+
+/* button */
+.btn_com {
+	width: 100%;
+	background-image: linear-gradient(90deg, #F24639, #F28339);
+	height: 44px;
+	line-height: 44px;
+	border-radius: 22px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 500;
+	color: #fff;
+}
+
+
+.rotate_45 {
+	transform: rotate(45deg);
+}
+
+.rotate_135 {
+	transform: rotate(135deg);
+}
+
+.rotate_225 {
+	transform: rotate(225deg);
+}
+
+.common_block {
+	padding: 0;
+	margin: 0 20rpx;
+	border-radius: 28rpx;
+	background-color: #FFFFFF;
+	/* box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); */
+	/* box-shadow: 0 0 10px rgb(255 255 255 / 15%); */
+}
+
+.common_input_wrapper {
+	display: flex;
+	margin: 10px 0;
+	padding: 10px 0px;
+	border-radius: 10rpx;
+	border: 1px solid #e4013e;
+	/* background-color: #f4f4f4; */
+}
+
+.common_input_wrapper>input {
+	color: #121212;
+}
+
+.common_input_wrapper>image {
+	padding: 0 16px;
+}
+
+.common_card_bg {
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 100% 100%;
+	height: 220rpx;
+	width: 488rpx;
+	padding: 40rpx;
+	display: inline-block;
+	margin: 0 20rpx;
+	border-radius: 6px;
+}
+
+.card_bg_0 {
+	background-image: url('/static/card_bg_0.png');
+}
+
+.card_bg_1 {
+	background-image: url('/static/card_bg_1.png');
+}
+
+.card_bg_2 {
+	background-image: url('/static/card_bg_2.png');
+}
+
+.card_bg_3 {
+	background-image: url('/static/card_bg_3.png');
+}
+
+.card_bg_4 {
+	background-image: url('/static/bg_2.png');
+}
+
+.card_bg_5 {
+	background-image: url('/static/sytongqian.png');
+}
+
+.common_mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1111;
+	background-color: rgba(0, 0, 0, 0.8);
+	cursor: pointer;
+}
+
+/*  to bottom */
+@keyframes popopUp {
+	0% {
+		transform: translate(-50%, 100%);
+	}
+
+	100% {
+		transform: translate(-50%, 0%);
+	}
+}
+
+.common_popup {
+	position: fixed;
+	bottom: 0rpx;
+	left: 50%;
+	width: 100%;
+	max-width: 750px;
+	transform: translateX(-50%);
+	z-index: 11113;
+	animation: popopUp 300ms forwards;
+	/* border-radius: 32rpx 32rpx 0 0; */
+	background-color: #FFFFFF;
+	min-height: 35vh;
+	margin: auto;
+}
+
+.popup_header {
+	height: 80rpx;
+	line-height: 80rpx;
+	border-bottom: 1px solid #ccc;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 0 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #292C31;
+	/* border-radius: 28rpx 28rpx 0 0; */
+	position: relative;
+	text-align: center;
+}
+
+/* 通用按钮 */
+.common_btn {
+	padding: 20rpx;
+	line-height: 1.4;
+	text-align: center;
+	font-size: 32rpx;
+	color: #FFFFFF;
+	font-weight: 500;
+	/* background-color: #292C31; */
+	background-image: linear-gradient(90deg, #4c2da4, #342da4);
+	border-radius: 12rpx;
+	border: 1px solid #292C31;
+}
+
+.btn_secondary {
+	color: #292C31;
+	background-color: #FFFFFF;
+}
+
+/* ====== 通用动画 =========
+ ease-in:
+ forwards:缓动
+ ease-in-out:
+ */
+
+/* 淡入*/
+.fade_in {
+	animation: fadeIn 900ms forwards;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* 淡出 */
+.fade_out {
+	animation: fadeOut 900ms forwards;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+/* 右入 */
+.right_in {
+	animation: rightIn 600ms forwards;
+}
+
+@keyframes rightIn {
+	0% {
+		transform: translateX(300%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+/* 左入 */
+.left_in {
+	animation: leftIn 600ms forwards;
+}
+
+@keyframes leftIn {
+	0% {
+		transform: translateX(-300%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+/* 下入 */
+.bottom_in {
+	animation: bottomIn 900ms forwards;
+}
+
+@keyframes bottomIn {
+	0% {
+		transform: translateY(300%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}

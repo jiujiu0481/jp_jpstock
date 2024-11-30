@@ -1,0 +1,344 @@
+{
+	//uview组件库
+	"easycom": {
+		"autoscan": true,
+		"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "PORT",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"backgroundColor": "#FFFFFF",
+		"height":"57px",
+		"selectedColor": "#000",
+		"color": "#D8D8D8",
+		"fontSize": "11px",
+		"iconWidth": "50px",
+		"list": [{
+			"pagePath": "pages/home/index",
+			"text": "トップ",
+			"iconPath": "static/tarbar0.png",
+			"selectedIconPath": "static/tarbar0.png"
+		}, 
+		{
+			"pagePath": "pages/market/index",
+			"text": "相場",
+			"iconPath": "static/tarbar1.png",
+			"selectedIconPath": "static/tarbar1_act.png"
+		}, 
+		{
+			"pagePath": "pages/position/index",
+			"text": "注文·照会",
+			"iconPath": "static/tarbar3.png",
+			"selectedIconPath": "static/tarbar3_act.png"
+		},
+		{
+			"pagePath": "pages/transaction/index",
+			"text": "出入金履歴",
+			"iconPath": "static/tarbar2.png",
+			"selectedIconPath": "static/tarbar2_act.png"
+		},  {
+			"pagePath": "pages/news",
+			"text": "ニュース",
+			"iconPath": "static/tarbar4.png",
+			"selectedIconPath": "static/tarbar4_act.png"
+		}]
+	},
+
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/launch/index", // 自定义启动页
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/account/access", // 登入、注册
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/account/login", // 登入、注册
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/account/register", // 登入、注册
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/home/index",
+			
+			"style": {
+				"navigationBarTitleText":"トップ",
+				"enablePullDownRefresh": false, // 是否开启下拉刷新
+				"navigationStyle": "custom" // 隐藏系统导航栏
+				// 单页导航栏设置,"default"默认显示 "custom"关闭状态
+				// "navigationStyle": "custom", // 设置不显示原生导航栏 隐藏系统导航栏
+				// "navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		}, {
+			"path": "pages/search/index", // 查询
+			"style": {
+				"navigationBarTitleText":"検索",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/notification", // 通知
+			"style": {
+				"navigationBarTitleText":"お知らせ",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/about", // 关于
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/setting",
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/pact", // 用户隐私协议
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/account/zhuanhuan",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/account/huazhuan",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/trade/panqian/index",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/service", // 客服
+			"style": {
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"navigationBarBackgroundColor": "#29205E",
+					"navigationBarTextStyle": "white"
+				}
+			}
+		}, {
+			"path": "pages/account/password", // 变更登入密码、变更支付密码
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/news", // 变更登入密码、变更支付密码
+			"style": {
+				"navigationBarTitleText":"ニュース",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/account/bankCard", // 银行卡 绑定，解绑
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/account/auth", // 实名认证
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/transaction/index", // 交易记录
+			"style": {
+				"navigationBarTitleText":"出入金履歴",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/deposit/index", // 存款
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/account/withdraw", // 提款
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/account/center", // 个人中心
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/account/avatar", // 变更头像
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/market/index", // 股票及虚拟币市场
+			"style": {
+				"navigationBarTitleText":"相場",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/market/overview", // 市场概况
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/stock/overview", // 单股概况
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/stock/buy", // 单股买入
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/day/index", // 日内交易
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		
+		{
+			"path": "pages/trade/dividend", // 日内交易
+			"style": {
+				"navigationBarTitleText":"アフターマーケッ卜取引",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/otc", // 日内交易
+			"style": {
+				"navigationBarTitleText":"OTC",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/day/record", // 日内交易 記錄[申請|審批]
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/vip/index", // VIP抢筹
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/ea/index", // EA 交易
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/issuance/index", // 新股配售
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/trade/issuance/record", //  新股配售 記錄[申請|中簽]
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/trade/ipo/index", // ipo交易
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/trade/ipo/record", // ipo交易 記錄[申請|中簽]
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/trade/large/index", // 大宗交易
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/trade/large/record", // 日内交易 記錄[申請|審批]
+			"style": {
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/position/index", // 持仓
+			"style": {
+				"navigationBarTitleText":"注文·照会",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		}, {
+			"path": "pages/position/info", // 持仓
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		}
+	],
+
+	"condition": {
+		//模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式이름
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

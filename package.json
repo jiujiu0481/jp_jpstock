@@ -1,0 +1,6 @@
+{
+	"devDependencies": {},
+	"dependencies": {
+		"uview-ui": "^2.0.36"
+	}
+}
