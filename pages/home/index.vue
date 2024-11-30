@@ -1,59 +1,58 @@
 <template>
 	<view class="page">
-		<view class="page" >
-			<view class="header" style="background-image: url(/static/topbackground.jpg);">
+		<view class="page">
+			<view class="header">
 				<view class="header-left">
-						<img src="/static/img/logo.png" class="header-img">
-				<!-- 	<img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});"> -->
+					<img src="/static/img/logo.png" class="header-img">
+					<!-- 	<img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});"> -->
 				</view>
-			<!-- 	<img src="/static/img/logo.png" class="header-img"> -->
+				<!-- 	<img src="/static/img/logo.png" class="header-img"> -->
 				<view class="header-right">
-					<img :src="$icon.sousuo" @click="$u.route({url:'/pages/search/index'});" class="header-search" style="margin-right: 20px;">
-					<img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});">
+					<img :src="$icon.sousuo" @click="$u.route({url:'/pages/search/index'});" class="header-search">
+					<!-- <img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});"> -->
 					<img :src="$icon.chilun" @click="$u.route({url:'/pages/account/center'});" class="header-setting">
 
 				</view>
 			</view>
 			<view style="display: flex;align-items: center;justify-content: center; ">
-				<img src="/static/img/7.7349b6f4.png" class="banner"
-					@click="$u.route({url:'/pages/market/overview'});">
+				<img src="/static/img/7.7349b6f4.png" class="banner" @click="$u.route({url:'/pages/market/overview'});">
 			</view>
 
 			<!-- 	<view class="title">機能</view> -->
-			<view class="menu" style="background-color: #FFFFFF;">
-				<view class="menu-item"     @click="$u.route({url:'/pages/trade/ipo/index'});">
-					<image src="/static/btn_0.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-				<view style="margin-top: 6px;">	IPO申し込み </view>
+			<view class="menu" style="background-color: #FFFFFF; padding: 20px   0   10px  0;">
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
+					<image src="/static/btn_0.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> IPO申し込み </view>
 				</view>
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
-					<image src="/static/btn_1.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-				<view style="margin-top: 6px;">	デイトレード</view>
+					<image src="/static/btn_1.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> デイトレード</view>
 				</view>
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
-					<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-				<view style="margin-top: 6px;">		大口取引</view>
+					<image src="/static/btn_2.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 大口取引</view>
 				</view>
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});">
-					<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-				<view style="margin-top: 6px;">		クオンツ取引</view>
+					<image src="/static/btn_3.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> クオンツ取引</view>
 				</view>
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/panqian/index'});">
-					<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-					<view style="margin-top: 6px;">	市場前取引</view>
+					<image src="/static/btn_4.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 市場前取引</view>
 				</view>
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/dividend'});">
-					<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-					<view style="margin-top: 6px;">	じかん外取引</view>
+					<image src="/static/btn_5.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> じかん外取引</view>
 				</view>
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/otc'});">
-					<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
-				<view style="margin-top: 6px;">	OTC</view>
+					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> OTC</view>
 				</view>
 				<view class="menu-item">
-					<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(52)"></image>
+					<image src="/static/btn_7.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;">お問合わせ</view>
 				</view>
 			</view>
@@ -66,27 +65,12 @@
 				cancelText="キャンセル" confirmText="確認する" @confirm="zhibiao_click"></u-picker>
 
 
-			<view class="title">マーケット情報</view>
+			<!-- <view class="title">マーケット情報</view> -->
+			<view>
+				<image src="/static/home_banner_1.png" mode="widthFix" style="width: 100%;"></image>
+			</view>
 
 			<view class="top">
-				<view class="top-foot">
-					<view class="top-foot-item" v-for="(item,index) in top3_list">
-						<view class="top-foot-box">
-							<view class="top-foot-name">{{item.name}}</view>
-							<view class="top-foot-price" :class="item.returnOfToday>=0?'red':'green'">{{item.price}}
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAAQhQTFRFAAAA/wAA/wAA/wBV/wBAzAAz2wBJ4wA56ABG6wA73wBA4QA85gBA6QBD4gA74wBC5QA+6AA+4gBC5QA74QA74gBA5AA85ABA4gBA4gA/5AA/4gA+5AA/4gA95AA95AA84wA/4wA+5QA+5AA+5QA/5AA+5QA94wA/5AA+5QA+5AA94wI+4wI95QI+4wI95AI+5AI+5AI95QI/4wI+5AI95AI/5AE/5AE+5AE+5QE95AE95AE+5AE+5AE+5AE+5AE+5AE+4wE+5AE+5AE+5AE+5AE+5AE+5AE+5QE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+y48RSQAAAFd0Uk5TAAECAwQFBwkLDRARFBcaGx0hIycrLC8wNDU5PkFHS0xRUldeYWdsbnN0eYCBiImQlZabnaKnq7G2t7u8wMbIzdLV1tna3eHj5+nq7O3v8vP19/n6/P3+hOYpNgAAANhJREFUGBmVwYk2QmEYBdATUSKzEgmZp4oKCSlkHoqc93+T6q66q9v9h8/eUDpOQGy19RCGUKRO5iFUZMcmRLbY9T4DgblPOsoBWI3esOcAVkfsa8ZhsfJLVy0Eo4lHDjiFUYEe6zBI0+s1Cq3ZDw4pQWfkmj570DikX2MJSss/VLgbh0L4nkpZKJxR7W8NPhvUeZ7CkOk3al3AK3BFgx147NPkewEDYk0aVcbgClVpkYErR5tWEj0p2j1NwhF9ocA5HJcU2UbHLmW+5oHFBoVugzgpiaXwH221L+MJdLkO8AAAAABJRU5ErkJggg=="
-									v-if="item.returnOfToday>=0">
-
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAARRQTFRFAAAAAP8AAICAVapVQICAM5lmKoCASZJtOY5xM5mAQJWAN5KAM5l3PJZ4OY6AM4yAPZJ5N5B6O5OAN5KAOI+AOpJ8OZWANJB8OZOANZR9NY+AN5F9OJB9N5F7NpJ9N5F+NpN8N5J8OZF8NpR8N5F+NpN+OJJ+OJJ9N5N+N5F9NpN9OJF8N5J8NpN9N5N8N5F+N5J9NpJ+N5J+N5J9N5F9N5J+N5J9NpJ8OJF9OJJ9N5F9N5J9NpJ9N5J9OJJ9N5J9N5J9N5N9N5J+N5J8NpJ9N5J8N5N9N5J9NpJ9N5J9N5J9N5J9N5N9N5J9NpJ9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9tDxDXAAAAFt0Uk5TAAECAwQFBgcJCgwODxESFBUXGhwgIyQnKCswMzc8PUFCRkhMT1VbYGFmaG1zdn2Cg4iKj5WYn6Slqqywsra8v8TIyc3O0dbY3N/g4+Tm6u3u8fP19/n6+/z9/h0cC3YAAADaSURBVBgZpcGFVgJRFAXQo6KgYmGCHdhF2QoGYGEMFpz//w9RwpnhxV3LvXFIsRX031EoA2D2iyLFXtTsUeJjGj8ClxTYQd24Q6tsJxrWaPMyipZjWsTxZ+CBRgdwm6/Q4LYPHgnqfc7Aq/uaWrvwmyxTI9eFNhtUex2DwimVVqEyVKLCEdQWq2xzH4ZGin6VOegE8/TZh170jR5XARhs0c2ZgNE5XdZhNvLElhPYLLPpcRBWadZVF2AXKvBXEhKxd9bc9EBkm2R5CjIdF+QmpCLPZ5BbGsa/fQMQlu7RIddlYAAAAABJRU5ErkJggg=="
-									v-else>
-							</view>
-							<view class="top-foot-num" :class="item.returnOfToday>=0?'red':'green'">
-								{{item.changeOfToday}}({{(item.returnOfToday*100).toFixed(2)}}%)
-							</view>
-						</view>
-					</view>
-
-				</view>
 
 
 				<view class="top-header">
@@ -114,26 +98,71 @@
 				</view>
 
 
-			
+
+
+				<!-- <view class="top-foot">
+					<view class="top-foot-item" v-for="(item,index) in top3_list">
+						<view class="top-foot-box">
+							<view class="top-foot-name">{{item.name}}</view>
+							<view class="top-foot-price" :class="item.returnOfToday>=0?'red':'green'">{{item.price}}
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAAQhQTFRFAAAA/wAA/wAA/wBV/wBAzAAz2wBJ4wA56ABG6wA73wBA4QA85gBA6QBD4gA74wBC5QA+6AA+4gBC5QA74QA74gBA5AA85ABA4gBA4gA/5AA/4gA+5AA/4gA95AA95AA84wA/4wA+5QA+5AA+5QA/5AA+5QA94wA/5AA+5QA+5AA94wI+4wI95QI+4wI95AI+5AI+5AI95QI/4wI+5AI95AI/5AE/5AE+5AE+5QE95AE95AE+5AE+5AE+5AE+5AE+5AE+4wE+5AE+5AE+5AE+5AE+5AE+5AE+5QE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+y48RSQAAAFd0Uk5TAAECAwQFBwkLDRARFBcaGx0hIycrLC8wNDU5PkFHS0xRUldeYWdsbnN0eYCBiImQlZabnaKnq7G2t7u8wMbIzdLV1tna3eHj5+nq7O3v8vP19/n6/P3+hOYpNgAAANhJREFUGBmVwYk2QmEYBdATUSKzEgmZp4oKCSlkHoqc93+T6q66q9v9h8/eUDpOQGy19RCGUKRO5iFUZMcmRLbY9T4DgblPOsoBWI3esOcAVkfsa8ZhsfJLVy0Eo4lHDjiFUYEe6zBI0+s1Cq3ZDw4pQWfkmj570DikX2MJSss/VLgbh0L4nkpZKJxR7W8NPhvUeZ7CkOk3al3AK3BFgx147NPkewEDYk0aVcbgClVpkYErR5tWEj0p2j1NwhF9ocA5HJcU2UbHLmW+5oHFBoVugzgpiaXwH221L+MJdLkO8AAAAABJRU5ErkJggg=="
+									v-if="item.returnOfToday>=0">
+
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAARRQTFRFAAAAAP8AAICAVapVQICAM5lmKoCASZJtOY5xM5mAQJWAN5KAM5l3PJZ4OY6AM4yAPZJ5N5B6O5OAN5KAOI+AOpJ8OZWANJB8OZOANZR9NY+AN5F9OJB9N5F7NpJ9N5F+NpN8N5J8OZF8NpR8N5F+NpN+OJJ+OJJ9N5N+N5F9NpN9OJF8N5J8NpN9N5N8N5F+N5J9NpJ+N5J+N5J9N5F9N5J+N5J9NpJ8OJF9OJJ9N5F9N5J9NpJ9N5J9OJJ9N5J9N5J9N5N9N5J+N5J8NpJ9N5J8N5N9N5J9NpJ9N5J9N5J9N5J9N5N9N5J9NpJ9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9tDxDXAAAAFt0Uk5TAAECAwQFBgcJCgwODxESFBUXGhwgIyQnKCswMzc8PUFCRkhMT1VbYGFmaG1zdn2Cg4iKj5WYn6Slqqywsra8v8TIyc3O0dbY3N/g4+Tm6u3u8fP19/n6+/z9/h0cC3YAAADaSURBVBgZpcGFVgJRFAXQo6KgYmGCHdhF2QoGYGEMFpz//w9RwpnhxV3LvXFIsRX031EoA2D2iyLFXtTsUeJjGj8ClxTYQd24Q6tsJxrWaPMyipZjWsTxZ+CBRgdwm6/Q4LYPHgnqfc7Aq/uaWrvwmyxTI9eFNhtUex2DwimVVqEyVKLCEdQWq2xzH4ZGin6VOegE8/TZh170jR5XARhs0c2ZgNE5XdZhNvLElhPYLLPpcRBWadZVF2AXKvBXEhKxd9bc9EBkm2R5CjIdF+QmpCLPZ5BbGsa/fQMQlu7RIddlYAAAAABJRU5ErkJggg=="
+									v-else>
+							</view>
+							<view class="top-foot-num" :class="item.returnOfToday>=0?'red':'green'">
+								{{item.changeOfToday}}({{(item.returnOfToday*100).toFixed(2)}}%)
+							</view>
+						</view>
+					</view>
+
+				</view> -->
+
+
+
+
 			</view>
 
-			<view class="title">人気株</view>
-			<view class="box" style="margin: 0 10px;"><!----><!----><!---->
-				<view class="box-item" v-for="(item,index) in list" @click="link(item.code)">
-					<view class="item-title">
-						<img :src="item.is_collected==1?$icon.ysc:$icon.sc" @click.stop="handleUnFollow(item.code)">
+			<!-- 	<view class="title">人気株</view> -->
+			<view>
+				<image src="/static/home_banner_2.png" mode="widthFix" style="width: 100%;"></image>
+			</view>
 
-						<view class="name-title">{{item.name}}<span
-								style="font-size: 12px;color: #e33262;">{{item.code}}</span></view>
+
+
+
+
+
+
+
+			<view  style="margin: 0 10px;"><!----><!----><!---->
+				<view style="display: flex;flex: 1; align-items: center;justify-content: space-between; background-color: #EEEEEE; margin: 6px  0;border-radius: 6px;padding: 0 6px;"   v-for="(item,index) in list" @click="link(item.code)">
+					<view style="width: 50%;" >
+						<span style="font-size: 14px;color: #e33262;">{{item.code}}</span>
+						<view style="font-size: 14px;">{{item.name}}</view>
+						
 					</view>
-					<view class="item-price">{{item.close}}
-						<img :src="item.rate>=0?$icon.up:$icon.down">
+
+					<view style="width: 20%; align-items: center;text-align: right;">				 
+					   {{item.close}}	<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(30)" >
 					</view>
-					<view class="item-num" :class="item.rate>=0?'red':'green'">
-						{{item.rate_num}}<span>{{item.rate}}%</span>
+
+					<view style="width: 15%;align-items: center;text-align: right;"   :class="item.rate>=0?'red':'green'">
+				<!-- 	<view>{{item.rate_num}}</view>	 -->
+						<span>{{item.rate}}%</span>
 					</view>
+
+					<view style="width: 5%;">
+						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"  :style="$theme.setImageSize(46)"    @click.stop="handleUnFollow(item.code)">
+					</view>
+
 				</view>
 			</view>
+
+
+
+
 			<view class="title">東証33業種トレンド </view>
 			<view class="foot">
 				<view class="foot-left">
@@ -624,7 +653,7 @@
 		width: calc(25% - 9px);
 		height: 59px;
 		border-radius: 6px;
-	/* 	margin: 0 4px 6px 4px; */
+		/* 	margin: 0 4px 6px 4px; */
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -640,15 +669,15 @@
 		justify-content: center;
 		font-weight: 400;
 		font-size: 12px;
-	/* 	color: #37927d; */
-			color: #e4013e;
+		/* 	color: #37927d; */
+		color: #e4013e;
 		line-height: 16px
 	}
 
 	.menu .menu-item img {
 		width: 20px;
 		height: 20px;
-	/* 	margin-bottom: 8px */
+		/* 	margin-bottom: 8px */
 	}
 
 	.top {
@@ -942,7 +971,7 @@
 		-webkit-box-pack: center;
 		-webkit-justify-content: center;
 		justify-content: center;
-		font-weight: 600;
+		font-weight: 900;
 		font-size: 12px;
 		color: #333;
 		line-height: 17px
