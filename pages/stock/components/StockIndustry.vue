@@ -1,62 +1,60 @@
 <template>
-	<view >
-		<CustomTitle title="信用取引情報" style="font-size: 14px;">
-			<view  :style="{color:$theme.LOG_VALUE}"> </view>
+	<view>
+		<CustomTitle title="信用取引情報" style="font-size: 14px;margin-left: -40rpx;">
+			<view :style="{color:$theme.LOG_VALUE}"> </view>
 		</CustomTitle>
-		<view style="height: 1px;background-color: #E5E5E5;margin:0 40rpx;"></view>
-		<view style="padding:10px;font-size: 14px;margin: 0 10px;">
-				<view style="padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">信用買残</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuy}}
-						</view>
+		<view
+			style="padding:10px;font-size: 14px;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 80%;">
+			<view style="padding: 8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">信用買残</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuy}}
 					</view>
-					
 				</view>
-				
-				<view style="margin: 10rpx 0;padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">前週比</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuyChange}}
-						</view>
+			</view>
+
+			<view style="padding:8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">前週比</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuyChange}}
 					</view>
-					
 				</view>
-				
-				
-				<view style="margin: 10rpx 0;padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">信用売残</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginTransactionSell}}
-						</view>
+			</view>
+
+			<view style="padding:8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">信用売残</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginTransactionSell}}
 					</view>
-					
 				</view>
-				<view style="margin: 10rpx 0;padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">前週比</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginTransactionSellChange}}
-						</view>
+			</view>
+			<view style="padding:8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">前週比</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginTransactionSellChange}}
 					</view>
-					
 				</view>
-				<view style="margin: 10rpx 0;padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">信用買残</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuy}}
-						</view>
+			</view>
+			<view style="padding:8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">信用買残</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginTransactionBuy}}
 					</view>
-					
 				</view>
-				<view style="margin: 10rpx 0;padding: 12rpx;">
-					<view style="display: flex;align-items: center; justify-content: space-between;">
-						<view :style="{color:$theme.LOG_LABEL}">信用倍率</view>
-						<view :style="{color:$theme.LOG_VALUE}">{{info.mainStocksDetail.marginTransactionInfo.marginCreditMagnification}}
-						</view>
+			</view>
+			<view style="padding:8rpx 12rpx;">
+				<view style="display: flex;align-items: center; justify-content: space-between;">
+					<view :style="{color:$theme.LOG_LABEL}">信用倍率</view>
+					<view :style="{color:$theme.LOG_VALUE}">
+						{{info.mainStocksDetail.marginTransactionInfo.marginCreditMagnification}}
 					</view>
-					
 				</view>
-				
+			</view>
 		</view>
 	</view>
 </template>

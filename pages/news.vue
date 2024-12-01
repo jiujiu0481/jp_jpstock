@@ -1,7 +1,8 @@
 <!-- 关于我们 -->
 <template>
-	<view class="page">
-		<view class="block">
+	<view class="page_bg">
+		<CustomHeader />
+		<!-- <view class="block">
 			<view class="head">
 				<img :src="$icon.laba" class="head-ring" @click="$u.route({url:'/pages/notification'});">
 				<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
@@ -9,22 +10,23 @@
 				</view>
 				<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
 			</view>
-		</view>
-		<img src="/static/img/7.7349b6f4.png" class="banner" style="width: 100%;" @click="$u.route({url:'/pages/market/overview'});">
-		
-		<view class="list" v-for="(item,index) in news"  @click="open(item.url)">
+		</view> -->
+		<img src="/static/img/7.7349b6f4.png" class="banner" style="width: 100%;"
+			@click="$u.route({url:'/pages/market/overview'});">
+
+		<view class="list" v-for="(item,index) in news" @click="open(item.url)">
 			<view class="list-line"></view>
 			<view class="list-info">
 				<view class="list-title">{{item.title}}</view>
 				<view class="list-date">{{item.updated_at}}</view>
-						<!-- <view >
+				<!-- <view >
 							<image :src="item.pic" mode="aspectFit"  :style="$theme.setImageSize(30)"></image>
 						</view> -->
 			</view>
 		</view>
-		
 
-	
+
+
 	</view>
 </template>
 
@@ -38,7 +40,7 @@
 			return {
 				isAnimat: false, // 页面动画
 				info: {},
-				news:{}
+				news: {}
 			};
 		},
 		computed: {},
@@ -69,11 +71,11 @@
 						url: item.url,
 						updated_at: item.updated_at,
 						pic: item.pic,
-						created_at:item.created_at
+						created_at: item.created_at
 					}
 				});
 			},
-			
+
 		},
 	}
 </script>

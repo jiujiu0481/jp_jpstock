@@ -93,7 +93,7 @@
 		top: 0;
 		box-sizing: border-box;
 		z-index: 10;
-		background: #fff;
+		// background: #fff;
 		border-bottom: 1px solid #ebebeb
 	}
 	
@@ -117,16 +117,16 @@
 	.short {
 		width: 100%;
 		height: 1px;
-		background: #ebebeb
+		// background: #ebebeb
 	}
-	.header_bg {
-		background-image: url(/static/bg_1.png);
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		width: 100%;
-		height: 160rpx;
-	}
+	// .header_bg {
+	// 	background-image: url(/static/bg_1.png);
+	// 	background-position: center center;
+	// 	background-repeat: no-repeat;
+	// 	background-size: 100% 100%;
+	// 	width: 100%;
+	// 	height: 160rpx;
+	// }
 	
 	
 	/* uni.scss */
@@ -137,7 +137,7 @@
 	.head {
 		width: 100%;
 		height: 54px;
-		background: #fff;
+		// background: #fff;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;

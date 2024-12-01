@@ -1,22 +1,22 @@
 <template>
-	<view class="page">
-		<view class="block">
-			<view class="head">
-				<img :src="$icon.laba" class="head-ring" @click="$u.route({url:'/pages/notification'});">
-				<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
-					<img :src="$icon.sousuo">
-				</view>
-				<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-			</view>
+	<view class="page_bg">
+		<CustomHeader />
+
+		<view style="display: flex;align-items: center;justify-content: space-between;">
+			<view @click="dianji(0)" style="">株式市場</view>
+			<view @click="dianji(1)">オプション</view>
 		</view>
-		<view class="nav-box">
-			<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)">株式市場</view>
-			<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
-		</view>
-		<view class="marBox">
-			<view class="home-menu" style="background-color: #EEEEEE;">
-				<view class="home-menu-item" style="border-radius: 6px;"    :class="item.rate>=0?'red':'green'" v-for="(item,index) in list"
-					:key="index" @click="link(item.code)" v-if="index<6">
+
+
+		<!-- <view class="nav-box" style="padding-bottom: 40px;">
+				<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)">株式市場</view>
+				<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
+			</view> -->
+		<view>
+
+			<view class="home-menu">
+				<view class="home-menu-item" style="border-radius: 6px;" :class="item.rate>=0?'red':'green'"
+					v-for="(item,index) in list" :key="index" @click="link(item.code)" v-if="index<6">
 					<view class="home-menu-item-title"><span>{{item.name}}</span>
 						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
 							@click.stop.capture="handleUnFollow(item.code)">
@@ -33,27 +33,66 @@
 
 			<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
 				<view style="flex:0 0 48%;border-radius: 12rpx;">
-					<view
-						style="background-image: url(/static/banner_market_a.png);
+					<view style="background-image: url(/static/banner_market_a.png);
 						background-position:center;background-repeat: no-repeat;
 						background-size: 100%;width: 100%;height: 80px;border-radius: 24rpx;">
 					</view>
 				</view>
 				<view style="flex:0 0 48%;border-radius: 12rpx;">
-					<view
-						style="background-image: url(/static/banner_market_b.png);
+					<view style="background-image: url(/static/banner_market_b.png);
 						background-position:center ;background-repeat: no-repeat;
 						background-size: 100%;width: 100%;height: 80px;border-radius: 24rpx;">
 					</view>
 				</view>
 			</view>
 
+
+			<view style="display: flex;padding-top: 20rpx;padding-bottom: 12px;">
+				<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
+				</image>
+				<view style="margin-left: 28rpx; font-size: 14px; font-weight: 700;">ホットプレート</view>
+			</view>
+
 			<view class="box" style="margin:0 10px">
-				<view class="box-item" v-for="(item,index) in list" :key="index" @click="link(item.code)">
+				<view v-for="(item,index) in list"
+					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #ffb2d18f;"
+					@click="link(item.code)">
+
+					<view
+						style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
+						<view style="font-size: 14px;">{{item.name}}</view>
+						<img :src="item.is_collected==1?$icon.ysc:$icon.sc" :style="$theme.setImageSize(32)"
+							@click.stop="handleUnFollow(item.code)">
+					</view>
+
+					<view style="display: flex; align-items: center;margin: 4px 0;">
+						<span style="flex:2; font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
+						<view style="flex:2;font-size: 14px;padding-left: 60rpx; ">
+							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(28)"
+								style="padding-right: 12rpx;">
+							{{item.close}}
+						</view>
+
+						<view style="flex:1;text-align: right;font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">
+							<!-- 	<view>{{item.rate_num}}</view>	 -->
+							<span>{{item.rate}}%</span>
+						</view>
+					</view>
+				</view>
+
+
+
+
+
+
+				<!-- <view class="box-item" v-for="(item,index) in list" :key="index" @click="link(item.code)">
 					<view class="item-title">
 						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
 							@click.stop.capture="handleUnFollow(item.code)">
-						<view class="name-title">{{item.name}}<span style="font-size: 12px;color: #e33262;">{{item.code}}</span></view>
+						<view class="name-title">{{item.name}}<span
+								style="font-size: 12px;color: #e33262;">{{item.code}}</span></view>
 					</view>
 					<view class="item-price">{{$util.formatMoney(item.close*1,2)}}
 						<img :src="item.rate>=0?$icon.up:$icon.down">
@@ -61,7 +100,7 @@
 					<view class="item-num" :class="item.rate>=0?'red':'green'">
 						{{item.rate_num}}<span>{{$util.formatNumber(item.rate,2)}}%</span>
 					</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 
@@ -97,7 +136,6 @@
 			<template v-else>
 				<MarketKPI ref="kpi"></MarketKPI>
 			</template> -->
-	</view>
 	</view>
 </template>
 
@@ -249,8 +287,8 @@
 	@charset "UTF-8";
 
 	.page {
-		background: #f7f9f8;
-		min-height: 100vh;
+		// background: #f7f9f8;
+		// min-height: 100vh;
 		box-sizing: border-box;
 		padding-bottom: 67px
 	}
@@ -271,7 +309,7 @@
 		width: 100%;
 		left: 0;
 		top: 54px;
-		background: #f7f9f8;
+		// background: #f7f9f8;
 		box-sizing: border-box;
 		z-index: 10
 	}
@@ -280,7 +318,7 @@
 		width: calc(33.3333333333% - 22px);
 		margin: 0 11px;
 		height: 28px;
-		background: #fff;
+		// background: #fff;
 		border-radius: 5px;
 		border: 1px solid #e4013e;
 		display: -webkit-box;
@@ -304,7 +342,7 @@
 
 	.home-menu {
 		height: 190px;
-		background: #fff;
+		// background: #fff;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;

@@ -1,19 +1,10 @@
 <template>
-	<view class="page">
-		<view class="page">
-			<view class="header">
-				<view class="header-left">
-					<img src="/static/img/logo.png" class="header-img">
-					<!-- 	<img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});"> -->
-				</view>
-				<!-- 	<img src="/static/img/logo.png" class="header-img"> -->
-				<view class="header-right">
-					<img :src="$icon.sousuo" @click="$u.route({url:'/pages/search/index'});" class="header-search">
-					<!-- <img :src="$icon.laba" class="header-ring" @click="$u.route({url:'/pages/notification'});"> -->
-					<img :src="$icon.chilun" @click="$u.route({url:'/pages/account/center'});" class="header-setting">
+	<view class="page_bg">
+		<CustomHeader />
 
-				</view>
-			</view>
+
+		<view class="page">
+
 			<view style="display: flex;align-items: center;justify-content: center; ">
 				<img src="/static/img/7.7349b6f4.png" class="banner" @click="$u.route({url:'/pages/market/overview'});">
 			</view>
@@ -57,6 +48,46 @@
 				</view>
 			</view>
 
+			<view>
+
+				<view style=" background-image: url(/static/home_news_B.png);  ">
+					<image src="/static/home_news_A.png" mode="aspectFit" :style="$theme.setImageSize(120)"></image>
+				</view>
+
+			</view>
+
+
+			<view>
+				<view
+					style="background-color: #FFFFFF;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+					<view style="display: flex;padding-top: 20px;padding-bottom: 12px;">
+						<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
+						</image>
+						<view style="margin-left: 20px; font-weight: 900;">ホットプレート</view>
+					</view>
+					<view class="home-menu">
+						<view class="home-menu-item" style="border-radius: 6px;" :class="item.rate>=0?'red':'green'"
+							v-for="(item,index) in list" :key="index" @click="link(item.code)" v-if="index<6">
+							<view class="home-menu-item-title"><span>{{item.name}}</span>
+								<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
+									@click.stop.capture="handleUnFollow(item.code)">
+							</view>
+							<view class="home-menu-item-tip1">
+								{{item.code}}<span>{{item.rate_num}}</span><span>{{$util.formatNumber(item.rate,2)}}%</span>
+							</view>
+							<div class="home-menu-item-tip2">{{$util.formatMoney(item.close*1,2)}}
+								<img :src="item.rate>=0?$icon.up:$icon.down">
+							</div>
+						</view>
+
+					</view>
+				</view>
+			</view>
+
+
+
+
+
 
 
 
@@ -69,6 +100,9 @@
 			<view>
 				<image src="/static/home_banner_1.png" mode="widthFix" style="width: 100%;"></image>
 			</view>
+
+
+
 
 			<view class="top">
 
@@ -99,8 +133,8 @@
 
 
 
-
-				<!-- <view class="top-foot">
+				<!-- 
+				<view class="top-foot">
 					<view class="top-foot-item" v-for="(item,index) in top3_list">
 						<view class="top-foot-box">
 							<view class="top-foot-name">{{item.name}}</view>
@@ -136,27 +170,32 @@
 
 
 
-			<view  style="margin: 0 10px;"><!----><!----><!---->
-				<view style="display: flex;flex: 1; align-items: center;justify-content: space-between; background-color: #EEEEEE; margin: 6px  0;border-radius: 6px;padding: 0 6px;"   v-for="(item,index) in list" @click="link(item.code)">
-					<view style="width: 50%;" >
-						<span style="font-size: 14px;color: #e33262;">{{item.code}}</span>
+			<view style="margin: 0 10px;"><!----><!----><!---->
+				<view v-for="(item,index) in list"
+					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #ffb2d18f;"
+					@click="link(item.code)">
+
+					<view
+						style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
 						<view style="font-size: 14px;">{{item.name}}</view>
-						
+						<img :src="item.is_collected==1?$icon.ysc:$icon.sc" :style="$theme.setImageSize(32)"
+							@click.stop="handleUnFollow(item.code)">
 					</view>
 
-					<view style="width: 20%; align-items: center;text-align: right;">				 
-					   {{item.close}}	<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(30)" >
-					</view>
+					<view style="display: flex; align-items: center;margin: 4px 0;">
+						<span style="flex:2; font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
+						<view style="flex:2;font-size: 14px;padding-left: 60rpx; ">
+							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(28)"
+								style="padding-right: 12rpx;">
+							{{item.close}}
+						</view>
 
-					<view style="width: 15%;align-items: center;text-align: right;"   :class="item.rate>=0?'red':'green'">
-				<!-- 	<view>{{item.rate_num}}</view>	 -->
-						<span>{{item.rate}}%</span>
+						<view style="flex:1;text-align: right;font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">
+							<span>{{item.rate}}%</span>
+						</view>
 					</view>
-
-					<view style="width: 5%;">
-						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"  :style="$theme.setImageSize(46)"    @click.stop="handleUnFollow(item.code)">
-					</view>
-
 				</view>
 			</view>
 
@@ -287,7 +326,7 @@
 				zhibiao_show: false,
 				kLineChart: null, // Kline实例化
 				lishi: [], // k綫數據
-				list: '',
+				list: [],
 				kline_data: "",
 				top3_list: "",
 				dz33: "",
@@ -550,75 +589,6 @@
 </script>
 <style type="text/css">
 	@charset "UTF-8";
-
-	.page {
-		background: #f7f9f8;
-		min-height: 100vh;
-		box-sizing: border-box;
-		padding-bottom: 67px
-	}
-
-	.header {
-		height: 70px;
-		padding: 0 8px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		background: #fff
-	}
-
-	.header .header-left {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center
-	}
-
-	.header .header-img {
-		width: 159px;
-		height: 52px;
-		object-fit: contain
-	}
-
-	.header .header-right {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: end;
-		-webkit-justify-content: flex-end;
-		justify-content: flex-end
-	}
-
-	.header .header-ring {
-		width: 20px;
-		height: 20px
-	}
-
-	.header .header-search {
-		width: 19px;
-		height: 19px
-	}
-
-	.header .header-setting {
-		width: 21px;
-		height: 21px;
-		margin-left: 20px
-	}
 
 	.banner {
 		height: 100px;
@@ -1084,78 +1054,6 @@
 		-webkit-box-pack: center;
 		-webkit-justify-content: center;
 		justify-content: center
-	}
-
-
-
-
-	.page {
-		background: #f7f9f8;
-		min-height: 100vh;
-		box-sizing: border-box;
-		padding-bottom: 65px
-	}
-
-	.header {
-		height: 68px;
-		padding: 0 8px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		background: #fff
-	}
-
-	.header .header-left {
-		width: 59px;
-		height: 68px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center
-	}
-
-	.header .header-img {
-		width: 153px;
-		height: 50px;
-		object-fit: contain
-	}
-
-	.header .header-right {
-		width: 59px;
-		height: 68px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: end;
-		-webkit-justify-content: flex-end;
-		justify-content: flex-end
-	}
-
-	.header .header-ring {
-		width: 19px;
-		height: 20px
-	}
-
-	.header .header-search {
-		width: 19px;
-		height: 19px
-	}
-
-	.header .header-setting {
-		width: 20px;
-		height: 20px;
-		margin-left: 19px
 	}
 
 	.banner {
@@ -1939,5 +1837,130 @@
 		font-weight: 600;
 		font-size: 12px;
 		color: #333
+	}
+
+	.home-menu {
+		height: 190px;
+		background: #fff;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+		padding: 4px 5px 10px 5px
+	}
+
+	.home-menu .home-menu-item {
+		width: calc(33.3333333333% - 5px);
+		height: 77px;
+		margin: 5px 2px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		padding: 3px 6px 0 6px;
+		box-sizing: border-box
+	}
+
+	.home-menu .home-menu-item .home-menu-item-title {
+		height: 17px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		justify-content: space-between
+	}
+
+	.home-menu .home-menu-item .home-menu-item-title span {
+		width: calc(100% - 21px);
+		height: 17px;
+		line-height: 17px;
+		font-weight: 400;
+		font-size: 12px;
+		color: #333;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap
+	}
+
+	.home-menu .home-menu-item .home-menu-item-title img {
+		width: 15px;
+		height: 15px;
+		margin-left: 6px
+	}
+
+	.home-menu .home-menu-item .home-menu-item-tip1 {
+		height: 12px;
+		font-weight: 400;
+		font-size: 8px;
+		color: #333;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		justify-content: space-between
+	}
+
+	.home-menu .home-menu-item .home-menu-item-tip1 span {
+		font-weight: 400;
+		font-size: 8px
+	}
+
+	.home-menu .home-menu-item .home-menu-item-tip2 {
+		height: 21px;
+		font-weight: 600;
+		font-size: 15px;
+		color: #333;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		align-items: center
+	}
+
+	.home-menu .home-menu-item .home-menu-item-tip2 img {
+		width: 10px;
+		height: 10px;
+		margin-left: 5px
+	}
+
+	.home-menu .green {
+		background: url(/static/img/green.290586a0.png);
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-color: #e9f2dd
+	}
+
+	.home-menu .green .home-menu-item-tip1 span {
+		color: #37927d
+	}
+
+	.home-menu .red {
+		background: url(/static/img/red.7825f33b.png);
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-color: #f7d9da
+	}
+
+	.home-menu .red .home-menu-item-tip1 span {
+		color: #e04e50
 	}
 </style>

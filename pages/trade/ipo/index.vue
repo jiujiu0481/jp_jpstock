@@ -1,20 +1,12 @@
 <template>
+	<view class="page_bg_sec">
+		<CustomHeaderSecond title="注文" />
 
-	<view class="page">
-		<view class="block">
-			<view class="head">
-				<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">注文</view>
-				<view class="back"></view>
-			</view>
-
-			<view class="short"></view>
-			
-			<view style="display: flex;align-items: center;justify-content: center;">
-				<image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix"  :style="$theme.setImageSize(340)"></image>
-			</view>
-			
+		<view style="display: flex;align-items: center;justify-content: center;">
+			<image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(340)">
+			</image>
 		</view>
+
 		<view class="top">
 			<view class="top-list" @click="$u.route({url:'/pages/trade/ipo/record'});">
 				<view class="top-left"><img :src="$icon.ipo1">抽選申し込み履歴</view>
@@ -54,7 +46,7 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				inv:1,
+				inv: 1,
 			};
 		},
 		onShow() {

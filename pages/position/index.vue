@@ -1,15 +1,7 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
+		<CustomHeader />
 		<view class="page">
-			<view class="block">
-				<view class="head">
-					<img :src="$icon.laba" class="head-ring" @click="$u.route({url:'/pages/notification'});">
-					<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
-						<img :src="$icon.sousuo">
-					</view>
-					<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-				</view>
-			</view>
 			<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
 						background-size:120%;width: 100%;height:auto;">
 				<view class="top">
@@ -66,14 +58,18 @@
 
 
 
-			<view style="display: flex;flex: 1;align-items: center;justify-content: center;">
-				<view style="display: flex;align-items: center;justify-content: center; background-color: #EEEEEE;border-radius: 6px;padding: 10px 18px;margin: 10px 10px;font-size: 12px;width: 140px;" @click="linkDeposit">
-					<image src="/static/deposit.png" mode="aspectFit" style="width: 40px;height: 40px;"></image>
-					<view style="margin-left: 10px;">入金</view>
+			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between;">
+				<view
+					style=" box-shadow: 0 0 4px #AAA; background-image: linear-gradient(#ffdfdf ,#FFFFFF);    display: flex;align-items: center;justify-content: center;    border-radius: 6px;padding: 10px 18px;margin: 10px 10px 10px 20px;font-size: 12px;width: 100px;"
+					@click="linkDeposit">
+					<image src="/static/deposit.png" mode="aspectFit" style="width:  30px;height: 30px;"></image>
+					<view style="margin-left: 30px;font-size: 14px;">入金</view>
 				</view>
-				<view style="display: flex;align-items: center;justify-content: center;background-color: #EEEEEE;border-radius: 6px;padding: 10px 18px;margin: 10px 10x;font-size: 12px;width: 140px;" @click="linkWithdraw">
-					<image src="/static/withdraw.png" mode="aspectFit" style="width: 40px;height: 40px;"></image>
-					<view style="margin-left: 10px;">出金</view>
+				<view
+					style=" box-shadow: 0 0 4px #AAA; background-image: linear-gradient(#dfe5ff ,#FFFFFF);    display: flex;align-items: center;justify-content: center;border-radius: 6px;padding: 10px 18px;margin: 10px 20x 10px  10px;margin-right: 20px;  font-size: 12px;width: 100px;"
+					@click="linkWithdraw">
+					<image src="/static/withdraw.png" mode="aspectFit" style="width: 30px;height: 30px;"></image>
+					<view style="margin-left: 30px;font-size: 14px;">出金</view>
 				</view>
 			</view>
 
@@ -81,14 +77,15 @@
 
 			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"> </TabsThird>
 
-			<view class="abox"    >
-				<view class="abox-list" v-for="(item,index) in list" :key="index" >
+			<view class="abox">
+				<view class="abox-list" v-for="(item,index) in list" :key="index">
 					<view class="abox-title gap5">
 						<view class="abox-name">{{item.name}}<span>{{item.code}}</span></view>
 						<view class="abox-have" v-if="item.status==1">保有中</view>
 						<view class="abox-not" v-if="item.status==2">決済済み</view>
 					</view>
-					<view class="abox-foot"  style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+					<view class="abox-foot"
+						style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
 						<view class="foot-item">
 							<view class="abox-foot-title">購入記録</view>
 							<view class="abox-foot-list">
@@ -205,8 +202,8 @@
 		onHide() {
 			this.isAnimat = false;
 		},
-		
-		
+
+
 		// 提款
 		linkWithdraw() {
 			uni.navigateTo({

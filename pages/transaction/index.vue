@@ -1,7 +1,9 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
+		<CustomHeader />
+
 		<view class="page">
-			<view class="block">
+			<!-- <view class="block">
 				<view class="head">
 					<img :src="$icon.laba" class="head-ring" @click="$u.route({url:'/pages/notification'});">
 					<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
@@ -9,10 +11,10 @@
 					</view>
 					<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
 				</view>
-			</view>
+			</view> -->
 
 
-<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
+			<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
 						background-size:120%;width: 100%;height:auto;">
 				<view class="top">
 					<view class="top-left">
@@ -78,10 +80,9 @@
 
 
 
-			<view
-				style="background-color: #FFFFFF;padding: 20rpx 10px;min-height:96vh;border-radius: 10px;">
+			<view style="background-color: #FFFFFF;padding: 20rpx 10px;min-height:96vh;border-radius: 10px;">
 				<TabsThird :tabs="tabLabels" @action="changeTab" :acitve="curTab"></TabsThird>
-				
+
 				<template v-if="curTab == 0">
 					<TradeRecord></TradeRecord>
 				</template>
@@ -93,7 +94,7 @@
 				<template v-if="curTab == 2">
 					<WithdrawalRecord></WithdrawalRecord>
 				</template>
-				
+
 			</view>
 		</view>
 	</view>
@@ -123,7 +124,7 @@
 				available: '', // 可用額
 				userInfo: null,
 				list: [], // 
-				
+
 				curPage: 1, // 当前页码
 				maxPage: 1, // 最大页码
 				isShow: false, // 是否显示弹层
@@ -150,7 +151,7 @@
 		onShow() {
 			this.isAnimat = true;
 			this.getAccountInfo();
-				this.changeTab(this.curTab);
+			this.changeTab(this.curTab);
 		},
 		onHide() {
 			this.isAnimat = false;
@@ -159,9 +160,9 @@
 			changeTab(val) {
 				this.curTab = val;
 			},
-			
-			
-			
+
+
+
 			// 总资产显隐控制
 			handleShowAmount() {
 				this.showAmount = !this.showAmount;
@@ -195,9 +196,9 @@
 				console.log(`result info:`, result);
 				this.userInfo = result;
 				this.available = !result.money ? 0 : result.money * 1; // 可提
-			
+
 				console.log(333, Math.abs(result.Sellamount * 1));
-			
+
 				let res = {
 					series: [{
 						data: [{
@@ -216,8 +217,8 @@
 					}]
 				};
 				this.chartData = JSON.parse(JSON.stringify(res));
-			
-			
+
+
 				let res1 = {
 					series: [{
 						data: [{
@@ -236,7 +237,7 @@
 					}]
 				};
 				this.chartData1 = JSON.parse(JSON.stringify(res1));
-			
+
 			},
 			fanhui() {
 				uni.switchTab({

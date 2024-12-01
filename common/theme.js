@@ -2,8 +2,8 @@
 const PRIMARY = '#eb3933'; // 通常为主要配色
 const SECOND = '#292C31';
 const THIRD = '#FF2D30';
-const RISE = '#FC0F41'; // 涨/跌
-const FALL = '#09D2A0'; // 跌/涨 
+const RISE = '#ff3636'; // 涨/跌
+const FALL = '#37927d'; // 跌/涨 
 // uni.showModal 弹层cancelColor取消按钮的样式 
 const MODAL_CANCEL = '#999999';
 
@@ -15,7 +15,6 @@ const LOG_LABEL = '#999999'; // 一些记录的明文颜色
 const LOG_VALUE = '#333333'; // 一些记录的数据颜色
 
 const CHART_TEXT_COLOR = '#999999'; // 图表相关的字色
-
 
 // 渐变设置
 const linerGradient = (deg, from, to) => {
@@ -65,7 +64,7 @@ const setBGSize = (val, url = '') => {
 const setStockRiseFall = (val, isbg = false) => {
 	return {
 		color: isbg ? '#FFFFFF' : val ? RISE : FALL,
-		backgroundColor: !isbg ? '' : val ? RISE : FALL,
+		backgroundColor: !isbg ? TRANSPARENT : val ? RISE : FALL,
 	}
 };
 

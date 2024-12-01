@@ -1,31 +1,40 @@
 <template>
-	<view class="page">
-		<view class="block">
-			<view class="head">
-				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">検索</view>
-				<view class="back"></view>
+	<view class="page_bg_sec">
+		<header style="display: flex;align-items: center;padding: 24px 28rpx;">
+			<view style="margin-right: auto;">
+				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit"
+					style="width: 16px;height: 16px;"></image>
 			</view>
-		</view>
-		<view class="search">
-			<img :src="$icon.sousuo">
+			<view style=" flex:1;">
+				<view
+					style="background-color: rgba(255,255,255,0.4);height: 64rpx;line-height: 64rpx;text-align: center; border-radius: 24rpx;padding: 0 24rpx;display: flex;align-items: center;margin: 0 48rpx;">
 
-			<input placeholder="銘柄コードを入力して検索" v-model="keyword" @input="searchButton" />
-		</view>
-
-
+					<input placeholder="銘柄コードを入力して検索" v-model="keyword" @input="searchButton"
+						:placeholder-style="$theme.setPlaceholder(`#FFFFFF`)" />
+					<view style="margin-left: auto;">
+						<image :src="$icon.sousuo" @click="searchButton()" mode="aspectFit"
+							style="width: 16px;height: 16px;">
+						</image>
+					</view>
+				</view>
+			</view>
+			<view style="margin-left: auto;">
+				<image src="/static/shezhi.png" mode="aspectFit" style="width: 20px;height: 20px;"
+					@click="$u.route({url:'/pages/account/center'});"></image>
+			</view>
+		</header>
 
 		<u-picker :show="show1" :columns="[columns1]" cancelText="キャンセル" confirmText="確認する" @cancel="show1=false"
 			@confirm="changeType"></u-picker>
 
-		<view style="padding:10px 20rpx 0 20rpx;">
+		<view style="padding:10px 28rpx 0 28rpx;">
 			<TitleSecond :title="$lang.SEARCH_HISTORY">
 				<image mode="aspectFit" src="/static/delete.png" :style="$theme.setImageSize(40)"
 					style="margin-left: auto;" @click="clearKeywords()"></image>
 			</TitleSecond>
 		</view>
 
-		<view style="display: flex;align-items: center;margin:0 10px;flex-wrap: wrap;">
+		<view style="display: flex;align-items: center;margin:0 28rpx;flex-wrap: wrap;">
 			<template v-if="keywords.length>0">
 				<block v-for="(item,index) in keywords" :key="index">
 					<view
@@ -35,23 +44,47 @@
 			</template>
 		</view>
 
-		<view style="padding-bottom: 40rpx;">
-			<SearchList :list="list"></SearchList>
+		<view style="padding-bottom: 160rpx;margin: 0 28rpx;padding-top: 48rpx;">
+			<template v-if="!list || list.length<=0">
+				<EmptyData img="search"></EmptyData>
+			</template>
+			<template v-else>
+				<block v-for="(item,index) in list" :key="index">
+					<view @click="link(item.code)"
+						style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #ffb2d18f;">
+
+						<view
+							style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
+							<view style="font-size: 14px;">{{item.name}}</view>
+							<view :class="item.rate>=0?'red':'green'" style="flex:1;text-align: right;font-size: 14px;">
+								<span>{{item.rate_num}}</span>
+							</view>
+						</view>
+
+						<view style="display: flex; align-items: center;margin: 4px 0;">
+							<span style="flex:2; font-size: 14px;color: #e33262;">{{item.code}}</span>
+							<view style="flex:2;font-size: 14px;padding-left: 60rpx; ">
+								<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(28)"
+									style="padding-right: 12rpx;">
+								{{$util.formatMoney(item.price)}}
+							</view>
+							<view :class="item.rate>=0?'red':'green'" style="flex:1;text-align: right;font-size: 14px;">
+								<span>{{item.rate}}%</span>
+							</view>
+						</view>
+					</view>
+				</block>
+			</template>
 		</view>
-
-		
-
 	</view>
 </template>
 <script>
 	import HeaderSecond from '@/components/header/HeaderSecond.vue';
 	import TitleSecond from '@/components/title/TitleSecond.vue';
-	import SearchList from './components/SearchList.vue';
 	export default {
 		components: {
 			HeaderSecond,
 			TitleSecond,
-			SearchList,
 		},
 		data() {
 			return {
@@ -125,12 +158,17 @@
 				this.searchButton();
 			},
 
+			// 跳转到股票详情
+			link(code) {
+				if (!code || code == '') return false;
+				uni.navigateTo({
+					url: `${this.$paths.STOCK_OVERVIEW}?code=${code}`
+				});
+			},
+
 			//搜索
 			async searchButton() {
-				if (this.keyword == '' || this.keyword.length < 3) {
-
-					return false;
-				}
+				if (this.keyword == '' || this.keyword.length < 3) return false;
 
 				const result = await this.$http.post(`api/product/list`, {
 					key: this.keyword,
@@ -190,7 +228,8 @@
 		-webkit-box-align: center;
 		-webkit-align-items: center;
 		align-items: center;
-		margin: 10px 11px 0 11px
+		margin: 10px 11px 0 11px;
+
 	}
 
 	.search img {
@@ -253,7 +292,7 @@
 		justify-content: center
 	}
 
-	
+
 
 	.uni-input-input {
 		font-size: 13px;

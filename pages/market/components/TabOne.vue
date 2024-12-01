@@ -15,7 +15,7 @@
 			<view class="font-size-17 bold margin-left-5">人気株式</view>
 		</view>
 
-		<!-- <view style="display: flex;align-items: center;justify-content: space-between;background-color: #f2bb8f;border-radius: 5px;padding: 5px;">
+		<view style="display: flex;align-items: center;justify-content: space-between;background-color: #f2bb8f;border-radius: 5px;padding: 5px;">
 			<block v-for="(item,index) in top1" :key="index" v-if="index<=2">
 				<view
 					style="border-radius: 6px;border:2px solid rgba(0, 0, 0, 0);text-align: center;flex-basis: calc(50% - 12px);box-sizing: border-box;margin: 5px;"
@@ -35,7 +35,7 @@
 				</view>
 				
 			</block>
-		</view> -->
+		</view>
 		<!-- <view style="margin: 10px;padding:10px 0">
 			<view class="chart" id="chart-type-k-line" style="width: 100%;height: 300rpx;">
 			</view>
