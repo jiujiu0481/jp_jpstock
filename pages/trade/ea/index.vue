@@ -1,11 +1,14 @@
 <template>
 	<view>
-		<view class="block">
-			<view class="head">
-				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">クオンツトレーディング</view>
-				<view class="back"></view>
-			</view>
+		<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+			<CustomHeaderSecond title="クオンツトレーディング"></CustomHeaderSecond>
+			<!-- <view class="block">
+				<view class="head">
+					<img @click="$util.goBack()" :src="$icon.zjt" class="back">
+					<view class="title left_in" style="margin-left: 0px;">クオンツトレーディング</view>
+					<view class="back"></view>
+				</view>
+			</view> -->
 		</view>
 
 		<!-- 韩国似乎没有EA介绍 -->

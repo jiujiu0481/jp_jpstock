@@ -100,23 +100,32 @@
 
 
 
-			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between;">
-				<view
-					style=" box-shadow: 0 0 4px #AAA; background-image: linear-gradient(#ffdfdf ,#FFFFFF);    display: flex;align-items: center;justify-content: center;    border-radius: 6px;padding: 10px 18px;margin: 10px 10px 10px 20px;font-size: 12px;width: 100px;"
-					@click="linkDeposit">
-					<image src="/static/deposit.png" mode="aspectFit" style="width:  30px;height: 30px;"></image>
-					<view style="margin-left: 30px;font-size: 14px;">入金</view>
+			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
+				<view @click="linkDeposit">
+					<image src="/static/deposit.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
+
 				</view>
-				<view
-					style=" box-shadow: 0 0 4px #AAA; background-image: linear-gradient(#dfe5ff ,#FFFFFF);    display: flex;align-items: center;justify-content: center;border-radius: 6px;padding: 10px 18px;margin: 10px 20x 10px  10px;margin-right: 20px;  font-size: 12px;width: 100px;"
-					@click="linkWithdraw">
-					<image src="/static/withdraw.png" mode="aspectFit" style="width: 30px;height: 30px;"></image>
-					<view style="margin-left: 30px;font-size: 14px;">出金</view>
+				<view @click="linkWithdraw">
+					<image src="/static/withdraw.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
+
 				</view>
 			</view>
-		</view>
 
-		<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
+
+
+			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
+				<view @click="$u.route({url:'/pages/account/bankCard'});">
+					<image src="/static/bank.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
+
+				</view>
+				<view @click="$u.route({url:'/pages/account/auth'});">
+					<image src="/static/auth.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
+
+				</view>
+			</view>
+
+		</view>
+		<!-- <view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
 			<view style="flex:0 0 48%;border-radius: 12rpx;" @click="$u.route({url:'/pages/account/bankCard'});">
 				<view style="background-image: url(/static/bank.png);
 						background-position:center ;background-repeat: no-repeat;
@@ -130,7 +139,7 @@
 				</view>
 			</view>
 
-		</view>
+		</view> -->
 
 		<view class="page-foot">
 			<!-- <view class="list" @click="$u.route({url:'/pages/account/bankCard'});">

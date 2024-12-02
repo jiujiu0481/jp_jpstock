@@ -1,8 +1,9 @@
 <!-- 绑定银行卡 -->
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="金融カード追加"></CustomHeaderSecond>
 		<view class="page">
-			<view class="block">
+			<!-- <view class="block">
 
 				<view class="head">
 					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
@@ -10,7 +11,7 @@
 					<view class="back"></view>
 				</view>
 				<view class="short"></view>
-			</view>
+			</view> -->
 			<view class="info-box">
 				<view class="text-center"><img src="/static/img/3.9698c7ef.png" class="info-img"></view>
 				<view class="info-name">カード名義人名:</view>

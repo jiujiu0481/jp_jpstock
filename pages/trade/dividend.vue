@@ -1,9 +1,10 @@
 <template>
 
 
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec"  >
+		<CustomHeaderSecond title="アフターマーケッ卜取引"></CustomHeaderSecond>
 		<view>
-			<view class="block">
+			<!-- <view class="block">
 
 				<view class="head">
 					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
@@ -11,7 +12,7 @@
 					<view class="back"></view>
 				</view>
 				<view class="short"></view>
-			</view>
+			</view> -->
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>

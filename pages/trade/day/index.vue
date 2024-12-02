@@ -1,23 +1,18 @@
 <template>
-	<view>
-		<view class="block">
-			<view class="head">
-				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">デイトレード</view>
-				<view class="back"></view>
-			</view>
-		</view>
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="デイトレード"></CustomHeaderSecond>
 		
-		<view>
-			<image src="/static/trade_day_banner.png"  style="width: 100%;height: 300px;"></image>
-		</view>
 		
+			<image src="/static/trade_day_banner.png" style="width: 100%;height: 300px;"></image>
+	
+
 		<view class="nav-box">
 			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>
 		</view>
-	
-		<view style="background-color: #FFFFFF;min-height: 90vh;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
+
+		<view
+			style="background-color: #FFFFFF;min-height: 90vh;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TradeDayBuy></TradeDayBuy>
 		</view>
 	</view>
@@ -26,31 +21,33 @@
 <script>
 	import HeaderThird from '@/components/header/HeaderThird.vue';
 	import TradeDayBuy from './components/TradeDayBuy.vue';
+
 	export default {
 		components: {
 			HeaderThird,
 			TradeDayBuy,
+
 		},
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				inv:0,
+				inv: 0,
 			}
 		},
 		onShow() {
 			this.isAnimat = true;
-			
-			if (this.$refs.log&&inv==1)
-				this.$refs.log.getList();	
-				
+
+			if (this.$refs.log && inv == 1)
+				this.$refs.log.getList();
+
 		},
 		onHide() {
 			this.isAnimat = false;
 		},
 		methods: {
-			qiehuan(num){
-				this.inv=num;
-				if(num==1){
+			qiehuan(num) {
+				this.inv = num;
+				if (num == 1) {
 					this.$refs.log.getList();
 				}
 			},
@@ -77,7 +74,7 @@
 		background: #f7f9f8;
 		box-sizing: border-box
 	}
-	
+
 	.nav-box .nav-item {
 		width: calc(50% - 22px);
 		margin: 0 11px;
@@ -98,10 +95,9 @@
 		font-size: 11px;
 		color: #e4013e
 	}
-	
+
 	.nav-box .active {
 		background: #e4013e;
 		color: #fff
 	}
-	
 </style>

@@ -1,36 +1,36 @@
 <template>
 
 
-	<view :class="isAnimat?'fade_in':'fade_out'">
-		
-	
-		<view>
-			<view class="block">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="大口取引"></CustomHeaderSecond>
+		<view style="display: flex;align-items: center;justify-content: center;">
+			<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image>
+		</view>
 
-				<view class="head">
+		<view>
+			<!-- <view class="block"> -->
+
+			<!-- <view class="head">
 					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
 					<view class="title left_in" style="margin-left: 0px;">大口取引</view>
 					<view class="back"></view>
-				</view>
-				
-				<view style="display: flex;align-items: center;justify-content: center;">
-					<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image>
-				</view>
-				
-				
-				<view class="short"></view>
-			</view>
+				</view> -->
+
+
+
+			<!-- <view class="short"></view> -->
+			<!-- </view> -->
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
 			</view>
-			
+
 		</view>
 
 		<TradeLargeList ref="list" v-if="inv==0"></TradeLargeList>
-		
+
 		<TradeLargeRecord ref="log" v-if="inv==1"></TradeLargeRecord>
-		
+
 
 	</view>
 </template>
@@ -49,34 +49,34 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				list:[],
-				inv:0,
+				list: [],
+				inv: 0,
 			}
 		},
-		
+
 		onShow() {
 			this.isAnimat = true;
-			if (this.$refs.list&&inv==0)
+			if (this.$refs.list && inv == 0)
 				this.$refs.list.getList();
-				
-				
-			if (this.$refs.log&&inv==1)
-				this.$refs.log.getList();	
-				
+
+
+			if (this.$refs.log && inv == 1)
+				this.$refs.log.getList();
+
 		},
 		onHide() {
 			this.isAnimat = false;
 		},
 		methods: {
-			qiehuan(num){
-				this.inv=num;
-				if(num==0){
+			qiehuan(num) {
+				this.inv = num;
+				if (num == 0) {
 					this.$refs.list.getList();
-				}else{
+				} else {
 					this.$refs.log.getList();
 				}
 			},
-			
+
 			linkRecord() {
 				uni.navigateTo({
 					url: this.$paths.TRADE_LARGE_RECORD
@@ -218,7 +218,7 @@
 		color: #fff
 	}
 
-	
+
 	.width-100 {
 		width: 100%
 	}
@@ -236,7 +236,7 @@
 		border-radius: 26px
 	}
 
-	 .uni-input-input {
+	.uni-input-input {
 		font-size: 14px;
 		font-family: FZLanTingHeiT-R-GB;
 		font-weight: 400;

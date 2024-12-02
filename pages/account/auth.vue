@@ -1,7 +1,8 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="本人確認"></CustomHeaderSecond>
 		<view class="page view-bandCard-day">
-			<view class="block">
+			<!-- <view class="block">
 				<view class="head">
 					<img @click="$util.goBack()" :src="$icon.zjt" class="back">
 					<view class="title left_in" style="margin-left: 0px;">本人確認</view>
@@ -9,7 +10,7 @@
 				</view>
 
 				<view class="short"></view>
-			</view>
+			</view> -->
 			<view class="info-box"><img
 					:src="userInfo.is_check>-1?'/static/img/6.eb24ab02.png':'/static/img/5.969a5c11.png'"
 					class="info-img">

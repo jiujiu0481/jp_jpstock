@@ -12,9 +12,87 @@
 					<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
 				</view>
 			</view> -->
+	<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
+						background-size:120%;width: 100%;height:auto;">
+				<view style="display: flex;align-items: center;justify-content: space-between;">
+					<view style="display: flex;align-items: center;">
+						<view style="font-size: 32rpx;">残高</view>
+						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit" style="width: 16px;height: 16px;paddin
+							g-left: 12rpx;" @click="showAmount=!showAmount">
+						</image>
+					</view>
+					<view style="font-size: 36rpx;font-weight: 700;">
+						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
+					</view>
+				</view>
+				<view style="display: flex;align-items: center;justify-content: space-between;">
+					<template v-if="curTab==1 || curTab==2">
+						<view style="width: 160px; height: 160px; position: relative">
+							<template v-if="curTab==1">
+								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
+							</template>
+							<template v-if="curTab==2">
+								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
+							</template>
+						</view>
+					</template>
+					<template v-else>
+						<view style="height: 24rpx;"></view>
+					</template>
+					<view style="line-height: 1.3;text-align: right; ">
+						<template v-if="curTab==1">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
+									:style="$theme.setImageSize(24)"></view>
+								<text style="padding-left: 8rpx;">損益総額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.holdYingli):hideAmount}}
+							</view>
+
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
+									:style="$theme.setImageSize(24)"></view>
+								<text style="padding-left: 8rpx;">時価総額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
+							</view>
+						</template>
+
+						<template v-if="curTab==2">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
+									:style="$theme.setImageSize(24)"></view>
+								<text style="padding-left: 8rpx;">売却損益</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
+							</view>
+
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
+									:style="$theme.setImageSize(24)"></view>
+								<text style="padding-left: 8rpx;">売り市場価格</text>
+							</view>
+							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.Sellamount):hideAmount}}
+							</view>
+						</template>
+						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+							<view style="background-color: #e36067;border-radius: 100%;display: inline-block;"
+								:style="$theme.setImageSize(24)"></view>
+							<text style="padding-left: 8rpx;">買付余力</text>
+						</view>
+						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
+							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
+						</view>
+					</view>
+				</view>
+			</view>
 
 
-			<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
+			<!-- <view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
 						background-size:120%;width: 100%;height:auto;">
 				<view class="top">
 					<view class="top-left">
@@ -65,7 +143,7 @@
 						</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 
 
 
@@ -204,15 +282,15 @@
 						data: [{
 							"name": "損益総額",
 							"value": Math.abs(result.holdYingli),
-							"color": "#adc1bb"
+							"color": "#FF9600"
 						}, {
 							"name": "時価総額",
 							"value": Math.abs(result.frozen),
-							"color": "#c3a9ee"
+							"color": "#76e4e4"
 						}, {
 							"name": "評価損益",
 							"value": Math.abs(result.money),
-							"color": "#f4b4b7"
+							"color": "#e36067"
 						}]
 					}]
 				};
@@ -224,15 +302,15 @@
 						data: [{
 							"name": "売却損益",
 							"value": Math.abs(result.totalYingli),
-							"color": "#adc1bb"
+							"color": "#FF9600"
 						}, {
 							"name": "売り市場価格",
 							"value": Math.abs(result.Sellamount),
-							"color": "#c3a9ee"
+							"color": "#76e4e4"
 						}, {
 							"name": "評価損益",
 							"value": Math.abs(result.money),
-							"color": "#f4b4b7"
+							"color": "#e36067"
 						}]
 					}]
 				};

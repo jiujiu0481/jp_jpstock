@@ -86,7 +86,7 @@
 		height: 28px;
 		background: #fff;
 		border-radius: 5px;
-		border: 1px solid #e4013e;
+		border: 1px solid #f24639;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -98,11 +98,11 @@
 		justify-content: center;
 		font-weight: 500;
 		font-size: 11px;
-		color: #e4013e
+		color: #f24639
 	}
 
 	.nav-box .active {
-		background: #e4013e;
+		background: #f24639;
 		color: #fff
 	}
 
@@ -157,7 +157,7 @@
 
 	.record-box .record-item .item-top .item-top-left span {
 		min-height: 24px;
-		background: #ec4d78;
+		background: #f24639;
 		border-radius: 5px;
 		padding: 0 11px;
 		font-weight: 400;

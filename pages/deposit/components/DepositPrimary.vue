@@ -86,10 +86,10 @@
 
 		<view class="common_block" style=" padding:10rpx 12rpx;">
 			<TitleSecond :title="$lang.DEPOSIT_TIP_DEPOSIT_AMOUNT"></TitleSecond>
-			<view style="display: flex;align-items: center;flex-wrap: wrap;">
+			<view style="display: flex;align-items: center;flex-wrap: wrap; justify-content: space-between;">
 				<block v-for="(item,index) in amountList" :key="index">
 					<view
-						style="border-radius: 6px;text-align: center; width: 38%;padding: 10px ; margin: 10px;  "
+						style="border-radius: 6px;text-align: center; width: 35%;padding: 10px ; margin: 10px;  "
 						:style="setStyle(curPos==index)" @click="quantity(item,index)">
 						{{$util.formatMoney(item)}}
 					</view>

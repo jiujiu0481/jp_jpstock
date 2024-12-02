@@ -2,27 +2,40 @@
 	<view class="page_bg">
 		<CustomHeader />
 
-		<view style="display: flex;align-items: center;justify-content: space-between;">
-			<view @click="dianji(0)" style="">株式市場</view>
-			<view @click="dianji(1)">オプション</view>
+		<!-- <view style="display: flex;align-items: center;justify-content: space-between;padding:24rpx; ">
+			<block v-for="(v,k) in tabs" :key="k">
+				<view @click="changeTab(k)" :style="setStyle(curTab==k)">{{v}}</view>
+			</block>
+		</view> -->
+
+		<!-- <view style="display: flex;align-items: center;justify-content: space-between;">
+			<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)" style="">株式市場</view>
+			<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
+		</view> -->
+
+
+		<view class="nav-box">
+			<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)">株式市場</view>
+			<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
 		</view>
-
-
-		<!-- <view class="nav-box" style="padding-bottom: 40px;">
-				<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)">株式市場</view>
-				<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
-			</view> -->
 		<view>
 
 			<view class="home-menu">
-				<view class="home-menu-item" style="border-radius: 6px;" :class="item.rate>=0?'red':'green'"
-					v-for="(item,index) in list" :key="index" @click="link(item.code)" v-if="index<6">
-					<view class="home-menu-item-title"><span>{{item.name}}</span>
+				<view class="home-menu-item" style="border-radius: 10px 10px  0  0  ; padding: 0; margin: 0 2px ;"
+					:class="item.rate>=0?'red':'green'" v-for="(item,index) in list" :key="index"
+					@click="link(item.code)" v-if="index<6">
+
+					<view class="home-menu-item-title"
+						style="padding: 4px ;border-radius: 10px 10px  0  0  ;align-items: center;"
+						:style="{ backgroundColor: item.rate>=0?'#ff363699':'#37927d99' }">
+						<span>{{item.name}}</span>
 						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
 							@click.stop.capture="handleUnFollow(item.code)">
 					</view>
-					<view class="home-menu-item-tip1">
-						{{item.code}}<span>{{item.rate_num}}</span><span>{{$util.formatNumber(item.rate,2)}}%</span>
+					<view class="home-menu-item-tip1" style="padding-top: 4px;">
+						<span style="padding-left: 4px;">{{item.code}}</span>
+						<span>{{item.rate_num}}</span>
+						<span style="padding-right: 4px;">{{$util.formatNumber(item.rate,2)}}%</span>
 					</view>
 					<div class="home-menu-item-tip2">{{$util.formatMoney(item.close*1,2)}}
 						<img :src="item.rate>=0?$icon.up:$icon.down">
@@ -158,9 +171,11 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
+				tabs: [`株式市場`, `オプション`],
 				curTab: 0, // 当前默认放在Coin
 				list: [],
-				inv: 0
+				inv: 0,
+
 			}
 		},
 
@@ -172,6 +187,12 @@
 			this.getList();
 		},
 		methods: {
+			// changeTab(val) {
+			// 	this.curTab = val;
+			// 	if (this.curTab == 1) this.getData();
+			// 	if (this.curTab == 0) this.getList();
+			// 	this.inv = val;
+			// },
 			dianji(num) {
 				this.inv = num
 				if (num == 1) {
@@ -203,7 +224,6 @@
 			},
 
 			async handleUnFollow(code) {
-
 				const result = await this.$http.post(`api/user/collect_edit`, {
 					code: code,
 				});
@@ -213,9 +233,7 @@
 					this.getList();
 				}
 			},
-			changeTab(val) {
-				this.curTab = val;
-			},
+
 			toggleShow() {
 				this.isShow = !this.isShow;
 			},
@@ -235,9 +253,7 @@
 					url: '/pages/service'
 				})
 			},
-			changeTab(val) {
-				this.getList();
-			},
+
 			async getList1() {
 				// uni.showLoading({
 				// 	title: this.$lang.REQUEST_DATA,
@@ -266,15 +282,16 @@
 			},
 
 			// 设置样式
-			setStyle(val, w = 120) {
+			setStyle(val) {
 				return {
-					width: `${w}rpx`,
 					padding: `12rpx 32rpx`,
-					color: val ? '#FFFFFF' : '#CBCBCB',
+					color: val ? '#FFFFFF' : '#f2463999',
 					textAlign: 'center',
-					fontSize: `36rpx`,
+					fontSize: `32rpx`,
 					fontWeight: `700`,
-					borderBottom: `4rpx solid ${val? '#FFFFFF' :this.$theme.TRANSPARENT }`
+					// borderBottom: `4rpx solid ${!val? '#f2463999' :this.$theme.TRANSPARENT }`,
+					backgroundColor: val ? `#f2463999` : this.$theme.TRANSPARENT,
+					borderRadius: `12rpx 12rpx 0 0`,
 				}
 			},
 			linkStock() {
@@ -298,20 +315,10 @@
 	}
 
 	.nav-box {
-		height: 52px;
-		display: -webkit-box;
-		display: -webkit-flex;
 		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
 		align-items: center;
-		position: fixed;
-		width: 100%;
-		left: 0;
-		top: 54px;
-		// background: #f7f9f8;
-		box-sizing: border-box;
-		z-index: 10
+		justify-content: space-between;
+		margin: 24rpx 0;
 	}
 
 	.nav-box .nav-item {
@@ -320,7 +327,7 @@
 		height: 28px;
 		// background: #fff;
 		border-radius: 5px;
-		border: 1px solid #e4013e;
+		border: 1px solid #f24639;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -332,11 +339,11 @@
 		justify-content: center;
 		font-weight: 500;
 		font-size: 11px;
-		color: #e4013e
+		color: #f24639
 	}
 
 	.nav-box .active {
-		background: #e4013e;
+		background: #f24639;
 		color: #fff
 	}
 

@@ -1,5 +1,6 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="株式市場"></CustomHeaderSecond>
 		<!-- <header class="common_header">
 			<view class="left" @click="linkSearch()">
 				<image src="/static/search.png" mode="aspectFit" :style="$theme.setImageSize(36)"></image>
@@ -21,15 +22,16 @@
 				<image src="/static/service.png" mode="widthFix" style="width: 25px;margin-left: 20px;" @click="kefu()"></image>
 			</view>
 		</view> -->
-		<view class="block">
+		<!-- <view class="block">
+			
 			<view class="head">
 			<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<!-- <view class="head-search" @click="$u.route({url:'/pages/search/index'});">
+				<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
 					<img :src="$icon.sousuo">
-				</view> -->
+				</view>
 				<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
 			</view>
-		</view>
+		</view> -->
 		
 		<view style="padding: 10px;">
 			<view  style="background-image: url(/static/xinwen.png);background-position: 0 0 ;background-repeat: no-repeat;

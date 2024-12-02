@@ -48,13 +48,7 @@
 				</view>
 			</view>
 
-			<view>
 
-				<view style=" background-image: url(/static/home_news_B.png);  ">
-					<image src="/static/home_news_A.png" mode="aspectFit" :style="$theme.setImageSize(120)"></image>
-				</view>
-
-			</view>
 
 
 			<view>
@@ -66,14 +60,22 @@
 						<view style="margin-left: 20px; font-weight: 900;">ホットプレート</view>
 					</view>
 					<view class="home-menu">
-						<view class="home-menu-item" style="border-radius: 6px;" :class="item.rate>=0?'red':'green'"
-							v-for="(item,index) in list" :key="index" @click="link(item.code)" v-if="index<6">
-							<view class="home-menu-item-title"><span>{{item.name}}</span>
+						<view class="home-menu-item"
+							style="border-radius: 10px 10px  0  0  ; padding: 0; margin: 0 2px ;"
+							:class="item.rate>=0?'red':'green'" v-for="(item,index) in list" :key="index"
+							@click="link(item.code)" v-if="index<6">
+
+							<view class="home-menu-item-title"
+								style="padding: 4px ;border-radius: 10px 10px  0  0  ;align-items: center;"
+								:style="{ backgroundColor: item.rate>=0?'#ff363699':'#37927d99' }">
+								<span>{{item.name}}</span>
 								<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
 									@click.stop.capture="handleUnFollow(item.code)">
 							</view>
-							<view class="home-menu-item-tip1">
-								{{item.code}}<span>{{item.rate_num}}</span><span>{{$util.formatNumber(item.rate,2)}}%</span>
+							<view class="home-menu-item-tip1" style="padding-top: 4px;">
+								<span style="padding-left: 4px;">{{item.code}}</span>
+								<span>{{item.rate_num}}</span>
+								<span style="padding-right: 4px;">{{$util.formatNumber(item.rate,2)}}%</span>
 							</view>
 							<div class="home-menu-item-tip2">{{$util.formatMoney(item.close*1,2)}}
 								<img :src="item.rate>=0?$icon.up:$icon.down">
@@ -200,96 +202,112 @@
 			</view>
 
 
-
-
-			<view class="title">東証33業種トレンド </view>
-			<view class="foot">
-				<view class="foot-left">
-					<view class="foot-left-title">上昇{{dz33.zhang}}<span>下落{{dz33.die}}</span></view>
-					<!---->
-					<view class="foot-box" v-if="!dz33_show">
-						<view class="foot-item" :style="'width:'+dz33.zhang/33*100+'%'">
-							<view class="foot-redBox">
-								<span class="foot-redBox-line" v-for="(item,index) in dz33.zhang_list"
-									v-if="item.returnOfToday>=0"
-									:style="getdz_style(dz33.zhang,item.returnOfToday)"></span>
-
-							</view>
-							<view class="foot-redTxt">
-								<span class="foot-redTxt-txt" v-for="(item,index) in dz33.zhang_list"
-									v-if="item.returnOfToday>0&&index<=8&&index%2==0">{{item.name}}</span>
-							</view>
-						</view>
-						<view class="foot-item" :style="'width:'+dz33.die/33*100+'%'">
-							<view class="foot-greenTxt">
-								<span class="foot-greenTxt-txt" v-for="(item,index) in dz33.die_list"
-									v-if="item.returnOfToday<0&&index%2==0&&(index>=dz33.die_list.length-10)">{{item.name}}</span>
-							</view>
-							<view class="foot-greenBox">
-								<span class="foot-greenBox-line" v-for="(item,index) in dz33.die_list"
-									v-if="item.returnOfToday<0"
-									:style="getdz_style(dz33.die,item.returnOfToday*-1)"></span>
-
-							</view>
-						</view>
-					</view>
-					<view class="foot-box" v-if="dz33_show">
-						<view class="foot-item" :style="'width:100%'">
-							<view class="foot-redBox">
-								<span class="foot-redBox-line" v-for="(item,index) in dz33.zhang_list"
-									v-if="item.returnOfToday>=0"
-									:style="getdz_style(dz33.zhang,item.returnOfToday)"></span>
-
-							</view>
-							<view class="foot-redTxt">
-								<span class="foot-redTxt-txt" v-for="(item,index) in dz33.zhang_list"
-									v-if="item.returnOfToday>0&&index<=8&&index%2==0">{{item.name}}</span>
-							</view>
-						</view>
-
-					</view>
+			<view
+				style="background-color: #FFFFFF;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;padding-top: 20px;">
+				<view style="display: flex;padding-top: 20px;padding-bottom: 12px;">
+					<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
+					</image>
+					<view style="margin-left: 20px; font-weight: 900;">東証33業種トレンド</view>
 				</view>
-				<view class="foot-right">
-					<view class="foot-right-item" @click="dz33_show_click">上下10桁</view>
-					<view class="foot-right-item foot-right-on" @click="dz33_show_click">あらゆる業種</view>
+				<!-- <view class="title">東証33業種トレンド </view> -->
+				<view class="foot">
+					<view class="foot-left">
+						<view class="foot-left-title">上昇{{dz33.zhang}}<span>下落{{dz33.die}}</span></view>
+						<!---->
+						<view class="foot-box" v-if="!dz33_show">
+							<view class="foot-item" :style="'width:'+dz33.zhang/33*100+'%'">
+								<view class="foot-redBox">
+									<span class="foot-redBox-line" v-for="(item,index) in dz33.zhang_list"
+										v-if="item.returnOfToday>=0"
+										:style="getdz_style(dz33.zhang,item.returnOfToday)"></span>
+
+								</view>
+								<view class="foot-redTxt">
+									<span class="foot-redTxt-txt" v-for="(item,index) in dz33.zhang_list"
+										v-if="item.returnOfToday>0&&index<=8&&index%2==0">{{item.name}}</span>
+								</view>
+							</view>
+							<view class="foot-item" :style="'width:'+dz33.die/33*100+'%'">
+								<view class="foot-greenTxt">
+									<span class="foot-greenTxt-txt" v-for="(item,index) in dz33.die_list"
+										v-if="item.returnOfToday<0&&index%2==0&&(index>=dz33.die_list.length-10)">{{item.name}}</span>
+								</view>
+								<view class="foot-greenBox">
+									<span class="foot-greenBox-line" v-for="(item,index) in dz33.die_list"
+										v-if="item.returnOfToday<0"
+										:style="getdz_style(dz33.die,item.returnOfToday*-1)"></span>
+
+								</view>
+							</view>
+						</view>
+						<view class="foot-box" v-if="dz33_show">
+							<view class="foot-item" :style="'width:100%'">
+								<view class="foot-redBox">
+									<span class="foot-redBox-line" v-for="(item,index) in dz33.zhang_list"
+										v-if="item.returnOfToday>=0"
+										:style="getdz_style(dz33.zhang,item.returnOfToday)"></span>
+
+								</view>
+								<view class="foot-redTxt">
+									<span class="foot-redTxt-txt" v-for="(item,index) in dz33.zhang_list"
+										v-if="item.returnOfToday>0&&index<=8&&index%2==0">{{item.name}}</span>
+								</view>
+							</view>
+
+						</view>
+					</view>
+					<view class="foot-right">
+						<view class="foot-right-item" @click="dz33_show_click">上下10桁</view>
+						<view class="foot-right-item foot-right-on" @click="dz33_show_click">あらゆる業種</view>
+					</view>
 				</view>
 			</view>
-			<view class="title">人気の情報</view>
-			<view class="news">
-				<view class="list" v-for="(item,index) in news" @click="open(item.url)">
-					<view class="list-line"></view>
-					<view class="list-info">
-						<view class="list-title">{{item.title}}</view>
-						<view class="list-date">{{item.updated_at}}</view>
+
+
+			<view
+				style="background-color: #FFFFFF;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;padding-top: 20px;">
+				<view style="display: flex;padding-top: 20px;padding-bottom: 12px;">
+					<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
+					</image>
+					<view style="margin-left: 20px; font-weight: 900;">人気の情報</view>
+				</view>
+				<!-- 	<view class="title">人気の情報</view> -->
+				<view class="news">
+					<view class="list" v-for="(item,index) in news" @click="open(item.url)">
+						<view class="list-line"></view>
+						<view class="list-info">
+							<view class="list-title">{{item.title}}</view>
+							<view class="list-date">{{item.updated_at}}</view>
+						</view>
+					</view>
+
+					<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+					<view class="more" @click="$u.route({type:'switchTab',url:'/pages/news'});">もっとニュースを見る<img
+							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAsCAYAAAB/nHhDAAAAAXNSR0IArs4c6QAAA8NJREFUWEetl01oVFcUx/9nxg9qk7gQwVJbBCMUdBHeeUkI0Xagia0GJVgVF4pFsQv7YbordtFuWulGS0sp9MONFFHxGylFI2n9QDLv3kwH3disoqAtSKdBG4aZ945zhxd5uc4kb3hzdzPz7u/HPfe8c86Q67obROQHACIiQ1rrM2jiIma+B2B5yAyI6D3P835ulsMWGK4AGFJKfdMMCbmuu1lETgOYFwWKyKda6y+TSsgAHMfZRESnACy0gIeUUgeTSKoCszo7O/uCIDgH4EUL+K1S6kAYuoZdzwRmp+u6vSJyCcBiK1xHtdb7AASNGmYIwnAxEf0GYEkURkQnWlpado6MjJQbkTwnCMO1OgiCKwCWWZKLhUJh2/j4eDGupKYgPEk7EQ0DeNUK15VyuTyYz+efxJHUFZjNzGzg5iSrLNgNAANKqf/mkswqCMO1LAiCywDWWDCVTqffGh0dfTSbZE6B2dzV1bXE931z8WzB7gDoV0o9qCeJJTCbu7u728rlsknhtRZsHMCbSqmJWpLYgvBOFgEwL2O/BZvwfb8vl8v9ZUsaEpjN7e3tC9va2k4S0WYL9pCI+j3Puz0jtefKglq/ZzKZeZOTk8eIaIf1+6MgCN4eGxvzpr9v+AQRYIqZTaPaa0kmwxS+br5PIqjuZ+avAXxkSf4nokHP8y4nFVS5rut+ISJ2WS+KyMamCMIM+6TSTw5ZJ7nVTMGHAOw225wQOY7zLhEdte60AOD1xCdwHGcLEZ0EkI6E50kqlVqfzWZvJhIw8/pKfboIYEEEXiSiTSaDEqUpM5uaZAqgKR/TyxeRbVrrs4leNGZ2KvG9avVuIaLdnucdS1QqmPk1AH8AWBoFicgHWuvvEhW7jo6OFel02pSAly3QQaWU/Q5UH4l9ycz8UqXuXwOw0oJ/pZQyL1nNFUsQdrTfAay2KN8rpfbXg8c6QW9vb+vU1NQwEXVaoF+UUrvmmvhmPUFPT88LxWLxVyJ6w4Kfb21t3RpnCKsrYOb5YXvcOCPtiIYLhcJA3OGrnsA0k+MAttvVsVQq9cUduureATP/VKNT/en7fiaXy5kiFnvVGn4PE9HHFuFuqVRal8/n/4lNDh+cIXAc5zMi+tyCTKRSqbXZbNb8l2t4PRM4jjNEREcswt++76+rNe/ENVUFruvuERET9+iJ/hWRjNY6HxdW6zkzFQwCMH8CU5EHHotIv9b6VhJ4NYuY2cyUr0RA1WlAa23KceJlBPcj1bFMRO94nnchMXk6i5h5oCL40XwWkfej3agZkqe8IVmNFCHaMwAAAABJRU5ErkJggg==">
 					</view>
 				</view>
-
-				<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
-				<view class="more" @click="$u.route({type:'switchTab',url:'/pages/news'});">もっとニュースを見る<img
-						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAsCAYAAAB/nHhDAAAAAXNSR0IArs4c6QAAA8NJREFUWEetl01oVFcUx/9nxg9qk7gQwVJbBCMUdBHeeUkI0Xagia0GJVgVF4pFsQv7YbordtFuWulGS0sp9MONFFHxGylFI2n9QDLv3kwH3disoqAtSKdBG4aZ945zhxd5uc4kb3hzdzPz7u/HPfe8c86Q67obROQHACIiQ1rrM2jiIma+B2B5yAyI6D3P835ulsMWGK4AGFJKfdMMCbmuu1lETgOYFwWKyKda6y+TSsgAHMfZRESnACy0gIeUUgeTSKoCszo7O/uCIDgH4EUL+K1S6kAYuoZdzwRmp+u6vSJyCcBiK1xHtdb7AASNGmYIwnAxEf0GYEkURkQnWlpado6MjJQbkTwnCMO1OgiCKwCWWZKLhUJh2/j4eDGupKYgPEk7EQ0DeNUK15VyuTyYz+efxJHUFZjNzGzg5iSrLNgNAANKqf/mkswqCMO1LAiCywDWWDCVTqffGh0dfTSbZE6B2dzV1bXE931z8WzB7gDoV0o9qCeJJTCbu7u728rlsknhtRZsHMCbSqmJWpLYgvBOFgEwL2O/BZvwfb8vl8v9ZUsaEpjN7e3tC9va2k4S0WYL9pCI+j3Puz0jtefKglq/ZzKZeZOTk8eIaIf1+6MgCN4eGxvzpr9v+AQRYIqZTaPaa0kmwxS+br5PIqjuZ+avAXxkSf4nokHP8y4nFVS5rut+ISJ2WS+KyMamCMIM+6TSTw5ZJ7nVTMGHAOw225wQOY7zLhEdte60AOD1xCdwHGcLEZ0EkI6E50kqlVqfzWZvJhIw8/pKfboIYEEEXiSiTSaDEqUpM5uaZAqgKR/TyxeRbVrrs4leNGZ2KvG9avVuIaLdnucdS1QqmPk1AH8AWBoFicgHWuvvEhW7jo6OFel02pSAly3QQaWU/Q5UH4l9ycz8UqXuXwOw0oJ/pZQyL1nNFUsQdrTfAay2KN8rpfbXg8c6QW9vb+vU1NQwEXVaoF+UUrvmmvhmPUFPT88LxWLxVyJ6w4Kfb21t3RpnCKsrYOb5YXvcOCPtiIYLhcJA3OGrnsA0k+MAttvVsVQq9cUduureATP/VKNT/en7fiaXy5kiFnvVGn4PE9HHFuFuqVRal8/n/4lNDh+cIXAc5zMi+tyCTKRSqbXZbNb8l2t4PRM4jjNEREcswt++76+rNe/ENVUFruvuERET9+iJ/hWRjNY6HxdW6zkzFQwCMH8CU5EHHotIv9b6VhJ4NYuY2cyUr0RA1WlAa23KceJlBPcj1bFMRO94nnchMXk6i5h5oCL40XwWkfej3agZkqe8IVmNFCHaMwAAAABJRU5ErkJggg==">
-				</view>
 			</view>
-		</view>
-		<!-- <HeaderPrimary isSearch :title="$lang.TABBAR_HOME" color="#FFFFFF"> </HeaderPrimary> -->
+			<!-- <HeaderPrimary isSearch :title="$lang.TABBAR_HOME" color="#FFFFFF"> </HeaderPrimary> -->
 
 
 
-		<!-- <TrackList></TrackList> -->
+			<!-- <TrackList></TrackList> -->
 
-		<!-- <MarketNews></MarketNews> -->
+			<!-- <MarketNews></MarketNews> -->
 
 
 
-		<!-- <view>
+			<!-- <view>
 			<view style="padding:0 20rpx;">
 			</view>
 
 			<MarketHot ref="hot"></MarketHot>
 		</view> -->
 
-		<!-- IPO申购成功弹层 -->
-		<!-- <IPOSuccessAlert></IPOSuccessAlert> -->
+			<!-- IPO申购成功弹层 -->
+			<!-- <IPOSuccessAlert></IPOSuccessAlert> -->
 
+		</view>
 	</view>
 </template>
 

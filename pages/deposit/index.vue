@@ -1,7 +1,8 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'"  class="page_bg_sec" >
 		<!-- <HeaderSecond :title="$lang.DEPOSIT_TITLE" color="#FFFFFF"></HeaderSecond> -->
-		<view class="block">
+		<CustomHeaderSecond title="入金確認"></CustomHeaderSecond>
+		<!-- <view class="block">
 			<view class="head">
 				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
 				<view class="title left_in" style="margin-left: 0px;">入金確認</view>
@@ -9,7 +10,7 @@
 			</view>
 		
 			<view class="short"></view>
-		</view>
+		</view> -->
 
 		<DepositPrimary></DepositPrimary>
 

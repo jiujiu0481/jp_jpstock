@@ -1,29 +1,18 @@
 <template>
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="OTC"></CustomHeaderSecond>
 
-
-	<view :class="isAnimat?'fade_in':'fade_out'">
-		<view>
-			<view class="block">
-
-				<view class="head">
-					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
-					<view class="title left_in" style="margin-left: 0px;">OTC</view>
-					<view class="back"></view>
-				</view>
-				<view class="short"></view>
-			</view>
-			<view class="nav-box">
-				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
-				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
-			</view>
-			
+		<view class="nav-box">
+			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
+			<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
 		</view>
+
 		<view class="th">
 			<view class="th-td width-33">銘柄</view>
 			<view class="th-td width-33">価格</view>
 			<view class="th-td width-33">銘柄コード</view>
 		</view>
-<!-- 
+		<!-- 
 		<TradeLargeList ref="list" v-if="inv==0"></TradeLargeList>
 		
 		<TradeLargeRecord ref="log" v-if="inv==1"></TradeLargeRecord>
@@ -42,34 +31,34 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				list:[],
-				inv:0,
+				list: [],
+				inv: 0,
 			}
 		},
-		
+
 		onShow() {
 			this.isAnimat = true;
-			if (this.$refs.list&&inv==0)
+			if (this.$refs.list && inv == 0)
 				this.$refs.list.getList();
-				
-				
-			if (this.$refs.log&&inv==1)
-				this.$refs.log.getList();	
-				
+
+
+			if (this.$refs.log && inv == 1)
+				this.$refs.log.getList();
+
 		},
 		onHide() {
 			this.isAnimat = false;
 		},
 		methods: {
-			qiehuan(num){
-				this.inv=num;
-				if(num==0){
+			qiehuan(num) {
+				this.inv = num;
+				if (num == 0) {
 					this.$refs.list.getList();
-				}else{
+				} else {
 					this.$refs.log.getList();
 				}
 			},
-			
+
 			linkRecord() {
 				uni.navigateTo({
 					url: this.$paths.TRADE_LARGE_RECORD
@@ -211,7 +200,7 @@
 		color: #fff
 	}
 
-	
+
 	.width-100 {
 		width: 100%
 	}
@@ -229,12 +218,13 @@
 		border-radius: 26px
 	}
 
-	 .uni-input-input {
+	.uni-input-input {
 		font-size: 14px;
 		font-family: FZLanTingHeiT-R-GB;
 		font-weight: 400;
 		color: #fff
 	}
+
 	.th {
 		height: 35px;
 		border-bottom: 1px solid #ebebeb;
@@ -246,7 +236,7 @@
 		align-items: center;
 		margin: 0 7px
 	}
-	
+
 	.th .th-td {
 		font-weight: 600;
 		font-size: 12px;

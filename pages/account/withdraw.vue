@@ -1,12 +1,14 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'">
+	<view :class="isAnimat?'fade_in':'fade_out'"   class="page_bg_sec">
+		
+		<CustomHeaderSecond title="出金確認"></CustomHeaderSecond>
 		<view class="page">
 			<view class="block">
-				<view class="head">
+				<!-- <view class="head">
 					<img @click="$util.goBack()" :src="$icon.zjt" class="back">
 					<view class="title left_in" style="margin-left: 0px;">出金確認</view>
 					<view class="back"></view>
-				</view>
+				</view> -->
 
 				<view class="short"></view>
 			</view>
