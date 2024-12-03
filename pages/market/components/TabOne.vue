@@ -380,7 +380,7 @@
 				font-size: 14px;
 				font-family: Roboto;
 				font-weight: 400;
-				color: #ff3636;
+				color: #f24639;
 			}
 		}
 	}

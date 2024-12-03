@@ -10,7 +10,7 @@
 						<img :src="$icon.sousuo" >
 					</view>
 					<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-				</view>
+				</view>background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
 			</view> -->
 	<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
 						background-size:120%;width: 100%;height:auto;">
@@ -21,7 +21,7 @@
 							g-left: 12rpx;" @click="showAmount=!showAmount">
 						</image>
 					</view>
-					<view style="font-size: 36rpx;font-weight: 700;">
+					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
 						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
 					</view>
 				</view>

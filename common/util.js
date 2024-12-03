@@ -1,22 +1,32 @@
 import Vue from 'vue';
 
+/**
+ * @function 获取客服链接
+ * @description API返回链接 ,或者默认客服链接 （开发完成向客户索取）
+ */
+export const getServiceURL = async () => {
+	// 默认客服链接。用于无token时。（开发完成向客户索取）
+	let url = ``;
+	if (!uni.getStorageSync(`token`) || uni.getStorageSync('token') == '') {
+		return url;
+	} else {
+		const result = await http.get(`api/app/config`);
+		if (!result) return url;
+		const temp = result.reduce((map, item) => {
+			map.set(item.key, item.value);
+			return map;
+		}, new Map());
+		return !temp.get('CustomerLink') ? url : temp.get('CustomerLink');
+	}
+}
+
 // 客服跳转 读取系统配置客服url，外部打开。用于上架
 const linkService = async () => {
-	const result = await Vue.prototype.$http.get(`api/app/config`);
-	console.log('reslut:', result);
-	console.log('window:', window);
-	console.log('navigator:', navigator);
-	if (!result) return false;
-	// "CustomerLink"
-	const temp = result.reduce((map, item) => {
-		map.set(item.key, item.value);
-		return map;
-	}, new Map());
-
-	let url = temp.get('CustomerLink');
-
+	// 获取客服链接
+	const url = await getServiceURL();
 	if (window.android) {
-		window.android.callAndroid("open," + url)
+		window.open(url)
+		// window.android.callAndroid("open," + url)
 		return false;
 	}
 	if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers
@@ -36,19 +46,26 @@ const linkService = async () => {
 }
 
 /*
-跳转到客服，内部分为两种方式：
-1. 直接跳转到软件内客服页面
-2. 调用客服跳转函数，用于上架
+跳转到客服：
+	上架模式：[`line`|`第三方`] 弹出提示框，联系客户经理
+	正常模式：`line`(跳轉到外鏈頁面)，`第三方`(跳轉内頁)
 */
 const linkCustomerService = () => {
-	// 1. 直接跳转到软件内客服页面  // 應客戶需求無需上架 by/2024.07.08
-	uni.navigateTo({
-		url: Vue.prototype.$paths.SERVICE
-	});
+	// 上架模式：[`line`|`第三方`] 弹出提示框，联系客户经理
+	// uni.showToast({
+	// 	title: Vue.prototype.$lang.SERVICE_CONTACT_MANAGER,
+	// 	icon: 'none'
+	// });
 
-	// 2.调用客服跳转函数，用于上架
-	// linkService();
+	// 正常模式：`line`(跳轉到外鏈頁面)
+	linkService();
+
+	// 正常模式：`第三方`(跳轉内頁)
+	// uni.navigateTo({
+	// 	url: Vue.prototype.$paths.SERVICE
+	// });
 }
+
 
 // 切换底部导航文字多语言
 const switchTabBar = () => {
@@ -200,6 +217,7 @@ const formatToday = (isTime = false) => {
 
 export default {
 	switchTabBar,
+	getServiceURL,
 	linkCustomerService,
 	hasDecimalPoint,
 	formatMoney,
@@ -207,21 +225,21 @@ export default {
 	formatNumber,
 	formatDate,
 	formatToday,
-	
-	// 根据当前平台，执行回退方式
-	  goBack: () => {
-	    /*#ifdef APP-PLUS*/
-	    uni.navigateBack({
-	      delta: 1
-	    });
-	    /*#endif*/
-	
-	    /*#ifdef H5*/
-	    history.back();
-	    /*#endif*/
-	  },
 
-	
+	// 根据当前平台，执行回退方式
+	goBack: () => {
+		/*#ifdef APP-PLUS*/
+		uni.navigateBack({
+			delta: 1
+		});
+		/*#endif*/
+
+		/*#ifdef H5*/
+		history.back();
+		/*#endif*/
+	},
+
+
 
 	// 对象嵌套转数组对象。当前用于市场指标返回数据，将其从对象转为数组对象
 	ObjectConvertArray: (obj) => {

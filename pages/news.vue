@@ -106,7 +106,7 @@
 	.list .list-line {
 		width: 3px;
 		height: 42px;
-		background: #e4013e;
+		background: #f24639;
 		margin-right: 4px
 	}
 

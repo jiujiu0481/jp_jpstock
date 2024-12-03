@@ -1,11 +1,13 @@
 <template>
-	<view>
-		<view class="block">
-			<view class="head">
+	<view class="page_bg_sec">
+		<CustomHeaderSecond title=" 記録" />
+		<view >
+			
+			<!-- <view class="head">
 				<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
 				<view class="title left_in" style="margin-left: 0px;">{{tabs[curTab]}}</view>
 				<view class="back"></view>
-			</view>
+			</view> -->
 		
 			<view class="short"></view>
 		</view>

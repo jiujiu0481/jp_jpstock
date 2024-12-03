@@ -42,7 +42,7 @@
 					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;"> OTC</view>
 				</view>
-				<view class="menu-item">
+				<view class="menu-item" @click="$util.linkCustomerService() ">
 					<image src="/static/btn_7.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;">お問合わせ</view>
 				</view>
@@ -54,7 +54,7 @@
 			<view>
 				<view
 					style="background-color: #FFFFFF;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
-					<view style="display: flex;padding-top: 20px;padding-bottom: 12px;">
+					<view style="display: flex;padding-top: 20px;">
 						<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
 						</image>
 						<view style="margin-left: 20px; font-weight: 900;">ホットプレート</view>
@@ -1865,7 +1865,7 @@
 		display: flex;
 		-webkit-flex-wrap: wrap;
 		flex-wrap: wrap;
-		padding: 4px 5px 10px 5px
+		padding: 4px 5px 0 5px
 	}
 
 	.home-menu .home-menu-item {

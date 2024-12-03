@@ -11,7 +11,7 @@
 							g-left: 12rpx;" @click="showAmount=!showAmount">
 						</image>
 					</view>
-					<view style="font-size: 36rpx;font-weight: 700;">
+					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
 						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
 					</view>
 				</view>

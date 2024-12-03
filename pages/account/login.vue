@@ -1,16 +1,16 @@
 <template>
 
-	<view class="page">
+	<view class="page" style="background-image:url(/static/background_login.png);background-repeat: no-repeat;position:0 0;background-size: cover;min-height: 100vh; ">
 		<view class="block">
-			<view class="head">
+			<!-- <view class="head">
 				<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
 
 				<view class="title left_in" style="margin-left: 0px;">ログイン</view>
 				<view class="back"></view>
-			</view><!---->
+			</view> -->
 		</view>
-		<view class="box"><img src="/static/img/3.9698c7ef.png" class="box-top">
-			<view class="box-info" style="margin-left: 0px;">
+		<view class="box" ><img src="/static/img/3.9698c7ef.png" class="box-top">
+			<view class="box-info" style="margin-left: 0px;background-color: rgba(255, 255, 255, 0.9); margin-top: 30px; padding: 10px;">
 				<view class="box-title">ログイン</view>
 				<view class="box-name">ログインID（電話番号）</view>
 				<view class="box-list">
@@ -399,7 +399,7 @@
 		width: calc(100%);
 		height: 35px;
 		border-radius: 3px;
-		border: 1px solid #bcbcbc;
+		border: 1px solid #cfcfcf;
 		padding: 0 9px;
 		box-sizing: border-box;
 		display: -webkit-box;

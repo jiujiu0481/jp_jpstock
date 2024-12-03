@@ -1,13 +1,13 @@
 <template>
-	<view>
-		
-		<view class="block">
+	<view class="page_bg_sec">
+		<CustomHeaderSecond title="取引履歴" />
+		<!-- <view class="block">
 			<view class="head">
 				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
 				<view class="title left_in" style="margin-left: 0px;">{{$lang.TRADE_DAY_RECORD}}</view>
 				<view class="back"></view>
 			</view>
-		</view>
+		</view> -->
 		
 
        <view style="background-color: #fff;width: 95%;border-radius: 10px;margin-left: 10px;">

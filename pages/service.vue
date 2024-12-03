@@ -1,8 +1,6 @@
 <!-- 客服 -->
 <template>
 	<view>
-
-
 		<!-- <view class="college-content"> -->
 		<!-- <web-view :fullscreen="full" class="webview" :style="webviewStyles" :webview-styles="webviewStyles"
 				:src='list'></web-view> -->
@@ -16,8 +14,7 @@
 			<view class="text-center font-size-16">QR 코드를 통해 LINE 친구 추가</view>
 					<view class="text-center font-size-14 hui">LINE 앱에서 친구 탭을 열고 친구 추가 아이콘을 탭하세요.
 			오른쪽 상단에서 'QR 코드'를 선택한 다음 이 QR 코드를 스캔하세요.</view>
-		</view>
-		 
+		</view>		 
 		
 		<u-button type="primary" @click="saveImg()" text="QR 코드 저장" style="width: 90%;margin-left: 5%;" size="large"></u-button>
 		<u-button type="success" @click="link()" text="LINE 열기" style="width: 90%;margin-left: 5%;margin-top:20px" size="large"></u-button>
@@ -38,22 +35,15 @@
 				list: "",
 			};
 		},
-		created() {
+		beforeMount() {
 			this.getServiceURL()
 		},
 		methods: {
 			async getServiceURL() {
-				const result = await this.$http.get(`api/app/config`);
-				console.log(result);
-				if (!result) return false;
-				const temp = result.reduce((map, item) => {
-					map.set(item.key, item.value);
-					return map;
-				}, new Map());
-				this.list = temp.get('CustomerLink');
-			},
+				const result = await this.$util.getServiceURL();
+				this.list = result;
+			}
 		},
-
 	}
 </script>
 
@@ -61,30 +51,6 @@
 	::v-deep .uni-page-head {
 		background: #007AFF !important;
 		color: #fff !important;
-	}
-
-	.college-bg {
-		padding: 60rpx 30rpx 0;
-		height: 80rpx;
-		background: #007AFF;
-		// background: #ea3544;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		text-align: center;
-
-		image {
-			width: 20rpx;
-			height: 40rpx;
-		}
-
-		.college-text {
-
-			color: #fff;
-			font-weight: 800;
-			font-size: 36rpx;
-		}
-
 	}
 
 	iframe {
