@@ -1,12 +1,12 @@
 <template>
-	<view style="padding: 10px;background-color: #FFFFFF;margin:20rpx;min-height: 100vh;">
+	<view style="padding: 10px;background-color: #FFFFFF;min-height: 100vh;">
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
-			<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;">
+			<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 6px; background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
 				<!-- <TradeStockItem :item="item" @action="handleDetail"></TradeStockItem> -->
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 					<view style="flex:80%;">
-						<view style="padding-left: 10px;font-size: 28rpx;color:#121212;">
+						<view style="padding-left: 10px;font-size: 28rpx;color:#f24a3d;">
 							{{item.goodname}}
 						</view>
 					</view>
@@ -28,16 +28,16 @@
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_CYCLE}}</view>
-					<view style="color:#121212;">{{item.fudu+` %`}} </view>
+					<view style="color:#121212;"> {{item.zhouqi+` Day`}} </view>
 					<view>{{$lang.TRADE_EA_ORDER_PERIOD}}</view>
-					<view style="color:#121212;">{{item.zhouqi+` Day`}} </view>
+					<view style="color:#121212;">{{item.fudu+` %`}} </view>
 				</view>
 
-				<view
+				<!-- <view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_SN}}</view>
 					<view style="color:#121212;">{{item.ordersn}} </view>
-				</view>
+				</view> -->
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
@@ -48,13 +48,13 @@
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_RATE}}</view>
-					<view style="color:#121212;">{{item.fudul*1+` %`}} </view>
+					<view style="color:#121212;">{{item.fudu+` %`}} </view>
 				</view>
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_DATE}}</view>
-					<view style="color:#121212;">{{item.cretime}} </view>
+					<view style="color:#121212;">{{item.time}} </view>
 				</view>
 
 				<view

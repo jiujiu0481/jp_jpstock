@@ -6,11 +6,11 @@
 			</template>
 			<template v-else>
 				<block v-for="(item,index) in list" :key="index">
-					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;">
+					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 							<view style="flex:80%;">
-								<view style="padding-left: 10px;font-size: 28rpx;color:#121212;">
+								<view style="padding-left: 10px;font-size: 16px;color:#121212;font-weight: 800;">
 									{{item.name}}
 								</view>
 								<view style="display: flex;align-items: center;">
@@ -19,18 +19,18 @@
 								</view>
 							</view>
 							<view class="common_btn" @click="handleDetail(item)"
-								style="padding:4rpx 16rpx;margin:0;font-size: 24rpx;">
+								style="padding:4rpx 16rpx; margin-right: 10px;  font-size: 24rpx;">
 								{{$lang.BTN_BUY}}
 							</view>
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;font-weight: 700;line-height: 2.4;">
-							<view style="color: #E82D28;font-size:40rpx;"> {{item.syl + ` %`}} </view>
-							<view style="color: #489CE5;font-size: 32rpx;">{{item.zhouqi +` Day`}} </view>
+							<view style="color: #E82D28;font-size:40rpx;padding-left: 10px;"> {{item.syl }} </view>
+							<view style="color: #489CE5;font-size: 32rpx;margin-right: 10px; ">{{item.zhouqi +` Day`}} </view>
 						</view>
 
 						<view
-							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.4;color:#8f8f8f;">
+							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.4;color:#8f8f8f;padding-left: 10px;">
 							<view>{{$lang.TRADE_EA_HIGHEST_RETURN}}</view>
 							<view></view>
 						</view>
@@ -85,7 +85,7 @@
 				const result = await this.$http.get(`api/jijin/list`);
 				if (!result) return false;
 				console.log(result);
-				// this.list = result.jj_list || [];
+				this.list = result.jj_list || [];
 			},
 		}
 	}
