@@ -1,7 +1,7 @@
 <template>
 	
 		<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-			<CustomHeaderSecond title="クオンツトレーディング"></CustomHeaderSecond>
+			<CustomHeaderSecond title="機関IPO"></CustomHeaderSecond>
 		<!-- view class="block">
 			<view class="head">
 				<img @click="$util.goBack()" :src="$icon.zjt" class="back">

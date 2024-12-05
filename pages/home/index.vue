@@ -11,40 +11,42 @@
 
 			<!-- 	<view class="title">機能</view> -->
 			<view class="menu" style="background-color: #FFFFFF; padding: 20px   0   10px  0;">
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
-					<image src="/static/btn_0.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> IPO申し込み </view>
+				<view class="menu-item" @click="linkmarket()">
+					<image src="/static/btn_7.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 株式取引</view>
 				</view>
+
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
 					<image src="/static/btn_1.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> デイトレード</view>
-				</view>
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
-					<image src="/static/btn_2.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> 大口取引</view>
+					<view style="margin-top: 6px;"> 急騰株取引</view>
 				</view>
 
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});">
-					<image src="/static/btn_3.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> クオンツ取引</view>
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
+					<image src="/static/btn_2.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> ブロック取引</view>
 				</view>
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
+					<image src="/static/btn_0.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 新規公開株式</view>
+				</view>
+
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/panqian/index'});">
 					<image src="/static/btn_4.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> 市場前取引</view>
+					<view style="margin-top: 6px;"> 機関IPO</view>
 				</view>
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/dividend'});">
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});">
+					<image src="/static/btn_3.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> AI資産運用</view>
+				</view>
+				<view class="menu-item"  @click="linkmarket()">
 					<image src="/static/btn_5.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> じかん外取引</view>
-				</view>
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/otc'});">
-					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;"> OTC</view>
+					<view style="margin-top: 6px;"> マーケット</view>
 				</view>
 				<view class="menu-item" @click="$util.linkCustomerService() ">
-					<image src="/static/btn_7.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;">お問合わせ</view>
+					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;">サポート</view>
 				</view>
 			</view>
 
@@ -418,6 +420,13 @@
 					console.log('clearTimer', this.timer);
 				}
 			},
+			
+			linkmarket(){
+				uni.switchTab({
+					url:`/pages/market/index`
+				})
+			},
+			
 			open(url) {
 				window.open(url)
 			},

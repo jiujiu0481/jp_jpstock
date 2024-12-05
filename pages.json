@@ -26,7 +26,7 @@
 		}, 
 		{
 			"pagePath": "pages/market/index",
-			"text": "相場",
+			"text": "マーケット",
 			"iconPath": "static/tarbar1.png",
 			"selectedIconPath": "static/tarbar1_act.png"
 		}, 

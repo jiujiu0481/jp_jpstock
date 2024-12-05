@@ -1,6 +1,6 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-		<CustomHeaderSecond title="デイトレード"></CustomHeaderSecond>
+		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>
 		
 		
 			<image src="/static/trade_day_banner.png" style="width: 100%;height: 300px;"></image>

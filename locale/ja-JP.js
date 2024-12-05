@@ -31,7 +31,7 @@ export default {
 
 	// 底部导航组
 	TABBAR_HOME: `トップ`,
-	TABBAR_FOLLOW: `相場`,
+	TABBAR_FOLLOW: `マーケット`,
 	TABBAR_TRADE: `注文·照会`,
 	TABBAR_ACCOUNT: `出入金履歴`,
 	TABBAR_MARKET: `ニュース`,

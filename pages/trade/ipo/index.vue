@@ -1,6 +1,6 @@
 <template>
 	<view class="page_bg_sec">
-		<CustomHeaderSecond title="注文" />
+		<CustomHeaderSecond title="新規公開株式" />
 
 		<view style="display: flex;align-items: center;justify-content: center;">
 			<image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(340)">

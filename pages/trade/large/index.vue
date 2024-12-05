@@ -2,7 +2,7 @@
 
 
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-		<CustomHeaderSecond title="大口取引"></CustomHeaderSecond>
+		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
 		<view style="display: flex;align-items: center;justify-content: center;">
 			<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image>
 		</view>
