@@ -16,7 +16,7 @@
 			// 空数据时，显示的图片
 			img: {
 				type: String,
-				default: 'data'
+				default: 'search'
 			},
 		},
 		data() {

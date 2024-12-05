@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import http from '@/common/http.js';
 
 /**
  * @function 获取客服链接

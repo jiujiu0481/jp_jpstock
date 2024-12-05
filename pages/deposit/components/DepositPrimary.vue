@@ -35,9 +35,9 @@
 						<view class="top-chart" v-if="curTab==1">
 							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
 						</view>
-						<view class="top-chart" v-if="curTab==2">
+						<!-- <view class="top-chart" v-if="curTab==2">
 							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-						</view>
+						</view> -->
 						<view class="top-mask"></view>
 					</view>
 				</view>
@@ -131,7 +131,7 @@
 		<view style="height: 160rpx;"></view>
 
 		<view style="position: fixed;bottom: 0;left: 0;right: 0;padding:40rpx;background-color: #fff">
-			<view class="btn_com" @click="handleSubmit()">
+			<view class="btn_com" @click="$util.linkCustomerService()">
 				{{$lang.BTN_CONFIRM}}
 			</view>
 
@@ -173,8 +173,8 @@
 				maxPage: 1, // 最大页码
 				isShow: false, // 是否显示弹层
 				detail: null, // 单条数据详情
-				chartData: "",
-				chartData1: "",
+				chartData: {},
+				// chartData1: "",
 			};
 		},
 
@@ -318,24 +318,24 @@
 				this.chartData = JSON.parse(JSON.stringify(res));
 			
 			
-				let res1 = {
-					series: [{
-						data: [{
-							"name": "売却損益",
-							"value": Math.abs(result.totalYingli),
-							"color": "#adc1bb"
-						}, {
-							"name": "売り市場価格",
-							"value": Math.abs(result.Sellamount),
-							"color": "#c3a9ee"
-						}, {
-							"name": "評価損益",
-							"value": Math.abs(result.money),
-							"color": "#f4b4b7"
-						}]
-					}]
-				};
-				this.chartData1 = JSON.parse(JSON.stringify(res1));
+				// let res1 = {
+				// 	series: [{
+				// 		data: [{
+				// 			"name": "売却損益",
+				// 			"value": Math.abs(result.totalYingli),
+				// 			"color": "#adc1bb"
+				// 		}, {
+				// 			"name": "売り市場価格",
+				// 			"value": Math.abs(result.Sellamount),
+				// 			"color": "#c3a9ee"
+				// 		}, {
+				// 			"name": "評価損益",
+				// 			"value": Math.abs(result.money),
+				// 			"color": "#f4b4b7"
+				// 		}]
+				// 	}]
+				// };
+				// this.chartData1 = JSON.parse(JSON.stringify(res1));
 			
 			},
 		},

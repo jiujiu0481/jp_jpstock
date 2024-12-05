@@ -32,7 +32,7 @@
 				</view>
 
 
-				<view class="menu-item" @click="$u.route({url:'/pages/trade/panqian/index'});">
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/index'});">
 					<image src="/static/btn_4.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;"> 機関IPO</view>
 				</view>
@@ -40,11 +40,11 @@
 					<image src="/static/btn_3.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;"> AI資産運用</view>
 				</view>
-				<view class="menu-item"  @click="linkmarket()">
+				<view class="menu-item" @click="linkMarketOV()">
 					<image src="/static/btn_5.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;"> マーケット</view>
 				</view>
-				<view class="menu-item" @click="$util.linkCustomerService() ">
+				<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});">
 					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;">サポート</view>
 				</view>
@@ -420,13 +420,18 @@
 					console.log('clearTimer', this.timer);
 				}
 			},
-			
-			linkmarket(){
+
+			linkmarket() {
 				uni.switchTab({
-					url:`/pages/market/index`
+					url: `/pages/market/index`
 				})
 			},
-			
+			linkMarketOV() {
+				uni.navigateTo({
+					url: `/pages/market/overview`
+				})
+			},
+
 			open(url) {
 				window.open(url)
 			},

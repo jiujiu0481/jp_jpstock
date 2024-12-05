@@ -1,18 +1,20 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" :style="$theme.setBGSize(`520rpx`,`bg_1`)">
-		<HeaderThird :title="$lang.TRADE_ISSUANCE_TITLE" color="#FFFFFF">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<!-- <HeaderThird :title="$lang.TRADE_ISSUANCE_TITLE" color="#FFFFFF">
 			<view style="color:#FFFFFF;width: 70px;" @click="linkRecord()">{{$lang.TRADE_LARGE_RECORD}}</view>
-		</HeaderThird>
+		</HeaderThird> -->
+		<view  >
+			<CustomHeaderSecond title=" 機関建玉取引" />
+			<!-- <view class="flex" style="width: 90%;margin-left: auto;margin-top: 20px;">
+				<view class="flex-1 bold" style="font-size: 23px;color: #FFFFFF;color: #424242;">機関建玉取引</view>
+				<image src="/static/AI.png" mode="widthFix" style="width: 100px;"></image>
+			</view> -->
 
-	<view class="flex" style="width: 90%;margin-left: auto;margin-top: 20px;">
-			  <view class="flex-1 bold" style="font-size: 23px;color: #FFFFFF;">機関建玉取引</view>
-			  <image src="/static/AI.png" mode="widthFix" style="width: 100px;"></image>
-	</view>
+			<view style="border-radius: 10px;margin: 0 20px;">
+				<TradeIssuanceList ref="list"></TradeIssuanceList>
+			</view>
 
-		<view style="background-color: #FFFFFF;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
-			<TradeIssuanceList ref="list"></TradeIssuanceList>
 		</view>
-
 	</view>
 </template>
 

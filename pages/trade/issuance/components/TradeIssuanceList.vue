@@ -1,21 +1,37 @@
 <template>
 	<view>
-		<view style="">
+		<view >
 			<EmptyData v-if="list.length<=0"></EmptyData>
 			<block v-for="(item,index) in list" :key="index">
-				<view>
-					
-					<view class="bold flex" style="background-color: #f6f8fc;padding: 15px 5px;border-radius: 10px;margin-top: 10px;">
-						<view  style="font-size: 18px;width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{item.name}}</view>
-						<view class="flex-1" style="color: #9a9a9a;">({{item.code}})</view>
-						<view class="flex-1"  style="font-size: 20px;color: #f96343;">{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}</view>
-						<view style="background-color: #f96343;padding: 5px 20px;border-radius: 30px;color: #fff;" @click="handleDetail(item)">{{$lang.BTN_BUY}}</view>
+				<view >
+
+					<view style="background-color: #f6f8fc;padding: 15px 15px;border-radius: 10px;margin-top: 10px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+
+						<view style="display: flex;align-items: center;justify-content: space-between;margin: 10px 4px;"  >
+							<view
+								style="font-size: 18px;width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+								{{item.name}}</view>
+							<view style="color: #f3564aaa;">{{item.code}}</view>
+						</view>
+						<view
+							style="font-size: 20px;color: #f3564a;display: flex;align-items: center;justify-content: right;margin: 10px 4px;">
+							{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}</view>
+
+						<template v-if="item.shengou_date">
+							<view
+								style="display: flex;align-items: center;justify-content: space-between;margin-top:4px;margin: 10px 4px;">
+								<view :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_IPO_SUB_CT}}</view>
+								<view :style="{color:$theme.LOG_VALUE}">{{item.shengou_date}}</view>
+							</view>
+						</template>
+						<view style="background-color: #f3564a;padding: 5px 20px;border-radius: 10px;color: #fff;display: flex;align-items: center;justify-content: center;"
+							@click="handleDetail(item)">{{$lang.BTN_BUY}}</view>
 					</view>
-					
-					
-					
-					
-					<!-- <view style="display: flex;align-items: center;">
+
+
+
+
+					<!-- 	<view style="display: flex;align-items: center;">
 						<view style="flex:6%">
 							<CustomLogo :logo="item.logo" :name="item.name"></CustomLogo>
 						</view>
@@ -40,24 +56,24 @@
 						<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
 							{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}
 						</view>
-					</view> -->
-					<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
+					</view> 
+				 <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">
 							{{$lang.TRADE_IPO_POST_QTY}}
 						</view>
 						<view style="font-size: 36rpx;" :style="{color:$theme.LOG_VALUE}">
 							{{$util.formatNumber(item.fa_amount*1)+` ${$lang.QUANTITY_UNIT}`}}
 						</view>
-					</view> -->
-					<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
+					</view> 
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">
 							{{$lang.TRADE_LARGE_MIN_QTY}}
 						</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
 							{{item.min_num*1+` ${$lang.QUANTITY_UNIT}`}}
 						</view>
-					</view> -->
-					<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
+					</view> 
+				 <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">
 							{{$lang.TRADE_LARGE_MAX_QTY}}
 						</view>
@@ -66,12 +82,7 @@
 						</view>
 					</view> -->
 
-					<!-- <template v-if="item.shengou_date">
-						<view style="display: flex;align-items: center;justify-content: space-between;margin-top:4px;">
-							<view :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_IPO_SUB_CT}}</view>
-							<view :style="{color:$theme.LOG_VALUE}">{{item.shengou_date}}</view>
-						</view>
-					</template> -->
+
 				</view>
 			</block>
 		</view>
@@ -83,13 +94,11 @@
 </template>
 
 <script>
-	import EmptyData from '@/components/EmptyData.vue';
 	import CustomLogo from '@/components/CustomLogo.vue';
 	import TradeIssuanceBuy from './TradeIssuanceBuy.vue';
 	export default {
 		name: 'TradeIssuanceList',
 		components: {
-			EmptyData,
 			CustomLogo,
 			TradeIssuanceBuy,
 		},

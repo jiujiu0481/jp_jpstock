@@ -79,11 +79,12 @@
 			},
 
 			async getList() {
-				// uni.showLoading({
-				// 	title: this.$lang.REQUEST_DATA,
-				// });
-				// const result = await this.$http.get(`api/jijin/list`);
-				// console.log(result);
+				uni.showLoading({
+					title: this.$lang.REQUEST_DATA,
+				});
+				const result = await this.$http.get(`api/jijin/list`);
+				if (!result) return false;
+				console.log(result);
 				// this.list = result.jj_list || [];
 			},
 		}
