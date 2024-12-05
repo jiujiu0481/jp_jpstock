@@ -26,10 +26,10 @@
 				<span class="dot-item" :class="inv==4?'dot-on':''" @click="bian(4)"></span>
 			</view>
 
-			<view class="login" style="margin:auto; margin-top: 160rpx;width: 80%;"
+			<view class="btn_com" style="margin:auto; margin-top: 160rpx;width: 80%;"
 				@click="$u.route({url:'/pages/account/login'});">ログイン
 			</view>
-			<view class="register" style="margin:auto;width: 80%;margin-top: 60rpx;"
+			<view class="btn_com" style="margin:auto;width: 80%;margin-top: 60rpx;"
 				@click="$u.route({url:'/pages/account/register'});">
 				口座開設
 			</view>
@@ -222,7 +222,7 @@
 		width: 21px;
 		height: 21px;
 		background: #fff;
-		border: 4px solid #e4013e
+		border: 4px solid #f24739
 	}
 
 	.login {
