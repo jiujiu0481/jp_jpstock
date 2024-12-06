@@ -5,13 +5,14 @@
 		</template>
 		<template v-else>
 			<block v-for="(item,index) in list" :key="index">
-				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 15px;font-size: 14px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 15px;font-size: 14px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;margin: 10px;border-radius: 6px;">
+						<view class="bold">{{item.goods.name}}</view>
 					<view style="display: flex;align-items: center;line-height: 1.8;margin-top: 10px;" class="gap10">
 						<template v-if="item.status==2">
-							<view :style="setStyle()" @click="subscription(item.id)">{{$lang.TRADE_IPO_SUCCESS_SUB}}
+							<view  style="background-color: #f3564aaa;"  :style="setStyle()" @click="subscription(item.id)">{{$lang.TRADE_IPO_SUCCESS_SUB}}
 							</view>
 						</template>
-						<view class="bold">{{item.goods.name}}</view>
+					
 					</view>
 					
 					<view class="flex flex-b" style="margin-top: 10px;">
@@ -62,7 +63,7 @@
 		methods: {
 			setStyle() {
 				return {
-					...this.$theme.LG_PRIMARY,
+					// ...this.$theme.LG_PRIMARY,
 					color: '#FFFFFF',
 					borderRadius: `8rpx`,
 					minWidth: `60rpx`,

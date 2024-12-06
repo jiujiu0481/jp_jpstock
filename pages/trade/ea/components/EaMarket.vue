@@ -6,7 +6,7 @@
 			</template>
 			<template v-else>
 				<block v-for="(item,index) in list" :key="index">
-					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
+					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 							<view style="flex:80%;">

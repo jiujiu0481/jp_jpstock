@@ -3,7 +3,7 @@
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
 
-			<view class="item"   style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;"     @click="handleDetail(item)">
+			<view class="item"   style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;margin: 0 10px;border-radius: 6px;"     @click="handleDetail(item)">
 				<!-- 顶部区域 -->
 				<view class="item-top" style="margin-left: 16px;">
 					<view class="item-top-name">

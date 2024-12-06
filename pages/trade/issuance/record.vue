@@ -1,6 +1,6 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" :style="$theme.setBGSize(`240rpx`,`bg_1`)">
-		<HeaderSecond :title="$lang.TRADE_DAY_RECORD" color="#FFFFFF"></HeaderSecond>
+	<view class="page_bg_sec" >
+		<CustomHeaderSecond title=" 記録" />
 
 		<view style="padding:20rpx 32rpx; background-color: #FFFFFF;min-height: 96vh;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird>
@@ -36,6 +36,11 @@
 		computed: {
 			tabs() {
 				return [this.$lang.TRADE_IPO_RECORD, this.$lang.TRADE_IPO_SUCCESS]
+			}
+		},
+		onLoad(op) {
+			if(op.curTab){
+				this.curTab=op.curTab;
 			}
 		},
 		onShow() {

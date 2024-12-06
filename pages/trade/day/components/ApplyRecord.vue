@@ -12,7 +12,7 @@
 			
 				
 				
-				<view style="margin:10rpx;padding: 20rpx; background-color: #f6f8fc;border-radius:10rpx;font-size: 12px;box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+				<view style="margin:10rpx;padding: 20rpx; background-color: #f6f8fc;border-radius:10rpx;font-size: 12px;box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
 					<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_DAY_ORDER_STATUS}}</view>
 						<view :style="setStyle(item.status)"> {{item.zt}} </view>

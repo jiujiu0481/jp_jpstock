@@ -198,7 +198,7 @@
 		height: 28px;
 		background: #fff;
 		border-radius: 5px;
-		border: 1px solid #e4013e;
+		border: 1px solid #f3564a;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -214,7 +214,7 @@
 	}
 
 	.nav-box .active {
-		background: #e4013e;
+		background: #f3564a;
 		color: #fff
 	}
 

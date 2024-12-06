@@ -5,12 +5,14 @@
 		</template>
 		<template v-else>
 			<block v-for="(item,index) in list" :key="index">
-				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 15px;font-size: 14px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;padding: 15px;font-size: 14px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;margin: 10px;border-radius: 6px;">
+					<view :style="{color:$theme.SECOND}"  class="bold">{{item.goods.name}}</view>
 					<view style="display: flex;align-items: center;line-height: 1.8;margin-top: 10px;" class="gap10">
+						
 						<template v-if="item.message &&item.message.length>0">
-							<view style="background-color:#f86548 ;color: #fff;padding: 0px 10px;border-radius: 5px;" > {{item.message}} </view>
+							<view style="background-color:#f3564aaa ;color: #fff;padding: 0px 10px;border-radius: 5px;" > {{item.message}} </view>
 						</template>
-						<view :style="{color:$theme.SECOND}"  class="bold">{{item.goods.name}}</view>
+						
 						
 					</view>
 					
