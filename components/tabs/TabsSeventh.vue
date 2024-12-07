@@ -57,7 +57,7 @@
 								// padding: `5rpx 0rpx`,
 								borderRadius: `16rpx`,
 								textAlign: 'center',
-								backgroundColor: val ? '#E4013E' : '',
+								backgroundColor: val ? '#f24639' : '',
 								color: val ? '#fff' : '#616161',
 								borderRadius: `44rpx`,
 							}

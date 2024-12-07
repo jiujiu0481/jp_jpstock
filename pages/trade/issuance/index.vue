@@ -9,6 +9,12 @@
 				<view class="flex-1 bold" style="font-size: 23px;color: #FFFFFF;color: #424242;">機関建玉取引</view>
 				<image src="/static/AI.png" mode="widthFix" style="width: 100px;"></image>
 			</view> -->
+		<view style="display: flex;align-items: center;justify-content: center;">
+			<image src="/static/banner_ipo.png"  mode="heightFix" :style="$theme.setImageSize(360)">
+			</image>
+		</view>
+			
+			
 			<view style="display: flex;align-items: center;justify-content: space-between;margin:  10px 10px 20px; ">
 				<view  style="padding: 8px 30px; background-color:#f3564a;color: #FFFFFF;border-radius: 6px;font-size: 14px;margin-left: 20px;"  @click="$u.route({url:'/pages/trade/issuance/record'});">申請記録</view>
 				<view  style="padding: 8px 30px; background-color:#f3564a;color: #FFFFFF;border-radius: 6px;font-size: 14px;margin-right: 20px;" @click="$u.route({url:'/pages/trade/issuance/record?curTab=1'});">成功の記録</view>

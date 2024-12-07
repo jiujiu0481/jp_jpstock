@@ -10,6 +10,12 @@
 				</view>
 			</view> -->
 		</view>
+<view style="display: flex;align-items: center;justify-content: center;">
+			<image src="/static/banner_ai.png"  mode="heightFix" :style="$theme.setImageSize(360)">
+			</image>
+		</view>
+
+
 
 		<!-- 韩国似乎没有EA介绍 -->
 		<TabsPrimary :tabs="$lang.TRADE_EA_TABS.slice(1,3)" @action="changeTab" :acitve="curTab"></TabsPrimary>
