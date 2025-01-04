@@ -8,11 +8,16 @@
 					style="position: absolute;top:50%;right: 30px;transform: translateY(-50%);" @click="actionEvent()">
 				</image>
 			</view>
-			<view style="padding-bottom: 30rpx;">
+			<view style="padding: 30rpx;">
 				<view
-					style="display: flex;flex-wrap: nowrap;align-items: center;justify-content: space-around;margin-top: 10px;">
+					style="display: flex;flex-wrap: nowrap;align-items: center;justify-content:space-between;margin-top: 10px;">
 					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_EA_HIGHEST_RETURN}}</text>
 					<text style="color: #E82D28;"> {{info.syl + ` %`}}</text>
+				</view>
+				<view
+					style="display: flex;align-items: center;justify-content:space-between;line-height: 1.4;color:#8f8f8f;margin-top: 10px;">
+					<view>最低申請資金</view>
+					<view>{{$util.formatMoney(info.min_price)}}</view>
 				</view>
 
 				<view class="common_input_wrapper"
@@ -22,7 +27,7 @@
 					<view style="padding:0 4px;color: #999;">{{$lang.QUANTITY_UNIT}}</view>
 				</view>
 
-				<view style="display: flex;flex-wrap: nowrap;align-items: center;justify-content: space-around;">
+				<view style="display: flex;flex-wrap: nowrap;align-items: center;justify-content:space-between;">
 					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TIP_AMOUNT_AVAIL}}</text>
 					<text :style="{color:'#FF6700'}">
 						{{availBal}} {{$lang.CURRENCY_UNIT}}</text>

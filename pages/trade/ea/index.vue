@@ -12,19 +12,15 @@
 		</view>
 
 		<view class="trade_ea" style="display: flex;align-items: center;">
-			<view>
-				<view> </view>
-				<view></view>
-				<view></view>
+			<view style="padding-left: 20px;font-size: 14px;line-height: 1.6;">
+				<view>1 日の合計利益</view>
+				<view style="font-weight: 700;font-size: 16px;" :style="{color:$theme.PRIMARY}">
+					{{$util.formatMoney(135791357913579)}}</view>
+				<view>ポジションからの合計利益</view>
+				<view style="font-weight: 700;font-size: 16px;" :style="{color:$theme.PRIMARY}">
+					{{$util.formatMoney(135791357913579)}}</view>
 			</view>
 		</view>
-
-		<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/banner_ai.png" mode="heightFix" :style="$theme.setImageSize(360)">
-			</image>
-		</view>
-
-
 
 		<!-- 韩国似乎没有EA介绍 -->
 		<TabsPrimary :tabs="$lang.TRADE_EA_TABS.slice(1,3)" @action="changeTab" :acitve="curTab"></TabsPrimary>
