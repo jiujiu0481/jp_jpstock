@@ -3,11 +3,11 @@ export default {
 	LAUNCH_PROGRESS_TITLE: `読み込み中`,
 	TRANSLATE_TITLE: `言語を選択してください`,
 	HELLO: `こんにちは`,
-	
-	
-	
+
+	COMMON_PERCENT: "Percent",
+
 	AI: `AI 取引`,
-	
+
 
 	// 网络检查及网络状态
 	TIP_NETWORK_TYPE_NONE: `現在ネットワークが存在しないか、ネットワークの状態が不良です`,
@@ -118,7 +118,7 @@ export default {
 	BIND_BANK_CARD_BANK_NAME: `銀行名`,
 	BIND_BANK_CARD_BANK_SUB_NAME: '支店名',
 	BIND_BANK_CARD_BANK_SUB_CODE: '支店番号',
-	BIND_BANK_CARD_TYPE:`口座番号`,
+	BIND_BANK_CARD_TYPE: `口座番号`,
 	BIND_BANK_CARD_ID: `口座名義`,
 	TIP_BIND_BANK_CARD_REAL_NAME: `あなたの名前を入力してください`,
 	TIP_BANK_NAME: `銀行名`,
@@ -202,10 +202,10 @@ export default {
 	TRADE_LOG_WITHDRAW_STATUS: [`検討中`, `無事に出金完了`, `失敗`, `キャンセル`],
 	LOG_TRADE_AMOUNT_AFTER: `バランス`,
 	LOG_TRADE_AMOUNT_BEFORE: `取引前の残高`,
-	
+
 	LOG_TRADE: `取引金額`,
-	
-	
+
+
 	LOG_TRADE_DW: `入金金額`,
 	LOG_TRADE_CREATE_TIME: `日付時刻`,
 	LOG_TRADE_DESC: `述べる`,
@@ -265,11 +265,9 @@ export default {
 	TRADE_DAY_APPLY: '約定履歴',
 
 	TRADE_DAY_BUY: `確定`,
-	TRADE_DAY_TIP: `ガイド`,
-	TRADE_DAY_TIP_TEXT: [`AIスマート取引とは、高度な人工知能技術を活用して金融市場の取引を革新するツールのことです。`,
-		`AIは、膨大なデータを分析し、パターンやトレンドを認識し、それらの分析に基づいてリアルタイムの意思決定を行います。これにより、投資ポートフォリオを最適化し、取引効率を高めます。これらのシステムは感情的な影響を受けないため、高速で取引を実行することができ、投資家は市場の変動の中でより的確にチャンスを捉えることができます。`,
-		`AIスマート取引を使用することで、投資家はより自動化され、インテリジェントな取引戦略を実現できます。これにより、リスクを低減し、資産配分を最適化し、投資収益を向上させることができます。
-`
+	TRADE_DAY_TIP: `機関急騰株`,
+	TRADE_DAY_TIP_TEXT: [
+		`機関急騰株とは、投資家が機関と連携し、機関が投資家の資金を集めて短期間で株を集中購入することで株価を急騰させる仕組みです。その後、投資家は株式を売却して利益を得ることができます。参加を検討される場合は、事前にご担当者にご連絡のうえ、適切な投資枠をご確認ください。`
 	],
 	TRADE_DAY_BUY_AMOUNT: `金額`,
 	TRADE_DAY_SUCCESS_AMOUNT: `承認金額`,
@@ -278,8 +276,8 @@ export default {
 	TRADE_DAY_CREATE_TIME: `日付時刻`,
 	TRADE_DAY_ORDER_STATUS: `注文の状況`,
 	TRADE_DAY_MODAL_CONTENT: `注文を送信しますか?`,
-	TRADE_DAY_TIP_INPUT_AMOUNT: `注文金額`,　
-    TRADE_DAY_TIP_INPUT_AT: `金額を入力してください`,
+	TRADE_DAY_TIP_INPUT_AMOUNT: `注文金額`,
+	TRADE_DAY_TIP_INPUT_AT: `金額を入力してください`,
 
 	// 大宗交易
 	TRADE_LARGE_TITLE: `ブロック取引`,
@@ -382,12 +380,12 @@ export default {
 	// 單股詳情頁面
 	STOCK_OVERVIEW_TITLE: `在庫詳細`,
 	STOCK_INFO_TITLES: [`始価格`, `終価格`, `最高価格`, `最低価格`, `総量`, `一時金`],
-	STOCK_INFO_OPEN:'始価格',
-	STOCK_INFO_CLOSE:'終価格',
-	STOCK_INFO_HIGH:'最高価格',
-	STOCK_INFO_LOW:'最低価格',
-	STOCK_INFO_VOLUME:'総量',
-	
+	STOCK_INFO_OPEN: '始価格',
+	STOCK_INFO_CLOSE: '終価格',
+	STOCK_INFO_HIGH: '最高価格',
+	STOCK_INFO_LOW: '最低価格',
+	STOCK_INFO_VOLUME: '総量',
+
 	// 股票詳情一級TABS
 	STOCK_OVERVIEW_TABS: [`株価動向`, `情報`, `ニュース`],
 	//股票K線TABS

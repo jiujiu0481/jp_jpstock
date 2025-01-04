@@ -12,7 +12,7 @@
 		</view>
 
 		<view
-			style="background-color: #FFFFFF;min-height: 90vh;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
+			style="background-color: #FFFFFF;min-height: 90vh;padding:20rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TradeDayBuy></TradeDayBuy>
 		</view>
 	</view>
