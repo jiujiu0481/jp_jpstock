@@ -2,26 +2,35 @@
 	<view>
 		<view class="common_mask" @click="actionEvent()"></view>
 		<view class="common_popup" style="min-height:35vh;margin:auto">
-			<view class="popup_header"  style="font-size: 11px;background-color: #e4013e;">
+			<view class="popup_header" style="font-size: 11px;background-color: #e4013e;">
 				{{info.name}}
-			
-				
-				<image src="/static/close.png" mode="aspectFit" style="position: absolute;top:50%;right: 30px;transform: translateY(-50%);width: 15px;" @click="actionEvent()"/>
-				
+
+
+				<image src="/static/close.png" mode="aspectFit"
+					style="position: absolute;top:50%;right: 30px;transform: translateY(-50%);width: 15px;"
+					@click="actionEvent()" />
+
 			</view>
 			<view style="padding-bottom: 30rpx;font-size: 14px;">
-				
-				<view class="common_input_wrapper flex-b" style="padding-left: 20px;margin:20px 40rpx;">
-					<input v-model="amount" :placeholder="$lang.TRADE_LARGE_TIP_BUY_COUNT" type="number" style="width: 80%;font-size: 14px;" ></input>
+
+				<view class="common_input_wrapper flex-b" style="padding-left: 20px;margin:20px 40rpx;margin-bottom: 0;">
+					<input v-model="amount" :placeholder="$lang.TRADE_LARGE_TIP_BUY_COUNT" type="number"
+						style="width: 80%;font-size: 14px;"></input>
 					<view style="color: #999;text-align: right;width: 15%;">{{$lang.QUANTITY_UNIT}}</view>
 				</view>
-				
+				<view style="padding: 10px 30px;" class="flex flex-b">
+					<text :style="{color:$theme.LOG_LABEL}">最小限のアプリケーション</text>
+					<text :style="{color:$theme.PRIMARY}">
+						{{$util.formatMoney(info.min_num) +` `+$lang.CURRENCY_UNIT }}</text>
+				</view>
+				<!-- min_num -->
+
 				<view style="padding: 10px 30px;" class="flex flex-b">
 					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_LARGE_BUY_AMOUNT}}</text>
 					<text :style="{color:$theme.PRIMARY}">
 						{{$util.formatMoney(info.price) +` `+$lang.CURRENCY_UNIT }}</text>
 				</view>
-				
+
 				<!-- 杠杆默认有一个数组，当数组大于1，视为开启杠杆功能 -->
 				<template v-if="leverList.length>1">
 					<view style="padding-left: 30px;font-size: 14px;font-weight: 800;margin-top: 20px;"
@@ -57,7 +66,8 @@
 					<view :style="{color: $theme.SECOND}">{{available +` ` + $lang.CURRENCY_UNIT}}</view>
 				</view>
 
-				<view class="bold text-center" @tap.stop="handleConfirm()" style="background-color: #e4013e;padding: 10px;border-radius: 5px;color: #fff;font-size: 14px;margin: 20px;">
+				<view class="bold text-center" @tap.stop="handleConfirm()"
+					style="background-color: #e4013e;padding: 10px;border-radius: 5px;color: #fff;font-size: 14px;margin: 20px;">
 					{{$lang.BTN_CONFIRM}}
 				</view>
 			</view>

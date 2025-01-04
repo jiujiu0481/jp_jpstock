@@ -10,8 +10,17 @@
 				</view>
 			</view> -->
 		</view>
-<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/banner_ai.png"  mode="heightFix" :style="$theme.setImageSize(360)">
+
+		<view class="trade_ea" style="display: flex;align-items: center;">
+			<view>
+				<view> </view>
+				<view></view>
+				<view></view>
+			</view>
+		</view>
+
+		<view style="display: flex;align-items: center;justify-content: center;">
+			<image src="/static/banner_ai.png" mode="heightFix" :style="$theme.setImageSize(360)">
 			</image>
 		</view>
 
