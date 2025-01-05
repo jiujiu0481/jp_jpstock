@@ -39,22 +39,22 @@
 					<view style="color:#121212;">{{item.ordersn}} </view>
 				</view> -->
 
-				<view
+				<!-- <view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_LEVER}}</view>
 					<view style="color:#121212;">{{item.ganggan}} </view>
-				</view>
+				</view> -->
 
-				<view
+				<!-- <view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_RATE}}</view>
 					<view style="color:#121212;">{{item.fudu+` %`}} </view>
-				</view>
+				</view> -->
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_DATE}}</view>
-					<view style="color:#121212;">{{item.time}} </view>
+					<view style="color:#121212;">{{item.cretime}} </view>
 				</view>
 
 				<view

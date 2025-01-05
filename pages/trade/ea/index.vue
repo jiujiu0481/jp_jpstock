@@ -15,10 +15,12 @@
 			<view style="padding-left: 20px;font-size: 14px;line-height: 1.6;">
 				<view>1 日の合計利益</view>
 				<view style="font-weight: 700;font-size: 16px;" :style="{color:$theme.PRIMARY}">
-					{{$util.formatMoney(135791357913579)}}</view>
+					{{!detail?'':$util.formatMoney(detail.today)}}
+				</view>
 				<view>ポジションからの合計利益</view>
 				<view style="font-weight: 700;font-size: 16px;" :style="{color:$theme.PRIMARY}">
-					{{$util.formatMoney(135791357913579)}}</view>
+					{{!detail?'':$util.formatMoney(detail.total)}}
+				</view>
 			</view>
 		</view>
 
@@ -57,10 +59,12 @@
 			return {
 				isAnimat: false, // 页面动画
 				curTab: 0,
+				detail: null,
 			};
 		},
 		onShow() {
 			this.isAnimat = true;
+			this.getDetail();
 		},
 		onHide() {
 			this.isAnimat = false;
@@ -70,6 +74,12 @@
 			changeTab(val) {
 				this.curTab = val;
 			},
+			async getDetail() {
+				const result = await this.$http.get(`api/jijin/profitInfo`);
+				if (!result) return false;
+				console.log(result);
+				this.detail = result;
+			}
 		}
 	}
 </script>
