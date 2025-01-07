@@ -44,9 +44,9 @@
 					<image src="/static/btn_5.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 6px;"> マーケット</view>
 				</view>
-				<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});">
+				<view class="menu-item" @click="$u.route({url:'/pages/account/center'});">
 					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-					<view style="margin-top: 6px;">サポート</view>
+					<view style="margin-top: 6px;">マイページ</view>
 				</view>
 			</view>
 

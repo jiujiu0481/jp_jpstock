@@ -10,8 +10,8 @@
 			</view>
 		</view>
 		<view style="margin-left: auto;">
-			<image src="/static/shezhi.png" mode="aspectFit" style="width: 20px;height: 20px;"
-				@click="$u.route({url:'/pages/account/center'});"></image>
+			<!-- <image src="/static/shezhi.png" mode="aspectFit" style="width: 20px;height: 20px;"
+				@click="$u.route({url:'/pages/account/center'});"></image> -->
 		</view>
 	</header>
 </template>

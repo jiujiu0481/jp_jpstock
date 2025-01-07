@@ -13,40 +13,41 @@
 	"uniIdRouter": {},
 	"tabBar": {
 		"backgroundColor": "#FFFFFF",
-		"height":"57px",
+		"height": "57px",
 		"selectedColor": "#000",
 		"color": "#D8D8D8",
 		"fontSize": "11px",
 		"iconWidth": "50px",
 		"list": [{
-			"pagePath": "pages/home/index",
-			"text": "トップ",
-			"iconPath": "static/tarbar0.png",
-			"selectedIconPath": "static/tarbar0.png"
-		}, 
-		{
-			"pagePath": "pages/market/index",
-			"text": "マーケット",
-			"iconPath": "static/tarbar1.png",
-			"selectedIconPath": "static/tarbar1_act.png"
-		}, 
-		{
-			"pagePath": "pages/position/index",
-			"text": "注文·照会",
-			"iconPath": "static/tarbar3.png",
-			"selectedIconPath": "static/tarbar3_act.png"
-		},
-		{
-			"pagePath": "pages/transaction/index",
-			"text": "出入金履歴",
-			"iconPath": "static/tarbar2.png",
-			"selectedIconPath": "static/tarbar2_act.png"
-		},  {
-			"pagePath": "pages/news",
-			"text": "ニュース",
-			"iconPath": "static/tarbar4.png",
-			"selectedIconPath": "static/tarbar4_act.png"
-		}]
+				"pagePath": "pages/home/index",
+				"text": "トップ",
+				"iconPath": "static/tarbar0.png",
+				"selectedIconPath": "static/tarbar0.png"
+			},
+			{
+				"pagePath": "pages/market/index",
+				"text": "マーケット",
+				"iconPath": "static/tarbar1.png",
+				"selectedIconPath": "static/tarbar1_act.png"
+			},
+			{
+				"pagePath": "pages/position/index",
+				"text": "注文·照会",
+				"iconPath": "static/tarbar3.png",
+				"selectedIconPath": "static/tarbar3_act.png"
+			},
+			{
+				"pagePath": "pages/transaction/index",
+				"text": "出入金履歴",
+				"iconPath": "static/tarbar2.png",
+				"selectedIconPath": "static/tarbar2_act.png"
+			}, {
+				"pagePath": "pages/news",
+				"text": "ニュース",
+				"iconPath": "static/tarbar4.png",
+				"selectedIconPath": "static/tarbar4_act.png"
+			}
+		]
 	},
 
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
@@ -63,13 +64,13 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/account/login", // 登入、注册
 			"style": {
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/account/register", // 登入、注册
 			"style": {
 				"enablePullDownRefresh": false,
@@ -77,9 +78,9 @@
 			}
 		}, {
 			"path": "pages/home/index",
-			
+
 			"style": {
-				"navigationBarTitleText":"トップ",
+				"navigationBarTitleText": "トップ",
 				"enablePullDownRefresh": false, // 是否开启下拉刷新
 				"navigationStyle": "custom" // 隐藏系统导航栏
 				// 单页导航栏设置,"default"默认显示 "custom"关闭状态
@@ -89,14 +90,21 @@
 		}, {
 			"path": "pages/search/index", // 查询
 			"style": {
-				"navigationBarTitleText":"検索",
+				"navigationBarTitleText": "検索",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/notify/index", // 查询
+			"style": {
+				"navigationBarTitleText": "検索",
 				"enablePullDownRefresh": true,
 				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/notification", // 通知
 			"style": {
-				"navigationBarTitleText":"お知らせ",
+				"navigationBarTitleText": "お知らせ",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
@@ -107,7 +115,7 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/setting",
 			"style": {
 				"enablePullDownRefresh": false,
@@ -131,7 +139,7 @@
 				"enablePullDownRefresh": true,
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/trade/panqian/index",
 			"style": {
 				"enablePullDownRefresh": true,
@@ -156,11 +164,11 @@
 		}, {
 			"path": "pages/news", // 变更登入密码、变更支付密码
 			"style": {
-				"navigationBarTitleText":"ニュース",
+				"navigationBarTitleText": "ニュース",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/account/bankCard", // 银行卡 绑定，解绑
 			"style": {
 				"enablePullDownRefresh": false,
@@ -175,7 +183,7 @@
 		}, {
 			"path": "pages/transaction/index", // 交易记录
 			"style": {
-				"navigationBarTitleText":"出入金履歴",
+				"navigationBarTitleText": "出入金履歴",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
@@ -208,7 +216,7 @@
 		{
 			"path": "pages/market/index", // 股票及虚拟币市场
 			"style": {
-				"navigationBarTitleText":"相場",
+				"navigationBarTitleText": "相場",
 				"enablePullDownRefresh": true,
 				"navigationStyle": "custom"
 			}
@@ -239,11 +247,11 @@
 				"navigationStyle": "custom"
 			}
 		},
-		
+
 		{
 			"path": "pages/trade/dividend", // 日内交易
 			"style": {
-				"navigationBarTitleText":"アフターマーケッ卜取引",
+				"navigationBarTitleText": "アフターマーケッ卜取引",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
@@ -251,7 +259,7 @@
 		{
 			"path": "pages/trade/otc", // 日内交易
 			"style": {
-				"navigationBarTitleText":"OTC",
+				"navigationBarTitleText": "OTC",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
@@ -317,7 +325,7 @@
 		}, {
 			"path": "pages/position/index", // 持仓
 			"style": {
-				"navigationBarTitleText":"注文·照会",
+				"navigationBarTitleText": "注文·照会",
 				"enablePullDownRefresh": true,
 				"navigationStyle": "custom"
 				// "onReachBottomDistance": 1000 // 触发时，距底距离。

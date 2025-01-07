@@ -12,7 +12,7 @@
 		</view>
 		<view class="header-right">
 			<!-- <img src="/static/search_icon.png" @click="$u.route({url:'/pages/search/index'});" class="header-search"> -->
-			<img src="/static/shezhi.png" @click="$u.route({url:'/pages/account/center'});" class="header-setting">
+			<img src="/static/search_icon.png" @click="$u.route({url:'/pages/notify/index'});" class="header-setting">
 		</view>
 	</view>
 </template>
