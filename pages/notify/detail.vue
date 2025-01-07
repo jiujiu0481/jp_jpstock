@@ -1,20 +1,16 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="情報"></CustomHeaderSecond>
-
 		<img src="/static/img/7.7349b6f4.png" class="banner" style="width: 100%;">
-
-		<template v-if="!list ||list.length<=0">
-
+		<template v-if="!detail">
+			<EmptyData></EmptyData>
 		</template>
 		<template v-else>
-			<block v-for="(v,k) in list" :key="k">
-				<view style="padding:16px;margin-bottom: 10px;border-bottom: 0.5px solid #9797979A;"
-					@click="linkToDetail(v.id)">
-					<view>{{v.biaoti}}</view>
-					<view style="text-align: right;">{{v.updated_at}}</view>
-				</view>
-			</block>
+			<view style="padding:16px;margin-bottom: 10px;">
+				<view>{{detail.biaoti}}</view>
+				<view style="text-align: right;">{{detail.updated_at}}</view>
+				<view v-html="detail.xiangqing"></view>
+			</view>
 		</template>
 	</view>
 </template>
@@ -24,31 +20,32 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				list: null,
+				detail: null,
+				curId: '',
 			}
+		},
+		onLoad(opt) {
+			this.curId = opt.id || this.curId;
 		},
 		onShow() {
 			this.isAnimat = true;
-			this.getList();
+			this.getDetail();
 		},
 		onHide() {
 			this.isAnimat = false;
 		},
 		onPullDownRefresh() {
-			this.getList();
+			this.getDetail();
 			uni.stopPullDownRefresh();
 		},
 		methods: {
-			async getList() {
-				const result = await this.$http.get(`api/app/gglist`);
+			async getDetail() {
+				const result = await this.$http.get(`api/app/gginfo`, {
+					id: this.curId
+				});
 				if (!result) return false;
-				this.list = result;
+				this.detail = result;
 			},
-			linkToDetail(val) {
-				uni.navigateTo({
-					url: `/pages/notify/detail?id=${val}`
-				})
-			}
 		}
 	}
 </script>

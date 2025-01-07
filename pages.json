@@ -102,6 +102,13 @@
 				"navigationStyle": "custom"
 			}
 		}, {
+			"path": "pages/notify/detail", // 查询
+			"style": {
+				"navigationBarTitleText": "検索",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
 			"path": "pages/notification", // 通知
 			"style": {
 				"navigationBarTitleText": "お知らせ",
