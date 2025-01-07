@@ -2,10 +2,6 @@
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
 		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>
 		
-		
-			<image src="/static/trade_day_banner.png" style="width: 100%;height: 300px;"></image>
-	
-
 		<view class="nav-box">
 			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>

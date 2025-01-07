@@ -25,7 +25,7 @@
 		</view>
 
 		<!-- 韩国似乎没有EA介绍 -->
-		<TabsPrimary :tabs="$lang.TRADE_EA_TABS.slice(1,3)" @action="changeTab" :acitve="curTab"></TabsPrimary>
+		<TabsPrimary :tabs="[`マーケット`,`取引履歴`]" @action="changeTab" :acitve="curTab"></TabsPrimary>
 
 		<!-- <template v-if="curTab ==0">
 			<EaIntroduce></EaIntroduce>

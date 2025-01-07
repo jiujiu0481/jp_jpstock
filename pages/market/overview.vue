@@ -1,50 +1,6 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-		<CustomHeaderSecond title="株式市場"></CustomHeaderSecond>
-		<!-- <header class="common_header">
-			<view class="left" @click="linkSearch()">
-				<image src="/static/search.png" mode="aspectFit" :style="$theme.setImageSize(36)"></image>
-			</view>
-			<text class="center">{{$lang.MARKET_OVERVIEW_TITLE}} </text>
-			<view class="right" @click="linkService()">
-				<image src="/static/service.png" mode="aspectFit" :style="$theme.setImageSize(36)"></image>
-			</view>
-		</header> -->
-		<!-- <view class="flex" style="padding:30px  20px;">
-			<view class="flex-1" style="background-color: #fff;border-radius: 20px;padding: 5px 10px;">
-				<view class="flex" @click="shouye()">
-					<image src="/static/search_dark.png" mode="widthFix" style="width: 15px;"></image>
-					<view style="margin-left: 5px;font-size: 10px;color: #999;">銘柄名/コードを入力してください</view>
-				</view>
-				
-			</view>
-			<view>
-				<image src="/static/service.png" mode="widthFix" style="width: 25px;margin-left: 20px;" @click="kefu()"></image>
-			</view>
-		</view> -->
-		<!-- <view class="block">
-			
-			<view class="head">
-			<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
-					<img :src="$icon.sousuo">
-				</view>
-				<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-			</view>
-		</view> -->
-		
-		<view style="padding: 10px;">
-			<view  style="background-image: url(/static/xinwen.png);background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto; padding: 20px 0;border-radius: 6px;">
-				<view  style="padding: 0 10px;">
-					<view  style="font-size: 22px;color: #FFFFFF; font-weight: 700;">ストックホール</view>
-					<view  style="font-size: 17px;color: #FFFFFF;padding-top: 10px;font-weight: 700;">株価の上昇余地を迅速に把握</view>
-				</view>
-					  
-				<!-- 	  <image src="/static/xinwen.png" mode="widthFix" style="width: 100px;"></image> -->
-			</view>
-		</view>
-		
+		<CustomHeaderSecond title="マーケット"></CustomHeaderSecond>
 
 		<TabsSeventh :tabs="$lang.MARKET_TABS" @action="changeTab" :acitve="curTab"> </TabsSeventh>
 
@@ -163,67 +119,67 @@
 
 
 
-.header {
-		height: 70px;
-		padding: 0 8px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		background: #fff
-	}
+		.header {
+			height: 70px;
+			padding: 0 8px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-box-pack: justify;
+			-webkit-justify-content: space-between;
+			justify-content: space-between;
+			background: #fff
+		}
 
-	.header .header-left {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center
-	}
+		.header .header-left {
+			width: 61px;
+			height: 70px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center
+		}
 
-	.header .header-img {
-		width: 159px;
-		height: 52px;
-		object-fit: contain
-	}
+		.header .header-img {
+			width: 159px;
+			height: 52px;
+			object-fit: contain
+		}
 
-	.header .header-right {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: end;
-		-webkit-justify-content: flex-end;
-		justify-content: flex-end
-	}
+		.header .header-right {
+			width: 61px;
+			height: 70px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-box-pack: end;
+			-webkit-justify-content: flex-end;
+			justify-content: flex-end
+		}
 
-	.header .header-ring {
-		width: 20px;
-		height: 20px
-	}
+		.header .header-ring {
+			width: 20px;
+			height: 20px
+		}
 
-	.header .header-search {
-		width: 19px;
-		height: 19px
-	}
+		.header .header-search {
+			width: 19px;
+			height: 19px
+		}
 
-	.header .header-setting {
-		width: 21px;
-		height: 21px;
-		margin-left: 20px
-	}
+		.header .header-setting {
+			width: 21px;
+			height: 21px;
+			margin-left: 20px
+		}
 
 		.right {
 			margin-left: auto;
