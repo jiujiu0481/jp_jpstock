@@ -1,8 +1,9 @@
 <template>
-	<view class="page_bg_sec" >
+	<view class="page_bg_sec">
 		<CustomHeaderSecond title=" 記録" />
 
-		<view style="padding:20rpx 32rpx; background-color: #FFFFFF;min-height: 96vh;width: 85%;border-radius: 10px;margin-left: 10px;">
+		<view
+			style="padding:20rpx 32rpx; background-color: #FFFFFF;min-height: 96vh;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird>
 
 			<template v-if="curTab==0">
@@ -39,8 +40,8 @@
 			}
 		},
 		onLoad(op) {
-			if(op.curTab){
-				this.curTab=op.curTab;
+			if (op.curTab) {
+				this.curTab = op.curTab;
 			}
 		},
 		onShow() {

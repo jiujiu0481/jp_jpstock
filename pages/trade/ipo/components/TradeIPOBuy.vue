@@ -26,13 +26,13 @@
 				</view>
 
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height:2;">
-					<text :style="{color:$theme.LOG_LABEL}">機関IPO価格</text>
+					<text :style="{color:$theme.LOG_LABEL}">IPO価格</text>
 					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
 						{{$util.formatNumber(info.price,2)}}{{$lang.CURRENCY_UNIT}}</text>
 				</view>
 
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">機関発行数</text>
+					<text :style="{color:$theme.LOG_LABEL}">発行数</text>
 					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
 						{{$util.formatNumber(info.fa_amount)}}{{$lang.CURRENCY_UNIT}}</text>
 				</view>
@@ -42,41 +42,9 @@
 					<text :style="{color:$theme.PRIMARY}">
 						{{!info.online_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.online_date}}</text>
 				</view>
-
-
-				<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_2}}</text>
-					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
-						{{$util.formatNumber(info.fa_amount)}}{{$lang.CURRENCY_UNIT}}</text>
-				</view>
-
-				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_3}}</text>
-					<text :style="{color:$theme.PRIMARY}">
-						{{!info.online_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.shengou_date}}</text>
-				</view>
-
-				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_4}}</text>
-					<text :style="{color:$theme.PRIMARY}">
-						{{!info.gb_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.gb_date}}</text>
-				</view>
-
-				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_5}}</text>
-					<text :style="{color:$theme.PRIMARY}">
-						{{!info.rj_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.rj_date}}</text>
-				</view>
-
-				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_6}}</text>
-					<text :style="{color:$theme.PRIMARY}">
-						{{!info.online_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.online_date}}</text>
-				</view> -->
-
 				<view class="btn_com"
 					style="margin: 30rpx auto;width: 80%;background-color: #f3564a;padding: 10px 15; font-size: 18px; color: #fff;border-radius: 30px;"
-					@tap.stop="handleConfirm()">
+					@tap.stop="purchase()">
 					{{$lang.BTN_CONFIRM}}
 				</view>
 			</view>
@@ -86,7 +54,7 @@
 
 <script>
 	export default {
-		name: 'TradeIssuanceBuy',
+		name: "TradeIPOBuy",
 		props: {
 			info: {
 				type: Object,
@@ -97,31 +65,12 @@
 			return {
 				num: "",
 				isShow: false, // 购买前二次确认的弹层
-				// amount: '', // 金额
-				// password: '', // 支付密码
-				// leverList: [], // 杠杆值数组
-				// current: 0,
-				// availBal: 0,
 			}
 		},
 
-		computed: {
-			// // 当前杠杆值。无论是否显示杠杆，此处都无需注释
-			// curLever() {
-			// 	return this.leverList[this.current];
-			// },
-			// // 金额计算
-			// buyAmount() {
-			// 	return !this.curLever ? 0 : this.info.price * this.amount / Number(this.curLever.index);
-			// },
-		},
-
-		// created() {
-		// 	this.gerUserInfo();
-		// },
+		computed: {},
 
 		methods: {
-
 			actionEvent() {
 				this.isShow = false;
 				this.$emit('action', 1);
@@ -135,14 +84,16 @@
 			handleConfirm() {
 				this.buy();
 			},
-			async buy() {
-				const result = await this.$http.post(`api/goods-scramble/doOrder`, {
-					id: this.info.id,
-					num: this.num,
-					ganggan: 1,
+			// 点击申购 一个账号只能申购一次。
+			async purchase() {
+				uni.showLoading({
+					title: this.$lang.API_DATA_SUBMIT,
 				});
-				console.log(result);
-
+				const result = await this.$http.post(`api/goods-shengou/doOrder`, {
+					num: this.num,
+					id: this.info.id,
+					// price: this.price
+				})
 				if (!result) return false;
 				uni.showToast({
 					title: result.message,

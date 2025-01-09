@@ -3,7 +3,8 @@
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
 
-			<view class="item"   style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;margin: 0 10px;border-radius: 6px;"     @click="handleDetail(item)">
+			<view class="item"
+				style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;margin: 0 10px;border-radius: 6px;">
 				<!-- 顶部区域 -->
 				<view class="item-top" style="margin-left: 16px;">
 					<view class="item-top-name">
@@ -12,64 +13,74 @@
 					</view>
 				</view>
 
-				<!-- 中部区域 -->
-				<view class="item-middle" style="font-size: 16px;margin-left: 16px;">
-					{{$util.formatMoney(item.price)}}
-				</view>
-
 				<!-- 底部区域 -->
-				<view  style="padding: 0 16px 10px  16px; ">
-					<view  style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
-						<view>
-							{{$lang.TRADE_IPO_POST_QTY}}
-						</view>
-						<view>
-							<span>{{$util.formatNumber(item.fa_amount*1)}}</span>
+				<view style="padding: 0 16px 10px  16px; ">
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>発行価格：</view>
+						<view class="item-middle" style="font-size: 16px;margin-left: 16px;">
+							{{$util.formatMoney(item.price)}}
 						</view>
 					</view>
-					<view style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
-						<view>
-							{{$lang.TRADE_LARGE_MIN_QTY}}
-						</view>
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>発行数</view>
+						<view>{{$util.formatNumber(item.fa_amount*1)}}</view>
+					</view>
+
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>上場日：</view>
+						<view>{{item.online_date}}</view>
+					</view>
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>最低申し込み数量</view>
 						<view>
 							<span>{{$util.formatNumber(item.min_num*1)}}</span>
 						</view>
 					</view>
-					<view style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
-						<view>
-							{{$lang.TRADE_LARGE_MAX_QTY}}
-						</view>
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>最大申し込み数量</view>
 						<view>
 							<span>{{$util.formatNumber(item.max_num*1)}}</span>
 						</view>
 					</view>
-					<view style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
-						<view>
-							{{$lang.TRADE_IPO_SUB_CT}}
-						</view>
-						<view>
-							<span>{{$util.formatNumber(item.shengou_date*1)}}</span>
-						</view>
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;font-size: 14px;font-weight: 350;margin: 6px 0;">
+						<view>申し込み時間</view>
+						<view>{{item.shengou_date}}</view>
 					</view>
+
+					<view
+						style="background-color: #f3564a;padding: 5px 20px;border-radius: 10px;color: #fff;display: flex;align-items: center;justify-content: center;"
+						@click="handleDetail(item)">申し込み</view>
 				</view>
 			</view>
-
 		</block>
+
+		<template v-if="isShow">
+			<TradeIPOBuy :info="itemInfo" @action="handleClose"></TradeIPOBuy>
+		</template>
 	</view>
 </template>
 
 <script>
 	import EmptyData from '@/components/EmptyData.vue';
 	import CustomLogo from '@/components/CustomLogo.vue';
+	import TradeIPOBuy from './TradeIPOBuy.vue';
 	export default {
 		name: 'TradeIPOList',
 		components: {
 			EmptyData,
 			CustomLogo,
+			TradeIPOBuy,
 		},
 		data() {
 			return {
 				list: [],
+				isShow: false, // 是否显示弹层
 				itemInfo: {}, // 单条数据详情
 			}
 		},
@@ -91,41 +102,32 @@
 			// 不跳页面，按钮弹层，二次确认购买
 			handleDetail(val) {
 				console.log('val:', val);
-				this.handleShowModal();
+				// this.handleShowModal();
+				this.isShow = true;
 				this.itemInfo = val;
 			},
-			// 平仓/卖出
-			async handleShowModal() {
-				const result = await uni.showModal({
-					title: this.$lang.TRADE_IPO_MODAL_TITLE,
-					content: this.$lang.TRADE_IPO_MODAL_CONTENT,
-					cancelText: this.$lang.BTN_CANCEL,
-					confirmText: this.$lang.BTN_CONFIRM,
-					confirmColor: this.$theme.PRIMARY,
-					cancelColor: '#999999',
-				});
-				console.log('异步弹层:', result);
-				if (result[1].confirm) {
-					this.purchase();
-				}
+			// 关闭弹层
+			handleClose(val) {
+				console.log('val:', val);
+				this.isShow = false;
 			},
+			// // 平仓/卖出
+			// async handleShowModal() {
+			// 	const result = await uni.showModal({
+			// 		title: this.$lang.TRADE_IPO_MODAL_TITLE,
+			// 		content: this.$lang.TRADE_IPO_MODAL_CONTENT,
+			// 		cancelText: this.$lang.BTN_CANCEL,
+			// 		confirmText: this.$lang.BTN_CONFIRM,
+			// 		confirmColor: this.$theme.PRIMARY,
+			// 		cancelColor: '#999999',
+			// 	});
+			// 	console.log('异步弹层:', result);
+			// 	if (result[1].confirm) {
+			// 		this.purchase();
+			// 	}
+			// },
 
-			// 点击申购 一个账号只能申购一次。
-			async purchase() {
-				uni.showLoading({
-					title: this.$lang.API_DATA_SUBMIT,
-				});
-				const result = await this.$http.post(`api/goods-shengou/doOrder`, {
-					// num: this.value,
-					id: this.itemInfo.id,
-					// price: this.price
-				})
-				if (!result) return false;
-				uni.showToast({
-					title: this.$lang.API_POST_SUCCESS,
-					icon: 'success'
-				});
-			},
+
 
 			// 获取列表
 			async getList() {
@@ -148,6 +150,7 @@
 						fa_amount: item.fa_amount,
 						min_num: item.min_num,
 						max_num: item.max_num,
+						online_date: item.online_date,
 						// rate: item.goods.rate,
 						// rate_num: item.goods.rate_num,
 					}

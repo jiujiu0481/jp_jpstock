@@ -115,7 +115,7 @@
 							</view>
 							<view class="abox-foot-list">取得総額<span>{{$util.formatMoney(item.total)}}</span></view>
 							<view class="abox-foot-list">
-								{{item.status==2?'販売時間':'購入時間'}}<span>{{item.status==2?item.sellCT:item.buyCT}}</span>
+								{{item.status==2?'注文日時':'購入時間'}}<span>{{item.status==2?item.sellCT:item.buyCT}}</span>
 							</view>
 						</view>
 						<view class="foot-item" v-if="item.status==1">
@@ -137,15 +137,15 @@
 						<view class="foot-item" v-if="item.status==2">
 							<view class="abox-foot-title">最新の記録</view>
 							<view class="abox-foot-list">
-								ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span>
+								<!-- ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span> -->
 							</view>
 							<view class="abox-foot-list">売却価格<span
 									class="red">{{$util.formatMoney(item.sellPrice)}}</span></view>
-							<view class="abox-foot-list">売却時の変動<span
+							<view class="abox-foot-list">損益（%）<span
 									class="red">{{$util.formatMoney(item.sellProfitRate,2)}}%</span></view>
 							<view class="abox-foot-list">売却時価総額<span
 									class="red">{{$util.formatMoney(item.sellAmont)}}</span></view>
-							<view class="abox-foot-list">売却利益<span
+							<view class="abox-foot-list">損益（円）<span
 									class="red">{{$util.formatMoney(item.sellProfit*1)}}</span></view>
 						</view>
 
@@ -201,7 +201,7 @@
 		computed: {
 			tabs() {
 				return [
-					'購入申込',
+					// '購入申込',
 					'保有株式一覧',
 					'終了',
 				]

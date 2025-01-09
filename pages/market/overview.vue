@@ -6,9 +6,9 @@
 
 		<view style="padding-bottom: 20px;background-color: #FFFFFF;">
 			<TabOne v-if="curTab==0" ref="tab0"></TabOne>
-			<MarketHot v-if="curTab==1"></MarketHot>
+			<!-- <MarketHot v-if="curTab==1"></MarketHot> -->
 			<!-- <MarketKPI v-if="curTab==2"></MarketKPI> -->
-			<MarketNews v-if="curTab==2"></MarketNews>
+			<MarketNews v-if="curTab==1"></MarketNews>
 		</view>
 	</view>
 </template>

@@ -11,8 +11,8 @@
 			<view style="padding: 30rpx;">
 				<view
 					style="display: flex;flex-wrap: nowrap;align-items: center;justify-content:space-between;margin-top: 10px;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_EA_HIGHEST_RETURN}}</text>
-					<text style="color: #E82D28;"> {{info.syl + ` %`}}</text>
+					<text :style="{color:$theme.LOG_LABEL}">収益率</text>
+					<text style="color: #E82D28;"> {{info.syl }}</text>
 				</view>
 				<view
 					style="display: flex;align-items: center;justify-content:space-between;line-height: 1.4;color:#8f8f8f;margin-top: 10px;">
@@ -22,9 +22,9 @@
 
 				<view class="common_input_wrapper"
 					style="padding-left: 20px;margin:30rpx 40rpx;background-color: #FFFFFF;">
-					<input v-model="amount" :placeholder="$lang.TRADE_EA_BUY_AMOUNT" type="number" style="width: 80%;"
+					<input v-model="amount" placeholder="購入金額" type="number" style="width: 80%;"
 						:placeholder-style="$theme.setPlaceholder()"></input>
-					<view style="padding:0 4px;color: #999;">{{$lang.QUANTITY_UNIT}}</view>
+					<!-- <view style="padding:0 4px;color: #999;">{{$lang.QUANTITY_UNIT}}</view> -->
 				</view>
 
 				<view style="display: flex;flex-wrap: nowrap;align-items: center;justify-content:space-between;">

@@ -1,6 +1,6 @@
 <template>
 	<view class="page_bg_sec">
-		<CustomHeaderSecond title=" 記録" />
+		<CustomHeaderSecond :title="tabs[curTab]" />
 		<view >
 			
 			<!-- <view class="head">
@@ -12,7 +12,7 @@
 			<view class="short"></view>
 		</view>
 		
-		<view>
+		<view style="padding-bottom: 60px;">
 			<!-- <TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab" ></TabsThird> -->
 
 			<template v-if="curTab==0">
@@ -45,7 +45,7 @@
 		},
 		computed: {
 			tabs() {
-				return ['抽選申し込み履歴', '当選履歴']
+				return ['申し込み履歴', '当選履歴']
 			}
 		},
 		onLoad(op) {
