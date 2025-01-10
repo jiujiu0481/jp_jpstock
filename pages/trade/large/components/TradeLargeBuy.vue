@@ -13,7 +13,8 @@
 			</view>
 			<view style="padding-bottom: 30rpx;font-size: 14px;">
 
-				<view class="common_input_wrapper flex-b" style="padding-left: 20px;margin:20px 40rpx;margin-bottom: 0;">
+				<view class="common_input_wrapper flex-b"
+					style="padding-left: 20px;margin:20px 40rpx;margin-bottom: 0;">
 					<input v-model="amount" :placeholder="$lang.TRADE_LARGE_TIP_BUY_COUNT" type="number"
 						style="width: 80%;font-size: 14px;"></input>
 					<view style="color: #999;text-align: right;width: 15%;">{{$lang.QUANTITY_UNIT}}</view>
@@ -21,7 +22,7 @@
 				<view style="padding: 10px 30px;" class="flex flex-b">
 					<text :style="{color:$theme.LOG_LABEL}">最小限のアプリケーション</text>
 					<text :style="{color:$theme.PRIMARY}">
-						{{$util.formatMoney(info.min_num) +` `+$lang.CURRENCY_UNIT }}</text>
+						{{$util.formatNumber(info.min_num) }}</text>
 				</view>
 				<!-- min_num -->
 
