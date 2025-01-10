@@ -149,7 +149,13 @@
 					ganggan: this.curLever,
 				});
 				if (!result) return false;
-				this.actionEvent();
+				uni.showToast({
+					title: result.message,
+					icon: 'success'
+				});
+				setTimeout(() => {
+					this.actionEvent();
+				}, 1000)
 			},
 			async getAccountInfo() {
 				uni.showLoading({
