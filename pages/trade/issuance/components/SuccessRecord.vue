@@ -45,7 +45,7 @@
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 							<view :style="{color:$theme.LOG_LABEL}"> 支払金額 </view>
 							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{$util.formatMoney(item.success_num_amount)+` ${$lang.CURRENCY_UNIT}`}}
+								{{$util.formatMoney(item.freeze)}}
 							</view>
 						</view>
 						<!-- <view
