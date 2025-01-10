@@ -16,21 +16,16 @@
 					</view>
 				</view>
 				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<template v-if="curTab==1 || curTab==2">
-						<view style="width: 160px; height: 160px; position: relative">
-							<template v-if="curTab==1">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
-							</template>
-							<template v-if="curTab==2">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-							</template>
-						</view>
-					</template>
-					<template v-else>
-						<view style="height: 24rpx;"></view>
-					</template>
-					<view style="line-height: 1.3;text-align: right; ">
+					<view style="width: 160px; height: 160px; position: relative">
+						<template v-if="curTab==0">
+							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
+						</template>
 						<template v-if="curTab==1">
+							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
+						</template>
+					</view>
+					<view style="line-height: 1.3;text-align: right; ">
+						<template v-if="curTab==0">
 							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
 								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
 									:style="$theme.setImageSize(24)"></view>
@@ -50,7 +45,7 @@
 							</view>
 						</template>
 
-						<template v-if="curTab==2">
+						<template v-if="curTab==1">
 							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
 								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
 									:style="$theme.setImageSize(24)"></view>
@@ -180,7 +175,7 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				curTab: 1, // 
+				curTab: 0, // 
 				showAmount: false, // 显示金额
 				hideAmount: '******', // 隐藏金额
 				usd: '',
@@ -266,13 +261,9 @@
 			// tab切换
 			changeTab(val) {
 				console.log(val)
-
 				this.curTab = val;
 				this.curPage = 1;
 				this.list = [];
-				if (val == 0) {
-					return
-				}
 				this.getList();
 			},
 			handleShowModal(item) {
@@ -320,7 +311,7 @@
 				uni.showTabBar(); // 显示tabBar	
 				this.curPage = 1;
 				this.list = [];
-				this.curTab = 2;
+				this.curTab = 1;
 				this.changeTab(this.curTab);
 			},
 
@@ -329,16 +320,16 @@
 				console.log(`curPage:`, this.curPage);
 				const result = await this.$http.post(`api/user/order`, {
 					page: this.curPage,
-					status: this.curTab, // 1持仓，2历史
+					status: this.curTab + 1, // 1持仓，2历史
 					gp_index: 0,
 				});
 				if (!result) return false;
-				console.log(`sell result:`, result);
+				console.log(`result:`, result);
 				this.maxPage = result.last_page; // 記錄最大頁碼
 				let filterData = [];
-				if (this.curTab == 1) {
+				if (this.curTab == 0) {
 					filterData = result.data.filter(item => item.goods_info && item.order_buy);
-				} else if (this.curTab == 2) {
+				} else if (this.curTab == 1) {
 					filterData = result.data.filter(item => item.goods_info && item.order_buy && item.order_sell);
 				}
 				console.log(`filterData`, filterData);
