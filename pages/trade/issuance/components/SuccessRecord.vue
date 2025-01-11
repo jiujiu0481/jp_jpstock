@@ -43,31 +43,18 @@
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}"> 支払金額 </view>
+							<view :style="{color:$theme.LOG_LABEL}">支払い済み金額 </view>
 							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
 								{{$util.formatMoney(item.freeze)}}
 							</view>
 						</view>
-						<!-- <view
+						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_FREEZE}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}"> 未支払い金額 </view>
 							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{$util.formatMoney(item.freeze)+` ${$lang.CURRENCY_UNIT}`}}
+								{{$util.formatMoney(((item.price*1*item.success)-item.freeze*1).toFixed(2))}}
 							</view>
-						</view> -->
-						<!-- <view
-							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_UNPAY_AMOUNT}}
-							</view>
-							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{item.success*item.price-item.freeze>0?
-								$util.formatMoney(item.success*item.price*1-item.freeze*1):0+`
-								${$lang.CURRENCY_UNIT}`}}
-							</view>
-						</view> -->
+						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 							<view :style="{color:$theme.LOG_LABEL}">取引番号</view>

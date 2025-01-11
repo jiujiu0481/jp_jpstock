@@ -32,6 +32,14 @@
 						<view>購入価格</view>
 						<view>{{$util.formatMoney(item.success_num_amount)}}</view>
 					</view>
+					<view class="flex flex-b" style="margin-top: 10px;">
+						<view> 支払い済み金額</view>
+						<view>{{$util.formatMoney(item.freeze)}}</view>
+					</view>
+					<view class="flex flex-b" style="margin-top: 10px;">
+						<view> 未支払い金額</view>
+						<view>{{$util.formatMoney((item.success_num_amount*1-item.freeze*1).toFixed(2))}}</view>
+					</view>
 
 					<view class="flex flex-b" style="margin-top: 10px;">
 						<view>上場日</view>

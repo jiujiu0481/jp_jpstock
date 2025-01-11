@@ -5,7 +5,7 @@
 
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
-				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
+				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申し込み履歴</view>
 			</view>
 
 		</view>
