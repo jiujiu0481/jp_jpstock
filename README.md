@@ -2,7 +2,7 @@
 
 ## Fork ko_kpsstock
 
-![LOGO](https://github.com/github1413/JP_1/raw/main/static/logo.png)
+![LOGO](https://github.com/github1413/JP_1/raw/main/static/logo2.jpg)
 
 
 # UI

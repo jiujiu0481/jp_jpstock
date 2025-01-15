@@ -2,7 +2,7 @@
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec" style="background-size: 100% 80px;">
 		<header style="display: flex;align-items: center;padding: 24px 28rpx;padding-bottom: 0;">
 			<view style="margin-right: auto;">
-				<image src="/static/logo.png" mode="aspectFit" style="width: 32px;height: 32px;"></image>
+				<image src="/static/logo2.jpg" mode="aspectFit" style="width: 32px;height: 32px;"></image>
 			</view>
 			<view style=" flex:60%">
 				<view style="height: 56rpx;line-height: 56rpx;text-align: center;color:#FCFCFC;font-size: 28rpx;">

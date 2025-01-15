@@ -9,7 +9,7 @@
 				<view class="th-td width-20">銘柄</view>
 				<view class="th-td width-20">価格</view>
 				<view class="th-td width-20">申込量</view>
-				<view class="th-td width-20">ション量</view>
+				<view class="th-td width-20">当選数</view>
 				<view class="th-td width-20">{{$lang.TRADE_LARGE_LOG_AMOUNT}}</view>
 			</view>
 

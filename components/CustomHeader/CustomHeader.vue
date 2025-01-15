@@ -1,7 +1,7 @@
 <template>
 	<view class="header">
 		<view class="header-left">
-			<img src="/static/logo.png" class="header-img">
+			<img src="/static/logo2.jpg" class="header-img">
 		</view>
 		<view style=" flex:60%">
 			<view

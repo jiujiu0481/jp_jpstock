@@ -41,6 +41,16 @@
 								{{$util.formatNumber(item.success)+` ${$lang.QUANTITY_UNIT}`}}
 							</view>
 						</view>
+						
+						<view
+							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
+							<view :style="{color:$theme.LOG_LABEL}">
+								支払金額
+							</view>
+							<view style="font-size: 32rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{$util.formatMoney(item.success*item.price)}}
+							</view>
+						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 							<view :style="{color:$theme.LOG_LABEL}">支払い済み金額 </view>
