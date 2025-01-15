@@ -58,6 +58,7 @@ export default {
 	TIP_ENTER_EMAIL_CODE: `メール認証コードを入力してください`,
 	TIP_ENTER_ACCOUNT_NAME: `アカウントを入力してください`,
 	TIP_ENTER_ACCOUNT_PASSWORD: `パスワードを入力してください`,
+	TIP_ENTER_ACCOUNT_EMAIL: `メールアドレスを入力してください`,
 	TIP_ENTER_VERIFY_ACCOUNT_PASSWORD: `確認用パスワードを入力してください`,
 	TIP_ENTER_INVITATION_CODE: `機関招待コードを入力してください`,
 	TIP_PWD_NOEQUAL: `2回入力したパスワードは一致しません`,
