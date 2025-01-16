@@ -278,7 +278,7 @@
 				});
 				setTimeout(() => {
 					this.$util.linkCustomerService();
-					location.reload();
+					// location.reload();
 				}, 1000)
 			},
 
