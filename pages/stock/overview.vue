@@ -175,7 +175,8 @@
 	import {
 		init,
 		registerLocale,
-		dispose
+		dispose,
+		utils
 	} from '@/common/klinecharts.min.js';
 
 	export default {
@@ -548,7 +549,23 @@
 			},
 			handleShowKLine(val) {
 				console.log(val);
-
+				this.kLineChart.customApi = {
+					formatDate: (dateTimeFormat, timestamp) => {
+						if (this.curKLine == 0) {
+							return utils.formatDate(
+								dateTimeFormat,
+								timestamp,
+								"HH:mm"
+							)
+						} else {
+							return utils.formatDate(
+								dateTimeFormat,
+								timestamp,
+								'YYYY-MM-DD'
+							)
+						}
+					}
+				};
 				this.curKLine = val;
 				this.genKLineData();
 			},
@@ -626,7 +643,60 @@
 					// 延时,等DOM渲染
 					setTimeout(() => {
 						if (!this.kLineChart) {
-							this.kLineChart = init('chart-type-k-line');
+							this.kLineChart = init('chart-type-k-line', {
+								customApi: {
+									formatDate: (dateTimeFormat, timestamp) => {
+										if (this.curKLine == 0) {
+											return utils.formatDate(
+												dateTimeFormat,
+												timestamp,
+												"HH:mm"
+											)
+										} else {
+											return utils.formatDate(
+												dateTimeFormat,
+												timestamp,
+												'YYYY-MM-DD'
+											)
+										}
+									},
+								},
+								styles: {
+									candle: {
+										tooltip: {
+											custom: [{
+													title: 'Date: ',
+													value: '{time}'
+												},
+												{
+													title: 'open',
+													value: '{open}'
+												},
+												{
+													title: 'high',
+													value: '{high}'
+												},
+												{
+													title: 'low',
+													value: '{low}'
+												},
+												{
+													title: 'close',
+													value: '{close}'
+												},
+												{
+													title: 'volume',
+													value: '{volume}'
+												},
+											],
+											text: {
+												marginTop: 58,
+												marginLeft: 16,
+											},
+										},
+									},
+								},
+							});
 							this.kLineInit(); // 初始化Kline
 						}
 						this.genKLineData(); // 获取并生成KLine数据	
