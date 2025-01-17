@@ -12,7 +12,10 @@
 		</view>
 		<view class="header-right">
 			<!-- <img src="/static/search_icon.png" @click="$u.route({url:'/pages/search/index'});" class="header-search"> -->
-			<img src="/static/search_icon.png" @click="$u.route({url:'/pages/notify/index'});" class="header-setting">
+			<!-- <img src="/static/search_icon1.png" @click="$u.route({url:'/pages/notify/index'});" class="header-setting"> -->
+			<image v-if="look=== 0" src="/static/search_icon1.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
+			
+			<image v-if="look=== 1" src="/static/search_icon.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
 		</view>
 	</view>
 </template>
@@ -22,7 +25,7 @@
 		name: "CustomHeader",
 		data() {
 			return {
-
+			
 			};
 		}
 	}

@@ -1,6 +1,26 @@
 <template>
 	<view class="page_bg">
-		<CustomHeader />
+		<!-- <CustomHeader /> -->
+		
+		<view class="header" style="background-image: url('/static/topbackground.png');" >
+			<view class="header-left">
+				<img src="/static/logo2.jpg" class="header-img">
+			</view>
+			<view style=" flex:60%">
+				<view
+					style="background-color: rgba(255,255,255,0.4);height: 56rpx;line-height: 56rpx;text-align: center; border-radius: 24rpx;"
+					@click="$u.route({url:'/pages/search/index'});">
+					<text style="color:#FCFCFC;font-size: 11px;">株名またはコードを入力</text>
+				</view>
+			</view>
+			<view class="header-right">
+				<!-- <img src="/static/search_icon.png" @click="$u.route({url:'/pages/search/index'});" class="header-search"> -->
+				<!-- <img src="/static/search_icon1.png" @click="$u.route({url:'/pages/notify/index'});" class="header-setting"> -->
+				<image v-if="look=== 0" src="/static/search_icon1.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
+				
+				<image v-if="look=== 1" src="/static/search_icon.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
+			</view>
+		</view>
 
 
 		<view class="page">
@@ -347,6 +367,7 @@
 				kLineChart: null, // Kline实例化
 				lishi: [], // k綫數據
 				list: [],
+				gg_list:[],
 				kline_data: "",
 				top3_list: "",
 				dz33: "",
@@ -360,6 +381,7 @@
 				dz33_show: false,
 				news: "",
 				timer: null,
+				look:1,
 			}
 		},
 		computed: {
@@ -384,6 +406,7 @@
 			this.getAccountInfo()
 			this.getToplishi()
 			this.getList()
+			this.getList2()
 			this.top3()
 			this.onSetTimeout()
 			this.isAnimat = true;
@@ -410,6 +433,7 @@
 					console.log("setInterval");
 					this.getToplishi()
 					this.getList()
+					this.getList2()
 					this.top3()
 				}, 5000);
 			},
@@ -460,6 +484,17 @@
 			getdz_style(zhang_num, returnOfToday) {
 				let bfb = 100 / zhang_num;
 				return 'width: calc(' + bfb + '% - 4px);height: ' + returnOfToday * 100 * 15 + '%;'
+			},
+			async getList2() {
+				const result = await this.$http.get(`api/app/gglist`);
+				if (!result) return false;
+				console.log('gglist',result);
+				result.some(item=>{
+					if(item.look == 0) {
+						this.look = 0;
+					}
+				})
+				this.gg_list = result;
 			},
 			async top3() {
 				// uni.showLoading({
