@@ -327,7 +327,7 @@
 		</view> -->
 
 			<!-- IPO申购成功弹层 -->
-			<!-- <IPOSuccessAlert></IPOSuccessAlert> -->
+			<IPOSuccessAlert></IPOSuccessAlert>
 
 		</view>
 	</view>
@@ -340,7 +340,7 @@
 	import TrackList from './components/TrackList.vue';
 	// import MarketNews from './components/MarketNews.vue';
 	// import MarketHot from './components/MarketHot.vue';
-	// import IPOSuccessAlert from './components/IPOSuccessAlert.vue';
+	import IPOSuccessAlert from './components/IPOSuccessAlert.vue';
 
 	import {
 		init,
@@ -356,7 +356,7 @@
 			TrackList,
 			// MarketNews,
 			// MarketHot,
-			// IPOSuccessAlert,
+			IPOSuccessAlert,
 		},
 		data() {
 			return {

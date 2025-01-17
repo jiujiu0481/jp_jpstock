@@ -3,13 +3,13 @@
 		<view style="position:absolute;left: 50%;transform: translateX(-50%);bottom: 15vh;" @click="handleClose()">
 			<image src="/static/close_light1.png" mode="widthFix" style="width: 30px;height: 30px;"></image>
 		</view>
-		<view style="position: fixed;top:25vh;left: 50%;transform: translateX(-50%);">
+		<view style="position: fixed;top:25vh;left: 50%;transform: translateX(-50%);background-color: #fff;border-radius: 10px;">
 			<view class="bg_ad">
 				<view style="font-size: 32rpx;font-weight: 700;color: #121212;">
 				</view>
 
 				<view>
-					<image src="/static/dialog_icon.png" mode="aspectFit" :style="$theme.setImageSize(480,320)">
+					<image src="/static/home_news_A.png" mode="aspectFit" :style="$theme.setImageSize(480,250)">
 					</image>
 				</view>
 				<view
@@ -28,13 +28,13 @@
 						style="padding: 10px 0;display: flex;align-items: center;justify-content: space-between;padding:10px 40px;">
 						<view>{{$lang.DIALOG_IPO_SUCCESS_LABEL_QTY}}</view>
 						<text style="font-weight: 700;color:#ff3636;font-size: 16px;">
-							{{$util.formatNumber(info.success)}}</text>
+							{{$util.formatMoney(info.success)}}</text>
 					</view>
 					<view
 						style="padding: 10px 0;display: flex;align-items: center;justify-content: space-between;padding:10px 40px;">
 						<view>{{$lang.DIALOG_IPO_SUCCESS_LABEL_TOTAL}}</view>
 						<text
-							style="font-weight: 700;color:#ff3636;font-size: 16px;">{{$util.formatNumber(info.total)}}</text>
+							style="font-weight: 700;color:#ff3636;font-size: 16px;">{{$util.formatMoney(info.total)}}</text>
 					</view>
 					<view
 						style="padding: 10px 0;line-height: 1.5;background-color:#EBBD33;border-radius: 100px;color:#FFF;margin:20px 30px;"
@@ -64,28 +64,23 @@
 			},
 			linkIPOSuccessLog() {
 				uni.navigateTo({
-					url: this.$paths.TRADE_IPO + `?type=2`,
+					url: this.$paths.TRADE_IPO_RECORD + `?curTab=1`,
 				})
 			},
 
 			// 获取IPO成功记录
 			async ipoSuccess() {
 				const result = await this.$http.get(`api/goods-shengou/tanchuang`);
-				console.log(result);
-				// if (result.code == 0) {
-				// 	if (result.data.length > 0) {
-				// 		const temp = result.data[0];
-				// 		this.info = {
-				// 			code: temp.goods.code,
-				// 			name: temp.goods.name,
-				// 			success: temp.success,
-				// 			total: temp.total,
-				// 		};
-				// 		this.isShow = true;
-				// 	}
-				// } else {
-				// 	uni.$u.toast(result.data.message);
-				// }
+				console.log(result,5555555);
+				const temp = result;
+				this.info = {
+					code: temp.goods.code,
+					name: temp.goods.name,
+					success: temp.success,
+					total: temp.success_num_amount,
+				};
+				this.isShow = true;
+					
 			},
 		}
 	}
