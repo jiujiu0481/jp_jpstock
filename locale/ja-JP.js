@@ -453,7 +453,7 @@ export default {
 
 	// 首頁中簽彈圖層
 	DIALOG_IPO_SUCCESS_TIP_TITLE: `おめでとう`,
-	DIALOG_IPO_SUCCESS_TIP_TEXT: `公募応募を獲得しました`,
+	DIALOG_IPO_SUCCESS_TIP_TEXT: `新規公開株式  当選`,
 	DIALOG_IPO_SUCCESS_LABEL_QTY: `數量`,
 	DIALOG_IPO_SUCCESS_LABEL_TOTAL: `合計金額`,
 
