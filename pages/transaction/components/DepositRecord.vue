@@ -23,7 +23,7 @@
 							<view class="text-center"
 								style="color:#fff;padding:4rpx 16rpx;background-color: #f2be8f;width: 90px;margin: 10px;border-radius: 5px;"
 								@click="handleService()">
-								チャージ完了
+								審査中
 							</view>
 						</template>
 					</view>
