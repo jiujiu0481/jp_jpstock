@@ -8,8 +8,7 @@
 					<view
 						style="background-color: #f6f8fc;padding: 15px 15px;border-radius: 10px;margin-top: 10px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
 
-						<view
-							style="display: flex;align-items: center;justify-content: space-between;margin: 10px 4px;">
+						<view style="display: flex;align-items: center;justify-content: space-between;margin: 10px 4px;">
 							<view
 								style="font-size: 18px;width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
 								{{item.name}}
@@ -20,7 +19,7 @@
 							style="display: flex;align-items: center;justify-content: space-between;margin-top:4px;margin: 10px 4px;">
 							<view :style="{color:$theme.LOG_LABEL}">機関IPO価格 </view>
 							<view
-								style="font-size: 20px;color: #f3564a;display: flex;align-items: center;justify-content: right;margin: 10px 4px;">
+								style="font-size: 20px;color: #f3564a;display: flex;align-items: center;justify-content: right;margin: 10px 0;">
 								{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}
 							</view>
 						</view>
@@ -167,7 +166,7 @@
 						logo: item.goods.logo,
 						name: item.goods.name,
 						code: item.goods.code,
-						price: item.goods.current_price,
+						price: item.price,
 						shengou_date: item.shengou_date,
 						fa_amount: item.fa_amount,
 						min_num: item.min_num,
