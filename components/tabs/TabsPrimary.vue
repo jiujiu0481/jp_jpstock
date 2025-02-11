@@ -36,7 +36,7 @@
 			},
 			setStyle(val) {
 				return {
-					backgroundColor: val ? '#f24a3d': 'transparent',
+					backgroundColor: val ? '#d7060f': 'transparent',
 					color: val ? '#FFFFFF' : '#A8A8A8',
 					borderRadius: `44rpx`,
 					// border: `1px solid ${val? this.$theme.PRIMARY:'#F1F1F1'}`

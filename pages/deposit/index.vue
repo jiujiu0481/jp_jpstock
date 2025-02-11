@@ -1,5 +1,5 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'"  class="page_bg_sec" >
+	<view :class="isAnimat?'fade_in':'fade_out'"  class="page_bg" >
 		<!-- <HeaderSecond :title="$lang.DEPOSIT_TITLE" color="#FFFFFF"></HeaderSecond> -->
 		<CustomHeaderSecond title="入金確認"></CustomHeaderSecond>
 		<!-- <view class="block">

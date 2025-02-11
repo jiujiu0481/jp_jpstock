@@ -1,17 +1,7 @@
 <template>
 	<view class="page_bg_sec">
 		<CustomHeaderSecond title="銘柄詳細" />
-
-		<!-- <view class="block">
-			<view class="head">
-				<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">銘柄詳細</view>
-				<view class="back"></view>
-			</view>
-		</view> -->
-
 		<view>
-
 			<template v-if="stockInfo">
 				<view style="padding: 20px;">
 					<view :style="{color:$theme.TITLE}">

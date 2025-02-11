@@ -31,10 +31,10 @@ export default {
 
 	// 底部导航组
 	TABBAR_HOME: `トップ`,
-	TABBAR_FOLLOW: `マーケット`,
-	TABBAR_TRADE: `注文·照会`,
-	TABBAR_ACCOUNT: `出入金履歴`,
-	TABBAR_MARKET: `ニュース`,
+	TABBAR_FOLLOW: `市場`,
+	TABBAR_TRADE: `出入金履歴`,
+	TABBAR_ACCOUNT: `注文·照会`,
+	TABBAR_MARKET: `私の`,
 
 
 	// 登入、注册

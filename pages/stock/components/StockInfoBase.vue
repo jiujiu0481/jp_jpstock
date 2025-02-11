@@ -1,6 +1,6 @@
 <template>
 	<view
-		style="background-color: #FFFFFF;font-size: 14px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 80%;">
+		style="background-color: #FFFFFF;font-size: 14px;">
 		<!-- <view
 			style="display: flex;align-items: center;flex-wrap: wrap; margin-bottom: 6rpx;line-height:1.8;margin: 6px 0;background-color: #F8F7FF;">
 			<block v-for="(item,index) in $lang.STOCK_BASE_INFO" :key="index">

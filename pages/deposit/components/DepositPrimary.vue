@@ -1,89 +1,5 @@
 <template>
 	<view style="min-height: 100vh;">
-		<!-- <view class="flex" style="width: 90%;margin-left: auto;">
-				  <view class="flex-1 bold" style="font-size: 23px;color: #FFFFFF;">チャージ</view>
-				  <image src="/static/chongzhi.png" mode="widthFix" style="width: 100px;"></image>
-		</view> -->
-
-		<!-- <view style="position: relative;">
-			<image src="/static/sytongqian.png" mode="widthFix" style="width: 95%;margin-left: 10px;"></image>
-			<view style="width: 80%; position: absolute;bottom: 20%;left: 30px;">
-				<view style="display: flex;align-items: center;line-height: 1.6;">
-					<view class="flex-1" style="font-size: 32rpx;">
-						{{cardLabels[0]}}
-					</view>
-					<image mode="aspectFit" :src="`/static/${showAmount?'zhenyan':'yanjin'}.png`"
-						@click.stop="handleShowAmount" :style="$theme.setImageSize(40)" style="margin-left: 10px;">
-					</image>
-				</view>
-				<view style="font-size: 58rpx;font-weight: 700;line-height: 1.6;color: #f2bd8f;">
-					{{showAmount?$util.formatMoney(cardData.value1):hideAmount}}
-				</view>
-			</view>
-
-		</view> --><view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto;">
-				<view class="top">
-					<view class="top-left">
-						<view class="top-left-top">残高
-							<img :src="showAmount?$icon.yanjing:$icon.biyan" @click="showAmount=!showAmount">
-						</view>
-						<view class="top-left-foot">{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
-						</view>
-					</view>
-					<view class="top-right">
-						<view class="top-chart" v-if="curTab==1">
-							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
-						</view>
-						<!-- <view class="top-chart" v-if="curTab==2">
-							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-						</view> -->
-						<view class="top-mask"></view>
-					</view>
-				</view>
-
-				<view class="foot">
-					<view class="foot-item" v-if="curTab==1">
-						<view class="foot-left"><span class="foot-ball color1"></span>損益総額</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.holdYingli):hideAmount}}
-						</view>
-					</view>
-					<view class="foot-item" v-if="curTab==1">
-						<view class="foot-left"><span class="foot-ball color2"></span>時価総額</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
-					</view>
-
-					<view class="foot-item" v-if="curTab==2">
-						<view class="foot-left"><span class="foot-ball color1"></span>売却損益</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
-						</view>
-					</view>
-					<view class="foot-item" v-if="curTab==2">
-						<view class="foot-left"><span class="foot-ball color2"></span>売り市場価格</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.Sellamount):hideAmount}}
-						</view>
-					</view>
-
-
-					<view class="foot-item">
-						<view class="foot-left"><span class="foot-ball color3"></span>買付余力</view>
-						<view class="foot-right">
-							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
-						</view>
-					</view>
-				</view>
-
-			</view>
-		
-		
-		
-		
-		
-		
-		
-		
-
-
 		<view class="common_block" style=" padding:10rpx 12rpx;">
 			<TitleSecond :title="$lang.DEPOSIT_TIP_DEPOSIT_AMOUNT"></TitleSecond>
 			<view style="display: flex;align-items: center;flex-wrap: wrap; justify-content: space-between;">
@@ -111,8 +27,6 @@
 						転送伝票をアープロードしてください。</view>
 
 					<image src="/static/icon_upload_w.png" mode="widthFix" style="width: 165%;"></image>
-
-
 				</u-upload>
 			</view>
 		</view> -->
@@ -225,10 +139,10 @@
 			setStyle(val) {
 				return {
 					// ...val ? this.$theme.LG_PRIMARY : this.$theme.LG_SECOND,
-					backgroundImage: val? 'linear-gradient(90deg, #F24639, #F28339)':'linear-gradient(90deg, #FFFFFF, #FFFFFF)',
+					backgroundImage: val? 'linear-gradient(90deg, #d7060f, #d7060f)':'linear-gradient(90deg, #FFFFFF, #FFFFFF)',
 					color: val ? '#FFFFFF' : '#121212',
 					// borderRadius: `44rpx`,
-					border: `1px solid ${val? this.$theme.TRANSPARENT:'#e4013e'}`
+					border: `1px solid ${val? this.$theme.TRANSPARENT:'#d7060f'}`
 				}
 			},
 			async afterRead(event) {

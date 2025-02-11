@@ -1,12 +1,10 @@
 <template>
-	<view class="page_bg_sec">
+	<view class="page_bg">
 		<CustomHeaderSecond title="新規公開株式" />
-
 		<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(380)">
-			</image>
+			<!-- <image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(380)">
+			</image> -->
 		</view>
-
 		<view class="top">
 			<view class="top-list" @click="$u.route({url:'/pages/trade/ipo/record'});">
 				<view class="top-left"><img :src="$icon.ipo1">抽選申し込み履歴</view>
@@ -17,16 +15,11 @@
 				<img :src="$icon.yjt1" class="top-right">
 			</view>
 		</view>
-
 		<!-- <view class="nav-box">
 			<view class="nav-item" :class="inv==0?'active':''" @click="inv=0">抽選待ち</view>
 			<view class="nav-item" :class="inv==1?'active':''" @click="inv=1">抽選中</view>
 			<view class="nav-item" :class="inv==2?'active':''" @click="inv=2">購入申込終了</view>
 		</view> -->
-
-
-
-
 		<view style="margin-top: 10px;">
 			<TradeIPOList ref="list"></TradeIPOList>
 		</view>
@@ -78,7 +71,7 @@
 	.top {
 		background: #fff;
 		border-top: 1px solid #ebebeb;
-		margin-top: 10px
+		margin-top: -10px
 	}
 
 	.top .top-list {

@@ -1,6 +1,6 @@
 <!-- 绑定银行卡 -->
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="金融カード追加"></CustomHeaderSecond>
 		<view class="page">
 			<!-- <view class="block">
@@ -13,7 +13,7 @@
 				<view class="short"></view>
 			</view> -->
 			<view class="info-box">
-				<view class="text-center"><img src="/static/img/3.9698c7ef.png" class="info-img"></view>
+				<view class="text-center"></view>
 				<view class="info-name">カード名義人名:</view>
 				<view class="input-item">
 					<input v-model="info.realName" type="text" placeholder="カード所有者の名前を入力してください"></input>

@@ -1,5 +1,5 @@
 <template>
-	<view class="page_bg_sec">
+	<view class="page_bg">
 		<header style="display: flex;align-items: center;padding: 24px 28rpx;">
 			<view style="margin-right: auto;">
 				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit"
@@ -52,7 +52,6 @@
 				<block v-for="(item,index) in list" :key="index">
 					<view @click="link(item.code)"
 						style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #ffb2d18f;">
-
 						<view
 							style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
 							<view style="font-size: 14px;">{{item.name}}</view>
@@ -60,7 +59,6 @@
 								<span>{{item.rate_num}}</span>
 							</view>
 						</view>
-
 						<view style="display: flex; align-items: center;margin: 4px 0;">
 							<span style="flex:2; font-size: 14px;color: #e33262;">{{item.code}}</span>
 							<view style="flex:2;font-size: 14px;padding-left: 60rpx; ">

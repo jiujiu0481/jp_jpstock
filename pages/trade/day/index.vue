@@ -1,16 +1,15 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>
-		
-		
-			<image src="/static/trade_day_banner.png" style="width: 100%;height: 300px;"></image>
-	
-
-		<view class="nav-box">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
+		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>				
+			<!-- <image src="/static/ai_icon.png" style="width: 100%;height: 300px;"></image> -->
+		<view class="nav-box" v-if="type==1">
 			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>
 		</view>
-
+		<view class="nav-box" v-if="type==2">
+			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
+			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>
+		</view>
 		<view
 			style="background-color: #FFFFFF;min-height: 90vh;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TradeDayBuy></TradeDayBuy>
@@ -61,7 +60,7 @@
 </script>
 <style>
 	.nav-box {
-		height: 49px;
+		height: 60px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -71,17 +70,21 @@
 		-webkit-box-pack: justify;
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
-		background: #f7f9f8;
-		box-sizing: border-box
+		// position: fixed;
+		width: 100%;
+		// left: 0;
+		// top: 54px;
+		background: #f4f4f4;
+		// box-sizing: border-box;
+		z-index: 10
 	}
-
+	
 	.nav-box .nav-item {
-		width: calc(50% - 22px);
+		width: 45%;
 		margin: 0 11px;
-		height: 28px;
+		height: 40px;
 		background: #fff;
-		border-radius: 5px;
-		border: 1px solid #f3564a;
+		border-radius: 20px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -92,12 +95,13 @@
 		-webkit-justify-content: center;
 		justify-content: center;
 		font-weight: 500;
-		font-size: 11px;
-		color: #e4013e
+		font-size: 14px;
+		color: #585b58
 	}
-
+	
 	.nav-box .active {
-		background: #f3564a;
+		background: #666666;
 		color: #fff
 	}
+	
 </style>

@@ -215,9 +215,15 @@ const formatToday = (isTime = false) => {
 	return result;
 };
 
+// 设置数据掩码状态
+export const setDataMask = (val = true) => {
+	console.log(val);
+	uni.setStorageSync('masking', val);
+};
 
 export default {
 	switchTabBar,
+	setDataMask,
 	getServiceURL,
 	linkCustomerService,
 	hasDecimalPoint,
@@ -287,6 +293,8 @@ export default {
 		return temp[code];
 	},
 
+
+
 	// 统一处理杠杆，后端数据返回不一致。
 	leverList: (val) => {
 		val = val || [];
@@ -321,3 +329,4 @@ export default {
 
 	},
 }
+

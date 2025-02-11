@@ -1,17 +1,9 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="デイトレード"></CustomHeaderSecond>
 		<view class="page">
-			<view class="block">
-
-				<!-- <view class="head">
-					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
-					<view class="title left_in" style="margin-left: 0px;">{{role=='pay'?'取引パスワード':'ログインパスワード'}}</view>
-					<view class="back"></view>
-				</view>
-				<view class="short"></view> -->
-			</view>
-			<view class="info-box"><img src="/static/img/2.2d13f31b.png" class="info-img">
+			
+			<view class="info-box">
 				<view class="info-title">{{role=='pay'?'取引パスワードの変更':'ログインパスワードを変更する'}}</view>
 				<view class="info-name">元のパスワード:</view>
 				<view class="input-item">

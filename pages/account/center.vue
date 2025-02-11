@@ -1,23 +1,24 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec" style="background-size: 100% 80px;">
-		<header style="display: flex;align-items: center;padding: 24px 28rpx;padding-bottom: 0;">
-			<view style="margin-right: auto;">
-				<image src="/static/logo.png" mode="aspectFit" style="width: 32px;height: 32px;"></image>
+	<view :class="isAnimat?'fade_in':'fade_out'" style="background-image: url(/static/setting_head.png);
+	background-position: 0 0;
+	background-size: 100% ;
+	background-repeat: no-repeat;margin-bottom: -330px; background-color:#ededed ;">
+		<header style="display: flex;align-items: center;padding: 24px 28rpx;padding-bottom: 0;justify-content: right;">
+			<view style="display: flex;align-items: center; background-color: rgba(255,255,255,0.3);
+					padding: 6px 16px;text-align: center; border-radius: 30px;" @click="$u.route({url:'/pages/search/index'});">
+				<img src="/static/search.svg" draggable="false" :style="$theme.setImageSize(32)"
+					style="background-position: center center; background-size: contain; background-repeat: no-repeat;"
+					@click="$u.route({url:'/pages/search/index'});">
+				<text style="font-size: 14px;padding-left: 8px;color: rgba(255, 255, 255, 0.3);">検索</text>
 			</view>
-			<view style=" flex:60%">
-				<view style="height: 56rpx;line-height: 56rpx;text-align: center;color:#FCFCFC;font-size: 28rpx;">
-					マイページ
-				</view>
-			</view>
-			<view style="margin-left: auto;">
-				<image src="/static/close.png" mode="aspectFit" style="width: 20px;height: 20px;"
-					@click="$util.goBack()"></image>
+			<view style="padding-left: 26px;" @click="$util.linkCustomerService()">
+				<image src="../../static/kefu.svg" :style="$theme.setImageSize(64)"></image>
 			</view>
 		</header>
-		<view class="page-card"
-			style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 80%;">
+		<view class="page-card">
 			<view style="display: flex;align-items: center;">
-				<image :src="$icon.avatar" mode="aspectFit" style="width: 60px;height: 60px;padding-right: 24rpx;">
+				<image :src='!user||!user.avatar?`/static/avatar.png`:$util.setLogo(user.avatar)' mode="aspectFit"
+					style="width: 60px;height: 60px;padding-right: 24rpx;">
 				</image>
 				<!-- @click="$u.route({url:'/pages/setting'});" -->
 				<view style="">
@@ -29,18 +30,28 @@
 					<!-- </view> -->
 					<view v-if="userInfo.mobile" style="color:#666;font-size: 12px;">{{userInfo.mobile}}</view>
 				</view>
-				<view style="margin-left: auto;text-align: right;">
+				<!-- <view style="margin-left: auto;text-align: right;">
 					<view style="font-size: 12px;">信用スコア:<text style="color:#F24639;">{{userInfo.xinyong}}</text>
 					</view>
 					<view style="font-size: 12px;" :style="$theme.setStockRiseFall(!userInfo.is_check==1)">
 						{{userInfo.is_check==1?'もう実名だよ':(userInfo.is_check==-1?'認証されていません':(userInfo.is_check==2?'拒否する':'審査中'))}}
 					</view>
+				</view> -->
+			</view>
+			<view style="display: flex; width: 70%; padding-top: 20px;">
+				<view
+					style="border: 2px #FFFFFF solid;border-radius: 20px;width: 100%;display: flex;text-align: center; font-weight: 700;">
+					<view style="padding: 5px;border-radius: 20px 0 20px 20px;flex: 50%;"
+						:style="currentTab === 0 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
+						:class="{'active': currentTab === 0}" @click="currentTab = 0">株式市場</view>
+					<view style="padding: 5px;border-radius: 0px 20px 20px 20px;flex: 50%;"
+						:style="currentTab === 1 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
+						:class="{'active': currentTab === 1}" @click="currentTab = 1">暗号通貨</view>
 				</view>
 			</view>
-
-			<view class="common_block"
-				style="margin: 30rpx 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
-				<view style="display: flex;align-items: center;justify-content: space-between;">
+			
+			<view v-if="currentTab === 0" class="assets_card" style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
+				<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 20px;">
 					<view style="display: flex;align-items: center;">
 						<view style="font-size: 32rpx;">残高</view>
 						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
@@ -51,79 +62,99 @@
 						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
 					</view>
 				</view>
-				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<view style="width: 160px; height: 160px; position: relative">
-						<view id="main" style="width: 160px; height: 160px;">
-							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
+				<view style="margin-top: 20px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;">
+						<view style="line-height: 1.3;">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">利用可能の金額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
+							</view>
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">凍結資金</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
+							</view>
 						</view>
-						<view></view>
-					</view>
-					<view style="line-height: 1.3;">
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #e36067;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">利用可能の金額</text>
-						</view>
-						<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
-						</view>
-
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">凍結資金</text>
-						</view>
-						<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
-						</view>
-
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #3F51B5;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">米ドル金額</text>
-						</view>
-						<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?0.0:hideAmount}}
-						</view>
-
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">総利益</text>
-						</view>
-						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
+						<view style="text-align: right;">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">米ドル金額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?0.0:hideAmount}}
+							</view>
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">総利益</text>
+							</view>
+							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-
-
-
-			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
-				<view @click="linkDeposit">
-					<image src="/static/deposit.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
-
+			
+			<view v-if="currentTab === 1" class="assets_card" style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
+				<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 20px;">
+					<view style="display: flex;align-items: center;">
+						<view style="font-size: 32rpx;">残高111</view>
+						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
+							style="width: 16px;height: 16px;padding-left: 12rpx;" @click="showAmount=!showAmount">
+						</image>
+					</view>
+					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
+						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
+					</view>
 				</view>
-				<view @click="linkWithdraw">
-					<image src="/static/withdraw.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
-
+				<view style="margin-top: 20px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;">
+						<view style="line-height: 1.3;">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">利用可能の金額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
+							</view>
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">凍結資金</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
+							</view>
+						</view>
+						<view style="text-align: right;">
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">米ドル金額</text>
+							</view>
+							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?0.0:hideAmount}}
+							</view>
+							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
+								<text style="padding-left: 8rpx;">総利益</text>
+							</view>
+							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
+							</view>
+						</view>
+					</view>
 				</view>
 			</view>
-
-
-
-			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
-				<view @click="$u.route({url:'/pages/account/bankCard'});">
-					<image src="/static/bank.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
-
+			
+			
+			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin-top: 20px;">
+				<view @click="linkWithdraw"
+					style="display: flex;align-items: center;padding: 10px 55px; background-color: #fee;border-radius: 30px;">
+					<image src="/static/setting_withdraw.svg" mode="heightFix" :style="$theme.setImageSize(50)"></image>
+					<view style="padding-left: 10px;">出金</view>
 				</view>
-				<view @click="$u.route({url:'/pages/account/auth'});">
-					<image src="/static/auth.png" mode="heightFix" :style="$theme.setImageSize(130)"></image>
-
+				<view @click="linkDeposit"
+					style="display: flex;align-items: center;padding: 10px 55px; background-color: #ee1515;border-radius: 30px;">
+					<image src="/static/setting_deposit.svg" mode="heightFix" :style="$theme.setImageSize(50)"></image>
+					<view style="color: #FFFFFF;padding-left: 10px;">入金</view>
 				</view>
 			</view>
-
 		</view>
 		<!-- <view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
 			<view style="flex:0 0 48%;border-radius: 12rpx;" @click="$u.route({url:'/pages/account/bankCard'});">
@@ -138,35 +169,33 @@
 						background-size: 100%;width: 100%;height: 80px;border-radius: 24rpx;">
 				</view>
 			</view>
-
 		</view> -->
-
-		<view class="page-foot">
-			<!-- <view class="list" @click="$u.route({url:'/pages/account/bankCard'});">
-					<view class="list-txt"><img src="/static/style/mine/menu1.png" :style="$theme.setImageSize(50)">金融口座
-					</view><img :src="$icon.yjt1" class="list-arrow">
-				</view> -->
+		<view class="page-foot" style="margin-top: 10px;">
+			<view class="list" @click="$u.route({url:'/pages/account/auth'});">
+				<view class="list-txt"><img src="/static/setting_auth.svg">実名認証</view><img src="/static/arrow_right.svg"
+					class="list-arrow">
+			</view>
+			<view class="list" @click="$u.route({url:'/pages/account/bankCard'});">
+				<view class="list-txt"><img src="/static/setting_bank.svg" :style="$theme.setImageSize(50)">金融口座
+				</view><img src="/static/arrow_right.svg" class="list-arrow">
+			</view>
 			<view class="list" @click="$u.route({type:'switchTab',url:'/pages/transaction/index'});">
-				<view class="list-txt"><img src="/static/style/mine/menu2.png">ファンド記録</view><img :src="$icon.yjt1"
-					class="list-arrow">
+				<view class="list-txt"><img src="/static/setting_record_flow.svg">ファンド記録</view><img
+					src="/static/arrow_right.svg" class="list-arrow">
 			</view>
-			<!-- <view class="list" @click="$u.route({url:'/pages/account/auth'});">
-					<view class="list-txt"><img src="/static/style/mine/menu3.png">本人確認</view><img :src="$icon.yjt1"
-						class="list-arrow">
-				</view> -->
-			<view class="list" @click="$util.linkCustomerService()">
-				<view class="list-txt"><img src="/static/img/menu9.7c1a61f2.png">お問合わせ</view><img :src="$icon.yjt1"
-					class="list-arrow">
-			</view>
-
 			<view class="list" @click="$u.route({url:'/pages/account/password'});">
-				<view class="list-txt"><img src="/static/style/mine/menu5.png">ログインパスワード</view><img :src="$icon.yjt1"
-					class="list-arrow">
+				<view class="list-txt"><img src="/static/setting_pwd.svg">ログインパスワード</view><img
+					src="/static/arrow_right.svg" class="list-arrow">
 			</view>
 			<view class="list" @click="$u.route({url:'/pages/account/password?role=pay'});">
-				<view class="list-txt"><img src="/static/style/mine/menu4.png">取引パスワード</view><img :src="$icon.yjt1"
-					class="list-arrow">
+				<view class="list-txt"><img src="/static/change_pwd.jpg">取引パスワード</view><img
+					src="/static/arrow_right.svg" class="list-arrow">
 			</view>
+			<view class="list" @click="$util.linkCustomerService()">
+				<view class="list-txt"><img src="/static/setting_service.svg">お問合わせ</view><img
+					src="/static/arrow_right.svg" class="list-arrow">
+			</view>
+
 			<!-- <view class="list">
 					<view class="list-txt"><img src="/static/style/mine/menu7.png?1">カスタマーサービスセンター</view><img
 						:src="$icon.yjt1"
@@ -183,7 +212,7 @@
 			</view> -->
 		</view>
 
-		<view style="position: fixed;bottom: 0;left: 0;right: 0;background-color: #FFFFFF;padding:10px;z-index: 9;">
+		<view style="background-color: #FFFFFF;padding:10px;z-index: 9;">
 			<view class="btn_com" @click="handleSignOut">
 				アカウントからログアウト
 			</view>
@@ -215,6 +244,8 @@
 				userInfo: {}, // 基本信息
 				cardData: {}, // 资产卡
 				chartData: null,
+				currentTab: 0,
+				user: null,
 			}
 		},
 		computed: {
@@ -232,6 +263,7 @@
 				}
 			},
 		},
+
 		onShow() {
 			this.isAnimat = true;
 			this.getAccountInfo()
@@ -245,6 +277,8 @@
 			uni.stopPullDownRefresh()
 		},
 		methods: {
+
+
 			handleSignOut() {
 				try {
 					let version = uni.getStorageSync('version')
@@ -627,7 +661,7 @@
 	}
 
 	.page-foot .list {
-		height: 38px;
+		height: 48px;
 		border-bottom: 1px solid #ebebeb;
 		display: -webkit-box;
 		display: -webkit-flex;
@@ -649,20 +683,20 @@
 		-webkit-box-align: center;
 		-webkit-align-items: center;
 		align-items: center;
-		font-weight: 400;
+
 		font-size: 14px;
-		color: #e4013e
+		color: #000000
 	}
 
 	.page-foot .list .list-txt img {
-		width: 19px;
-		height: 18px;
+		width: 24px;
+		height: 24px;
 		object-fit: contain;
 		margin-right: 15px
 	}
 
 	.page-foot .list .list-arrow {
-		width: 26px;
-		height: 26px
+		width: 20px;
+		height: 20px
 	}
 </style>

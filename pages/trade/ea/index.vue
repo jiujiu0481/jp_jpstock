@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 			<CustomHeaderSecond title=" AI資産運用"></CustomHeaderSecond>
 			<!-- <view class="block">
 				<view class="head">
@@ -10,9 +10,9 @@
 				</view>
 			</view> -->
 		</view>
-<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/banner_ai.png"  mode="heightFix" :style="$theme.setImageSize(360)">
-			</image>
+		<view style="display: flex;align-items: center;justify-content: center;">
+			<!-- <image src="/static/banner_ai.png"  mode="heightFix" :style="$theme.setImageSize(360)">
+			</image> -->
 		</view>
 
 

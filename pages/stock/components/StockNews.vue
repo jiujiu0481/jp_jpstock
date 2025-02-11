@@ -3,10 +3,6 @@
 		<block v-for="(item,index) in list" :key="index">
 			<view @click="open(item.url)" :class="index<list.length-1?'line':''"
 				style="display: flex;align-items: start;margin-bottom: 10px;padding-bottom: 4px;border-bottom: 0.5px solid #ffb2d18f;">
-				<view style="width: 3px;
-		height: 16px;
-		background: #e4013e;
-		margin-right: 4px"></view>
 				<view style="flex:60%;padding-right: 10px;">
 					<view :style="{color:$theme.LOG_VALUE}">{{item.title}}</view>
 					<view style="margin:6px;padding: 4px 0;text-align: right;" :style="{color:$theme.LOG_LABEL}">

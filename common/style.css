@@ -11,8 +11,17 @@ page {
 	z-index: 9999;
 } */
 
+.assets_card {
+	background-image: url(/static/assets_card_bg.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	min-height: 140px;
+	margin: 20px 20px 0 20px;
+}
+
 .page_bg {
-	background-image: url(/static/heder_bg.png);
+	background-image: url(/static/com_head.png);
 	background-position: 0 0;
 	background-size: 100% 68px;
 	background-repeat: no-repeat;
@@ -29,10 +38,10 @@ page {
 /* button */
 .btn_com {
 	width: 100%;
-	background-image: linear-gradient(90deg, #F24639, #F28339);
+	background-image: linear-gradient(90deg, #d7060f, #d7060f);
 	height: 44px;
 	line-height: 44px;
-	border-radius: 22px;
+	/* border-radius: 22px; */
 	text-align: center;
 	font-size: 13px;
 	font-weight: 500;
@@ -237,9 +246,9 @@ page {
 	color: #FFFFFF;
 	font-weight: 500;
 	/* background-color: #292C31; */
-	background-image: linear-gradient(90deg, #4c2da4, #342da4);
+	background-image: linear-gradient(90deg, #E82D28, #E82D28);
 	border-radius: 12rpx;
-	border: 1px solid #292C31;
+	border: 1px solid #E82D28;
 }
 
 .btn_secondary {

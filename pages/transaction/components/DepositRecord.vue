@@ -4,7 +4,7 @@
 			<EmptyData img="search"></EmptyData>
 		</template>
 		<block v-for="(item,index) in list" :key="index">
-			<view style="padding: 10px; background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+			<view style="padding: 10px;">
 				<view
 					style="border-radius: 10px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;font-size: 12px;padding: 10px 5px;">
 					<view class="flex">
@@ -14,14 +14,14 @@
 						</view>
 						<template v-if="item.status==2">
 							<view class="text-center"
-								style="color:#fff;padding:4rpx 16rpx;background-color: #f2be8f;width: 50px;margin: 10px;border-radius: 5px;"
+								style="color:#fff;padding:4rpx 16rpx;background-color: #585b58;width: 50px;margin: 10px;border-radius: 5px;"
 								@click="handleCancel(item.id)">
 								{{$lang.BTN_CANCEL}}
 							</view>
 						</template>
 						<template v-else-if="item.status==0">
 							<view class="text-center"
-								style="color:#fff;padding:4rpx 16rpx;background-color: #f2be8f;width: 90px;margin: 10px;border-radius: 5px;"
+								style="color:#fff;padding:4rpx 16rpx;background-color:#585b58;width: 90px;margin: 10px;border-radius: 5px;"
 								@click="handleService()">
 								チャージ完了
 							</view>

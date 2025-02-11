@@ -1,19 +1,12 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'"   class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'"   class="page_bg">
 		
 		<CustomHeaderSecond title="出金確認"></CustomHeaderSecond>
 		<view class="page">
 			<view class="block">
-				<!-- <view class="head">
-					<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-					<view class="title left_in" style="margin-left: 0px;">出金確認</view>
-					<view class="back"></view>
-				</view> -->
-
 				<view class="short"></view>
 			</view>
-			<view class="card"  style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:100%;width: auto;height:auto;">口座残高<span>{{$util.formatMoney(userInfo.money)}}</span></view>
+			<view class="card" style="margin-top: -60px;"  >口座残高<span>{{$util.formatMoney(userInfo.money)}}</span></view>
 			<view class="box" style="margin-top: 30px;">
 				<view class="info-name">金融口座</view><!---->
 				<view class="input-item" @click="$u.route({url:'/pages/account/bankCard'});">銀行カードをバインドする</view>

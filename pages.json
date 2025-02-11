@@ -22,28 +22,28 @@
 			"pagePath": "pages/home/index",
 			"text": "トップ",
 			"iconPath": "static/tarbar0.png",
-			"selectedIconPath": "static/tarbar0.png"
+			"selectedIconPath": "static/tarbar0_act.png"
 		}, 
 		{
 			"pagePath": "pages/market/index",
-			"text": "マーケット",
+			"text": "市場",
 			"iconPath": "static/tarbar1.png",
 			"selectedIconPath": "static/tarbar1_act.png"
 		}, 
 		{
-			"pagePath": "pages/position/index",
-			"text": "注文·照会",
+			"pagePath": "pages/transaction/index",
+			"text": " 出入金履歴 ",
 			"iconPath": "static/tarbar3.png",
 			"selectedIconPath": "static/tarbar3_act.png"
 		},
 		{
-			"pagePath": "pages/transaction/index",
-			"text": "出入金履歴",
+			"pagePath": "pages/position/index",
+			"text": " 注文·照会 ",
 			"iconPath": "static/tarbar2.png",
 			"selectedIconPath": "static/tarbar2_act.png"
 		},  {
-			"pagePath": "pages/news",
-			"text": "ニュース",
+			"pagePath": "pages/account/center",
+			"text": "私の",
 			"iconPath": "static/tarbar4.png",
 			"selectedIconPath": "static/tarbar4_act.png"
 		}]
@@ -329,7 +329,90 @@
 				"navigationStyle": "custom"
 				// "onReachBottomDistance": 1000 // 触发时，距底距离。
 			}
+		},
+		{
+			"path": "pages/trade/day/CoinIndex", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/large/CoinIndex", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/ipo/CoinIndex", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/ipo/CoinRecord", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。 
+			}
+		},
+		{
+			"path": "pages/trade/issuance/CoinIndex", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/issuance/CoinRecord", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/ea/CoinIndex", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/coin/index", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+				// "onReachBottomDistance": 1000 // 触发时，距底距离。
+			}
+		},
+		{
+			"path": "pages/trade/day/CoinRecord", 
+			"style": {
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			
+			}
 		}
+		
+		
 	],
 
 	"condition": {

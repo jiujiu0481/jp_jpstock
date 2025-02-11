@@ -7,7 +7,7 @@ import md5 from '@/common/md5.min.js';
 // export const HOST = `api.mopwplus.top`; // INDIA 印度
 // export const HOST = `api.mbkkrx.top`; // KOREA EA交易
 // export const HOST = `api.ydcsym.in`; // INIDA 
-export const HOST = `api.schwscc.top`;
+export const HOST = `api.jpstock.top`;
 // export const HOST = `api.jpmdapp.com`;
 // export const HOST = `api.ekbstock.top`;
 // export const HOST = `api.kpsstock.top`;

@@ -61,7 +61,7 @@
 	}
 
 	.nav-box {
-		height: 49px;
+		height: 60px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -75,18 +75,17 @@
 		width: 100%;
 		// left: 0;
 		// top: 54px;
-		background: #f7f9f8;
+		background: #f4f4f4;
 		// box-sizing: border-box;
 		z-index: 10
 	}
 
 	.nav-box .nav-item {
-		width: calc(33.3333333333% - 22px);
+		width: 45%;
 		margin: 0 11px;
-		height: 28px;
+		height: 40px;
 		background: #fff;
-		border-radius: 5px;
-		border: 1px solid #f24639;
+		border-radius: 20px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -97,12 +96,12 @@
 		-webkit-justify-content: center;
 		justify-content: center;
 		font-weight: 500;
-		font-size: 11px;
-		color: #f24639
+		font-size: 14px;
+		color: #585b58
 	}
 
 	.nav-box .active {
-		background: #f24639;
+		background: #666666;
 		color: #fff
 	}
 

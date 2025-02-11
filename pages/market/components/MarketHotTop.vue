@@ -7,7 +7,7 @@
 						{{item}}
 						<template v-if="curTab==index">
 							<view
-								style="position: absolute;left: 0;right: 0;height: 8rpx;width: 80%; background-image:linear-gradient(90deg,#f1bb8f,#f1bb8f);border-radius: 16rpx;margin:0 auto;margin-top: 6px;">
+								style="position: absolute;left: 0;right: 0;height: 8rpx;width: 80%; background-image:linear-gradient(90deg,#E82D28,#f1bb8f);border-radius: 16rpx;margin:0 auto;margin-top: 6px;">
 							</view>
 						</template>
 						<view

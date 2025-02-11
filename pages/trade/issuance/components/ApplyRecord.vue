@@ -12,7 +12,6 @@
 							<view :style="setStyle()"> {{item.message}} </view>
 						</template>
 					</view>
-
 					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">
 							{{$lang.TRADE_IPO_RECORD_PRICE}}
@@ -31,7 +30,6 @@
 								{{$util.formatNumber(item.apply_amount)+` ${$lang.QUANTITY_UNIT}`}}
 							</view>
 						</view>
-
 						<view style="display: flex;align-items: center;justify-content: space-between;margin-top:4px;">
 							<view :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_IPO_RECORD_CREATETIME}}</view>
 							<view :style="{color:$theme.TIP}">{{item.created_at}}</view>

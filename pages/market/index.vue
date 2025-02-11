@@ -1,38 +1,44 @@
 <template>
 	<view class="page_bg">
-		<CustomHeader />
-
-		<!-- <view style="display: flex;align-items: center;justify-content: space-between;padding:24rpx; ">
-			<block v-for="(v,k) in tabs" :key="k">
-				<view @click="changeTab(k)" :style="setStyle(curTab==k)">{{v}}</view>
-			</block>
-		</view> -->
-
-		<!-- <view style="display: flex;align-items: center;justify-content: space-between;">
-			<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)" style="">株式市場</view>
-			<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
-		</view> -->
-
-
-		<view class="nav-box">
-			<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)">株式市場</view>
-			<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)">オプション</view>
+		<view class="header">
+			<view style="display: flex;align-items: center;justify-content: space-between;">
+				<view class="nav-item" :class="inv==0?'active':''" @click="dianji(0)"
+					:style="{borderBottom:`4px solid ${inv===0?`#FFF`:$theme.TRANSPARENT}`}"
+					style="font-size: 14px; color: rgb(255, 255, 255); padding-bottom: 3px; margin-right: 24px;;">株式市場
+				</view>
+				<view class="nav-item" :class="inv==1?'active':''" @click="dianji(1)"
+					:style="{borderBottom:`4px solid ${inv===1?`#FFF`:$theme.TRANSPARENT}`}"
+					style="font-size: 14px; color: rgb(255, 255, 255); padding-bottom: 3px; margin-right: 24px;">オプション
+				</view>
+				<view class="nav-item" :class="inv==2?'active':''" @click="dianji(2)"
+					:style="{borderBottom:`4px solid ${inv===2?`#FFF`:$theme.TRANSPARENT}`}"
+					style="font-size: 14px; color: rgb(255, 255, 255); padding-bottom: 3px; margin-right: 24px;;">暗号市場
+				</view>
+				<!-- <img src="/static/logo.png" class="header-img"> -->
+			</view>
+			<view style="padding: 6px 10px;">
+				<view style="display: flex;align-items: center; background-color: rgba(255,255,255,0.3);
+					padding: 6px 12px;text-align: center; border-radius: 30px;" @click="$u.route({url:'/pages/search/index'});">
+					<img src="/static/search.svg" draggable="false" :style="$theme.setImageSize(32)"
+						style="background-position: center center; background-size: contain; background-repeat: no-repeat;"
+						@click="$u.route({url:'/pages/search/index'});">
+					<text style="font-size: 14px;padding-left: 8px;color: rgba(255, 255, 255, 0.3);">検索</text>
+				</view>
+			</view>
 		</view>
-		<view>
-
+		<view style="margin-top: 16px;">
 			<view class="home-menu">
-				<view class="home-menu-item" style="border-radius: 10px 10px  0  0  ; padding: 0; margin: 0 2px ;"
+				<view class="home-menu-item" style="border-radius: 2px ; padding: 0px; margin: 0 2px ;"
 					:class="item.rate>=0?'red':'green'" v-for="(item,index) in list" :key="index"
 					@click="link(item.code)" v-if="index<6">
 
-					<view class="home-menu-item-title"
-						style="padding: 4px ;border-radius: 10px 10px  0  0  ;align-items: center;"
+					<view class="home-menu-item-title" style="padding: 6px ;border-radius: 2px ;align-items: center;"
 						:style="{ backgroundColor: item.rate>=0?'#ff363699':'#37927d99' }">
 						<span>{{item.name}}</span>
 						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
 							@click.stop.capture="handleUnFollow(item.code)">
 					</view>
-					<view class="home-menu-item-tip1" style="padding-top: 4px;">
+					<view class="home-menu-item-tip1" style="padding:8px  0;">
 						<span style="padding-left: 4px;">{{item.code}}</span>
 						<span>{{item.rate_num}}</span>
 						<span style="padding-right: 4px;">{{$util.formatNumber(item.rate,2)}}%</span>
@@ -43,80 +49,41 @@
 				</view>
 
 			</view>
-
-			<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
-				<view style="flex:0 0 48%;border-radius: 12rpx;">
-					<view style="background-image: url(/static/banner_market_a.png);
-						background-position:center;background-repeat: no-repeat;
-						background-size: 100%;width: 100%;height: 80px;border-radius: 24rpx;">
-					</view>
-				</view>
-				<view style="flex:0 0 48%;border-radius: 12rpx;">
-					<view style="background-image: url(/static/banner_market_b.png);
-						background-position:center ;background-repeat: no-repeat;
-						background-size: 100%;width: 100%;height: 80px;border-radius: 24rpx;">
-					</view>
-				</view>
-			</view>
-
-
 			<view style="display: flex;padding-top: 20rpx;padding-bottom: 12px;">
-				<image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
-				</image>
 				<view style="margin-left: 28rpx; font-size: 14px; font-weight: 700;">ホットプレート</view>
 			</view>
 
 			<view class="box" style="margin:0 10px">
 				<view v-for="(item,index) in list"
-					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #ffb2d18f;"
+					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 1px solid #979797;"
 					@click="link(item.code)">
-
 					<view
 						style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
-						<view style="font-size: 14px;">{{item.name}}</view>
-						<img :src="item.is_collected==1?$icon.ysc:$icon.sc" :style="$theme.setImageSize(32)"
-							@click.stop="handleUnFollow(item.code)">
+						<view style="font-size: 14px;">
+							<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
+								:style="$theme.setImageSize(32)" @click.stop="handleUnFollow(item.code)">
+							{{item.name}}
+						</view>
 					</view>
-
-					<view style="display: flex; align-items: center;margin: 4px 0;">
+					<view style="display: flex; align-items: center; margin: 4px 0;">
 						<span style="flex:2; font-size: 14px;"
 							:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
-						<view style="flex:2;font-size: 14px;padding-left: 60rpx; ">
-							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(28)"
-								style="padding-right: 12rpx;">
-							{{item.close}}
-						</view>
+						<view style="flex:2;font-size: 14px;padding-left: 60rpx;text-align: right; ">
 
+							{{item.close}}
+							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(24)"
+								style="padding-left: 12rpx;">
+						</view>
 						<view style="flex:1;text-align: right;font-size: 14px;"
 							:style="$theme.setStockRiseFall(item.rate>0)">
-							<!-- 	<view>{{item.rate_num}}</view>	 -->
+
 							<span>{{item.rate}}%</span>
 						</view>
 					</view>
 				</view>
 
-
-
-
-
-
-				<!-- <view class="box-item" v-for="(item,index) in list" :key="index" @click="link(item.code)">
-					<view class="item-title">
-						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
-							@click.stop.capture="handleUnFollow(item.code)">
-						<view class="name-title">{{item.name}}<span
-								style="font-size: 12px;color: #e33262;">{{item.code}}</span></view>
-					</view>
-					<view class="item-price">{{$util.formatMoney(item.close*1,2)}}
-						<img :src="item.rate>=0?$icon.up:$icon.down">
-					</view>
-					<view class="item-num" :class="item.rate>=0?'red':'green'">
-						{{item.rate_num}}<span>{{$util.formatNumber(item.rate,2)}}%</span>
-					</view>
-				</view> -->
 			</view>
 		</view>
-
 
 		<!-- <view  style="height: 120px;" >
 			<header  style="padding-top: 60rpx;">
@@ -135,7 +102,6 @@
 				<view style="color: #FFFFFF;font-size: 20px;">株式市場</view>
 			</view>
 		</view> -->
-
 
 		<!-- <template v-if="curTab==0">
 				<MarketTrack ref="track" @action="linkStock"></MarketTrack>
@@ -197,7 +163,9 @@
 				this.inv = num
 				if (num == 1) {
 					this.getData();
-				} else {
+				} 
+				
+				else {
 					this.getList();
 				}
 			},
@@ -263,7 +231,7 @@
 				})
 				if (!result || result.length <= 0) return false;
 				this.list = result
-				console.log(this.list)
+				console.log(this.list1)
 				// this.connect(); // 启动 websocket链接
 			},
 			async getList() {
@@ -344,7 +312,7 @@
 
 	.nav-box .active {
 		background: #f24639;
-		color: #fff
+		color: #fff;
 	}
 
 	.home-menu {
@@ -360,7 +328,7 @@
 
 	.home-menu .home-menu-item {
 		width: calc(33.3333333333% - 5px);
-		height: 77px;
+		height: 90px;
 		margin: 5px 2px;
 		display: -webkit-box;
 		display: -webkit-flex;

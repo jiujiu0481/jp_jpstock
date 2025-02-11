@@ -1,7 +1,7 @@
 <template>
 	<view style="font-size: 14px;">
 		<view>
-			<view style="font-weight: 800;border-bottom:2px solid #ffcdd5;width: 70px;" :style="{color:$theme.LOG_VALUE}">
+			<view style="font-weight: 800;border-bottom:2px solid #d7060f;width: 70px;" :style="{color:$theme.LOG_VALUE}">
 				{{$lang.TRADE_DAY_TIP_INPUT_AMOUNT}}
 			</view>
 
@@ -20,7 +20,7 @@
 			</view>
 		</view>
          
-		 <view style="font-weight: 800;border-bottom:2px solid #ffcdd5;width: 70px;" :style="{color:$theme.LOG_VALUE}">
+		 <view style="font-weight: 800;border-bottom:2px solid #d7060f;width: 70px;" :style="{color:$theme.LOG_VALUE}">
 		 	取引説明
 		 </view>
 		<view style="padding:10px 0px;border-radius: 10px;"

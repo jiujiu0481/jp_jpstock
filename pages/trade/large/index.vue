@@ -1,34 +1,24 @@
 <template>
-
-
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
 		<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image>
+		<!-- 	<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image> -->
 		</view>
-
 		<view>
 			<!-- <view class="block"> -->
-
 			<!-- <view class="head">
 					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
 					<view class="title left_in" style="margin-left: 0px;">大口取引</view>
 					<view class="back"></view>
 				</view> -->
-
-
-
 			<!-- <view class="short"></view> -->
 			<!-- </view> -->
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
 			</view>
-
 		</view>
-
 		<TradeLargeList ref="list" v-if="inv==0"></TradeLargeList>
-
 		<TradeLargeRecord ref="log" v-if="inv==1"></TradeLargeRecord>
 
 
@@ -178,7 +168,7 @@
 	}
 
 	.nav-box {
-		height: 49px;
+		height: 60px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -188,17 +178,21 @@
 		-webkit-box-pack: justify;
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
-		background: #f7f9f8;
-		box-sizing: border-box
+		// position: fixed;
+		width: 100%;
+		// left: 0;
+		// top: 54px;
+		background: #f4f4f4;
+		// box-sizing: border-box;
+		z-index: 10
 	}
-
+	
 	.nav-box .nav-item {
-		width: calc(50% - 22px);
+		width: 45%;
 		margin: 0 11px;
-		height: 28px;
+		height: 40px;
 		background: #fff;
-		border-radius: 5px;
-		border: 1px solid #f3564a;
+		border-radius: 20px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -209,15 +203,15 @@
 		-webkit-justify-content: center;
 		justify-content: center;
 		font-weight: 500;
-		font-size: 11px;
-		color: #e4013e
+		font-size: 14px;
+		color: #585b58
 	}
-
+	
 	.nav-box .active {
-		background: #f3564a;
+		background: #666666;
 		color: #fff
 	}
-
+	
 
 	.width-100 {
 		width: 100%

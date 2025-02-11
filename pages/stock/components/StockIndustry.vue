@@ -4,7 +4,7 @@
 			<view :style="{color:$theme.LOG_VALUE}"> </view>
 		</CustomTitle>
 		<view
-			style="padding:10px;font-size: 14px;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 80%;">
+			style="padding:10px;font-size: 14px;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;">
 			<view style="padding: 8rpx 12rpx;">
 				<view style="display: flex;align-items: center; justify-content: space-between;">
 					<view :style="{color:$theme.LOG_LABEL}">信用買残</view>

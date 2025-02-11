@@ -1,15 +1,15 @@
 <!-- 关于我们 -->
 <template>
-	<view class="page">
+	<view class="page_bg"  style="background-size: 100% 54px;">
 		<view class="block">
 			<view class="head">
-				<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="title left_in" style="margin-left: 0px;">お知らせ</view>
+				<img @click="$util.goBack()" src="/static/back.svg" class="back">
+				<view class="title left_in" style="margin-left: 0px;color: #FFFFFF;">お知らせ</view>
 				<view class="back"></view>
-			</view><!---->
+			</view>
 		</view>
-		<img src="/static/img/7.7349b6f4.png" class="banner"  style="width: 100%;"    @click="$u.route({url:'/pages/market/overview'}); ">
-		
+		<!-- <img src="/static/img/7.7349b6f4.png" class="banner"  style="width: 100%;"    @click="$u.route({url:'/pages/market/overview'}); "> -->
+		<img src="/static/empty_data.png" class="banner"  style="width: 100%;height: 100%;">
 	
 
 	

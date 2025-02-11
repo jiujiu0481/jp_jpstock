@@ -22,7 +22,6 @@
 							{{item.zt}}
 						</view>
 					</view> -->
-
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 							<view :style="{color:$theme.LOG_LABEL}">
@@ -32,7 +31,6 @@
 								{{$util.formatMoney(item.price)}}
 							</view>
 						</view>
-
 						<!-- 
 					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">

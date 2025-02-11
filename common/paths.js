@@ -1,6 +1,6 @@
 // 页面URL 硬编码 通常用于指定跳转
 export const LAUNCH = `/pages/launch/index`; // 启动页
-export const ACCOUNT_ACCESS = `/pages/account/access`; // 登入、注册
+export const ACCOUNT_ACCESS = `/pages/account/login`; // 登入、注册
 export const HOME = `/pages/home/index`; // 主页
 
 export const SERVICE = `/pages/service`; // 客服
@@ -28,6 +28,7 @@ export const ACCOUNT_HUAZHUAN = `/pages/account/huazhuan`;
 
 
 export const TRADE_DAY = `/pages/trade/day/index`; // 日内交易
+export const TRADE_DAY_COIN = `/pages/trade/day/coin`; 
 export const TRADE_DAY_RECORD = `/pages/trade/day/record`; // 日内交易 記錄[申請|審批]
 export const TRADE_LARGE = `/pages/trade/large/index`; // 大宗交易
 export const TRADE_LARGE_RECORD = `/pages/trade/large/record`; // 大宗交易 記錄

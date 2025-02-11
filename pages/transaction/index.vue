@@ -1,162 +1,104 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
-		<CustomHeader />
-
-		<view class="page">
-			<!-- <view class="block">
-				<view class="head">
-					<img :src="$icon.laba" class="head-ring" @click="$u.route({url:'/pages/notification'});">
-					<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
-						<img :src="$icon.sousuo" >
-					</view>
-					<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-				</view>background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
-			</view> -->
-	<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto;">
-				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<view style="display: flex;align-items: center;">
-						<view style="font-size: 32rpx;">残高</view>
-						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit" style="width: 16px;height: 16px;paddin
-							g-left: 12rpx;" @click="showAmount=!showAmount">
-						</image>
-					</view>
-					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
-						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
-					</view>
+	<view :class="isAnimat?'fade_in':'fade_out'" style="background-image: url(/static/trade_head.png);
+	background-position: 0 0;
+	background-size: 100% ;
+	background-repeat: no-repeat;padding-bottom:-330px; background-color:#ededed ;">
+		<view class="header"
+			style="display: flex;align-items: center;justify-content: center;font-size: 18px;color: #FFF;font-weight: 900;">
+			<view> 出入金履歴 </view>
+		</view>
+		<view style="display: flex; padding: 0 40px;">
+			<view
+				style="border: 2px #FFFFFF solid;border-radius: 20px;width: 100%;display: flex;text-align: center; font-weight: 700;">
+				<view style="padding: 5px;border-radius: 20px 0 20px 20px;flex: 50%;"
+					:style="currentTab === 0 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
+					:class="{'active': currentTab === 0}" @click="currentTab = 0">株式市場</view>
+				<view style="padding: 5px;border-radius: 0px 20px 20px 20px;flex: 50%;"
+					:style="currentTab === 1 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
+					:class="{'active': currentTab === 1}" @click="currentTab = 1">暗号通貨</view>
+			</view>
+		</view>
+		<view  v-if="currentTab === 0">
+		<view>
+			<view class="assets_card">
+				<view style="text-align: center;padding-top:  20px;">総資産
+					<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit" :style="$theme.setImageSize(32)"
+						@click="showAmount=!showAmount"></image>
 				</view>
-				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<template v-if="curTab==1 || curTab==2">
-						<view style="width: 160px; height: 160px; position: relative">
-							<template v-if="curTab==1">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
-							</template>
-							<template v-if="curTab==2">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-							</template>
-						</view>
-					</template>
-					<template v-else>
-						<view style="height: 24rpx;"></view>
-					</template>
-					<view style="line-height: 1.3;text-align: right; ">
-						<template v-if="curTab==1">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">損益総額</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.holdYingli):hideAmount}}
-							</view>
+				<view style="text-align: center;font-size: 20px;font-weight: 900;">
+					{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
+				</view>
 
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">時価総額</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
-							</view>
-						</template>
+				<view style="display: flex;align-items: center;justify-content: space-between;padding: 20px;gap:8px;">
+					<view style="flex:1;">
+						<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">利用可能な資金</view>
+						<view>{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}</view>
+					</view>
 
-						<template v-if="curTab==2">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">売却損益</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
-							</view>
+					<!-- <view style="text-align: center;flex:1;">
+						<view>株式時価総額</view>
+						<view>{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
+					</view>
 
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">売り市場価格</text>
-							</view>
-							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.Sellamount):hideAmount}}
-							</view>
-						</template>
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #e36067;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">買付余力</text>
+					<view style="text-align: right;flex:1;">
+						<view>変動損益</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
 						</view>
-						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
-						</view>
+					</view> -->
+
+					<view style="text-align: right;flex:1;">
+						<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">資金を凍結する</view>
+						<view> {{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
 					</view>
 				</view>
 			</view>
-
-
-			<!-- <view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto;">
-				<view class="top">
-					<view class="top-left">
-						<view class="top-left-top">残高
-							<img :src="showAmount?$icon.yanjing:$icon.biyan" @click="showAmount=!showAmount">
-						</view>
-						<view class="top-left-foot">{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
-						</view>
+			<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;margin-top: 10px;">
+				<view class="menu">
+					<view class="menu-item" @click="linkmarket()">
+						<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 株式取引</view>
 					</view>
-					<view class="top-right">
-						<view class="top-chart" v-if="curTab==1">
-							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
-						</view>
-						<view class="top-chart" v-if="curTab==2">
-							<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-						</view>
-						<view class="top-mask"></view>
-					</view>
-				</view>
-
-				<view class="foot">
-					<view class="foot-item" v-if="curTab==1">
-						<view class="foot-left"><span class="foot-ball color1"></span>損益総額</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.holdYingli):hideAmount}}
-						</view>
-					</view>
-					<view class="foot-item" v-if="curTab==1">
-						<view class="foot-left"><span class="foot-ball color2"></span>時価総額</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
+						<image src="/static/btn_1.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 急騰株取引</view>
 					</view>
 
-					<view class="foot-item" v-if="curTab==2">
-						<view class="foot-left"><span class="foot-ball color1"></span>売却損益</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
-						</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
+						<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> ブロック取引</view>
 					</view>
-					<view class="foot-item" v-if="curTab==2">
-						<view class="foot-left"><span class="foot-ball color2"></span>売り市場価格</view>
-						<view class="foot-right">{{showAmount?$util.formatMoney(userInfo.Sellamount):hideAmount}}
-						</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
+						<image src="/static/btn_0.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 新規公開株式</view>
 					</view>
-
-
-					<view class="foot-item">
-						<view class="foot-left"><span class="foot-ball color3"></span>買付余力</view>
-						<view class="foot-right">
-							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
-						</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/index'});"
+						style="margin-top: 12px;">
+						<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 機関IPO</view>
+					</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});" style="margin-top: 12px;">
+						<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> AI資産運用</view>
+					</view>
+					<view class="menu-item" @click="linkMarketOV()" style="margin-top: 12px;">
+						<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> マーケット</view>
+					</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});" style="margin-top: 12px;">
+						<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
 					</view>
 				</view>
-			</view> -->
 
+			</view>
+		</view>
 
+		<view style="text-align: center;padding-top: 6px;margin: 12px  0;">
+			<image src="/static/trade_bnner.png" mode="widthFix" style="width: 90%;"></image>
+		</view>
 
-
-
-
-
-
-
-
-
-
-
+		<view class="page">
 
 			<view style="background-color: #FFFFFF;padding: 20rpx 10px;min-height:96vh;border-radius: 10px;">
 				<TabsThird :tabs="tabLabels" @action="changeTab" :acitve="curTab"></TabsThird>
@@ -175,6 +117,10 @@
 
 			</view>
 		</view>
+		</view>
+		<view  v-if="currentTab === 1">
+			<CoinIndex></CoinIndex>
+			</view>
 	</view>
 </template>
 
@@ -183,6 +129,7 @@
 	import TabsThird from '@/components/tabs/TabsThird.vue';
 	import TradeRecord from './components/TradeRecord.vue';
 	import DepositRecord from './components/DepositRecord.vue';
+	import CoinIndex from './components/CoinIndex.vue';
 	import WithdrawalRecord from './components/WithdrawalRecord.vue';
 	export default {
 		components: {
@@ -191,6 +138,7 @@
 			TradeRecord,
 			DepositRecord,
 			WithdrawalRecord,
+			CoinIndex,
 		},
 		data() {
 			return {
@@ -202,7 +150,7 @@
 				available: '', // 可用額
 				userInfo: null,
 				list: [], // 
-
+				currentTab: 0,
 				curPage: 1, // 当前页码
 				maxPage: 1, // 最大页码
 				isShow: false, // 是否显示弹层
@@ -801,6 +749,48 @@
 		-webkit-box-pack: justify;
 		-webkit-justify-content: space-between;
 		justify-content: space-between
+	}
+
+	.menu {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+		padding: 0 1px;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.menu .menu-item {
+		width: calc(25% - 9px);
+		height: 59px;
+		border-radius: 6px;
+		/* 	margin: 0 4px 6px 4px; */
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		font-weight: 400;
+		font-size: 12px;
+		/* 	color: #37927d; */
+		color: #e4013e;
+		line-height: 16px
+	}
+
+	.menu .menu-item img {
+		width: 20px;
+		height: 20px;
+		/* 	margin-bottom: 8px */
 	}
 
 	.fbox .fbox-item .fbox-item-name {

@@ -1,5 +1,8 @@
 <template>
-	<view class="page_bg_sec" style="background-size: 100% 240px;">
+	<view style="background-image: url(/static/trade_head.png);
+	background-position: 0 0;
+	background-size: 100% 260px ;
+	background-repeat: no-repeat;padding-bottom:-330px; background-color:#ededed ;">
 		<header style="display: flex;align-items: center;padding: 24px 28rpx;">
 			<view style="margin-right: auto;">
 				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit"
@@ -10,66 +13,48 @@
 					銘柄詳細
 				</view>
 			</view>
-			<view style="margin-left: auto;">
-				<template v-if="stockInfo">
-					<image :src="stockInfo.is_collected==1?$icon.ysc:$icon.sc" mode="aspectFit"
-						style="width: 20px;height: 20px;" @click="handleUnFollow(stockInfo.code)"></image>
-				</template>
-			</view>
+			
 		</header>
-
-
 		<template v-if="stockInfo">
-			<view class="common_block"
-				style="padding:24rpx;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+			<view class="common_block" style="padding:24rpx;">
 				<view style="display: flex;align-items: center; justify-content: space-between;">
 					<view style="font-size: 28rpx;font-weight: 700;">{{stockTitle}}</view>
-
+					
 				</view>
-
 				<view style="display: flex;align-items: center; justify-content: space-between;line-height: 1.8;">
 					<view style="padding: 4rpx 8rpx;border-radius: 2px;line-height: 1.1;"
 						:style="$theme.setStockRiseFall(stockInfo.rate>0,true)">{{stockInfo.code}}</view>
 					<view style="font-size: 27px;font-weight: 700;">{{$util.formatMoney(stockInfo.current_price)}}
 					</view>
-					<view style="font-weight: 700;" :style="$theme.setStockRiseFall(stockInfo.rate>0)">({{stockInfo.rate}}%)</view>
+					<view style="font-weight: 700;" :style="$theme.setStockRiseFall(stockInfo.rate>0)">
+						({{stockInfo.rate}}%)</view>
 				</view>
 				<view style="font-size: 24rpx;text-align: right;">({{currentTime}})</view>
 			</view>
 		</template>
-
-
 		<view class="common_block" style="padding-bottom: 20px;margin-top:20px;">
 			<template v-if="stockInfo">
 				<view
 					style="background-color: #FFFFFF; min-height: 60vh;margin-top: 10px;width: 95%;border-radius: 10px;margin-left: 10px;">
-
 					<TabsThird :tabs="$lang.STOCK_OVERVIEW_TABS" @action="changeTab" :acitve="curTab"
 						v-show="stockInfo.project_type_id==1"> </TabsThird>
-
 					<view :style="{display:curTab==0?'block':'none' }">
-
-
 						<TabsThird :tabs="$lang.STOCK_OVERVIEW_KLINE_TABS" @action="handleShowKLine" :acitve="curKLine">
 						</TabsThird>
-
 						<view style="padding:20rpx;">
 							<view class="chart" id="chart-type-k-line" style="width: 100%;height: 500px;">
 							</view>
 						</view>
 					</view>
-
 					<template v-if="curTab==1">
 						<StockDetail :code='code' :id='stockInfo.stock_id'></StockDetail>
 					</template>
-
 					<template v-if="curTab==2">
 						<StockNews :code='code' :id='stockInfo.stock_id'></StockNews>
 					</template>
 				</view>
 			</template>
 		</view>
-
 		<template v-if="curTab==0">
 			<view style="position: fixed;bottom: 0;left: 0;right: 0;background-color: #FFFFFF;padding:10px;z-index: 9;">
 				<view class="btn_com" @click="linkBuy">
@@ -77,7 +62,6 @@
 				</view>
 			</view>
 		</template>
-
 		<template v-if="showBuy">
 			<view class="common_mask" @click="handleClose()"></view>
 			<view class="common_popup" style="padding-bottom: 30rpx;width: 100%;border-radius: 10px;">
@@ -90,9 +74,8 @@
 					</view>
 					<image src="/static/close.png" :style="$theme.setImageSize(40)" @click="handleClose()"></image>
 				</view>
-
 				<view
-					style="background-color: #f7f9ff;width: 95%;border-radius: 10px;margin-left: 10px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+					style="background-color: #f7f9ff;width: 95%;border-radius: 10px;margin-left: 10px;">
 					<CustomTitle :title="$lang.STOCK_BUY_QUANTITY"></CustomTitle>
 
 					<view style="display: flex;flex-wrap:wrap;padding:0 10px;">
@@ -104,12 +87,10 @@
 							</view>
 						</block>
 					</view>
-
 					<view class="common_input_wrapper" style="padding: 10px;margin: 10rpx 40rpx;">
 						<input v-model="quantity" type="number" :placeholder="$lang.STOCK_BUY_TIP_QUANTITY"
 							@input="handleInput"></input>
 					</view>
-
 					<!-- 杠杆数组大于1，视为开启杠杆功能 -->
 					<template v-if="leverList.length>1">
 						<CustomTitle :title="$lang.LEVER"></CustomTitle>
@@ -137,7 +118,6 @@
 							</view>
 						</template>
 					</view>
-
 					<view
 						style="font-size: 28rpx;display: flex;align-items: center;justify-content: space-between;line-height: 1.8;padding:0 40rpx;"
 						:style="{color:$theme.LOG_LABEL}">
@@ -154,7 +134,6 @@
 							{{$util.formatMoney(stockInfo.current_price*curQuantity/curLever*fee)}}
 						</view>
 					</view>
-
 					<view style="background-color: #FFFFFF;padding:30rpx">
 						<view class="btn_com" @click="placeOrder()">
 							{{$lang.BTN_BUY}}

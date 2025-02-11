@@ -68,6 +68,7 @@ const setStockRiseFall = (val, isbg = false) => {
 	}
 };
 
+
 // 资金变动相关 交易额 字色
 const setTradeAmount = (val) => {
 	return {
@@ -151,7 +152,6 @@ export default {
 	LG_THIRD,
 	LG_FOURTH,
 	LG_FIFTH,
-
 	linerGradient,
 	setStatusPrimary,
 	setBGCover,

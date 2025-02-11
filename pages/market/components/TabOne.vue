@@ -1,27 +1,18 @@
 <template>
 	<view style="padding:10px;">
-		<!-- <view style="display: flex;flex-wrap:wrap;padding:10px;">
-			<block v-for="(item,index) in $lang.MARKET_OVERVIEW_SELF_TABS" :key="index">
-				<view
-					style="border-radius: 8rpx;width:18%;margin:10rpx;padding:8rpx 10rpx;line-height: 1.6;text-align: center;"
-					:style="setStyle(curTab==index)" @click="changeTab(index)">
-					{{item}}
-				</view>
-			</block>
-		</view> -->
-		
 		<view class="flex padding-10">
 			<!-- <image src="/static/hot.png" mode="widthFix" style="width: 30px;"></image> -->
 			<view class="font-size-17 bold margin-left-5">人気株式</view>
 		</view>
-
-		<view style="display: flex;align-items: center;justify-content: space-between;background-color: #f2bb8f;border-radius: 5px;padding: 5px;">
+		<view
+			style="display: flex;align-items: center;justify-content: space-between;background-color: #E82D28;border-radius: 15px;padding: 5px;">
 			<block v-for="(item,index) in top1" :key="index" v-if="index<=2">
 				<view
 					style="border-radius: 6px;border:2px solid rgba(0, 0, 0, 0);text-align: center;flex-basis: calc(50% - 12px);box-sizing: border-box;margin: 5px;"
 					:style="{backgroundColor:item.change_ratio>0?'#FFF6F7':'#F0FEFB',border:`1px solid ${stockId==index?(item.change_ratio>0?$theme.RISE:$theme.FALL) :'#FFFFFF'}` }"
 					@click='handleChangeType(index)'>
-					<view class="bold" :style="{color: stockId==index?'#121212':'#121212'}" style="text-align: center;margin-top: 5px;">
+					<view class="bold" :style="{color: stockId==index?'#121212':'#121212'}"
+						style="text-align: center;margin-top: 5px;">
 						{{item.financial_item.name}}
 					</view>
 					<view :class="item.change_ratio>0?'red':'green'" style="text-align: center;margin-top:5px;"
@@ -33,19 +24,9 @@
 							:style="$theme.setImageSize(120,50)"></image>
 					</view>
 				</view>
-				
+
 			</block>
 		</view>
-		<!-- <view style="margin: 10px;padding:10px 0">
-			<view class="chart" id="chart-type-k-line" style="width: 100%;height: 300rpx;">
-			</view>
-		</view> -->
-		
-	<!-- 	<view class="flex padding-10">
-			<image src="/static/hot.png" mode="widthFix" style="width: 30px;"></image>
-			<view class="font-size-17 bold margin-left-5">{{$lang.MARKET_TABS[1]}}</view>
-		</view> -->
-		
 		<view style="height: 1px;background-color: #f2bb8f;margin:0 20rpx;"></view>
 		<MarketHotTop></MarketHotTop>
 
@@ -56,8 +37,6 @@
 				<view class="arrow rotate_45" style="border-color:#F5B71C" :style="$theme.setImageSize(12)"></view>
 			</view>
 		</view>
-
-
 		<view style="height: 20rpx;background-color: #F4F4F4;margin:0 -20rpx;"></view>
 		<view style="display: flex;align-items: center;padding:0 40rpx;">
 			<view style="font-size: 32rpx;font-weight: 700;line-height: 2.4;">{{$lang.MARKET_TABS[3]}}</view>
@@ -77,18 +56,16 @@
 						style="position: absolute;bottom:20px;left:0;width: 100%;background-color: rgba(0, 0, 0, 0.5);border-radius: 0 0 8px 8px;">
 						<view style="margin:4px 6px;color: #FFFFFF;">{{item.title}}</view>
 					</view>
-
 					<view style="padding-left: 10px;" :style="{color:$theme.LOG_VALUE}">
 						{{item.created_at}}
 					</view>
 				</view>
 			</block>
 		</view>
-
 		<view style="height: 20rpx;background-color: #F4F4F4;margin:0 -20rpx;"></view>
-		<view style="font-size: 32rpx;font-weight: 700;padding-left: 40rpx;line-height: 2.4;">{{$lang.MARKET_NEWS_TABS[3]}}</view>
+		<view style="font-size: 32rpx;font-weight: 700;padding-left: 40rpx;line-height: 2.4;">
+			{{$lang.MARKET_NEWS_TABS[3]}}</view>
 		<view style="height: 1px;background-color: #E5E5E5;margin:0 20rpx 20rpx 20rpx;"></view>
-
 		<view style="padding:0 20rpx;">
 			<block v-for="(item,index) in industryList" :key="index">
 				<view

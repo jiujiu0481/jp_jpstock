@@ -1,87 +1,68 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
-		<CustomHeader />
-		<view class="page">
-			<view class="page-card" style="background-image: url(/static/center_backimg.png);	background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto;">
-				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<view style="display: flex;align-items: center;">
-						<view style="font-size: 32rpx;">残高</view>
-						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit" style="width: 16px;height: 16px;paddin
-							g-left: 12rpx;" @click="showAmount=!showAmount">
-						</image>
-					</view>
-					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
-						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
-					</view>
-				</view>
-				<view style="display: flex;align-items: center;justify-content: space-between;">
-					<template v-if="curTab==1 || curTab==2">
-						<view style="width: 160px; height: 160px; position: relative">
-							<template v-if="curTab==1">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData" />
-							</template>
-							<template v-if="curTab==2">
-								<qiun-data-charts type="pie" :opts="$icon.opts" :chartData="chartData1" />
-							</template>
-						</view>
-					</template>
-					<template v-else>
-						<view style="height: 24rpx;"></view>
-					</template>
-					<view style="line-height: 1.3;text-align: right; ">
-						<template v-if="curTab==1">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">損益総額</text>
+		<view class="header"
+			style="display: flex;align-items: center;justify-content: center;font-size: 18px;color: #FFF;font-weight: 900;">
+			<view> 注文·照会 </view>
+		</view>
+		<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"> </TabsThird>
+		<view>
+			<view class="assets_card">
+				<view>
+					<view style="display: flex;align-items: center;justify-content: space-between;padding: 10px 20px;">
+						<view>
+							<view style="display: flex;">
+								<view style="padding-right: 8px;">残高</view>
+								<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
+									style="width: 16px;height: 16px;" @click="showAmount=!showAmount">
+								</image>
 							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+							<view style="padding-top: 6px;">
+								{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
+							</view>
+						</view>
+						<view style="text-align: right;">
+							<view><text>損益総額</text>
+							</view>
+							<view style="padding-top: 6px;">
 								{{showAmount?$util.formatMoney(userInfo.holdYingli):hideAmount}}
 							</view>
-
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">時価総額</text>
+						</view>
+					</view>
+					<view style="display: flex;align-items: center;justify-content: space-between;padding: 10px 20px;">
+						<view>
+							<view><text>時価総額</text>
 							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
+							<view style="padding-top: 6px;">{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
 							</view>
-						</template>
-
-						<template v-if="curTab==2">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #FF9600;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">売却損益</text>
+						</view>
+						<view style="text-align: right;">
+							<view><text>売却損益</text>
 							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
+							<view style="padding-top: 6px;">
 								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
 							</view>
-
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<view style="background-color: #76e4e4;border-radius: 100%;display: inline-block;"
-									:style="$theme.setImageSize(24)"></view>
-								<text style="padding-left: 8rpx;">売り市場価格</text>
+						</view>
+					</view>
+					<view style="display: flex;align-items: center;justify-content: space-between;padding: 10px 20px;">
+						<view>
+							<view><text>売り市場価格</text>
 							</view>
-							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
+							<view style="padding-top: 6px;">
 								{{showAmount?$util.formatMoney(userInfo.Sellamount):hideAmount}}
 							</view>
-						</template>
-						<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-							<view style="background-color: #e36067;border-radius: 100%;display: inline-block;"
-								:style="$theme.setImageSize(24)"></view>
-							<text style="padding-left: 8rpx;">買付余力</text>
 						</view>
-						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
+						<view style="text-align: right;">
+							<view><text>買付余力</text>
+							</view>
+							<view style="padding-top: 6px;">{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
+		</view>
 
-			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
+		<!-- <view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin: 10px  0;">
 				<view style="margin-left: 20px;" @click="linkDeposit">
 					<image src="/static/deposit.png" mode="heightFix" :style="$theme.setImageSize(120)"></image>
 
@@ -90,73 +71,70 @@
 					<image src="/static/withdraw.png" mode="heightFix" :style="$theme.setImageSize(120)"></image>
 
 				</view>
-			</view>
+			</view> -->
 
 
 
-			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"> </TabsThird>
-
-			<view class="abox">
-				<view class="abox-list" v-for="(item,index) in list" :key="index">
-					<view class="abox-title gap5">
-						<view class="abox-name">{{item.name}}<span>{{item.code}}</span></view>
-						<view class="abox-have" v-if="item.status==1">保有中</view>
-						<view class="abox-not" v-if="item.status==2">決済済み</view>
-					</view>
-					<view class="abox-foot"
-						style="background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
-						<view class="foot-item">
-							<view class="abox-foot-title">購入記録</view>
-							<view class="abox-foot-list">
-								購入株数<span>{{$util.formatNumber(item.buyQTY)}}</span></view>
-							<view class="abox-foot-list">購入価格<span>{{$util.formatMoney(item.buyPrice)}}</span>
-							</view>
-							<view class="abox-foot-list">手数料<span>{{item.status==2?item.sellFee:item.buyFee}}</span>
-							</view>
-							<view class="abox-foot-list">購入総額<span>{{$util.formatMoney(item.total)}}</span></view>
-							<view class="abox-foot-list">
-								{{item.status==2?'販売時間':'購入時間'}}<span>{{item.status==2?item.sellCT:item.buyCT}}</span>
-							</view>
+		<view class="abox" style="margin-top: 10px;">
+			<view class="abox-list" v-for="(item,index) in list" :key="index">
+				<view class="abox-title gap5">
+					<view class="abox-name">{{item.name}}<span>{{item.code}}</span></view>
+					<view class="abox-have" v-if="item.status==1">保有中</view>
+					<view class="abox-not" v-if="item.status==2">決済済み</view>
+				</view>
+				<view class="abox-foot">
+					<view class="foot-item">
+						<view class="abox-foot-title">購入記録</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">
+							購入株数<span>{{$util.formatNumber(item.buyQTY)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">購入価格<span>{{$util.formatMoney(item.buyPrice)}}</span>
 						</view>
-						<view class="foot-item" v-if="item.status==1">
-							<view class="abox-foot-title">最新の記録</view>
-							<view class="abox-foot-list">
-								ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span>
-							</view>
-							<view class="abox-foot-list">最新価格<span
-									class="red">{{$util.formatMoney(item.currentPrice,2)}}</span></view>
-							<view class="abox-foot-list">最近の変動率<span
-									class="red">{{$util.formatMoney(item.buyProfitRate,2)}}%</span></view>
-							<view class="abox-foot-list">最新の市場価格<span
-									class="red">{{$util.formatMoney(item.currentPrice*1*item.buyQTY,2)}}</span>
-							</view>
-							<view class="abox-foot-list">最新の利益<span
-									class="red">{{$util.formatMoney(item.buyProfit*1)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">手数料<span>{{item.status==2?item.sellFee:item.buyFee}}</span>
 						</view>
-
-						<view class="foot-item" v-if="item.status==2">
-							<view class="abox-foot-title">最新の記録</view>
-							<view class="abox-foot-list">
-								ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span>
-							</view>
-							<view class="abox-foot-list">売却価格<span
-									class="red">{{$util.formatMoney(item.sellPrice)}}</span></view>
-							<view class="abox-foot-list">売却時の変動<span
-									class="red">{{$util.formatMoney(item.sellProfitRate,2)}}%</span></view>
-							<view class="abox-foot-list">売却時価総額<span
-									class="red">{{$util.formatMoney(item.sellAmont)}}</span></view>
-							<view class="abox-foot-list">売却利益<span
-									class="red">{{$util.formatMoney(item.sellProfit*1)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">購入総額<span>{{$util.formatMoney(item.total)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">
+							{{item.status==2?'販売時間':'購入時間'}}<span>{{item.status==2?item.sellCT:item.buyCT}}</span>
 						</view>
+					</view>
+					<view class="foot-item" v-if="item.status==1">
+						<view class="abox-foot-title">最新の記録</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">
+							ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span>
+						</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">最新価格<span
+								class="red">{{$util.formatMoney(item.currentPrice,2)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">最近の変動率<span
+								class="red">{{$util.formatMoney(item.buyProfitRate,2)}}%</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">最新の市場価格<span
+								class="red">{{$util.formatMoney(item.currentPrice*1*item.buyQTY,2)}}</span>
+						</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">最新の利益<span
+								class="red">{{$util.formatMoney(item.buyProfit*1)}}</span></view>
+					</view>
 
+					<view class="foot-item" v-if="item.status==2">
+						<view class="abox-foot-title">最新の記録</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">
+							ロット数<span class="red">{{$util.formatNumber(item.buyQTY/100)}}</span>
+						</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">売却価格<span class="red">{{$util.formatMoney(item.sellPrice)}}</span>
+						</view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">売却時の変動<span
+								class="red">{{$util.formatMoney(item.sellProfitRate,2)}}%</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">売却時価総額<span
+								class="red">{{$util.formatMoney(item.sellAmont)}}</span></view>
+						<view class="abox-foot-list" style="border-bottom: 1px solid #d7060f;">売却利益<span
+								class="red">{{$util.formatMoney(item.sellProfit*1)}}</span></view>
 					</view>
-					<view class="abox-bottom">
-						<view class="btn1" @click="info_link(item)" v-if="item.status==1">保有詳細</view>
-						<view class="btn2" @tap="handleSell(item.id)" v-if="item.status==1">売却</view>
-					</view>
+
+				</view>
+				<view class="abox-bottom" style="margin-top: 10px;">
+					<view class="btn1" @click="info_link(item)" v-if="item.status==1">保有詳細</view>
+					<view class="btn2" @tap="handleSell(item.id)" v-if="item.status==1">売却</view>
 				</view>
 			</view>
 		</view>
+	</view>
 
 
 
@@ -766,8 +744,8 @@
 
 	.abox .abox-name span {
 		height: 24px;
-		background: #ec4d78;
-		border-radius: 5px;
+		background: #d7060f;
+		border-radius: 12px;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
@@ -777,7 +755,7 @@
 		-webkit-box-pack: center;
 		-webkit-justify-content: center;
 		justify-content: center;
-		padding: 0 11px;
+		padding: 0 16px;
 		font-weight: 400;
 		font-size: 11px;
 		color: #fff;
@@ -785,10 +763,10 @@
 	}
 
 	.abox .abox-have {
-		min-width: 126px;
+		min-width: 80px;
 		height: 24px;
-		background: #e4013e;
-		border-radius: 5px;
+		background: #d7060f;
+		border-radius: 12px;
 		font-weight: 100;
 		font-size: 11px;
 		color: #fff;
@@ -805,10 +783,10 @@
 	}
 
 	.abox .abox-not {
-		min-width: 126px;
+		min-width: 80px;
 		height: 24px;
-		background: #fabec5;
-		border-radius: 5px;
+		background: #666666;
+		border-radius:12px;
 		font-weight: 100;
 		font-size: 11px;
 		color: #fff;
@@ -877,7 +855,7 @@
 	}
 
 	.abox .abox-foot .abox-foot-list .red {
-		color: #e04e50
+		color: #d7060f
 	}
 
 	.abox .abox-foot .abox-foot-list .green {
@@ -898,10 +876,10 @@
 	}
 
 	.abox .abox-bottom .btn1 {
-		width: 105px;
+		width: 80px;
 		height: 28px;
-		background: #e4013e;
-		border-radius: 5px;
+		background: #d7060f;
+		border-radius: 12px;
 		font-weight: 400;
 		font-size: 11px;
 		color: #fff;
@@ -917,14 +895,14 @@
 	}
 
 	.abox .abox-bottom .btn2 {
-		width: 105px;
+		width: 80px;
 		height: 28px;
 		background: #fff;
-		border-radius: 5px;
-		border: 1px solid #e4013e;
+		border-radius: 12px;
+		border: 1px solid #d7060f;
 		font-weight: 400;
 		font-size: 11px;
-		color: #e4013e;
+		color: #d7060f;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;

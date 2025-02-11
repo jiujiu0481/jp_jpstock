@@ -1,12 +1,12 @@
 <template>
-	<view style="background-color: #FFFFFF;margin:20rpx;min-height: 100vh;">
+	<view style="background-color: #FFFFFF;margin:10rpx;min-height: 100vh;">
 		<view style="padding: 10px;">
 			<template v-if="!list|| list.length<=0">
 				<EmptyData></EmptyData>
 			</template>
 			<template v-else>
 				<block v-for="(item,index) in list" :key="index">
-					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+					<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 8rpx;box-shadow: 0 0 3px rgba(0, 0, 0, 0.45);">
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 							<view style="flex:80%;">
@@ -26,7 +26,7 @@
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;font-weight: 700;line-height: 2.4;">
 							<view style="color: #E82D28;font-size:40rpx;padding-left: 10px;"> {{item.syl }} </view>
-							<view style="color: #489CE5;font-size: 32rpx;margin-right: 10px; ">{{item.zhouqi +` Day`}} </view>
+							<view style="color: #E82D28;font-size: 32rpx;margin-right: 10px; ">{{item.zhouqi +` Day`}} </view>
 						</view>
 
 						<view

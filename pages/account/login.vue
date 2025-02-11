@@ -9,34 +9,35 @@
 				<view class="back"></view>
 			</view> -->
 		</view>
-		<view class="box" ><img src="/static/img/3.9698c7ef.png" class="box-top">
+		<view class="box" style="padding-top: 60px;" ><img src="/static/sign_in_icon.png"  class="box-top" :style="$theme.setImageSize(260,300)" >
 			<view class="box-info" style="margin-left: 0px;background-color: rgba(255, 255, 255, 0.9); margin-top: 30px; padding: 10px;">
-				<view class="box-title">ログイン</view>
-				<view class="box-name">ログインID（電話番号）</view>
+			<!-- 	<view class="box-title">ログイン</view> -->
+				<!-- <view class="box-name">ログインID（電話番号）</view> -->
 				<view class="box-list">
 					<view class="box-input">
 						<view style="padding-right: 24rpx;">
-							<image src="/static/shoujihao.svg" mode="aspectFit" :style="$theme.setImageSize(32)"></image>
+							<image src="/static/sign_user.svg" mode="aspectFit" :style="$theme.setImageSize(46)"></image>
 						</view>
-						<input v-model="user" type="number" placeholder="携帯電話番号を入力してください" maxlength="11"
+						<input  style="font-size: 16px;" v-model="user" type="number" placeholder="携帯電話番号を入力してください" maxlength="11"
 							:placeholder-style="$theme.setPlaceholder()"></input>
-						<view @click="user=''">×</view>
+						<view style="height: 20px;width: 20px;" @click="user=''">×</view>
 					</view>
 				</view>
-				<view class="box-name">パスワード</view>
+				<view style="padding-top: 30px;"></view>
+			<!-- 	<view class="box-name">パスワード</view> -->
 				<view class="box-list">
 					<view class="box-input">
 						<view style="padding-right: 24rpx;">
-							<image src="/static/mima.svg" mode="aspectFit" :style="$theme.setImageSize(32)"></image>
+							<image src="/static/sign_pwd.svg" mode="aspectFit" :style="$theme.setImageSize(46)"></image>
 						</view>
-						<input v-model="password" :password="!isShow" placeholder="パスワードを入力してください"></input>
-						<img :src="!isShow?$icon.biyan:$icon.yanjing" @click="isShow=!isShow">
+						<input style="font-size:16px;" v-model="password" :password="isMask" placeholder="パスワードを入力してください" :placeholder-style="$theme.setPlaceholder()"></input>
+						<img :src="`/static/mask_${isMask?`hide`:`show`}.svg`" :style="$theme.setImageSize(40)" mode="aspectFit" @click="toggleMask()">
 					</view>
 				</view>
-				<view class="box-middle" @click="$u.toast('それを取得するには、カスタマー サービスに連絡してください。');">
+				<view style="margin-top: 14px;"  class="box-middle" @click="$u.toast('それを取得するには、カスタマー サービスに連絡してください。');">
 					<span>パスワードがご不明の方</span><span>お問い合わせ</span>
 				</view>
-				<view class="btn_com" @click="handleConfirm()">ログインする</view>
+				<view style="margin-top: 14px;" class="btn_com" @click="handleConfirm()">ログインする</view>
 				<view class="box-foot" @click="$u.route({url:'/pages/account/register'});"> 新規アカウント作成はこちら<img
 						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFGmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjQtMTAtMDJUMTI6MDQ6MDUrMDg6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI0LTEwLTAyVDEyOjQwOjMxKzA4OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI0LTEwLTAyVDEyOjQwOjMxKzA4OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI5OTMyYjRkLTlkYzEtNGJmMS05YmJhLWZmZjkzZWY1NTZiMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyOTkzMmI0ZC05ZGMxLTRiZjEtOWJiYS1mZmY5M2VmNTU2YjIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyOTkzMmI0ZC05ZGMxLTRiZjEtOWJiYS1mZmY5M2VmNTU2YjIiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjI5OTMyYjRkLTlkYzEtNGJmMS05YmJhLWZmZjkzZWY1NTZiMiIgc3RFdnQ6d2hlbj0iMjAyNC0xMC0wMlQxMjowNDowNSswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKE1hY2ludG9zaCkiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+tOBA/gAAAsNJREFUaIHt2k9olEccxvHPuyTRGkQRRPFQpGpbKKGHgoYEgq2xIEJAi9CDlELTSw+l9NBTa1DxICK5eFFoRVoVERRUsLT0Dx7ioQcpEVvahsaS0qUimFCqQW08jNTNuO5us++7+6bs97TvM7O/mWdn3pnfvO8mE0kfdGMPurBSekziAPZVqbcIJ7EF7TXG/hOj2IWRZCLp68YIkrn1tSZewLUK5e/j4Bxjz6C3IIxEliags0r5kjpiJ9hdEKZTlhzHd1XqHMF4HW10JRNJ30wkDuCXOoKWcgt/1Fh3AZ5HR5myp3FMhZFtK6ON4YcaG0+TaXxfRl+FE6pMz0IWPUqRFfgaayN9PK6YZyPL8RWei/Sr2B5XLje18sAyfCks26X8iE3C/TSLPI7IUnyBFyP9Z7wibISPkTcji/E5Xor0XwUTT1wB82SkExexIdJ/w8uYqPTlvBh5ChfQG+m/CyNxvVqAPBhZiHPYGOlFwcRYLUGabaQDZ9Af6TeE1emnWgM100g7Tgupeyk3BROVsuVJIev997pZRtqE88dApN/CZuGcUYkpHC25Hm7GhljAp3gt0qfwKq7UGOctfIzbuNJoIwXhl3w90v8Spli1dD9mpDRwo0hwGG9E+t/YWtqpudBII4cwGGl3hPvkUr3BG2VkGO9E2jS2CRlu3TTCyH68F2l3sUPIq1IhayN78UGk3RNu9vNpNpTlqvUuPoy0+9gp7Ob1svphG1My3kc+iq7/wZs4lULsNnwjmIH1WU6tyZLPM3gbn6UUe41HJqA/SyODwoGoKOwdn6QYO36s2p7l1PoWz2QYfxbNTuNTo2Ukb7SM5I2WkbzRMpI3WkbyRstI3mgZyRv/GyPlDlbPyr/BdbHQJhxFS/8RdLZh3UmPYkH1R/jzgdEChsx+aTLfmMFQAZfRI7ygLza1S/+NotDnHlx+AIHkdV95ad2hAAAAAElFTkSuQmCC">
 				</view>
@@ -58,7 +59,7 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				isShow: false, // 密码显隐
+				isMask: null,
 				user: "", // 账户
 				password: '', // 密码
 				verifyPassword: '', // 确认密码
@@ -84,6 +85,7 @@
 			this.isAnimat = true;
 			// 读取缓存中的页面信息
 			this.getStorageData();
+			this.isMask = uni.getStorageSync('masking');
 			this.changeRemember(this.isRemember);
 			this.changeAgree(this.isAgree);
 		},
@@ -93,6 +95,11 @@
 			this.setStorageData();
 		},
 		methods: {
+			toggleMask() {
+				this.isMask = !this.isMask;
+				this.$util.setDataMask(this.isMask);
+			},
+			
 			bian(num) {
 				this.inv += num
 				if (this.inv < 0) {
@@ -384,7 +391,7 @@
 		-webkit-box-pack: end;
 		-webkit-justify-content: flex-end;
 		justify-content: flex-end;
-		font-size: 12px;
+		font-size: 20px;
 		font-weight: 400;
 		color: #2a2a2a
 	}
@@ -397,8 +404,8 @@
 
 	.box .box-input {
 		width: calc(100%);
-		height: 35px;
-		border-radius: 3px;
+		height: 46px;
+		/* border-radius: 3px; */
 		border: 1px solid #cfcfcf;
 		padding: 0 9px;
 		box-sizing: border-box;

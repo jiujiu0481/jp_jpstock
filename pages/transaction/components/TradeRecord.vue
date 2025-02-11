@@ -2,7 +2,7 @@
 	<view>
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
-			<view style="padding: 5px 0px; background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;  "  >
+			<view style="padding: 5px 0px;  "  >
 				<view style="border-radius: 10px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;font-size: 12px;">
 					
 					<view style="padding:20rpx 15rpx;border-radius: 28rpx;line-height: 1.8;margin:0 20rpx 20rpx 20rpx;">

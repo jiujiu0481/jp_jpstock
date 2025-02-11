@@ -66,7 +66,7 @@ util.switchTabBar(); // 切换底部多语言
 
 // 白名单 将无需用户登录也可查看的页面写在这里。默认是启动页、登录页、隐私协议
 const whiteList = [paths.LAUNCH, paths.ACCOUNT_ACCESS,
-	paths.ACCOUNT_PRVITE_PACT, paths.MARKET_INDEX,'/pages/account/login','/pages/account/register'
+	paths.ACCOUNT_PRVITE_PACT, paths.MARKET_INDEX,'/pages/account/login','/pages/account/register', '/pages/trade/day/coin',
 ];
 // uniapp 跳转行为
 const list = ["navigateTo", "reLaunch", "switchTab"]

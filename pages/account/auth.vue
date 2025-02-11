@@ -1,5 +1,5 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="本人確認"></CustomHeaderSecond>
 		<view class="page view-bandCard-day">
 			<!-- <view class="block">
@@ -11,14 +11,9 @@
 
 				<view class="short"></view>
 			</view> -->
-			<view class="info-box"><img
-					:src="userInfo.is_check>-1?'/static/img/6.eb24ab02.png':'/static/img/5.969a5c11.png'"
-					class="info-img">
-
+			<view class="info-box">
 				<span
 					v-if="userInfo.is_check>-1">{{userInfo.is_check==1?'もう実名だよ':(userInfo.is_check==-1?'未提出':(userInfo.is_check==2?'拒否する':'審査中'))}}</span>
-
-
 				<view class="info-name">名前:</view>
 				<view class="input-item">
 					<input v-model="realName" type="text" placeholder="名前を入力してください"></input>
@@ -38,11 +33,9 @@
 						<view v-else>
 							<img :src="formData.obverseUrl" @click="selectImg('obverse')" class="upload-img">
 						</view>
-						
 						<span>マイナンバーカード表面</span>
 					</view>
 					<view class="upload-box">
-						
 						<view class="upload-info" v-if="!formData.reverseUrl">
 							<img :src="$icon.xiangji"
 								@click="selectImg('reverse')" >

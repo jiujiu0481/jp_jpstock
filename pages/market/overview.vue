@@ -1,53 +1,7 @@
 <template>
-	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="株式市場"></CustomHeaderSecond>
-		<!-- <header class="common_header">
-			<view class="left" @click="linkSearch()">
-				<image src="/static/search.png" mode="aspectFit" :style="$theme.setImageSize(36)"></image>
-			</view>
-			<text class="center">{{$lang.MARKET_OVERVIEW_TITLE}} </text>
-			<view class="right" @click="linkService()">
-				<image src="/static/service.png" mode="aspectFit" :style="$theme.setImageSize(36)"></image>
-			</view>
-		</header> -->
-		<!-- <view class="flex" style="padding:30px  20px;">
-			<view class="flex-1" style="background-color: #fff;border-radius: 20px;padding: 5px 10px;">
-				<view class="flex" @click="shouye()">
-					<image src="/static/search_dark.png" mode="widthFix" style="width: 15px;"></image>
-					<view style="margin-left: 5px;font-size: 10px;color: #999;">銘柄名/コードを入力してください</view>
-				</view>
-				
-			</view>
-			<view>
-				<image src="/static/service.png" mode="widthFix" style="width: 25px;margin-left: 20px;" @click="kefu()"></image>
-			</view>
-		</view> -->
-		<!-- <view class="block">
-			
-			<view class="head">
-			<img @click="$util.goBack()" :src="$icon.zjt" class="back">
-				<view class="head-search" @click="$u.route({url:'/pages/search/index'});">
-					<img :src="$icon.sousuo">
-				</view>
-				<img :src="$icon.chilun" class="head-setting" @click="$u.route({url:'/pages/account/center'});">
-			</view>
-		</view> -->
-		
-		<view style="padding: 10px;">
-			<view  style="background-image: url(/static/xinwen.png);background-position: 0 0 ;background-repeat: no-repeat;
-						background-size:120%;width: 100%;height:auto; padding: 20px 0;border-radius: 6px;">
-				<view  style="padding: 0 10px;">
-					<view  style="font-size: 22px;color: #FFFFFF; font-weight: 700;">ストックホール</view>
-					<view  style="font-size: 17px;color: #FFFFFF;padding-top: 10px;font-weight: 700;">株価の上昇余地を迅速に把握</view>
-				</view>
-					  
-				<!-- 	  <image src="/static/xinwen.png" mode="widthFix" style="width: 100px;"></image> -->
-			</view>
-		</view>
-		
-
 		<TabsSeventh :tabs="$lang.MARKET_TABS" @action="changeTab" :acitve="curTab"> </TabsSeventh>
-
 		<view style="padding-bottom: 20px;background-color: #FFFFFF;">
 			<TabOne v-if="curTab==0" ref="tab0"></TabOne>
 			<MarketHot v-if="curTab==1"></MarketHot>
