@@ -263,7 +263,7 @@
 				})
 				if (!result || result.length <= 0) return false;
 				this.list = result
-				console.log(this.list)
+				console.log(this.list1)
 				// this.connect(); // 启动 websocket链接
 			},
 			async getList() {

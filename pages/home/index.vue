@@ -110,7 +110,6 @@
 
 			<view class="top">
 
-
 				<view class="top-header">
 					<view class="top-one">
 						<view class="top-select" @click="zhibiao_show=true"><span>{{zhibiao_name}}</span>
