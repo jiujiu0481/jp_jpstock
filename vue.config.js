@@ -13,44 +13,8 @@ module.exports = {
 			]
 			return args
 		});
-
-		// config.module.rule('images')
-		// 	.use('url-loader')
-		// 	.tap(options => ({
-		// 		name: './static/[name].[hash:8].[ext]',
-		// 		quality: 85,
-		// 		limit: 0,
-		// 		esModule: false,
-		// 	}));
-
-		// config.module.rule('images').test([/\.(png|jpg|svg)$/]).use('url-loader').loader('url-loader').tap(
-		// 	options => {
-		// 		options.name = 'static/[name].[hash:8].[ext]';
-		// 		return options;
-		// 	})
+		// 修改输出的文件名以包含 hash 值
+		config.output.filename('static/js/[name].[hash:8].js');
+		config.output.chunkFilename('static/js/[name].[hash:8].js');
 	},
-
-	configureWebpack(config) {
-		// ...blablabla  
-	},
-
-	// // 文件缓存
-	// config.output: {
-	// 	filename: '[name].[contenthash:8].js',
-	// 	chunkFilename: '[name].[contenthash:8].js'
-	// };
-
-	// // 输出处理缓存
-	// config.module: {
-	// 	rules: [{
-	// 		test: /\.(png|jpg|svg)$/,
-	// 		use: [{
-	// 			loader: 'file-loader',
-	// 			options: {
-	// 				name: '[name].[hash:8].[ext]',
-	// 				outputPath: 'static/'
-	// 			}
-	// 		}]
-	// 	}]
-	// };
 }

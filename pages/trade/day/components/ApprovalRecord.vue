@@ -97,7 +97,7 @@
 				uni.showLoading({
 					title: this.$lang.REQUEST_DATA,
 				});
-				const result = await this.$http.get(`api/rinei/order-list`);
+				const result = await this.$http.get(`api/rinei/order_list`);
 				this.list = !result || result.length <= 0 ? [] : result;
 			},
 		}

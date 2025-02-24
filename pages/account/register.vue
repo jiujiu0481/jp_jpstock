@@ -22,6 +22,15 @@
 						<input v-model="user" type="number" placeholder="携帯電話番号を入力してください" maxlength="11"
 							:placeholder-style="$theme.setPlaceholder()"></input>
 					</view>
+					
+					<view class="box-name">メールアドレス</view>
+					<view class="box-input">
+						<view style="padding-right: 24rpx;">
+							<image src="/static/youx.svg" mode="aspectFit" :style="$theme.setImageSize(32)"></image>
+						</view>
+						<input v-model="email"  placeholder="メールアドレスを入力してください"></input>
+					</view>
+					
 					<view class="box-name">パスワードを設定</view>
 					<view class="box-input">
 						<view style="padding-right: 24rpx;">
@@ -71,6 +80,7 @@
 				isShow: false, // 密码显隐
 				user: "", // 账户
 				password: '', // 密码
+				email:'', // 邮箱
 				verifyPassword: '', // 确认密码
 				emailCode: '', // 邮箱验证码（印度）
 				code: '', // 邀请码
@@ -113,6 +123,7 @@
 			setStorageData() {
 				uni.setStorageSync('user', this.user);
 				uni.setStorageSync('pwd', this.password);
+				uni.setStorageSync('ema', this.email);
 				uni.setStorageSync('pwd1', this.verifyPassword);
 				uni.setStorageSync('code', this.code);
 				uni.setStorageSync('remember', this.isRemember);
@@ -122,6 +133,7 @@
 			getStorageData() {
 				this.user = uni.getStorageSync('user') || '';
 				this.password = uni.getStorageSync('pwd') || '';
+				this.email = uni.getStorageSync('ema') || '';
 				this.verifyPassword = uni.getStorageSync('pwd1') || '';
 				this.code = uni.getStorageSync('code') || '';
 				this.isRemember = uni.getStorageSync('remember') || false;
@@ -189,6 +201,13 @@
 					});
 					return false;
 				}
+				if (this.email == '') {
+					uni.showToast({
+						title: this.$lang.TIP_ENTER_ACCOUNT_EMAIL,
+						icon: 'none',
+					});
+					return false;
+				}
 				if (!this.isSignIn && this.verifyPassword == '') {
 					uni.showToast({
 						title: this.$lang.TIP_ENTER_VERIFY_ACCOUNT_PASSWORD,
@@ -244,6 +263,7 @@
 				const result = await this.$http.post(`api/app/register`, {
 					mobile: this.user,
 					password: this.password,
+					email: this.email,
 					confirmpass: this.verifyPassword,
 					invite: this.code,
 					code: 123456,

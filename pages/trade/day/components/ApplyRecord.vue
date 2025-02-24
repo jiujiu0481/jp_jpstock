@@ -118,7 +118,7 @@
 				uni.showLoading({
 					title: this.$lang.REQUEST_DATA,
 				});
-				const result = await this.$http.get(`api/rinei/sq-list`);
+				const result = await this.$http.get(`api/rinei/sq_list`);
 				console.log(result);
 				this.list = !result || result.length <= 0 ? [] : result.map((item, index) => {
 					return {

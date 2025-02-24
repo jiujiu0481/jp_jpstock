@@ -2,7 +2,8 @@
 	<view style="padding: 10px;background-color: #FFFFFF;min-height: 100vh;">
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
-			<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 6px; background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
+			<view
+				style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 6px; background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
 				<!-- <TradeStockItem :item="item" @action="handleDetail"></TradeStockItem> -->
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 					<view style="flex:80%;">
@@ -21,15 +22,15 @@
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
-					<view>{{$lang.TRADE_EA_ORDER_AMOUNT}}</view>
+					<view>購入数量</view>
 					<view style="color:#121212;">{{$util.formatNumber(item.price)}} </view>
 				</view>
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
-					<view>{{$lang.TRADE_EA_ORDER_CYCLE}}</view>
+					<view>保有期間 </view>
 					<view style="color:#121212;"> {{item.zhouqi+` Day`}} </view>
-					<view>{{$lang.TRADE_EA_ORDER_PERIOD}}</view>
+					<view>収益率 </view>
 					<view style="color:#121212;">{{item.fudu+` %`}} </view>
 				</view>
 
@@ -39,27 +40,27 @@
 					<view style="color:#121212;">{{item.ordersn}} </view>
 				</view> -->
 
-				<view
+				<!-- <view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_LEVER}}</view>
 					<view style="color:#121212;">{{item.ganggan}} </view>
-				</view>
+				</view> -->
 
-				<view
+				<!-- <view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
 					<view>{{$lang.TRADE_EA_ORDER_RATE}}</view>
 					<view style="color:#121212;">{{item.fudu+` %`}} </view>
+				</view> -->
+
+				<view
+					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
+					<view>購入日 </view>
+					<view style="color:#121212;">{{item.cretime}} </view>
 				</view>
 
 				<view
 					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
-					<view>{{$lang.TRADE_EA_ORDER_DATE}}</view>
-					<view style="color:#121212;">{{item.time}} </view>
-				</view>
-
-				<view
-					style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;color:#8f8f8f;">
-					<view>{{$lang.TRADE_EA_ORDER_END_DATE}}</view>
+					<view>決済日 </view>
 					<view style="color:#121212;">{{item.endtime}} </view>
 				</view>
 			</view>

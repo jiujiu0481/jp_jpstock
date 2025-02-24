@@ -27,9 +27,7 @@
 					<view style="border-radius: 12rpx;background-color: #F7F9FF;padding:20rpx;margin-bottom: 28rpx;">
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_APPLY_AMOUNT}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}">申し込み数量</view>
 							<view style="font-size: 32rpx;" :style="{color:$theme.LOG_VALUE}">
 								{{$util.formatNumber(item.apply_amount)+` ${$lang.QUANTITY_UNIT}`}}
 							</view>
@@ -43,49 +41,40 @@
 								{{$util.formatNumber(item.success)+` ${$lang.QUANTITY_UNIT}`}}
 							</view>
 						</view>
+						
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_AMOUNT}}
+								支払金額
 							</view>
-							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{$util.formatMoney(item.success_num_amount)+` ${$lang.CURRENCY_UNIT}`}}
+							<view style="font-size: 32rpx;" :style="{color:$theme.LOG_VALUE}">
+								{{$util.formatMoney(item.success*item.price)}}
 							</view>
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_FREEZE}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}">支払い済み金額 </view>
 							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{$util.formatMoney(item.freeze)+` ${$lang.CURRENCY_UNIT}`}}
+								{{$util.formatMoney(item.freeze)}}
 							</view>
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_UNPAY_AMOUNT}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}"> 未支払い金額 </view>
 							<view style="font-size: 36rpx;" :style="{color:$theme.PRIMARY}">
-								{{item.success*item.price-item.freeze>0?
-								$util.formatMoney(item.success*item.price*1-item.freeze*1):0+`
-								${$lang.CURRENCY_UNIT}`}}
+								{{$util.formatMoney(((item.price*1*item.success)-item.freeze*1).toFixed(2))}}
 							</view>
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_ORDER_SN}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}">取引番号</view>
 							<view style="font-size: 24rpx;" :style="{color:$theme.LOG_VALUE}">
 								{{item.order_sn}}
 							</view>
 						</view>
 						<view
 							style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
-							<view :style="{color:$theme.LOG_LABEL}">
-								{{$lang.TRADE_IPO_SUCCESS_CT}}
-							</view>
+							<view :style="{color:$theme.LOG_LABEL}">取引日</view>
 							<view style="font-size: 24rpx;" :style="{color:$theme.LOG_VALUE}">
 								{{item.created_at}}
 							</view>

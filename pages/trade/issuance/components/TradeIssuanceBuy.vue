@@ -11,26 +11,40 @@
 			<view style="padding:30rpx;">
 				<view class="bold" style="font-size: 16px;">購入数量</view>
 				<view style="margin-top: 5px;">
-					<u--input
-					    placeholder="購入数を入力してください。"
-					    border="surround"
-					    v-model="num" style="background-color: #f7f7f7;"
-					  ></u--input>
-					  
+					<u--input placeholder="購入数を入力してください。" border="surround" v-model="num"
+						style="background-color: #f7f7f7;"></u--input>
 				</view>
+
+				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
+					<text :style="{color:$theme.LOG_LABEL}">購入価格</text>
+					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
+						{{$util.formatNumber(info.price*1*num)}}{{$lang.CURRENCY_UNIT}}</text>
+				</view>
+				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
+					<text :style="{color:$theme.LOG_LABEL}">最低申し込み数量</text>
+					<view :style="{color:$theme.LOG_VALUE}">{{info.min_num}}</view>
+				</view>
+
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height:2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_0}}</text>
+					<text :style="{color:$theme.LOG_LABEL}">機関IPO価格</text>
 					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
 						{{$util.formatNumber(info.price,2)}}{{$lang.CURRENCY_UNIT}}</text>
 				</view>
 
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
-					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_1}}</text>
+					<text :style="{color:$theme.LOG_LABEL}">機関発行数</text>
 					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
-						{{$util.formatNumber(info.price*1*num)}}{{$lang.CURRENCY_UNIT}}</text>
+						{{$util.formatNumber(info.fa_amount)}}{{$lang.CURRENCY_UNIT}}</text>
 				</view>
 
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
+					<text :style="{color:$theme.LOG_LABEL}">上場日</text>
+					<text :style="{color:$theme.PRIMARY}">
+						{{!info.online_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.online_date}}</text>
+				</view>
+
+
+				<!-- <view style="display: flex;align-items: center;justify-content: space-between;line-height: 2;">
 					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_2}}</text>
 					<text style="font-size: 32rpx;font-weight: 700;" :style="{color:$theme.PRIMARY}">
 						{{$util.formatNumber(info.fa_amount)}}{{$lang.CURRENCY_UNIT}}</text>
@@ -58,9 +72,11 @@
 					<text :style="{color:$theme.LOG_LABEL}">{{$lang.TRADE_ISSUANCE_MODAL_6}}</text>
 					<text :style="{color:$theme.PRIMARY}">
 						{{!info.online_date? $lang.TRADE_ISSUANCE_MODAL_NULL_DATE  :info.online_date}}</text>
-				</view>
+				</view> -->
 
-				<view class="btn_com" style="margin: 30rpx auto;width: 80%;background-color: #f3564a;padding: 10px 15; font-size: 18px; color: #fff;border-radius: 30px;" @tap.stop="handleConfirm()">
+				<view class="btn_com"
+					style="margin: 30rpx auto;width: 80%;background-color: #f3564a;padding: 10px 15; font-size: 18px; color: #fff;border-radius: 30px;"
+					@tap.stop="handleConfirm()">
 					{{$lang.BTN_CONFIRM}}
 				</view>
 			</view>
@@ -79,7 +95,7 @@
 		},
 		data() {
 			return {
-				num:"",
+				num: "",
 				isShow: false, // 购买前二次确认的弹层
 				// amount: '', // 金额
 				// password: '', // 支付密码
@@ -105,7 +121,7 @@
 		// },
 
 		methods: {
-			
+
 			actionEvent() {
 				this.isShow = false;
 				this.$emit('action', 1);

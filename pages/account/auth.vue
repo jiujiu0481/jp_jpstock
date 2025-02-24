@@ -1,6 +1,10 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
-		<CustomHeaderSecond title="本人確認"></CustomHeaderSecond>
+		<!-- <CustomHeaderSecond title="本人確認"></CustomHeaderSecond> -->
+		<view class="flex padding-20">
+			<image src="/static/arrow_left.png" mode="widthFix" style="width: 10px;" @click="fanhui()"></image>
+			<view class="color-white text-center flex-1 font-size-14">本人確認</view>
+		</view>
 		<view class="page view-bandCard-day">
 			<!-- <view class="block">
 				<view class="head">
@@ -193,6 +197,12 @@
 					}
 				}
 				this.setStorageData();
+			},
+			
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/account/center',
+				})
 			},
 
 			// 认证

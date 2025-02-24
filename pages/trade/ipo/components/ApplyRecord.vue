@@ -23,7 +23,7 @@
 					
 					<view class="flex flex-b" style="margin-top: 10px;">
 						<view>{{$lang.TRADE_IPO_RECORD_APPLY_AMOUNT}}</view>
-						<view>{{$util.formatMoney(item.apply_amount)}}</view>
+						<view>{{$util.formatNumber(item.apply_amount)}}</view>
 					</view>
 					
 					<view class="flex flex-b" style="margin-top: 10px;">

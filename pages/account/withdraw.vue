@@ -30,11 +30,11 @@
 			</view>
 			<view class="tip" style="margin-top: 30px;margin: 0 10px;">
 				<view class="tip-tit"><span>*</span>ご注意:</view>
-				<view class="tip-txt">1. 未成約の注文がある場合は、出金できません。</view>
-				<view class="tip-txt">2. 出金を行う前に、本人確認と銀行口座の登録が必要です。</view>
-				<view class="tip-txt">3.出金可能時間は、平日の09:00:00から15:00:00までです。</view>
-				<view class="tip-txt">4. 出金の最低額は10000円です。</view>
-				<view class="tip-txt">5.出金を行った場合、通常2時間で口座残高に反映されます。各銀行による入金のタイミングは異なりますが、最遅でも次の営業日の24時までには入金されます。</view>
+				<view class="tip-txt"> • 未成約の注文がある場合は、出金できません。</view>
+				<view class="tip-txt"> • 出金を行う前に、本人確認と銀行口座の登録が必要です。</view>
+				<view class="tip-txt"> • 出金可能時間は、平日の09:00:00から15:00:00までです。</view>
+				<view class="tip-txt"> • 出金の最低額は10000円です。</view>
+				<view class="tip-txt"> • 出金を行った場合、通常2時間で口座残高に反映されます。各銀行による入金のタイミングは異なりますが、最遅でも次の営業日の24時までには入金されます。</view>
 			</view>
 			<view style="position: fixed;bottom: 0;left: 0;right: 0;padding:40rpx;background-color: #fff">
 				<view class="btn_com" @click="handleWithdraw()">

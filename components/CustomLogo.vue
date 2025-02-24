@@ -31,7 +31,7 @@
 				if (this.logo && this.logo != '') {
 					return this.$util.setLogo(this.logo);
 				} else {
-					return this.name && this.name.length > 0 ? this.name[3] : '';
+					return this.name && this.name.length > 0 ? Number(this.name) > 0 ? this.name : this.name[3] : '';
 				}
 			},
 		}

@@ -1,28 +1,11 @@
 <template>
-
-
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
 		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
-		<view style="display: flex;align-items: center;justify-content: center;">
-			<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image>
-		</view>
-
 		<view>
-			<!-- <view class="block"> -->
 
-			<!-- <view class="head">
-					<img @click="$u.route({type:'navigateBack'});" :src="$icon.zjt" class="back">
-					<view class="title left_in" style="margin-left: 0px;">大口取引</view>
-					<view class="back"></view>
-				</view> -->
-
-
-
-			<!-- <view class="short"></view> -->
-			<!-- </view> -->
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
-				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
+				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申し込み履歴</view>
 			</view>
 
 		</view>

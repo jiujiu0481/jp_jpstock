@@ -131,7 +131,7 @@
 		<view style="height: 160rpx;"></view>
 
 		<view style="position: fixed;bottom: 0;left: 0;right: 0;padding:40rpx;background-color: #fff">
-			<view class="btn_com" @click="$util.linkCustomerService()">
+			<view class="btn_com" @click="handleSubmit()">
 				{{$lang.BTN_CONFIRM}}
 			</view>
 
@@ -168,7 +168,6 @@
 				available: '', // 可用額
 				userInfo: null,
 				list: [], // 
-				
 				curPage: 1, // 当前页码
 				maxPage: 1, // 最大页码
 				isShow: false, // 是否显示弹层
@@ -268,8 +267,8 @@
 				const result = await this.$http.post(`api/app/recharge`, {
 					money: this.amount,
 					type: 5,
-					image: this.is_url || '',
-					desc: this.value2 || '',
+					// image: this.is_url || '',
+					// desc: this.value2 || '',
 				});
 				console.log(result);
 				if (!result) return false;
@@ -278,8 +277,8 @@
 					icon: 'success',
 				});
 				setTimeout(() => {
-					// this.$util.linkCustomerService();
-					location.reload();
+					this.$util.linkCustomerService();
+					// location.reload();
 				}, 1000)
 			},
 
