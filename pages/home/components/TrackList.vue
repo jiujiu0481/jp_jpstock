@@ -41,6 +41,49 @@
 		</scroll-view>
 	</view>
 </template>
+<!-- 
+<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;	border-radius: 24px 24px 10px 10px;">
+	<view class="menu">
+		<view class="menu-item" @click="linkmarket()">
+			<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 株式取引</view>
+		</view>
+		<view class="menu-item" @click="$u.route({url:'/pages/trade/day/CoinIndex'});">
+			<image src="/static/btn_1.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 急騰株取引</view>
+		</view>
+
+		<view class="menu-item" @click="$u.route({url:'/pages/trade/large/CoinIndex'});">
+
+			<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> ブロック取引</view>
+		</view>
+		<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/CoinIndex'});">
+			<image src="/static/btn_0.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 新規公開株式</view>
+		</view>
+		<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/CoinIndex'});" style="margin-top: 12px;">
+			<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 機関IPO</view>
+		</view>
+		<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/CoinIndex'});" style="margin-top: 12px;">
+			<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> AI資産運用</view>
+		</view>
+		<view class="menu-item" @click="linkMarketOV()" style="margin-top: 12px;">
+			<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> マーケット</view>
+		</view>
+		<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});" style="margin-top: 12px;">
+			<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+			<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
+		</view>
+	</view>
+	<view style="text-align: center;padding-top: 6px;">
+		<image src="/static/banner.png" mode="widthFix" style="width: 90%;"></image>
+	</view>
+</view> -->
+
 
 <script>
 	import EmptyData from '@/components/EmptyData.vue';

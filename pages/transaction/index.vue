@@ -18,24 +18,25 @@
 					:class="{'active': currentTab === 1}" @click="currentTab = 1">暗号通貨</view>
 			</view>
 		</view>
-		<view  v-if="currentTab === 0">
 		<view>
-			<view class="assets_card">
-				<view style="text-align: center;padding-top:  20px;">総資産
-					<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit" :style="$theme.setImageSize(32)"
-						@click="showAmount=!showAmount"></image>
-				</view>
-				<view style="text-align: center;font-size: 20px;font-weight: 900;">
-					{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
-				</view>
-
-				<view style="display: flex;align-items: center;justify-content: space-between;padding: 20px;gap:8px;">
-					<view style="flex:1;">
-						<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">利用可能な資金</view>
-						<view>{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}</view>
+			<view>
+				<view class="assets_card" v-if="currentTab === 0">
+					<view style="text-align: center;padding-top:  20px;">総資産
+						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
+							:style="$theme.setImageSize(32)" @click="showAmount=!showAmount"></image>
+					</view>
+					<view style="text-align: center;font-size: 20px;font-weight: 900;">
+						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
 					</view>
 
-					<!-- <view style="text-align: center;flex:1;">
+					<view
+						style="display: flex;align-items: center;justify-content: space-between;padding: 20px;gap:8px;">
+						<view style="flex:1;">
+							<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">利用可能な資金</view>
+							<view>{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}</view>
+						</view>
+
+						<!-- <view style="text-align: center;flex:1;">
 						<view>株式時価総額</view>
 						<view>{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
 					</view>
@@ -47,80 +48,114 @@
 						</view>
 					</view> -->
 
-					<view style="text-align: right;flex:1;">
-						<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">資金を凍結する</view>
-						<view> {{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
+						<view style="text-align: right;flex:1;">
+							<view style="padding-bottom: 8px;font-size: 16px;font-weight: 500;">資金を凍結する</view>
+							<view> {{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}</view>
+						</view>
 					</view>
 				</view>
-			</view>
-			<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;margin-top: 10px;">
-				<view class="menu">
-					<view class="menu-item" @click="linkmarket()">
-						<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 株式取引</view>
+				<view class="assets_card" v-if="currentTab === 1">
+					<view style="text-align: center;padding-top:  20px;">総資産
+						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
+							:style="$theme.setImageSize(32)" @click="showAmount=!showAmount"></image>
 					</view>
-					<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
-						<image src="/static/btn_1.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 急騰株取引</view>
+					<view style="text-align: center;font-size: 20px;font-weight: 900;margin-top: 20px;">
+						{{showAmount?$util.formatMoney(userInfo.usd)+ 'USDT':hideAmount}}
 					</view>
 
-					<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
-						<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> ブロック取引</view>
-					</view>
-					<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
-						<image src="/static/btn_0.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 新規公開株式</view>
-					</view>
-					<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/index'});"
-						style="margin-top: 12px;">
-						<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 機関IPO</view>
-					</view>
-					<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});" style="margin-top: 12px;">
-						<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> AI資産運用</view>
-					</view>
-					<view class="menu-item" @click="linkMarketOV()" style="margin-top: 12px;">
-						<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> マーケット</view>
-					</view>
-					<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});" style="margin-top: 12px;">
-						<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
-					</view>
 				</view>
 
+				<view v-if="currentTab === 0"
+					style="background-color: #FFFFFF; padding: 20px   0   10px  0;margin-top: 10px;">
+					<view class="menu">
+						<view class="menu-item" @click="linkmarket()">
+							<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 株式取引</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
+							<image src="/static/btn_1.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 急騰株取引</view>
+						</view>
+
+						<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
+							<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> ブロック取引</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
+							<image src="/static/btn_0.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 新規公開株式</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/index'});"
+							style="margin-top: 12px;">
+							<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> 機関IPO</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});"
+							style="margin-top: 12px;">
+							<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> AI資産運用</view>
+						</view>
+						<view class="menu-item" @click="linkMarketOV()" style="margin-top: 12px;">
+							<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> マーケット</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});"
+							style="margin-top: 12px;">
+							<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
+						</view>
+					</view>
+
+				</view>
+				<view v-if="currentTab === 1"
+					style="background-color: #FFFFFF; padding: 20px   0   10px  0;margin-top: 10px;">
+					<view class="menu">
+						<view class="menu-item" @click="linkmarketCoin()">
+							<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">暗号取引</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/contract/index'});">
+							<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">大口取引</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/transfer/cointransfer'});">
+							<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">両替</view>
+						</view>
+						<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});">
+							<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+							<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+
+			<view style="text-align: center;padding-top: 6px;margin: 12px  0;">
+				<image src="/static/trade_bnner.png" mode="widthFix" style="width: 90%;"></image>
+			</view>
+
+			<view class="page">
+
+				<view style="background-color: #FFFFFF;padding: 20rpx 10px;min-height:96vh;border-radius: 10px;">
+					<TabsThird :tabs="tabLabels" @action="changeTab" :acitve="curTab"></TabsThird>
+
+					<template v-if="curTab == 0">
+						<TradeRecord></TradeRecord>
+					</template>
+
+					<template v-if="curTab == 1">
+						<DepositRecord></DepositRecord>
+					</template>
+
+					<template v-if="curTab == 2">
+						<WithdrawalRecord></WithdrawalRecord>
+					</template>
+
+				</view>
 			</view>
 		</view>
 
-		<view style="text-align: center;padding-top: 6px;margin: 12px  0;">
-			<image src="/static/trade_bnner.png" mode="widthFix" style="width: 90%;"></image>
-		</view>
-
-		<view class="page">
-
-			<view style="background-color: #FFFFFF;padding: 20rpx 10px;min-height:96vh;border-radius: 10px;">
-				<TabsThird :tabs="tabLabels" @action="changeTab" :acitve="curTab"></TabsThird>
-
-				<template v-if="curTab == 0">
-					<TradeRecord></TradeRecord>
-				</template>
-
-				<template v-if="curTab == 1">
-					<DepositRecord></DepositRecord>
-				</template>
-
-				<template v-if="curTab == 2">
-					<WithdrawalRecord></WithdrawalRecord>
-				</template>
-
-			</view>
-		</view>
-		</view>
-		<view  v-if="currentTab === 1">
-			<CoinIndex></CoinIndex>
-			</view>
 	</view>
 </template>
 
@@ -129,7 +164,7 @@
 	import TabsThird from '@/components/tabs/TabsThird.vue';
 	import TradeRecord from './components/TradeRecord.vue';
 	import DepositRecord from './components/DepositRecord.vue';
-	import CoinIndex from './components/CoinIndex.vue';
+
 	import WithdrawalRecord from './components/WithdrawalRecord.vue';
 	export default {
 		components: {
@@ -138,7 +173,7 @@
 			TradeRecord,
 			DepositRecord,
 			WithdrawalRecord,
-			CoinIndex,
+
 		},
 		data() {
 			return {
@@ -187,7 +222,26 @@
 				this.curTab = val;
 			},
 
+			linkmarket() {
+				uni.switchTab({
+					url: `/pages/market/index`
+				})
+			},
 
+			linkmarketCoin() {
+				// 跳转到市场页面
+				uni.switchTab({
+					url: `/pages/market/index?inv=${this.inv}`
+				});
+
+			},
+
+
+			linkMarketOV() {
+				uni.navigateTo({
+					url: `/pages/market/overview`
+				})
+			},
 
 			// 总资产显隐控制
 			handleShowAmount() {

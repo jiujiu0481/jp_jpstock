@@ -2,7 +2,7 @@
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
 		<view style="display: flex;align-items: center;justify-content: center;">
-		<!-- 	<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image> -->
+			<!-- 	<image src="/static/large_banner.png" style="width: 90%;height: 200px;"></image> -->
 		</view>
 		<view>
 			<!-- <view class="block"> -->
@@ -52,6 +52,7 @@
 
 			if (this.$refs.log && inv == 1)
 				this.$refs.log.getList();
+			
 
 		},
 		onHide() {
@@ -60,12 +61,13 @@
 		methods: {
 			qiehuan(num) {
 				this.inv = num;
-				if (num == 0) {
-					this.$refs.list.getList();
-				} else {
-					this.$refs.log.getList();
-				}
+				// if (num == 0) {
+				// 	this.$refs.list.getList();
+				// } else {
+				// 	this.$refs.log.getList();
+				// }
 			},
+			
 
 			linkRecord() {
 				uni.navigateTo({
@@ -186,7 +188,7 @@
 		// box-sizing: border-box;
 		z-index: 10
 	}
-	
+
 	.nav-box .nav-item {
 		width: 45%;
 		margin: 0 11px;
@@ -206,12 +208,12 @@
 		font-size: 14px;
 		color: #585b58
 	}
-	
+
 	.nav-box .active {
 		background: #666666;
 		color: #fff
 	}
-	
+
 
 	.width-100 {
 		width: 100%

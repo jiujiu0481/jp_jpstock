@@ -1,163 +1,141 @@
 <template>
-	<view style="background-image: url(/static/trade_head.png);
-	background-position: 0 0;
-	background-size: 100% 260px ;
-	background-repeat: no-repeat;padding-bottom:-330px; background-color:#ededed ;">
-		<header style="display: flex;align-items: center;padding: 24px 28rpx;">
-			<view style="margin-right: auto;">
-				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit"
-					style="width: 16px;height: 16px;"></image>
-			</view>
-			<view style=" flex:60%">
-				<view style="height: 56rpx;line-height: 56rpx;text-align: center;color:#FCFCFC;font-size: 28rpx;">
-					銘柄詳細
+	<view :class="isAnimat?'fade_in':'fade_out' " style="min-height: 100vh;" v-if="isUpdate">
+		<template v-if="info">
+			<header class="common_header" style="padding-bottom: 0;">
+				<view class="center">
+					<text style="padding-right:20rpx;" :style="{color:$theme.SECOND}">{{info.name}}</text>
+					<image src="/static/coin_choose.png" mode="aspectFit" style="padding-left: 20rpx;"
+						:style="$theme.setImageSize(24)" @tap="chooseCoin()"></image>
 				</view>
-			</view>	
-		</header>
-		<view style="border-radius: 20px 20px 0 0;pa">
-			<template >
-				<view class="common_header" style="padding-bottom: 0;">
-					
-					<view class="center">
-						<text style="padding-right:20rpx;" >BTC/USDT</text>
-						<image src="/static/coin_choose.png" mode="aspectFit" style="padding-left: 20rpx;"
-							:style="$theme.setImageSize(30)" @tap="chooseCoin()"></image>
+				<view class="right">
+					<view @click="linkCoinInfo()">
+						<image src="/static/cantract_detail.png" mode="aspectFit" style="padding-right: 30rpx;"
+							:style="$theme.setImageSize(32)">
+						</image>
 					</view>
-					<view class="right">
-						<view @click="linkCoinInfo()">
-							<image src="/static/cantract_detail.png" mode="aspectFit" style="padding-right: 30rpx;"
-								:style="$theme.setImageSize(32)">
-							</image>
-						</view>
-					</view>
-					<view class="right">
-						<view @click="handleUnFollow(info.gid)">
-							<image :src="`/static/${info && info.is_collected==1?'stock_follow':'stock_unfollow'}.png`"
-								:style="$theme.setImageSize(32)"></image>
-						</view>
+				</view>   
+				<view class="right">
+					<view @click="handleUnFollow(info.gid)">
+						<image :src="`/static/${info && info.is_collected==1?'stock_follow':'stock_unfollow'}.png`"
+							:style="$theme.setImageSize(32)"></image>
 					</view>
 				</view>
-				<template >
-					<view style="margin:20rpx 60rpx;display: flex;align-items: center;justify-content: space-between;">
-						<text style="font-size: 28rpx;"
-							:style="$theme.setStockRiseFall(info.rate>0)">{{$util.formatNumber(info.current_price)}}111</text>
-						<text style="font-size: 26rpx;padding:0 40rpx;"
-							:style="$theme.setStockRiseFall(info.rate>0)">{{$util.formatPercentage(info.rate)}}</text>
-					</view>
-				</template>
+			</header>
+			<template v-if="info">
+				<view style="margin:20rpx 60rpx;display: flex;align-items: center;justify-content: space-between;">
+					<text style="font-size: 28rpx;"
+						:style="$theme.setStockRiseFall(info.rate>0)">{{$util.formatNumber(info.current_price)}}</text>
+					<text style="font-size: 26rpx;padding:0 40rpx;"
+						:style="$theme.setStockRiseFall(info.rate>0)">{{info.rate}}%</text>
+				</view>
 			</template>
+		</template>
 
-			<view class="common_block"
-				style="border-radius: 24rpx;padding:0;padding-bottom:20rpx;display: flex;align-items: center;justify-content: space-between;">
-				<view style="flex:0 0 60%;">
-					<view style="display: flex;align-items: center;justify-content: space-between;">
-						<block v-for="(item,index) in tabs" :key="index">
-							<view :style="setStyle(curTab ==index)" @click="changeTab(index)">
-								{{item}}
-							</view>
-						</block>
-					</view>
-					<view style="padding:20rpx;">
-						<u-radio-group v-model=" radiovalue1" placement="row" @change="groupChange">
-							<u-radio :customStyle="{marginRight: '48rpx'}" v-for="(item, index) in radioList"
-								:key="index" :label="item.name" :name="item.name" @change="radioChange"
-								:activeColor="curTab==0?$theme.RISE:$theme.FALL" labelSize="28rpx"
-								:labelColor="item.name==radiovalue1?curTab==0?$theme.RISE:$theme.FALL:'#CFCFCF' ">
-							</u-radio>
-						</u-radio-group>
-					</view>
-
-					<!-- 限价模式，输入金额 -->
-					<template v-if="isShowAmountInput">
-						<view style="margin:20rpx; ">
-							<view class="common_input_wrapper"
-								style="background-color:#1a1a1a;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;">
-								<input v-model="amount" type="digit" :placeholder="$lang.COIN_BUY_TIP_ENTER_PRICE"
-									:placeholder-style="$theme.setPlaceholder()" style="color: #fff;"></input>
-							</view>
+		<view class="common_block"
+			style="border-radius: 24rpx;padding:0;padding-bottom:20rpx;display: flex;align-items: center;justify-content: space-between;">
+			<view style="flex:0 0 60%;">
+				<view style="display: flex;align-items: center;justify-content: space-between;">
+					<block v-for="(item,index) in tabs" :key="index">
+						<view :style="setStyle(curTab ==index)" @click="changeTab(index)">
+							{{item}}
 						</view>
-					</template>
-					<template v-else>
-						<view style="margin:20rpx;">
-							<template v-if="info">
-								<view class="common_input_wrapper"
-									style="background-color:#1a1a1a;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;"
-									:style="{color:$theme.LOG_LABEL}">
-									{{info.current_price}}
-								</view>
-							</template>
-						</view>
-					</template>
+					</block>
+				</view>
+				<view style="padding:20rpx;">
+					<u-radio-group v-model=" radiovalue1" placement="row" @change="groupChange">
+						<u-radio :customStyle="{marginRight: '48rpx'}" v-for="(item, index) in radioList" :key="index"
+							:label="item.name" :name="item.name" @change="radioChange"
+							:activeColor="curTab==0?$theme.RISE:$theme.FALL" labelSize="28rpx"
+							:labelColor="item.name==radiovalue1?curTab==0?$theme.RISE:$theme.FALL:'#CFCFCF' ">
+						</u-radio>
+					</u-radio-group>
+				</view>
 
+				<!-- 限价模式，输入金额 -->
+				<template v-if="isShowAmountInput">
 					<view style="margin:20rpx; ">
 						<view class="common_input_wrapper"
-							style="background-color:#1a1a1a;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;">
-							<input v-model="quantity" type="digit" :placeholder="$lang.COIN_BUY_TIP_ENTER_QTY"
-								:placeholder-style="$theme.setPlaceholder()" style="color: #fff;"></input>
+							style="background-color:#F5F6FB;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;">
+							<input v-model="amount" type="digit" :placeholder="$lang.COIN_BUY_TIP_ENTER_PRICE"
+								:placeholder-style="$theme.setPlaceholder()"></input>
 						</view>
 					</view>
-					<template v-if="info">
-						<view style="text-align: right;font-size: 24rpx;padding-right: 20rpx;line-height: 1.6;"
-							:style="{color:$theme.LOG_LABEL}">
-							{{$lang.COIN_BUY_BALANCE}}{{`: ${$util.formatNumber(userInfo.money)} ${curTab==0?'USDT':info.number_code}`}}
-						</view>
-						<view style="text-align: right;font-size: 24rpx;padding-right: 20rpx;line-height: 1.6;"
-							:style="{color:$theme.LOG_LABEL}" v-if="curTab==0">
-							{{$lang.COIN_BUY_MAX_QTY}} {{`: ${$util.formatNumber(curMaxQTY,4)} ${info.number_code}`}}
-						</view>
-					</template>
+				</template>
+				<template v-else>
+					<view style="margin:20rpx;">
+						<template v-if="info">
+							<view class="common_input_wrapper"
+								style="background-color:#F5F6FB;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;"
+								:style="{color:$theme.LOG_LABEL}">
+								{{info.current_price}}
+							</view>
+						</template>
+					</view>
+				</template>
 
+				<view style="margin:20rpx; ">
+					<view class="common_input_wrapper"
+						style="background-color:#F5F6FB;border-radius: 16rpx;height: 32rpx;padding-left: 20rpx;">
+						<input v-model="quantity" type="digit" :placeholder="$lang.COIN_BUY_TIP_ENTER_QTY"
+							:placeholder-style="$theme.setPlaceholder()"></input>
+					</view>
+				</view>
+				<template v-if="info">
+					<view style="text-align: right;font-size: 24rpx;padding-right: 20rpx;line-height: 1.6;"
+						:style="{color:$theme.LOG_LABEL}">
+						{{$lang.COIN_BUY_BALANCE}}{{`: ${$util.formatNumber(userInfo.money)} ${curTab==0?'USDT':info.number_code}`}}
+					</view>
+					<view style="text-align: right;font-size: 24rpx;padding-right: 20rpx;line-height: 1.6;"
+						:style="{color:$theme.LOG_LABEL}">
+						{{$lang.COIN_BUY_MAX_QTY}} {{`: ${$util.formatNumber(curMaxQTY,4)} ${info.number_code}`}}
+					</view>
+				</template>
+
+				<view
+					style="display: flex;align-items: center;justify-content: space-between;margin:20rpx 20rpx;line-height: 1.8;">
+					<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_BUY_TOTAL_AMOUNT}}
+					</view>
+					<view style="font-size: 26rpx;" :style="{color:$theme.LOG_VALUE}">
+						{{totalAmount+` USDT`}}
+					</view>
+				</view>
+
+				<view class="common_btn" style="margin:20rpx auto;width: 60%;padding: 12rpx;"
+					:style="{backgroundColor:curTab==0?$theme.RISE:$theme.FALL}" @click="placeOrder()">
+					{{tabs[curTab]}}
+				</view>
+			</view>
+			<view style="flex:0 0 40%;">
+				<template v-if="asks && asks.length>0">
 					<view
-						style="display: flex;align-items: center;justify-content: space-between;margin:20rpx 20rpx;line-height: 1.8;">
-						<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">
-							{{$lang.COIN_BUY_TOTAL_AMOUNT}}
+						style="display: flex;align-items: center;justify-content: space-between;padding: 20rpx 20rpx 0 20rpx;">
+						<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_BUY_TITLE_PRICE}}
 						</view>
-						<view style="font-size: 26rpx;" :style="{color:$theme.LOG_VALUE}">
-							{{totalAmount+` USDT`}}
+						<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_BUY_TITLE_QTY}}
 						</view>
 					</view>
-
-					<view class="common_btn" style="margin:20rpx auto;width: 60%;padding: 12rpx;"
-						:style="{backgroundColor:curTab==0?$theme.RISE:$theme.FALL}" @click="placeOrder()">
-						{{tabs[curTab]}}
-					</view>
-				</view>
-				<view style="flex:0 0 40%;">
-					<template v-if="asks && asks.length>0">
-						<view
-							style="display: flex;align-items: center;justify-content: space-between;padding: 20rpx 20rpx 0 20rpx;">
-							<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">
-								{{$lang.COIN_BUY_TITLE_PRICE}}
-							</view>
-							<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">
-								{{$lang.COIN_BUY_TITLE_QTY}}
-							</view>
-						</view>
-						<AskList :list="asks" :max="asksMax"></AskList>
-						<BidList :list="bids" :max="bidsMax" to="right"></BidList>
-					</template>
-				</view>
+					<AskList :list="asks" :max="asksMax"></AskList>
+					<BidList :list="bids" :max="bidsMax" to="right"></BidList>
+				</template>
 			</view>
-
-			<view style="padding:0 36rpx;">
-				<TitleSecond :title="$lang.COIN_RECORD_HISTORY">
-					<view style="font-size: 13px;" @click="linkRecord()" :style="{color:$theme.SECOND}">
-						{{$lang.COIN_TRADE_RECORD}}
-						<view class="arrow rotate_45" :style="$theme.setImageSize(12)"></view>
-					</view>
-				</TitleSecond>
-			</view>
-
-			<HistoryRecord :code="code" ref="history"></HistoryRecord>
-
-			<!-- Coin  選擇器 -->
-			<u-picker :show="isShowCoinList" :columns="[coinList]" @change="changeCoin" @cancel="isShowCoinList=false"
-				@confirm="confirmCoin" :cancelText="$lang.COMMON_CANCEL" :confirmText="$lang.COMMON_CONFIRM"
-				:cancelColor="$theme.MODAL_CANCEL" :confirmColor="$theme.PRIMARY" keyName="label"
-				visibleItemCount="9"></u-picker>
 		</view>
 
-	<!-- 	<FooterSmall code="position" /> -->
+		<view style="padding:0 36rpx;">
+			<TitleSecond :title="$lang.COIN_RECORD_HISTORY">
+				<view style="font-size: 13px;" @click="linkRecord()" :style="{color:$theme.SECOND}">
+					{{$lang.COIN_TRADE_RECORD}}
+					<view class="arrow rotate_45" :style="$theme.setImageSize(12)"></view>
+				</view>
+			</TitleSecond>
+		</view>
+
+		<HistoryRecord :code="code" ref="history"></HistoryRecord>
+
+		<!-- Coin  選擇器 -->
+		<u-picker :show="isShowCoinList" :columns="[coinList]" @change="changeCoin" @cancel="isShowCoinList=false"
+			@confirm="confirmCoin" :cancelText="$lang.COMMON_CANCEL" :confirmText="$lang.COMMON_CONFIRM"
+			:cancelColor="$theme.MODAL_CANCEL" :confirmColor="$theme.PRIMARY" keyName="label"
+			visibleItemCount="9"></u-picker>
 	</view>
 </template>
 
@@ -263,11 +241,6 @@
 			if (this.socket) this.disconnect();
 		},
 		methods: {
-			fanhui() {
-				uni.switchTab({
-					url: "/pages/market/index"
-				})
-			},
 			// 强刷的方案。
 			refreshPage() {
 				this.isUpdate = false;
@@ -340,8 +313,7 @@
 			changeTab(val) {
 				this.curTab = val;
 				this.getAccountAssets();
-				// if (this.socket) this.disconnect();
-				// this.getData();
+				this.getData();
 			},
 			linkRecord() {
 				uni.navigateTo({
@@ -359,7 +331,6 @@
 
 			// 产品详情
 			async getData() {
-				if (this.socket) this.disconnect();
 				uni.showLoading({
 					title: this.$lang.REQUEST_DATA,
 					icon: 'loading'
@@ -517,7 +488,6 @@
 			},
 			// websocket 断线重连
 			reconnectWebSocket() {
-
 				// 连接中，并且非手动关闭
 				if (this.isConnected) return;
 				console.log(`reconnect!`, this.isConnected);
@@ -528,11 +498,6 @@
 
 			// websocket链接
 			connect() {
-				if (this.socket) {
-					const result = this.socket.close();
-					console.log('disconnect result:', result);
-					this.socket = null;
-				}
 				//创建webSocket
 				this.socket = uni.connectSocket({
 					url: this.$http.WS_COIN_URL,
@@ -557,14 +522,14 @@
 						console.log(`onClose:`, res);
 						this.isConnected = false;
 						if (res.code !== 1000) {
-							// this.reconnectWebSocket();
+							this.reconnectWebSocket();
 						}
 					});
 
 					this.socket.onError((err) => {
 						console.log(`onError:`, err);
 						this.isConnected = false;
-						// this.reconnectWebSocket();
+						this.reconnectWebSocket();
 					});
 					this.socket.onMessage((res) => {
 						const data = JSON.parse(res.data);
@@ -575,9 +540,10 @@
 							// this.info.rate_num = data.rate_num || 0;
 							// this.info.vol = data.vol || 0;
 						}
+						// console.log('data depth:', data);
 						// 當前買賣盤的數據
 						if (this.info && this.info.code == data.market && data.type == "depth") {
-							// 直接提取前五條，替換數據		
+							// 直接提取前五條，替換數據	
 							const tempAsk = data.ask.slice(0, 5);
 							const tempBid = data.bid.slice(0, 5);
 							// console.log('data depth:', data);
@@ -608,7 +574,7 @@
 		padding: 40rpx;
 		display: flex;
 		align-items: center;
-		padding-top: 0px;
+		padding-top: 30px;
 
 		.left {
 			flex: 0 0 auto;

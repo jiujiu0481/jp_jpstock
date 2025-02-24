@@ -2,7 +2,7 @@
 	<view style="padding: 10px;background-color: #FFFFFF;min-height: 100vh;">
 		<EmptyData v-if="list.length<=0"></EmptyData>
 		<block v-for="(item,index) in list" :key="index">
-			<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 6px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);">
+			<view style="margin:20rpx 10rpx;padding: 20rpx; background-color: #FFFFFF;border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
 				<!-- <TradeStockItem :item="item" @action="handleDetail"></TradeStockItem> -->
 				<view style="display: flex;align-items: center;justify-content: space-between;line-height: 2.4;">
 					<view style="flex:80%;">

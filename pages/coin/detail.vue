@@ -1,8 +1,8 @@
 <template>
-	<view style="min-height: 100vh;background-color: #000;">
+	<view :class="isAnimat?'fade_in':'fade_out' " style="min-height: 100vh;">
 		<template v-if="info">
 			<header class="common_header">
-				<view class="left" @click="$util.goBack()">
+				<view class="left" @click="fanhui">
 					<image src="/static/arrow_left.png" mode="aspectFit" :style="$theme.setImageSize(32)"></image>
 				</view>
 				<view class="center">
@@ -18,136 +18,92 @@
 				</view>
 			</header>
 
-			<view style="margin:0 20rpx;padding:20rpx;">
-				<view class="flex flex-b">
-					<view>
-						<view style="font-size: 16px;">{{setTitle}}</view>
-						<view class="flex gap5">
-							<view style="font-size: 22px;" :style="$theme.setStockRiseFall(info.info.rate>0)">{{$util.formatNumber(info.info.lastPrice,info.shudian) }}</view>
-							<view style="font-size: 26rpx;" :style="$theme.setStockRiseFall(info.info.rate>0)">
-								{{`${info.info.rate>0?'+':'-'} `+ $util.formatPercentage($util.formatNumber($util.formatMathABS(info.info.rate),2))}}
-							</view>
-						</view>
-					</view>
-					<view>
-						<view class="flex flex-b gap10	">
-							<template v-if="info.info && info.info.open">
-								<view style="">
-									<view style="color: #999999;font-size: 12px;">{{$lang.COIN_VIEW_OPEN}}:</view>
-									<view :style="{color:$theme.LOG_VALUE}" style="font-size: 13px;">
-										{{$util.formatCoin(info.info.open)}}
-									</view>
-								</view>
-							</template>
-							<template v-if="info.info && info.info.close">
-								<view style="">
-									<view style="color: #999999;font-size: 12px;">{{$lang.COIN_VIEW_CLOSE}}</view>
-									<view :style="{color:$theme.LOG_VALUE}" style="font-size: 13px;">
-										{{$util.formatCoin(info.info.close)}}
-									</view>
-								</view>
-							</template>
-						</view>
-						
-						<view class="flex flex-b gap10	">
-							<template v-if="info.info && info.info.open">
-								<view style="">
-									<view style="color: #999999;font-size: 12px;">{{$lang.COIN_VIEW_HIGH}}:</view>
-									<view :style="{color:$theme.LOG_VALUE}" style="font-size: 13px;">
-										{{$util.formatCoin(info.info.high)}}
-									</view>
-								</view>
-							</template>
-							<template v-if="info.info && info.info.close">
-								<view style="">
-									<view style="color: #999999;font-size: 12px;">{{$lang.COIN_VIEW_LOW}}</view>
-									<view :style="{color:$theme.LOG_VALUE}" style="font-size: 13px;">
-										{{$util.formatCoin(info.info.low)}}
-									</view>
-								</view>
-							</template>
-						</view>
-				
-					</view>
-				</view>
-				<view style="display: flex;align-items: center;margin-top: 10px;">
-					<!-- <template v-if="info.logo">
+			<view style="margin:0 20rpx;background-color: #FFFFFF;border-radius: 24rpx;padding:20rpx;">
+				<view style="display: flex;align-items: center;">
+					<template v-if="info.logo">
 						<view style="flex:0 0 auto;">
 							<CustomLogo :logo="info.logo" :name="info.name"></CustomLogo>
 						</view>
-					</template> -->
+					</template>
 					<view style="flex:1 1 auto;">
-						<view style="" :style="{color:$theme.LOG_LABEL}">
-							<!-- <text>24H: {{$util.formatNumber(info.info.vol,0)}}</text> -->
+						<view style="padding-left:20rpx;" :style="{color:$theme.LOG_LABEL}">
+							<text>24H: {{$util.formatNumber(info.info.vol,0)}}</text>
 							<view
 								style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;"
 								:style="$theme.setStockRiseFall(info.info.rate>0)">
 								<view style="font-size: 32rpx;">
-									<!-- {{$util.formatNumber(info.info.lastPrice,info.shudian) }} -->
-									24H: {{$util.formatNumber(info.info.vol,0)}}
+									{{$util.formatNumber(info.info.lastPrice,info.shudian) }}
 								</view>
 								<view style="font-size: 32rpx;">{{$util.formatNumber(info.info.rate_num,info.shudian) }}
 								</view>
 								<view style="font-size: 32rpx;">
-									{{`${info.info.rate>0?'+':'-'} `+ $util.formatPercentage($util.formatNumber($util.formatMathABS(info.info.rate),2))}}
+									{{`${info.info.rate>0?'+':'-'} `+ ($util.formatNumber($util.formatMathABS(info.info.rate),2))}}%
 								</view>
 							</view>
 						</view>
 					</view>
 				</view>
 
-			</view>
-			
-			<view class="flex" style="padding: 10px 20px;">
-				<view class="flex flex-b flex-3">
-					<view  v-for="(item,index) in $lang.TABS_TIMES" :style="curTime==item?'color:#1d70c8':'color:#5f5f5f'" v-if="index<=4" @click="confirmTime1(item)" >{{item}}</view>
-					<view style="color: #9cb9d5;" class="flex align-center" @click="chooseTime()">
-						{{$lang.COMMON_MORE}}
-						<image src="/static/arrow_down_solid.png" mode="widthFix" style="width: 8px;height: 8px;margin-left: 3px;" ></image>
-						<image src="/static/Zoom-in.svg" mode="aspectFit" :style="$theme.setImageSize(32)" style="margin-left: 30px;filter: invert(100%) sepia(0%) saturate(0%) brightness(200%);"  @click.stop="zoomIn()"></image>
-					</view>
-						
-				</view>
-			</view>
-			
-			<view style="padding:12rpx 5px;">
-				<!-- <view style="display: flex;align-items: center; padding:12rpx;">
-					<view style="padding-right: 12rpx;font-size: 20rpx;">{{$lang.TXT_TIME}}:</view>
-					<view style="padding-right: 24rpx;color:#038ef8;" @click="chooseTime()"> {{curTime}} </view>
-					<view style="padding-right: 12rpx;font-size: 20rpx;">{{$lang.INDICATOR_TITLE}}:</view>
-					<view style="padding-right: 24rpx;color:#038ef8;" @click="chooseIndicator()">
-						{{curIndicator}}
-					</view>
-					<view style="padding-right: 12rpx;font-size: 20rpx;">{{$lang.CANDLE_TITLE}}:</view>
-					<view style="padding-right: 24rpx;color:#038ef8;" @click="chooseCandle()">
-						{{curCandle}}
-					</view>
-					<view style="margin-left: auto;" @click="zoomIn()">
-						<image src="/static/Zoom-in.svg" mode="aspectFit" :style="$theme.setImageSize(32)"></image>
-					</view>
-				</view> -->
-				<view class="chart" id="kline-norm" style="width: 100%;height:500px;">
-				</view>
-			</view>
-			
-			<view class="flex flex-b" style="padding: 10px 30px;">
-					<view  v-for="(item,index) in indicatorType" :style="curIndicator==item?'color:#1d70c8':'color:#5f5f5f'"@click="confirmIndicator(item)" >{{item}}</view>
-					
-					<view v-for="(item,index) in indicatorType1" :style="curIndicator1==item?'color:#1d70c8':'color:#5f5f5f'"@click="confirmIndicator1(item)" >{{item}}</view>
-					
-			</view>
-			
 
-			<!-- 
-			<KLineChart :name="code" /> -->
+				<template v-if="info.info && info.info.open">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.6;">
+						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_VIEW_OPEN}}</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{$util.formatCoin(info.info.open)}}
+						</view>
+					</view>
+				</template>
+				<template v-if="info.info && info.info.close">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.6;">
+						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_VIEW_CLOSE}}</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{$util.formatCoin(info.info.close)}}
+						</view>
+					</view>
+				</template>
+				<template v-if="info.info && info.info.high">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.6;">
+						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_VIEW_HIGH}}</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{$util.formatCoin(info.info.high)}}
+						</view>
+					</view>
+				</template>
+				<template v-if="info.info && info.info.low">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.6;">
+						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_VIEW_LOW}}</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{$util.formatCoin(info.info.low)}}
+						</view>
+					</view>
+				</template>
+				<template v-if="info.info && info.info.amount">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.6;">
+						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_VIEW_AMOUNT}}</view>
+						<view :style="{color:$theme.LOG_VALUE}">
+							{{$util.formatCoin(info.info.amount)}}
+						</view>
+					</view>
+				</template>
+			</view>
 
-
-			<view style="padding:12rpx 10px;border-radius: 24rpx;padding-bottom: 200rpx;">
-				<view style="display: flex;">
-					<block v-for="(item,index) in listTabs" :key="index">
-						<view :style="setStyle(curTab ==index)" @click="changeList(index)" style="text-align: center; margin-right: 10px;">
+			<view class="common_block" style="padding:12rpx;border-radius: 24rpx;">
+				<view style="display: flex;align-items: center;justify-content: space-between;">
+					<block v-for="(item,index) in KlineTabs" :key="index">
+						<view :style="setStyle(curKLine ==index)" @click="handleShowKLine(index)">
 							{{item}}
-							<view style="background-color: #038ef8;height: 2px;width: 40%;margin-left: 30%;margin-top: 5px;" v-if="curTab ==index"></view>
+						</view>
+					</block>
+				</view>
+				<view class="chart" id="chart-type-k-line" style="width: 99%;height: 500rpx;">
+				</view>
+			</view>
+
+			<view class="common_block" style="padding:12rpx;border-radius: 24rpx;padding-bottom: 200rpx;">
+				<view style="display: flex;align-items: center;justify-content: space-between;">
+					<block v-for="(item,index) in listTabs" :key="index">
+						<view :style="setStyle(curTab ==index)" @click="changeList(index)">
+							{{item}}
 						</view>
 					</block>
 				</view>
@@ -167,28 +123,14 @@
 								{{$lang.COIN_VIEW_DEPTH_TITLE_SELL_QTY}}
 							</view>
 						</view>
-						<block v-for="(item,index) in asks" :key="index">
-							<view style="display: flex;align-items: center;line-height: 2.4;margin:10rpx 0;">
-								<view style="flex:0 0 50%;" :style="$theme.depathAsksBG(item[1],asksMax)">
-									<view
-										style="display: flex;align-items: center;justify-content: space-between;padding-right:10rpx;">
-										<view>{{$util.formatCurrency($util.formatNumber(item[1],4))}}</view>
-										<view :style="$theme.setStockRiseFall(true)">
-											{{$util.formatCurrency($util.formatNumber(item[0],4))}}
-										</view>
-									</view>
-								</view>
-								<view style="flex:0 0 50%;" :style="$theme.depathBidsBG(bids[index][1],bidsMax)">
-									<view
-										style="display: flex;align-items: center;justify-content: space-between;padding-left:10rpx;">
-										<view :style="$theme.setStockRiseFall(false)">
-											{{$util.formatCurrency($util.formatNumber(bids[index][0],4))}}
-										</view>
-										<view>{{$util.formatCurrency($util.formatNumber(bids[index][1],4))}}</view>
-									</view>
-								</view>
+						<view style="display: flex;align-items: center;">
+							<view style="flex:0 0 50%;">
+								<AskList :list="asks" :max="asksMax" dir="row-reverse"></AskList>
 							</view>
-						</block>
+							<view style="flex:0 0 50%;">
+								<BidList :list="bids" :max="bidsMax"></BidList>
+							</view>
+						</view>
 					</template>
 				</template>
 				<template v-else>
@@ -214,72 +156,40 @@
 								</view>
 								<view style="flex:0 0 auto; padding-left: 40rpx;"
 									:style="$theme.setStockRiseFall(item.dir>0)">
-									{{$util.formatCurrency(item.price)}}
+									{{item.price}}
 								</view>
-								<view style="margin-left: auto;">
-									{{$util.formatCurrency($util.formatNumber(item.amount,4))}}
-								</view>
+								<view style="margin-left: auto;">{{$util.formatNumber(item.amount,4)}}</view>
 							</view>
 						</block>
 					</template>
 				</template>
 			</view>
 
-			<view style="position: fixed;bottom: 0;left: 0;right: 0;z-index: 999;background-color: #1e1e1e;">
+			<view style="position: fixed;bottom: 0;left: 0;right: 0;background-color: #FFFFFF;">
 				<view style="display: flex; align-items: center;justify-content: space-around;">
-					<view class="common_btn" style="margin:20px auto; width:40%;" :style="{backgroundColor:$theme.RISE}"
+					<view class="common_btn" style="margin:20px auto; width:40%;background-color: #6D41FF;"
 						@click="linkIndex(0)">
-						{{isContract?$lang.CONTRACT_DETAIL_BNT_BUY: $lang.COIN_VIEW_BTN_BUY}}
+						{{isContract?$lang.CONTRACT_DETAIL_BNT_BUY : $lang.COIN_VIEW_BTN_BUY}}
 					</view>
-					<view class="common_btn" style="margin:20px auto; width: 40%;"
-						:style="{backgroundColor:$theme.FALL}" @click="linkIndex(1)">
-						{{isContract?$lang.CONTRACT_DETAIL_BTN_SELL: $lang.COIN_VIEW_BTN_SELL}}
+					<view class="common_btn" style="margin:20px auto; width: 40%;" @click="linkIndex(1)">
+						{{isContract?$lang.CONTRACT_DETAIL_BTN_SELL :$lang.COIN_VIEW_BTN_SELL}}
 					</view>
 				</view>
 			</view>
-		</template>
-
-		<!-- Time选择器 -->
-		<u-picker :show="isShowTime" :columns="[$lang.TABS_TIMES]" @change="changeTime" @cancel="isShowTime=false"
-			@confirm="confirmTime" :cancelText="$lang.COMMON_CANCEL" :confirmText="$lang.COMMON_CONFIRM"
-			:cancelColor="$theme.MODAL_CANCEL" :confirmColor="$theme.PRIMARY" visibleItemCount="9"></u-picker>
-
-		<!-- 技术指标 选择器 -->
-		<u-picker :show="isShowIndicator" :columns="[indicatorType]" @change="changeIndicator"
-			@cancel="isShowIndicator=false" @confirm="confirmIndicator" :cancelText="$lang.COMMON_CANCEL"
-			:confirmText="$lang.COMMON_CONFIRM" :cancelColor="$theme.MODAL_CANCEL" :confirmColor="$theme.PRIMARY"
-			visibleItemCount="9"></u-picker>
-
-		<!--  主图显示 样式类型 -->
-		<u-picker :show="isShowCandle" :columns="[candleType]" @change="changeCandle" @cancel="isShowCandle=false"
-			@confirm="confirmCandle" :cancelText="$lang.COMMON_CANCEL" :confirmText="$lang.COMMON_CONFIRM"
-			:cancelColor="$theme.MODAL_CANCEL" :confirmColor="$theme.PRIMARY" visibleItemCount="9"></u-picker>
-
-		<!-- 全屏显示图表 -->
-		<template v-if="showFullScreen">
-			<KlineFull :list="klineList" :config="klineFullConfig" @action="handleClose" />
 		</template>
 	</view>
 </template>
 
 <script>
-	// import KLineChart from './components/KLineChart.vue';
-	import CustomLogo from '@/components/CustomLogo.vue';
-	import EmptyData from '@/components/EmptyData.vue';
-	import KlineFull from './components/KlineFull.vue';
 	import {
 		init,
-		// registerLocale,
 		dispose
 	} from '@/common/klinecharts.min.js';
+	import {
+		klineCandle
+	} from '@/common/klineConfig.js';
 
 	export default {
-		components: {
-			EmptyData,
-			CustomLogo,
-			KlineFull,
-			// KLineChart
-		},
 		data() {
 			return {
 				isAnimat: false, // 页面动画
@@ -300,27 +210,7 @@
 				temp: {},
 				isConnected: false, // 是否链接socket
 
-				klineData: null, // kline 数据
-				indicator: null,
-
-				// time选择器
-				isShowTime: false,
-				curTime: '', // 当前选择时间
-				// 技术指标
-				isShowIndicator: false,
-				curIndicator: '', // 当前选择技术指标
-				curIndicator1: '', // 当前选择技术指标
-				// 主位图表显示样式
-				isShowCandle: false,
-				curCandle: 'solid',
-
-				showFullScreen: false, // 是否全屏
-				kLineChartFull: null, // Kline实例化
-
-				klineList: [],
-
 				isContract: false, // 当前详情是否为合约详情
-				time_index:0,
 			};
 		},
 		computed: {
@@ -330,41 +220,13 @@
 					return this.info.name || 'Detail';
 				}
 			},
-
-			// 图表数据
-			klineDataResult() {
-				return this.klineList && this.klineList.length > 0 ?
-					this.klineList : []
+			KlineTabs() {
+				return [this.$lang.COIN_VIEW_TAB_MINUTE,
+					this.$lang.COIN_VIEW_TAB_DAILY,
+					this.$lang.COIN_VIEW_TAB_MONTHLY
+				];
 			},
-			// 显示图表
-			isShowKline() {
-				return this.klineDataResult.length > 0
-			},
-			// 全屏所需配置项
-			klineFullConfig() {
-				return {
-					candle: this.curCandle,
-					indicator: this.curIndicator,
-					indicator1: this.curIndicator1,
-					time: this.curTime,
-				}
-			},
-
-			// 技术指标类型备选组
-			indicatorType() {
-				// klinecharts 支持的技术指标
-				return ['MA', 'EMA', 'BOLL']
-			},
-			
-			indicatorType1() {
-				// klinecharts 支持的技术指标
-				return ['VOL', 'MACD', 'KDJ',  'RSI','WR']
-			},
-			
-			// 主位的图表数据显示style
-			candleType() {
-				return ['solid', 'stroke', 'up_stroke', 'down_stroke', 'ohlc', 'area']
-			},
+			// 
 			listTabs() {
 				return [this.$lang.COIN_VIEW_TAB_DEPTH,
 					this.$lang.COIN_VIEW_TAB_TRADE,
@@ -379,13 +241,8 @@
 		},
 		onShow() {
 			this.isAnimat = true;
-			this.$util.checkToken();
 			if (this.socket) this.disconnect();
 			this.getData();
-			this.curTime = this.$lang.TABS_TIMES[0];
-			this.curIndicator = this.indicatorType[0];
-			this.curIndicator1 = this.indicatorType1[0];
-			this.curCandle = this.candleType[0];
 		},
 		onHide() {
 			this.isAnimat = false;
@@ -398,92 +255,15 @@
 			if (this.socket) this.disconnect();
 		},
 		methods: {
-			handleClose() {
-				this.showFullScreen = false;
+			fanhui() {
+				uni.switchTab({
+					url: "/pages/market/index"
+				})
 			},
-			zoomIn() {
-				this.showFullScreen = true;
-				this.handleShowKLine(this.curKLine);
-			},
-			// 選擇一个时间
-			chooseTime() {
-				this.isShowTime = true;
-			},
-			changeTime(e) {
-				console.log(`changeMode e:`, e);
-			},
-			confirmTime(e) {
-				console.log(`confirmMode e:`, e);
-				// this.code = e.value[0].code;
-				this.curTime = e.value[0];
-				this.handleShowKLine(e.value[0]);
-				this.isShowTime = false;
-			},
-			
-			confirmTime1(e) {
-				console.log(e);
-
-				// this.code = e.value[0].code;
-				this.curTime = e;
-				this.handleShowKLine(e);
-			},
-			
-			
-
-			// 選擇一个技术指标
-			chooseIndicator() {
-				this.isShowIndicator = true;
-			},
-			changeIndicator(e) {
-				console.log(`changeMode e:`, e);
-			},
-			confirmIndicator(e) {
-				console.log(`confirmMode e:`, e);
-				// this.code = e.value[0].code;
-				this.kLineChart.removeIndicator('candle_pane', this.curIndicator);
-				
-				this.curIndicator = e;
-				// this.handleShowKLine(this.curKLine);
-				
-				
-				this.indicator = this.kLineChart.createIndicator(this.curIndicator,false,{
-					id: 'candle_pane', // 指定将指标添加到主图
-				});
-			},
-			
-			confirmIndicator1(e) {
-				console.log(`confirmMode e:`, e);
-				// this.code = e.value[0].code;
-				this.kLineChart.removeIndicator(this.indicator1,this.curIndicator1);
-				
-				this.curIndicator1 = e;
-				// this.handleShowKLine(this.curKLine);
-				
-				
-				this.indicator1 = this.kLineChart.createIndicator(this.curIndicator1);
-			},
-			
-
-			// 选择一个显示类型
-			chooseCandle() {
-				this.isShowCandle = true;
-			},
-			changeCandle(e) {
-				console.log(`changeMode e:`, e);
-			},
-			confirmCandle(e) {
-				console.log(`confirmMode e:`, e);
-				// this.code = e.value[0].code;
-				this.curCandle = e.value[0];
-				this.handleShowKLine(this.curKLine);
-				this.isShowCandle = false;
-			},
-
-
 			linkSearch() {
 				if (this.socket) this.disconnect();
-				uni.navigateTo({
-					url: this.$paths.SEARCH
+				uni.switchTab({
+					url: this.$CONSTANTS.MARKET_INDEX
 				})
 			},
 			// 买入 卖出
@@ -493,28 +273,32 @@
 				this.curType = val;
 				// 合约买卖页面
 				if (this.isContract) {
-					uni.navigateTo({
-						url: `/pages/contract/index?code=${this.code}&tag=${this.curType}`
+					uni.reLaunch({
+						url: `${ this.$CONSTANTS.CONTRACT_INDEX}?code=${this.code}&tag=${this.curType}`
 					});
 					return false;
 				}
-				uni.navigateTo({
-					url: `/pages/coin/index?code=${this.code}&tag=${this.curType}`
+				uni.reLaunch({
+					url: `${ this.$CONSTANTS.COIN_INDEX}?code=${this.code}&tag=${this.curType}`
 				});
 			},
-			// 取关
-			async handleUnFollow(id) {
-				const result = await this.$http.post(`api/user/collect_edit`, {
-					gid: id,
-				})
-				this.info.is_collected = this.info.is_collected == 1 ? 0 : 1;
-			},
+			// // 取关
+			// async handleUnFollow(id) {
+			// 	const result = await this.$http.post(`api/user/collect_edit`, {
+			// 		gid: id,
+			// 	})
+			// 	this.info.is_collected = this.info.is_collected == 1 ? 0 : 1;
+			// },
 			// 设置样式
 			setStyle(val, w = 120) {
 				return {
 					minWidth: `${w}rpx`,
-					padding: `12rpx 0rpx`,
-					color: val ? '#FFFFFF' : "#999999",
+					margin: '16rpx',
+					padding: `12rpx 20rpx`,
+					borderRadius: `16rpx`,
+					textAlign: 'center',
+					backgroundColor: val ? this.$theme.SECOND : '#F6F8FC',
+					color: val ? '#FFFFFF' : this.$theme.SECOND,
 					borderRadius: `44rpx`,
 				}
 			},
@@ -682,7 +466,7 @@
 				uni.showLoading({
 					title: this.$lang.REQUEST_DATA,
 				});
-				const result = await this.$http.get(`api/product/info`, {
+				const result = await this.$http.post(`api/product/info`, {
 					code: this.code,
 					time_index: this.curKLine
 				});
@@ -693,7 +477,7 @@
 				console.log(this.info.project_type_id);
 
 				this.changeList(this.curTab);
-
+				// 当前实时更新模式
 				this.connect();
 
 				// 延时,等DOM渲染
@@ -702,46 +486,25 @@
 				}, 50);
 			},
 
-			clearData() {
-				if (this.indicator) {
-					this.kLineChart.removeIndicator(this.indicator);
-					this.indicator = null;
-				}
-				if (this.kLineChart) this.kLineChart.clearData();
-			},
-
 			// 获取并生成KLine数据
 			async genKLineData() {
 				if (!this.kLineChart) {
-					this.kLineChart = init(`kline-norm`);
-					const temp = uni.getStorageSync('lang');
-					const tz = this.$util.LANGUAGE_LIST.filter(item => item.lang == temp);
-					console.log(`tz.timeZone:`, tz[0].timeZone);
-					this.kLineChart.setTimezone('Europe/Istanbul');
+					this.kLineChart = init('chart-type-k-line');
+					this.kLineChart.createIndicator('MA', false);
 				}
-				const result = await this.$http.get(`api/product/coin_lishi`, {
+				const temp = uni.getStorageSync('lang');
+				const tz = this.$util.LANGUAGE_LIST.filter(item => item.lang == temp);
+				console.log(`tz.timeZone:`, tz[0].timeZone);
+				this.kLineChart.setTimezone(tz[0].timeZone);
+
+				const result = await this.$http.post(`api/product/lishi`, {
 					ac_time: this.curKLine,
 					project_type_id: this.info.project_type_id,
-					// 此处用code ，用locate报错
 					code: this.info.code
 				})
 				console.log('k data:', result);
 				if (!result) return false;
-				this.clearData();
-				
-				this.klineList = result;
 				this.kLineChart.setStyles({
-					grid: {
-					    show: true,
-					    horizontal: {
-						  show: true,
-						  color: '#303030',
-						},
-						vertical: {
-						  show: true,
-						  color: '#303030',
-						}
-					},
 					indicator: {
 						tooltip: {
 							showRule: "always",
@@ -749,7 +512,7 @@
 						}
 					},
 					candle: {
-						type: `candle_` + this.curCandle,
+						type: `candle_solid`,
 						tooltip: {
 							showRule: "always",
 							showType: 'standard',
@@ -779,26 +542,8 @@
 						},
 					},
 				});
-				// const temp = {
-				// 	close: result[result.length - 1].close,
-				// 	high: result[result.length - 1].high,
-				// 	low: result[result.length - 1].low,
-				// 	open: result[result.length - 1].open,
-				// 	timestamp: result[result.length - 1].timestamp,
-				// 	turnover: result[result.length - 1].turnover,
-				// };
-				// this.temp = temp;
 				this.kLineChart.setPriceVolumePrecision(this.info.shudian, 0)
-				this.kLineChart.applyNewData(this.klineList)
-				this.$forceUpdate()
-				// this.kLineChart.setTimezone();
-				// 显示技术指标
-				if (!this.indicator) {
-					this.indicator1 = this.kLineChart.createIndicator(this.curIndicator1);
-					this.indicator = this.kLineChart.createIndicator(this.curIndicator,false,{
-						id: 'candle_pane', // 指定将指标添加到主图
-					});
-				}
+				this.kLineChart.applyNewData(result);
 			},
 
 			// latest trading list

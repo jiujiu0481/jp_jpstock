@@ -8,6 +8,13 @@ export default {
 	
 	AI: `AI 取引`,
 	
+	CONTRACT_DESC_CONTENT: [
+		'契約証拠金：（購入数量*名目額）/倍率,名目額1000。',
+		'不足数量：貸借対照表の数字,証拠金,証拠金手数料。',
+		'手数料：証拠金*コイン手数料率（0.05%）*倍率。',
+		'ユーザーエクイティ：ユーザー残高+総証拠金+ポジション損益。',
+		'リスク比：ユーザーエクイティ/総証拠金*100,一般的には20%未満でロスカット。',
+	],
 
 	// 网络检查及网络状态
 	TIP_NETWORK_TYPE_NONE: `現在ネットワークが存在しないか、ネットワークの状態が不良です`,
@@ -332,7 +339,7 @@ export default {
 	TRADE_IPO_SUCCESS_AMOUNT: `当選金額`,
 	TRADE_IPO_SUCCESS_FREEZE: `支払金額`,
 	TRADE_IPO_SUCCESS_CT: `取引日`,
-	TRADE_IPO_SUCCESS_ORDER_SN: `取引日`,
+	TRADE_IPO_SUCCESS_ORDER_SN: `取引番号`,
 	TRADE_IPO_SUCCESS_UNPAY_AMOUNT: `未払い額`,
 
 

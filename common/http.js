@@ -15,6 +15,12 @@ export const WssUrl = 'wss://'+HOST+'/ws'
 
 export const BASE_URL = `https://${HOST}`;
 
+export const WS_COIN_URL = `wss://${HOST}/ws`; // coin
+
+export const WS_Zonghe_URL = `wss://${HOST}/zonghe`; // 币
+
+
+
 const CODE = "Qwd3N5yp";
 
 // 统一处理网络状态 在onShow 及 api请求时调用
@@ -122,6 +128,8 @@ const post = (url, data = {}) => {
 
 export default {
 	BASE_URL,
+	WS_COIN_URL,
+	WS_Zonghe_URL,
 	http,
 	get,
 	post,

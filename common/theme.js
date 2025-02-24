@@ -16,6 +16,8 @@ const LOG_VALUE = '#333333'; // 一些记录的数据颜色
 
 const CHART_TEXT_COLOR = '#999999'; // 图表相关的字色
 
+
+
 // 渐变设置
 const linerGradient = (deg, from, to) => {
 	return {
@@ -68,12 +70,62 @@ const setStockRiseFall = (val, isbg = false) => {
 	}
 };
 
+const setStockRiseFallBG = (val, isbg = false) => {
+	return {
+		color: '#FFFFFF',
+		backgroundColor:  val ? RISE : FALL,
+	}
+};
+const setCoinRiseFall = (val, isbg = false) => {
+	return {
+		color:  '#FFFFFF',
+		backgroundColor: val ? FALL : RISE,
+	}
+};
+const setCoinRiseFallB = (val, isbg = false) => {
+	return {
+		color: isbg ? '#FFFFFF' : val ? FALL : RISE,
+		backgroundColor: !isbg ? TRANSPARENT : val ? RISE : FALL,
+	}
+};
 
 // 资金变动相关 交易额 字色
 const setTradeAmount = (val) => {
 	return {
 		color: val ? PRIMARY : PRIMARY
 	}
+};
+
+// Coin Depth bg
+const depathAsksBG = (val, max, dir = 'right') => {
+	const temp = RGBConvertToRGBA(FALL, 20);
+	// 當前最大值為100%,
+	const tempVal = val / max * 100;
+	// console.log(val, max, tempVal);
+	const style = {
+		...linerGradient(180, temp, temp),
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: `right 0`,
+		backgroundSize: `${tempVal}% 100%`,
+		width: '100%',
+		minHeight: `100%`,
+	}
+	return style;
+};
+const depathBidsBG = (val, max, dir = '0') => {
+	const temp = RGBConvertToRGBA(RISE, 20);
+	// 當前最大值為100%,
+	const tempVal = val / max * 100;
+	// console.log(val, max, tempVal);
+	const style = {
+		...linerGradient(180, temp, temp),
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: `${dir} 0`,
+		backgroundSize: `${tempVal}% 100%`,
+		width: '100%',
+		minHeight: `100%`,
+	}
+	return style;
 };
 
 // 设置input的placeholder样式
@@ -137,7 +189,9 @@ const setFlexRowReverse = (val) => {
 
 // 主题，一些通用的颜色值 硬编码
 export default {
+	setStockRiseFallBG,
 	PRIMARY,
+	setCoinRiseFallB,
 	SECOND,
 	THIRD,
 	RISE,
@@ -152,6 +206,8 @@ export default {
 	LG_THIRD,
 	LG_FOURTH,
 	LG_FIFTH,
+	depathAsksBG,
+	depathBidsBG,
 	linerGradient,
 	setStatusPrimary,
 	setBGCover,
@@ -163,4 +219,5 @@ export default {
 	setDirection,
 	setFlexRowReverse,
 	RGBConvertToRGBA,
+	setCoinRiseFall,
 };

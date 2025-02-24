@@ -5,10 +5,10 @@
 			<view class="font-size-17 bold margin-left-5">人気株式</view>
 		</view>
 		<view
-			style="display: flex;align-items: center;justify-content: space-between;background-color: #E82D28;border-radius: 15px;padding: 5px;">
+			style="display: flex;align-items: center;justify-content: space-between;border-radius: 15px;padding: 5px;">
 			<block v-for="(item,index) in top1" :key="index" v-if="index<=2">
 				<view
-					style="border-radius: 6px;border:2px solid rgba(0, 0, 0, 0);text-align: center;flex-basis: calc(50% - 12px);box-sizing: border-box;margin: 5px;"
+					style="border-radius: 6px;border:2px solid rgba(0, 0, 0, 0);text-align: center;flex-basis: calc(50% - 12px);margin: 5px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"
 					:style="{backgroundColor:item.change_ratio>0?'#FFF6F7':'#F0FEFB',border:`1px solid ${stockId==index?(item.change_ratio>0?$theme.RISE:$theme.FALL) :'#FFFFFF'}` }"
 					@click='handleChangeType(index)'>
 					<view class="bold" :style="{color: stockId==index?'#121212':'#121212'}"

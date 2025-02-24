@@ -21,7 +21,7 @@
 						</view>
 						<view
 							style="background-color: #F3F3F3;font-size: 22rpx;border-radius: 8rpx;padding:6rpx 16rpx;margin:0 30rpx"
-							:style="{color:item.fx==1?'#018ef8':$theme.SECOND}">
+							:style="{color:item.fx==1?'#6D41FF':$theme.SECOND}">
 							{{item.fxText}}
 						</view>
 						<view :style="setStyle(item.direct)">
@@ -31,23 +31,19 @@
 							{{item.status==-1?$lang.COIN_HISTORY_TIP_CANCEL:$lang.COIN_HISTORY_TIP_TRADE}}
 						</view>
 					</view>
-					<view
-						style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;margin: 10px  0;background-color: #424242;padding: 4px 10px;border-radius: 6px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_CURRENT_PRICE}}</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">{{item.price}}</view>
 					</view>
-					<view
-						style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;margin: 10px  0;background-color: #424242;padding: 4px 10px;border-radius: 6px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_CURRENT_QTY}}</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">{{item.quantity}}</view>
 					</view>
-					<view
-						style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;margin: 10px  0;background-color: #424242;padding: 4px 10px;border-radius: 6px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_CURRENT_TOTAL}}</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">{{item.total}}</view>
 					</view>
-					<view
-						style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;margin: 10px  0;background-color: #424242;padding: 4px 10px;border-radius: 6px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;">
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_HISTORY_TRADE_FEE}}</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">{{item.fee}}</view>
 					</view>
@@ -59,7 +55,7 @@
 						<view :style="{color:$theme.LOG_LABEL}">{{$lang.COIN_HISTORY_TRADE_QTY}}</view>
 						<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">0.55</view>
 					</view> -->
-					<view style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;margin: 10px  0;background-color: #424242;padding: 4px 10px;border-radius: 6px;">
+					<view style="display: flex;align-items: center;justify-content: space-between;line-height:1.8;">
 						<view style="font-size: 24rpx;" :style="{color:$theme.LOG_LABEL}">
 							{{item.sn}}
 						</view>
@@ -74,10 +70,11 @@
 </template>
 
 <script>
+	
 	export default {
 		name: 'HistoryRecord',
 		components: {
-
+		
 		},
 		props: {
 			code: {

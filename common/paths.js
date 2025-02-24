@@ -47,6 +47,7 @@ export const MARKET_OVERVIEW = `/pages/market/overview`;
 
 // 单股概况
 export const STOCK_OVERVIEW = `/pages/stock/overview`;
+export const COIN_OVERVIEW = `/pages/contract/index`;
 // 单股买入
 export const STOCK_BUY = `/pages/stock/buy`;
 

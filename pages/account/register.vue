@@ -9,9 +9,11 @@
 				<view class="back"></view>
 			</view> -->
 		</view>
-		<view >
-			<view class="box"><img src="/static/img/2.2d13f31b.png" class="box-top">
-				<view class="box-info common_block"  style="margin-left: 0px; padding: 10px;background-color: rgba(255, 255, 255, 0.9);">
+		<view>
+			<view class="box"><img src="/static/sign_up.png" class="box-top" :style="$theme.setImageSize(300)"
+					style="margin-bottom: 20px;display: flex;align-items: center;justify-content: center;">
+				<view class="box-info common_block"
+					style="margin-left: 0px; padding: 10px;background-color: rgba(255, 255, 255, 0.9);">
 					<view class="box-title">新しいアカウントを作成する</view>
 					<view class="box-name">電話番号</view>
 					<view class="box-input">

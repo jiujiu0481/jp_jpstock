@@ -1,7 +1,7 @@
 <template>
 	<view :class="isAnimat?'fade_in':'fade_out' " style="min-height: 100vh;">
 		<view style="background-color: #FFFFFF;">
-			<HeaderSecond :title="$lang.COIN_RECORD_TITLE"></HeaderSecond>
+			<HeaderSecond :title="履歴"></HeaderSecond>
 			<TabsFourth :tabs="setTabs" @action="changeTab" :acitve="curTab"></TabsFourth>
 		</view>
 
@@ -36,7 +36,7 @@
 		data() {
 			return {
 				isAnimat: false, // 页面动画
-				curTab: 1, // 
+				curTab: 0, // 
 				list: [], // 列表數據
 				code: '', // url ?code=
 			}
@@ -44,15 +44,15 @@
 		computed: {
 			setTabs() {
 				return [
-					this.$lang.COIN_RECORD_CURRENT,
-					this.$lang.COIN_RECORD_HISTORY,
+					'現在',
+					'履歴',
 					// this.$lang.COIN_RECORD_SUCCESS,
 				]
 			}
 		},
 		onLoad(opt) {
 			console.log(opt);
-			this.curTab = opt.tag || this.curTab;
+			this.curTab = opt.tag || 0;
 			this.code = opt.code || '';
 		},
 		onShow() {

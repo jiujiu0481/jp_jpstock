@@ -2,8 +2,8 @@
 	<view class="page_bg" >
 		<CustomHeaderSecond title=" 記録" />
 
-		<view style="padding:20rpx 32rpx; background-color: #FFFFFF;min-height: 96vh;width: 85%;border-radius: 10px;margin-left: 10px;margin-top: -8px;">
-			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird>
+		<view style=" background-color: #FFFFFF;min-height: 96vh;width: 95%;border-radius: 10px;padding: 0 10px;">
+			<!-- <TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird> -->
 
 			<template v-if="curTab==0">
 				<ApplyRecord></ApplyRecord>

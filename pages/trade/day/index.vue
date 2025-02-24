@@ -31,6 +31,8 @@
 			return {
 				isAnimat: false, // 页面动画
 				inv: 0,
+				type:1,
+				
 			}
 		},
 		onShow() {

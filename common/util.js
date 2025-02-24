@@ -129,7 +129,7 @@ const hasDecimalPoint = (val) => {
 };
 
 // 数量值 格式化
-const formatNumber = (val, decimal = 2) => {
+const formatNumber = (val, decimal = 0) => {
 	// 处理为规范化数字类型
 	val = isNaN(val) ? 0 : Number(val);
 	return decimal <= 0 ? val : val.toFixed(decimal) * 1;
@@ -163,7 +163,32 @@ const formatCoin = (coin) => {
 	// console.log('格式化：', result);
 	return result;
 };
+// 检查输入值 是否合法，小数是否大于指定位数。返回处理完成的数字类型的值
+const checkInputNumber = (val, point = 4) => {
+	const defaultPoint = 4; // 默认最大小数位数;
+	val = isNaN(val) ? 0 : Number(val);
+	if (val <= 0) {
+		uni.showToast({
+			title: Vue.prototype.$lang.COMMON_TOP_ENTER_NUMBER,
+			icon: 'none'
+		});
+		return false;
+	}
 
+	// 计算小数点后面的位数
+	const temp = val.toString().split('.')[1]?.length || 0;
+	// console.log(`check`, val, temp);
+	if (temp > point) {
+		uni.showToast({
+			title: Vue.prototype.$lang.COMMON_TIP_ENTER_POINT_PREFIX + defaultPoint + Vue.prototype.$lang
+				.COMMON_TIP_ENTER_POINT_SUFFIX,
+			icon: 'none'
+		});
+		return false;
+	}
+	console.log(`check result:`, val);
+	return val;
+};
 
 // 日期格式化
 // this.$util.formatDate(new Date())
@@ -232,6 +257,7 @@ export default {
 	formatNumber,
 	formatDate,
 	formatToday,
+	checkInputNumber,
 
 	// 根据当前平台，执行回退方式
 	goBack: () => {
@@ -263,7 +289,76 @@ export default {
 		console.log('checkEmail:', !emailPattern.test(val))
 		return emailPattern.test(val);
 	},
-
+// 用于每个页面onShow中检查token
+	checkToken: () => {
+		if (!uni.getStorageSync('token') || uni.getStorageSync('token') == '') {
+			uni.navigateTo({
+				url: Vue.prototype.$paths.ACCOUNT_ACCESS
+			});
+		}
+	},
+	// 数字格式化(值，是否货币) 唯有货币值需要千分符
+	formatCurrency: (num, currency = true) => {
+		// console.log('num:',num);
+		num = num.toString();
+		// num = num.replace(/[^\d]/g, ''); // 只允许数字输入
+		const intPart = num.split('.')[0]; // 获取整数部分
+		const decimalPart = num.split('.')[1] ? '.' + num.split('.')[1] : ''; // 获取小数部分
+		// 添加千分符
+		if (currency) {
+			const curLocale = uni.getStorageSync('lang'); // 
+			const formattedIntPart = new Intl.NumberFormat(curLocale, {
+				style: 'decimal', // 不包含货币符号。currency:包含货币符号
+				// currency: Vue.prototype.$CURRENCY
+				// unit: "kilometer-per-hour", // 单位
+			}).format(intPart);
+			return formattedIntPart + decimalPart;
+		}
+		return intPart + decimalPart;
+	},
+	formatYearMonthDay: (timeString) => {
+		// console.log('原值:', timeString);
+		const curLang = uni.getStorageSync('lang') || 'en-US';
+		// console.log('当前语言', curLang);
+		const opt = {
+			// year: '2-digit',24 numeric:2024
+			month: '2-digit',
+			day: '2-digit',
+		};
+		const result = new Intl.DateTimeFormat(curLang, opt).format(timeString);
+		// console.log('格式化：', result);
+		return result;
+	},
+	
+	
+	formatMonth: (timeString) => {
+		// console.log('原值:', timeString);
+		const curLang = uni.getStorageSync('lang') || 'en-US';
+		// console.log('当前语言', curLang);
+		const opt = {
+			// year: 'numeric',
+			month: '2-digit', // 双位数月份
+			// day: 'numeric',
+		};
+		const result = new Intl.DateTimeFormat(curLang, opt).format(timeString);
+		// console.log('格式化：', result);
+		return result;
+	},
+	
+	// 返回格式化的双位月日
+	formatMonthDay: (timeString) => {
+		// console.log('原值:', timeString);
+		const curLang = uni.getStorageSync('lang') || 'en-US';
+		// console.log('当前语言', curLang);
+		const opt = {
+			// year: '2-digit',24 numeric:2024
+			month: '2-digit',
+			day: '2-digit',
+		};
+		const result = new Intl.DateTimeFormat(curLang, opt).format(timeString);
+		// console.log('格式化：', result);
+		return result;
+	},
 	// 部分页面需要拼接股票完整LOGO的url
 	setLogo: (url) => {
 		// console.log('url:', url);

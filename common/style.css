@@ -10,6 +10,27 @@ page {
 /* uni-modal {
 	z-index: 9999;
 } */
+.common_input_wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	margin: 10px 0;
+	padding: 10px 0px;
+	border-radius: 16rpx;
+	height: 54rpx;
+	line-height: 54rpx;
+	/* border: 1px solid #E8EAF3; */
+	background-color: #F5F5F5;
+}
+
+.common_input_wrapper>input {
+	color: #121212;
+}
+
+.common_input_wrapper>image {
+	padding: 0 16px;
+}
+
 
 .assets_card {
 	background-image: url(/static/assets_card_bg.png);

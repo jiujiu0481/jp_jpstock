@@ -5,7 +5,7 @@
 		</template>
 		<template v-else>
 			<block v-for="(item,index) in list" :key="index">
-				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;">
+				<view style="padding: 16px;margin-top: 16px; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
 					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.SECOND}" style="font-size: 36rpx;">{{item.goods.name}}</view>
 						<template v-if="item.message &&item.message.length>0">

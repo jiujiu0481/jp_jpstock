@@ -3,30 +3,26 @@
 	background-repeat: no-repeat;margin-bottom: -330px; background-color:#ededed ;">
 		<view class="header">
 			<view class="header-left">
-				<!-- <img src="/static/logo.png" class="header-img"> -->
+				<img src="/static/logo.png" class="header-img">
 			</view>
 			<view style="width: 260px;">
 				<view
 					style="border: 2px #FFFFFF solid;border-radius: 20px;width: 100%;display: flex;text-align: center; font-weight: 700;">
 					<view style="padding: 5px;border-radius: 20px 0 20px 20px;flex: 50%;"
 						:style="currentTab === 0 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
-						:class="{'active': currentTab === 0}" @click="currentTab = 0">株式市場</view>
+						:class="{'active': currentTab === 0}" @click="qiehuan(0)">株式市場</view>
 					<view style="padding: 5px;border-radius: 0px 20px 20px 20px;flex: 50%;"
 						:style="currentTab === 1 ? 'background-color: #FFFFFF; color: #da0e16;' : 'background-color: transparent; color: #FFFFFF;'"
-						:class="{'active': currentTab === 1}" @click="currentTab = 1">暗号通貨</view>
+						:class="{'active': currentTab === 1}" @click="qiehuan(1)">暗号通貨</view>
 				</view>
 			</view>
 			<view class="header-right">
-				<!-- <img src="/static/search_icon.png" @click="$u.route({url:'/pages/search/index'});" class="header-search"> -->
 				<img src="/static/notify.png" @click="$u.route({url:'/pages/notification'});" class="header-setting">
 			</view>
 		</view>
-		<view style="margin-top: 130px; " class="page"  v-if="currentTab === 0">
-			<!-- <view style="display: flex;align-items: center;justify-content: center; ">
-				<img src="/static/1head.png" class="banner" @click="$u.route({url:'/pages/market/overview'});">
-			</view> -->
-			<!-- 	<view class="title">機能</view> -->
-			<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;	border-radius: 24px 24px 10px 10px;">
+		<view style="margin-top: 130px; " class="page">
+			<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;	border-radius: 24px 24px 10px 10px;"
+				v-if="currentTab==0">
 				<view class="menu">
 					<view class="menu-item" @click="linkmarket()">
 						<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
@@ -54,9 +50,9 @@
 						<image src="/static/btn_3.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> AI資産運用</view>
 					</view>
-					<view class="menu-item" @click="linkMarketOV()" style="margin-top: 12px;">
-						<image src="/static/btn_5.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
-						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> マーケット</view>
+					<view class="menu-item" @click="linkDeposit" style="margin-top: 12px;">
+						<image src="/static/cun.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">入金</view>
 					</view>
 					<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});" style="margin-top: 12px;">
 						<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
@@ -68,15 +64,35 @@
 				</view>
 			</view>
 
+			<view style="background-color: #FFFFFF; padding: 20px   0   10px  0;	border-radius: 24px 24px 10px 10px;"
+				v-if="currentTab==1">
+				<view class="menu">
+					<view class="menu-item" @click="linkmarketCoin()">
+						<image src="/static/btn_7.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">暗号取引</view>
+					</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/contract/index'});">
+						<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">大口取引</view>
+					</view>
+					<view class="menu-item" @click="linkTransfer()">
+						<image src="/static/btn_4.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">両替</view>
+					</view>
+					<view class="menu-item" @click="$u.route({url:'/pages/deposit/index'});">
+						<image src="/static/btn_6.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+						<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;">サポート</view>
+					</view>
+				</view>
+				<view style="text-align: center;padding-top: 6px;">
+					<image src="/static/banner.png" mode="widthFix" style="width: 90%;"></image>
+				</view>
+			</view>
 
-			<view style="margin-top: 10px;">
+			<view style="margin-top: 10px;" v-if="currentTab==0">
 				<u-picker :show="zhibiao_show" :columns="columns" @close="zhibiao_show=false"
 					@cancel="zhibiao_show=false" cancelText="キャンセル" confirmText="確認する"
 					@confirm="zhibiao_click"></u-picker>
-				<!-- <view class="title">マーケット情報</view> -->
-				<!-- <view style="text-align: center;padding-top: 6px;" >
-				<image src="/static/banner.png" mode="widthFix" style="width: 90%;"></image>
-			</view> -->
 				<view class="top">
 
 					<view class="top-header">
@@ -105,61 +121,58 @@
 						<view class="chart" id="chart-type-k-line" style="width: 100%;height: 200px;">
 						</view>
 					</view>
-
-					<!-- 
-				<view class="top-foot">
-					<view class="top-foot-item" v-for="(item,index) in top3_list">
-						<view class="top-foot-box">
-							<view class="top-foot-name">{{item.name}}</view>
-							<view class="top-foot-price" :class="item.returnOfToday>=0?'red':'green'">{{item.price}}
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAAQhQTFRFAAAA/wAA/wAA/wBV/wBAzAAz2wBJ4wA56ABG6wA73wBA4QA85gBA6QBD4gA74wBC5QA+6AA+4gBC5QA74QA74gBA5AA85ABA4gBA4gA/5AA/4gA+5AA/4gA95AA95AA84wA/4wA+5QA+5AA+5QA/5AA+5QA94wA/5AA+5QA+5AA94wI+4wI95QI+4wI95AI+5AI+5AI95QI/4wI+5AI95AI/5AE/5AE+5AE+5QE95AE95AE+5AE+5AE+5AE+5AE+5AE+4wE+5AE+5AE+5AE+5AE+5AE+5AE+5QE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+y48RSQAAAFd0Uk5TAAECAwQFBwkLDRARFBcaGx0hIycrLC8wNDU5PkFHS0xRUldeYWdsbnN0eYCBiImQlZabnaKnq7G2t7u8wMbIzdLV1tna3eHj5+nq7O3v8vP19/n6/P3+hOYpNgAAANhJREFUGBmVwYk2QmEYBdATUSKzEgmZp4oKCSlkHoqc93+T6q66q9v9h8/eUDpOQGy19RCGUKRO5iFUZMcmRLbY9T4DgblPOsoBWI3esOcAVkfsa8ZhsfJLVy0Eo4lHDjiFUYEe6zBI0+s1Cq3ZDw4pQWfkmj570DikX2MJSss/VLgbh0L4nkpZKJxR7W8NPhvUeZ7CkOk3al3AK3BFgx147NPkewEDYk0aVcbgClVpkYErR5tWEj0p2j1NwhF9ocA5HJcU2UbHLmW+5oHFBoVugzgpiaXwH221L+MJdLkO8AAAAABJRU5ErkJggg=="
-									v-if="item.returnOfToday>=0">
-
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAARRQTFRFAAAAAP8AAICAVapVQICAM5lmKoCASZJtOY5xM5mAQJWAN5KAM5l3PJZ4OY6AM4yAPZJ5N5B6O5OAN5KAOI+AOpJ8OZWANJB8OZOANZR9NY+AN5F9OJB9N5F7NpJ9N5F+NpN8N5J8OZF8NpR8N5F+NpN+OJJ+OJJ9N5N+N5F9NpN9OJF8N5J8NpN9N5N8N5F+N5J9NpJ+N5J+N5J9N5F9N5J+N5J9NpJ8OJF9OJJ9N5F9N5J9NpJ9N5J9OJJ9N5J9N5J9N5N9N5J+N5J8NpJ9N5J8N5N9N5J9NpJ9N5J9N5J9N5J9N5N9N5J9NpJ9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9tDxDXAAAAFt0Uk5TAAECAwQFBgcJCgwODxESFBUXGhwgIyQnKCswMzc8PUFCRkhMT1VbYGFmaG1zdn2Cg4iKj5WYn6Slqqywsra8v8TIyc3O0dbY3N/g4+Tm6u3u8fP19/n6+/z9/h0cC3YAAADaSURBVBgZpcGFVgJRFAXQo6KgYmGCHdhF2QoGYGEMFpz//w9RwpnhxV3LvXFIsRX031EoA2D2iyLFXtTsUeJjGj8ClxTYQd24Q6tsJxrWaPMyipZjWsTxZ+CBRgdwm6/Q4LYPHgnqfc7Aq/uaWrvwmyxTI9eFNhtUex2DwimVVqEyVKLCEdQWq2xzH4ZGin6VOegE8/TZh170jR5XARhs0c2ZgNE5XdZhNvLElhPYLLPpcRBWadZVF2AXKvBXEhKxd9bc9EBkm2R5CjIdF+QmpCLPZ5BbGsa/fQMQlu7RIddlYAAAAABJRU5ErkJggg=="
-									v-else>
-							</view>
-							<view class="top-foot-num" :class="item.returnOfToday>=0?'red':'green'">
-								{{item.changeOfToday}}({{(item.returnOfToday*100).toFixed(2)}}%)
-							</view>
-						</view>
-					</view>
-
-				</view> -->
-
 				</view>
 			</view>
-			<view style="margin-top: 10px;background-color: #FFFFFF;">
+
+			<view
+				style="display: flex;align-items: center;justify-content: space-around;background-color: #fff;padding-bottom: 20px;"
+				v-if="currentTab==1">
+				<view
+					style=" padding: 16px 0px;  border-radius: 10px;text-align: center;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
+					:style="{backgroundColor:item.rate>= 0 ?'#d9f2e7':'#f9d9da'}" @click="linkToCoin(item.code);"
+					v-for="(item,index) in list" :key="index" v-if="index<3">
+					<view style="font-size: 14px;">{{item.name}}</view>
+					<view style="padding-top: 8px;">{{item.current_price}}</view>
+					<view style="margin-top: -6px;">
+						<image :src="item.rate>=0?'/static/line_rise.png':'/static/line_fall.png'" mode="widthFix"
+							:style="$theme.setImageSize(200)"></image>
+					</view>
+					<view
+						style="display: flex;margin-top: -30px;font-size: 12px;align-items: center;justify-content: space-between;padding: 0  6px;">
+						<view>{{item.rate_num}}</view>
+						<view>{{item.rate}}%</view>
+					</view>
+				</view>
+
+			</view>
+			<view style="margin-top: 10px;background-color: #FFFFFF;" v-if="currentTab==0">
 				<view style="padding-top: 16px;margin-left: 16px; font-size: 18px;font-weight: 900;">人気株</view>
 				<!-- <view style="margin-top: 80px;">
 				<image src="/static/home_banner_2.png" mode="widthFix" style="width: 100%;"></image>
 			</view> -->
-
 				<view style="margin: 0 10px;">
 					<view v-for="(item,index) in list"
 						style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 1px solid #979797;"
-						@click="link(item.code)">
-
+						@click="linkToStock(item.code)">
 						<view
 							style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
 							<view style="font-size: 14px;">
-								<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
-									:style="$theme.setImageSize(32)" @click.stop="handleUnFollow(item.code)">
 								{{item.name}}
 							</view>
-
 						</view>
-						<view style="display: flex; align-items: center; margin: 4px 0;">
-							<span style="flex:2; font-size: 14px;"
-								:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
-							<view style="flex:2;font-size: 14px;padding-left: 60rpx;text-align: right; ">
-
-								{{item.close}}
-								<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(24)"
-									style="padding-left: 12rpx;">
+						<view
+							style="display: flex; align-items: center; justify-content: space-between; margin: 4px 0;">
+							<view style="display: flex;align-items: center;text-align: center;">
+								<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
+									:style="$theme.setImageSize(38)" @click.stop="handleUnFollow(item.code)">
+								<span style=" font-size: 14px;">{{item.code}}</span>
 							</view>
-
-							<view style="flex:1;text-align: right;font-size: 14px;"
-								:style="$theme.setStockRiseFall(item.rate>0)">
+							<view style="font-size: 14px;text-align:center;  margin-left: auto; padding-right: 20px;">
+								{{item.close}}
+							</view>
+							<view
+								style="text-align: right;font-size: 14px;padding: 6px 8px;box-sizing: border-box;width: 72px;border-radius: 6px;text-align: right;"
+								:style="$theme.setStockRiseFallBG(item.rate>0)">
 
 								<span>{{item.rate}}%</span>
 							</view>
@@ -167,8 +180,33 @@
 					</view>
 				</view>
 			</view>
+
+			<view style="margin-top: 10px;background-color: #FFFFFF;" v-if="currentTab==1">
+				<view style="padding-top: 16px;margin-left: 16px; font-size: 18px;font-weight: 900;">人気暗号</view>
+				<view style="margin: 0 10px;">
+					<view v-for="(item,index) in list"
+						style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #97979799;"
+						@click="linkToCoin(item.code)">
+						<view style="display: flex;align-items: center;justify-content: space-between;">
+							<view style="display: flex;align-items: center;">
+								<image :src="item.logo" :style="$theme.setImageSize(60)">
+									<view style="padding-left: 10px;"> {{item.name}}</view>
+							</view>
+							<view style="display: flex;align-items: center;">
+								<view style="padding-right: 20px;">{{item.current_price}}</view>
+								<view
+									style=" padding: 6px 12px;box-sizing: border-box;width: 72px;border-radius: 6px;text-align: right;"
+									:style="$theme.setCoinRiseFall(item.rate>0)">
+									<span>{{item.rate}}%</span>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
 			<view style="width: 100%;height: 4px;background-color: #ededed;"></view>
-			<view style="background-color: #FFFFFF;padding-top: 10px;">
+			<view style="background-color: #FFFFFF;padding-top: 10px;" v-if="currentTab==0">
 				<view style="display: flex;padding-top: 10px;padding-bottom: 12px;">
 					<!-- <image src="/static/home_fire.png" style="margin-left: 20px;" :style="$theme.setImageSize(40)">
 					</image> -->
@@ -227,6 +265,9 @@
 					</view>
 				</view>
 			</view>
+			<view v-if="currentTab==1"></view>
+
+
 
 			<view style="width: 100%;height: 10px;background-color: #ededed;"></view>
 
@@ -246,7 +287,7 @@
 						</view>
 					</view>
 
-					<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+
 					<view class="more" @click="$u.route({type:'switchTab',url:'/pages/news'});">もっとニュースを見る<img
 							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAsCAYAAAB/nHhDAAAAAXNSR0IArs4c6QAAA8NJREFUWEetl01oVFcUx/9nxg9qk7gQwVJbBCMUdBHeeUkI0Xagia0GJVgVF4pFsQv7YbordtFuWulGS0sp9MONFFHxGylFI2n9QDLv3kwH3disoqAtSKdBG4aZ945zhxd5uc4kb3hzdzPz7u/HPfe8c86Q67obROQHACIiQ1rrM2jiIma+B2B5yAyI6D3P835ulsMWGK4AGFJKfdMMCbmuu1lETgOYFwWKyKda6y+TSsgAHMfZRESnACy0gIeUUgeTSKoCszo7O/uCIDgH4EUL+K1S6kAYuoZdzwRmp+u6vSJyCcBiK1xHtdb7AASNGmYIwnAxEf0GYEkURkQnWlpado6MjJQbkTwnCMO1OgiCKwCWWZKLhUJh2/j4eDGupKYgPEk7EQ0DeNUK15VyuTyYz+efxJHUFZjNzGzg5iSrLNgNAANKqf/mkswqCMO1LAiCywDWWDCVTqffGh0dfTSbZE6B2dzV1bXE931z8WzB7gDoV0o9qCeJJTCbu7u728rlsknhtRZsHMCbSqmJWpLYgvBOFgEwL2O/BZvwfb8vl8v9ZUsaEpjN7e3tC9va2k4S0WYL9pCI+j3Puz0jtefKglq/ZzKZeZOTk8eIaIf1+6MgCN4eGxvzpr9v+AQRYIqZTaPaa0kmwxS+br5PIqjuZ+avAXxkSf4nokHP8y4nFVS5rut+ISJ2WS+KyMamCMIM+6TSTw5ZJ7nVTMGHAOw225wQOY7zLhEdte60AOD1xCdwHGcLEZ0EkI6E50kqlVqfzWZvJhIw8/pKfboIYEEEXiSiTSaDEqUpM5uaZAqgKR/TyxeRbVrrs4leNGZ2KvG9avVuIaLdnucdS1QqmPk1AH8AWBoFicgHWuvvEhW7jo6OFel02pSAly3QQaWU/Q5UH4l9ycz8UqXuXwOw0oJ/pZQyL1nNFUsQdrTfAay2KN8rpfbXg8c6QW9vb+vU1NQwEXVaoF+UUrvmmvhmPUFPT88LxWLxVyJ6w4Kfb21t3RpnCKsrYOb5YXvcOCPtiIYLhcJA3OGrnsA0k+MAttvVsVQq9cUduureATP/VKNT/en7fiaXy5kiFnvVGn4PE9HHFuFuqVRal8/n/4lNDh+cIXAc5zMi+tyCTKRSqbXZbNb8l2t4PRM4jjNEREcswt++76+rNe/ENVUFruvuERET9+iJ/hWRjNY6HxdW6zkzFQwCMH8CU5EHHotIv9b6VhJ4NYuY2cyUr0RA1WlAa23KceJlBPcj1bFMRO94nnchMXk6i5h5oCL40XwWkfej3agZkqe8IVmNFCHaMwAAAABJRU5ErkJggg==">
 					</view>
@@ -273,9 +314,9 @@
 			<!-- <IPOSuccessAlert></IPOSuccessAlert> -->
 
 		</view>
-		<view v-else-if="currentTab === 1">
+		<!-- <view v-else-if="currentTab === 1">
 			<CoinIndex></CoinIndex>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -284,7 +325,7 @@
 	import ButtonGroup from './components/ButtonGroup.vue';
 	import TitleSecond from '@/components/title/TitleSecond.vue';
 	import TrackList from './components/TrackList.vue';
-	import CoinIndex from './components/CoinIndex.vue';
+	// import CoinIndex from './components/CoinIndex.vue';
 	// import MarketNews from './components/MarketNews.vue';
 	// import MarketHot from './components/MarketHot.vue';
 	// import IPOSuccessAlert from './components/IPOSuccessAlert.vue';
@@ -297,7 +338,7 @@
 
 	export default {
 		components: {
-			CoinIndex,
+			// CoinIndex,
 			// HeaderPrimary,
 			ButtonGroup,
 			TitleSecond,
@@ -308,6 +349,7 @@
 		},
 		data() {
 			return {
+				inv: 2,
 				currentTab: 0,
 				isAnimat: false, // 页面动画	
 				yan_show: true,
@@ -344,7 +386,7 @@
 					this.kLineChart = init('chart-type-k-line');
 					this.kLineInit(); // 初始化Kline
 				}
-				this.genKLineData(); // 获取并生成KLine数据	
+				// this.genKLineData(); // 获取并生成KLine数据	
 			}, 50);
 			this.getNews()
 
@@ -372,13 +414,21 @@
 			this.closeAll();
 			if (this.timer) this.clearTimer();
 		},
+		mounted() {
+			this.linkToStock(); // 组件加载时跳转
+			this.linkToCoin(); // 组件加载时跳转
+		},
 
 		methods: {
+			qiehuan(index) {
+				this.currentTab = index;
+				this.getList()
+			},
 			onSetTimeout() {
 				this.timer = setInterval(() => {
 					console.log("setInterval");
 					this.getToplishi()
-					this.getList()
+					// this.getList()
 					this.top3()
 				}, 5000);
 			},
@@ -395,6 +445,22 @@
 					url: `/pages/market/index`
 				})
 			},
+
+			linkmarketCoin() {
+				// 跳转到市场页面
+				uni.switchTab({
+					url: `/pages/market/index?inv=${this.inv}`
+				});
+
+				// 如果使用Vuex可以在这里提交state
+				this.$store.commit('setInv', this.inv); // 根据需要传递inv值
+			},
+			linkTransfer() {
+				uni.navigateTo({
+					url: `/pages/transfer/cointransfer`
+				})
+			},
+
 			linkMarketOV() {
 				uni.navigateTo({
 					url: `/pages/market/overview`
@@ -442,12 +508,23 @@
 				this.dz33 = result.dz33
 			},
 			async getList() {
-				// uni.showLoading({
-				// 	title: this.$lang.REQUEST_DATA,
-				// });
-				const result = await this.$http.get(`api/goods/top2`, {
-					current: 2
-				})
+				console.log(7777, this.currentTab);
+				let result;
+				if (this.currentTab == 1) {
+					result = await this.$http.get(`api/goods/topbi`, {
+						current: 2
+					})
+					this.list = result
+					// 对数据按 current_price 从高到低排序
+					this.list.sort((a, b) => {
+						return b.current_price - a.current_price; // 从高到低排序
+					});
+					console.log('hotbi', result);
+				} else {
+					result = await this.$http.get(`api/goods/top2`, {
+						current: 0
+					})
+				}
 				console.log(`hot:`, result);
 				this.list = result
 			},
@@ -538,10 +615,17 @@
 				this.getList();
 			},
 			// 跳转到股票详情
-			link(code) {
+			linkToStock(code) {
 				if (!code || code == '') return false;
 				uni.navigateTo({
 					url: `${this.$paths.STOCK_OVERVIEW}?code=${code}`
+				});
+			},
+			// 跳转到币详情
+			linkToCoin(code) {
+				if (!code || code == '') return false;
+				uni.navigateTo({
+					url: `${this.$paths.COIN_OVERVIEW}?code=${code}`
 				});
 			},
 			zichan() {

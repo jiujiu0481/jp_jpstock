@@ -30,7 +30,7 @@
                 border-radius: 8rpx;
                 padding: 6rpx 16rpx;
                 margin: 0 30rpx;
-              " :style="{ color: item.fx == 1 ? '#018ef8' : $theme.SECOND }">
+              " :style="{ color: item.fx == 1 ? '#6D41FF' : $theme.SECOND }">
 							{{ item.fxText }}
 						</view>
 						<view :style="setStyle(item.direct)">

@@ -1,21 +1,25 @@
 <template>
 	<view>
-		<view >
+		<view>
 			<EmptyData v-if="list.length<=0"></EmptyData>
 			<block v-for="(item,index) in list" :key="index">
-				<view >
+				<view>
 
-					<view style="background-color: #f6f8fc;padding: 15px 15px;border-radius: 10px;margin-top: 10px;background-image: url(/static/sakura.png); background-position:top  right; background-repeat: no-repeat; background-size: 40%;">
+					<view
+						style="background-color: #f6f8fc;padding: 15px 15px;border-radius: 10px;margin-top: 10px;">
 
-						<view style="display: flex;align-items: center;justify-content: space-between;margin: 10px 4px;"  >
+						<view
+							style="display: flex;align-items: center;justify-content: space-between;margin: 10px 4px;">
 							<view
 								style="font-size: 18px;width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-								{{item.name}}</view>
+								{{item.name}}
+							</view>
 							<view style="color: #f3564aaa;">{{item.code}}</view>
 						</view>
 						<view
 							style="font-size: 20px;color: #f3564a;display: flex;align-items: center;justify-content: right;margin: 10px 4px;">
-							{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}</view>
+							{{$util.formatMoney(item.price)+` ${$lang.CURRENCY_UNIT}`}}
+						</view>
 
 						<template v-if="item.shengou_date">
 							<view
@@ -24,7 +28,8 @@
 								<view :style="{color:$theme.LOG_VALUE}">{{item.shengou_date}}</view>
 							</view>
 						</template>
-						<view style="background-color: #f3564a;padding: 5px 20px;border-radius: 10px;color: #fff;display: flex;align-items: center;justify-content: center;"
+						<view
+							style="background-color: #f3564a;padding: 5px 20px;border-radius: 10px;color: #fff;display: flex;align-items: center;justify-content: center;"
 							@click="handleDetail(item)">{{$lang.BTN_BUY}}</view>
 					</view>
 

@@ -49,8 +49,9 @@
 						:class="{'active': currentTab === 1}" @click="currentTab = 1">暗号通貨</view>
 				</view>
 			</view>
-			
-			<view v-if="currentTab === 0" class="assets_card" style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
+
+			<view v-if="currentTab === 0" class="assets_card"
+				style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
 				<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 20px;">
 					<view style="display: flex;align-items: center;">
 						<view style="font-size: 32rpx;">残高</view>
@@ -95,55 +96,25 @@
 					</view>
 				</view>
 			</view>
-			
-			<view v-if="currentTab === 1" class="assets_card" style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);">
-				<view style="display: flex;align-items: center;justify-content: space-between;padding: 0 20px;">
-					<view style="display: flex;align-items: center;">
-						<view style="font-size: 32rpx;">残高111</view>
+
+			<view v-if="currentTab === 1" class="assets_card"
+				style="margin: 20px 0 0 0;padding:24rpx;background-color: rgba(255,255,255,0.3);height:auto;">
+				<view style="display: flex;align-items: right;flex-wrap: wrap;">
+					<view style="display: flex;align-items: center;width: 100%;text-align: center;justify-content: center;padding-top: 20px;">
+						<view style="font-size: 32rpx;">残高</view>
 						<image :src="showAmount?$icon.yanjing:$icon.biyan" mode="aspectFit"
 							style="width: 16px;height: 16px;padding-left: 12rpx;" @click="showAmount=!showAmount">
 						</image>
 					</view>
-					<view style="font-size: 36rpx;font-weight: 700;color: #f24639;">
-						{{showAmount?$util.formatMoney(userInfo.totalZichan):hideAmount}}
+					<view style="font-size: 20px;width: 100%;text-align:center;padding-top: 20px;">
+						{{showAmount?$util.formatMoney(userInfo.usd)+ 'USDT':hideAmount}}
 					</view>
 				</view>
-				<view style="margin-top: 20px;">
-					<view style="display: flex;align-items: center;justify-content: space-between;">
-						<view style="line-height: 1.3;">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<text style="padding-left: 8rpx;">利用可能の金額</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.money):hideAmount}}
-							</view>
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<text style="padding-left: 8rpx;">凍結資金</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.frozen):hideAmount}}
-							</view>
-						</view>
-						<view style="text-align: right;">
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<text style="padding-left: 8rpx;">米ドル金額</text>
-							</view>
-							<view style="font-size: 28rpx;padding-bottom: 8rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?0.0:hideAmount}}
-							</view>
-							<view style="font-size: 12px;" :style="{color:$theme.LOG_LABEL}">
-								<text style="padding-left: 8rpx;">総利益</text>
-							</view>
-							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
-								{{showAmount?$util.formatMoney(userInfo.totalYingli):hideAmount}}
-							</view>
-						</view>
-					</view>
-				</view>
+				
 			</view>
-			
-			
-			<view style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin-top: 20px;">
+
+
+			<view v-if="currentTab === 0" style="display: flex;flex: 1;align-items: center;justify-content: space-between; margin-top: 20px;">
 				<view @click="linkWithdraw"
 					style="display: flex;align-items: center;padding: 10px 55px; background-color: #fee;border-radius: 30px;">
 					<image src="/static/setting_withdraw.svg" mode="heightFix" :style="$theme.setImageSize(50)"></image>
@@ -154,6 +125,9 @@
 					<image src="/static/setting_deposit.svg" mode="heightFix" :style="$theme.setImageSize(50)"></image>
 					<view style="color: #FFFFFF;padding-left: 10px;">入金</view>
 				</view>
+			</view>
+			<view v-if="currentTab === 1" >
+				
 			</view>
 		</view>
 		<!-- <view style="display: flex;align-items: center;justify-content: space-between;padding: 0 12rpx;">
@@ -246,6 +220,7 @@
 				chartData: null,
 				currentTab: 0,
 				user: null,
+			
 			}
 		},
 		computed: {
@@ -277,8 +252,6 @@
 			uni.stopPullDownRefresh()
 		},
 		methods: {
-
-
 			handleSignOut() {
 				try {
 					let version = uni.getStorageSync('version')
@@ -335,6 +308,7 @@
 				});
 				const result = await this.$http.get(`api/user/info`);
 				if (!result) return false;
+				console.log(`assets111:`, result);
 				this.userInfo = result;
 				this.cardData = {
 					value1: this.userInfo.money || 0,

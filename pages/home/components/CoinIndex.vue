@@ -16,7 +16,7 @@
 				</view>
 
 				<view class="menu-item" @click="$u.route({url:'/pages/trade/large/CoinIndex'});">
-					
+
 					<image src="/static/btn_2.png" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
 					<view style="margin-top: 8px;color: black;font-size: 14px;font-weight: 500;"> ブロック取引</view>
 				</view>
@@ -48,7 +48,8 @@
 		</view>
 
 		<view style="display: flex;align-items: center;justify-content: space-around;padding: 10px;">
-			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;" @click="$u.route({url:'/pages/coin/index'});" >
+			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;"
+				@click="$u.route({url:'/pages/coin/index'});">
 				<view style="font-size: 12px;">BTC/USDT</view>
 				<view>104909.57</view>
 				<view style="margin-top: -20px;">
@@ -60,7 +61,8 @@
 					<view>-0.6%</view>
 				</view>
 			</view>
-			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;"@click="$u.route({url:'/pages/coin/index'});" >
+			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;"
+				@click="$u.route({url:'/pages/coin/index'});">
 				<view style="font-size: 12px;">BTC/USDT</view>
 				<view>104909.57</view>
 				<view style="margin-top: -20px;">
@@ -72,7 +74,8 @@
 					<view>-0.6%</view>
 				</view>
 			</view>
-			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;" @click="$u.route({url:'/pages/coin/index'});" >
+			<view style="padding: 10px 6px;background-color: #FFFFFF;border-radius: 10px;text-align: center;"
+				@click="$u.route({url:'/pages/coin/index'});">
 				<view style="font-size: 12px;">BTC/USDT</view>
 				<view>104909.57</view>
 				<view style="margin-top: -20px;">
@@ -86,49 +89,46 @@
 			</view>
 
 		</view>
+		
+		<view style="margin-top: 10px;background-color:#fff">
+			
+		<view style="padding-top: 16px;margin-left: 16px; font-size: 18px;">人気株
+			
 
-		<view style="display: flex;align-items: center;justify-content: space-between;padding: 12px 20px;background-color: #FFFFFF;border-bottom: 1px solid #979797;">
-			<view style="display: flex;align-items: center;" @click="$u.route({url:'/pages/coin/index'});" >
-				<image src="/static/btc.png" mode="aspectFit" :style="$theme.setImageSize(60)"></image>
-				<view style="padding-left: 6px;">
-					BTC/USDT
+			<view style="margin: 0 10px;">
+				<view v-for="(item,index) in list"
+					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 1px solid #979797;"
+					@click="link(item.code)">
+
+					<view
+						style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
+						<view style="font-size: 14px;">
+							<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
+								:style="$theme.setImageSize(32)" @click.stop="handleUnFollow(item.code)">
+							{{item.name}}
+						</view>
+
+					</view>
+					<view style="display: flex; align-items: center; margin: 4px 0;">
+						<span style="flex:2; font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
+						<view style="flex:2;font-size: 14px;padding-left: 60rpx;text-align: right; ">
+
+							{{item.close}}
+							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(24)"
+								style="padding-left: 12rpx;">
+						</view>
+
+						<view style="flex:1;text-align: right;font-size: 14px;"
+							:style="$theme.setStockRiseFall(item.rate>0)">
+
+							<span>{{item.rate}}%</span>
+						</view>
+					</view>
 				</view>
 			</view>
-			<view>
-				104909.57
-			</view>
-			<view style="padding: 10px; background-color: red; border-radius: 10px;color: #FFFFFF;">
-				-0.6%
-			</view>
 		</view>
-		<view style="display: flex;align-items: center;justify-content: space-between;padding: 12px 20px;background-color: #FFFFFF;border-bottom: 1px solid #979797;">
-			<view style="display: flex;align-items: center;" @click="$u.route({url:'/pages/coin/index'});" >
-				<image src="/static/btc.png" mode="aspectFit" :style="$theme.setImageSize(60)"></image>
-				<view style="padding-left: 6px;">
-					BTC/USDT
-				</view>
-			</view>
-			<view>
-				104909.57
-			</view>
-			<view style="padding: 10px; background-color: red; border-radius: 10px;color: #FFFFFF;">
-				-0.6%
-			</view>
-		</view>
-		<view style="display: flex;align-items: center;justify-content: space-between;padding: 12px 20px;background-color: #FFFFFF;border-bottom: 1px solid #979797;">
-			<view style="display: flex;align-items: center;" @click="$u.route({url:'/pages/coin/index'});" >
-				<image src="/static/btc.png" mode="aspectFit" :style="$theme.setImageSize(60)"></image>
-				<view style="padding-left: 6px;">
-					BTC/USDT
-				</view>
-			</view>
-			<view>
-				104909.57
-			</view>
-			<view style="padding: 10px; background-color: red; border-radius: 10px;color: #FFFFFF;">
-				-0.6%
-			</view>
-		</view>
+
 
 
 
@@ -252,11 +252,6 @@
 		},
 
 		methods: {
-			linkcoin() {
-				uni.switchTab({
-					url: `/pages/coin/index`
-				})
-			},
 			onSetTimeout() {
 				this.timer = setInterval(() => {
 					console.log("setInterval");
@@ -291,9 +286,49 @@
 				this.dz33_show = !this.dz33_show
 				this.$forceUpdate()
 			},
-
-
-
+			async getNews() {
+				// uni.showLoading({
+				// 	title: this.$lang.REQUEST_DATA,
+				// });
+				const result = await this.$http.post(`api/goods/get_news`, {
+					current: 1
+				})
+				console.log(result);
+				this.news = !result || result.length <= 0 ? [] : result.map(item => {
+					return {
+						title: item.title,
+						url: item.url,
+						updated_at: item.updated_at,
+						pic: item.pic,
+						created_at: item.created_at
+					}
+				});
+			},
+			getdz_style(zhang_num, returnOfToday) {
+				let bfb = 100 / zhang_num;
+				return 'width: calc(' + bfb + '% - 4px);height: ' + returnOfToday * 100 * 15 + '%;'
+			},
+			async top3() {
+				// uni.showLoading({
+				// 	title: this.$lang.REQUEST_DATA,
+				// });
+				const result = await this.$http.get(`api/goods/top3`, {
+					current: this.curTab
+				})
+				console.log(`top3:`, result);
+				this.top3_list = result.top3
+				this.dz33 = result.dz33
+			},
+			async getList() {
+				// uni.showLoading({
+				// 	title: this.$lang.REQUEST_DATA,
+				// });
+				const result = await this.$http.get(`api/goods/topbi`, {
+					current: 2
+				})
+				console.log(`hot:`, result);
+				this.list = result
+			},
 			setStyle(val) {
 				return {
 					...val ? this.$theme.LG_PRIMARY : this.$theme.LG_SECOND,

@@ -5,7 +5,7 @@
 		</template>
 		<template v-else>
 			<block v-for="(item,index) in list" :key="index">
-				<view style="border-bottom: 1px solid #E5E5E5;padding-top: 28rpx;">
+				<view style="padding: 16px;margin-top: 16px; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
 					<view style="display: flex;align-items: center;justify-content: space-between;line-height: 1.8;">
 						<view :style="{color:$theme.LOG_VALUE}" style="font-size: 36rpx;flex:70%;">{{item.goods.name}}
 						</view>

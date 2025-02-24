@@ -13,13 +13,13 @@
 					銘柄詳細
 				</view>
 			</view>
-			
+
 		</header>
 		<template v-if="stockInfo">
 			<view class="common_block" style="padding:24rpx;">
 				<view style="display: flex;align-items: center; justify-content: space-between;">
 					<view style="font-size: 28rpx;font-weight: 700;">{{stockTitle}}</view>
-					
+
 				</view>
 				<view style="display: flex;align-items: center; justify-content: space-between;line-height: 1.8;">
 					<view style="padding: 4rpx 8rpx;border-radius: 2px;line-height: 1.1;"
@@ -74,8 +74,7 @@
 					</view>
 					<image src="/static/close.png" :style="$theme.setImageSize(40)" @click="handleClose()"></image>
 				</view>
-				<view
-					style="background-color: #f7f9ff;width: 95%;border-radius: 10px;margin-left: 10px;">
+				<view style="background-color: #f7f9ff;width: 95%;border-radius: 10px;margin-left: 10px;">
 					<CustomTitle :title="$lang.STOCK_BUY_QUANTITY"></CustomTitle>
 
 					<view style="display: flex;flex-wrap:wrap;padding:0 10px;">

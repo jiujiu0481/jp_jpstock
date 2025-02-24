@@ -5,7 +5,7 @@
 			<!-- <image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(380)">
 			</image> -->
 		</view>
-		<view class="top">
+		<!-- <view class="top">
 			<view class="top-list" @click="$u.route({url:'/pages/trade/ipo/record'});">
 				<view class="top-left"><img :src="$icon.ipo1">抽選申し込み履歴</view>
 				<img :src="$icon.yjt1" class="top-right">
@@ -13,6 +13,16 @@
 			<view class="top-list" @click="$u.route({url:'/pages/trade/ipo/record?curTab=1'});">
 				<view class="top-left"><img :src="$icon.ipo2">当選履歴</view>
 				<img :src="$icon.yjt1" class="top-right">
+			</view>
+		</view> -->
+		<view style="display: flex;align-items: center;justify-content:space-between;padding: 10px 30px;">
+			<view @click="$u.route({url:'/pages/trade/ipo/record'});"
+				style="padding: 8px 16px; background-color:#d7060f;color: #FFFFFF;border-radius: 14px;">
+				抽選申し込み履歴
+			</view>
+			<view @click="$u.route({url:'/pages/trade/ipo/record?curTab=1'});"
+				style="padding: 8px 16px; background-color:#d7060f;color: #FFFFFF;border-radius: 14px;">
+				当選履歴
 			</view>
 		</view>
 		<!-- <view class="nav-box">

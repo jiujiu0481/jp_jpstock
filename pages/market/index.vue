@@ -26,65 +26,109 @@
 				</view>
 			</view>
 		</view>
-		<view style="margin-top: 16px;">
-			<view class="home-menu">
-				<view class="home-menu-item" style="border-radius: 2px ; padding: 0px; margin: 0 2px ;"
-					:class="item.rate>=0?'red':'green'" v-for="(item,index) in list" :key="index"
-					@click="link(item.code)" v-if="index<6">
-
-					<view class="home-menu-item-title" style="padding: 6px ;border-radius: 2px ;align-items: center;"
-						:style="{ backgroundColor: item.rate>=0?'#ff363699':'#37927d99' }">
-						<span>{{item.name}}</span>
-						<img :src="item.is_collected==1?$icon.ysc:$icon.sc"
-							@click.stop.capture="handleUnFollow(item.code)">
+		<view style="margin-top: 10px;" v-if="inv === 0 || inv === 1">
+			<view
+				style="display: flex;align-items: center;justify-content: space-around;background-color: #fff;padding-bottom: 20px;flex-wrap: wrap;">
+				<view
+					style=" padding: 16px 0px;  border-radius: 10px;text-align: center;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;margin-top: 10px;"
+					:style="{backgroundColor:item.rate>= 0 ?'#f9d9da':'#d9f2e7'}" @click="linkToStock(item.code)"
+					v-for="(item,index) in list" :key="index" v-if="index<6">
+					<view style="font-size: 14px;width: 110px;white-space: nowrap;overflow: hidden;">{{item.name}}
 					</view>
-					<view class="home-menu-item-tip1" style="padding:8px  0;">
-						<span style="padding-left: 4px;">{{item.code}}</span>
-						<span>{{item.rate_num}}</span>
-						<span style="padding-right: 4px;">{{$util.formatNumber(item.rate,2)}}%</span>
+					<view style="padding-top: 8px;">{{item.current_price}}</view>
+					<view>{{$util.formatMoney(item.close*1,2)}}</view>
+					<view style="margin-top: -6px;">
+						<image style="transform: scaleX(-1);"
+							:src="item.rate>=0?'/static/line_fall.png':'/static/line_rise.png'" mode="widthFix"
+							:style="$theme.setImageSize(220)"></image>
 					</view>
-					<div class="home-menu-item-tip2">{{$util.formatMoney(item.close*1,2)}}
-						<img :src="item.rate>=0?$icon.up:$icon.down">
-					</div>
+					<view
+						style="display: flex;margin-top: -30px;font-size: 12px;align-items: center;justify-content: space-between;padding: 0  6px;">
+						<view>{{item.code}}</view>
+						<view>{{item.rate_num}}</view>
+						<view>{{item.rate}}%</view>
+					</view>
 				</view>
-
 			</view>
+
 			<view style="display: flex;padding-top: 20rpx;padding-bottom: 12px;">
 				<view style="margin-left: 28rpx; font-size: 14px; font-weight: 700;">ホットプレート</view>
 			</view>
-
 			<view class="box" style="margin:0 10px">
 				<view v-for="(item,index) in list"
 					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 1px solid #979797;"
-					@click="link(item.code)">
+					@click="linkToStock(item.code)">
 					<view
 						style="display: flex; align-items: center;justify-content: space-between;margin: 4px 0;margin: 4px  0; ">
 						<view style="font-size: 14px;">
-							<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
-								:style="$theme.setImageSize(32)" @click.stop="handleUnFollow(item.code)">
 							{{item.name}}
 						</view>
 					</view>
-					<view style="display: flex; align-items: center; margin: 4px 0;">
-						<span style="flex:2; font-size: 14px;"
-							:style="$theme.setStockRiseFall(item.rate>0)">{{item.code}}</span>
-						<view style="flex:2;font-size: 14px;padding-left: 60rpx;text-align: right; ">
-
-							{{item.close}}
-							<img :src="item.rate>=0?$icon.up:$icon.down" :style="$theme.setImageSize(24)"
-								style="padding-left: 12rpx;">
+					<view
+						style="display: flex; align-items: center; justify-content: space-between; margin: 4px 0;">
+						<view style="display: flex;align-items: center;text-align: center;">
+							<img style="margin-right: 6px;" :src="item.is_collected==1?$icon.ysc:$icon.sc"
+								:style="$theme.setImageSize(38)" @click.stop="handleUnFollow(item.code)">
+							<span style=" font-size: 14px;">{{item.code}}</span>
 						</view>
-						<view style="flex:1;text-align: right;font-size: 14px;"
-							:style="$theme.setStockRiseFall(item.rate>0)">
-
+						<view style="font-size: 14px;text-align:center;  margin-left: auto; padding-right: 20px;">
+							{{item.close}}
+						</view>
+						<view
+							style="text-align: right;font-size: 14px;padding: 6px 8px;box-sizing: border-box;width: 72px;border-radius: 6px;text-align: right;"
+							:style="$theme.setStockRiseFallBG(item.rate>0)">
+					
 							<span>{{item.rate}}%</span>
 						</view>
 					</view>
 				</view>
-
 			</view>
 		</view>
 
+		<view v-else-if="inv === 2">
+			<view
+				style="display: flex;align-items: center;justify-content: space-around;background-color: #fff;padding-bottom: 20px;margin-top: 10px;">
+				<view
+					style=" padding: 16px 0px;  border-radius: 10px;text-align: center;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
+					:style="{backgroundColor:item.rate>= 0 ?'#d9f2e7':'#f9d9da'}"
+					@click="linkToCoin(item.code)" v-for="(item,index) in list" :key="index"
+					v-if="index<3">
+					<view style="font-size: 14px;">{{item.name}}</view>
+					<view style="padding-top: 8px;">{{item.current_price}}</view>
+					<view style="margin-top: -6px;">
+						<image :src="item.rate>=0?'/static/line_rise.png':'/static/line_fall.png'" mode="widthFix"
+							:style="$theme.setImageSize(220)"></image>
+					</view>
+					<view
+						style="display: flex;margin-top: -30px;font-size: 12px;align-items: center;justify-content: space-between;padding: 0  6px;">
+						<view>{{item.rate_num}}</view>
+						<view>{{item.rate}}%</view>
+					</view>
+				</view>
+
+			</view>
+			<view style="padding-top: 16px;margin-left: 16px; font-size: 18px;font-weight: 900;">人気株111</view>
+			<view style="margin: 0 10px;">
+				<view v-for="(item,index) in list"
+					style="background-color: #FFFFFF;border-radius: 6PX  6px  0 0 ;padding: 0 10px;margin: 6px 0;padding-bottom: 8px;border-bottom: 0.5px solid #97979799;"
+					@click="linkToCoin(item.code)">
+					<view style="display: flex;align-items: center;justify-content: space-between;">
+						<view style="display: flex;align-items: center;">
+							<image :src="item.logo" :style="$theme.setImageSize(60)">
+								<view style="padding-left: 10px;"> {{item.number_code}}</view>
+						</view>
+						<view style="display: flex;align-items: center;">
+							<view style="padding-right: 20px;">{{item.current_price}}</view>
+							<view
+								style=" padding: 6px 12px;box-sizing: border-box;width: 72px;border-radius: 6px;text-align: right;"
+								:style="$theme.setCoinRiseFall(item.rate>0)">
+								<span>{{item.rate}}%</span>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 		<!-- <view  style="height: 120px;" >
 			<header  style="padding-top: 60rpx;">
 				<scroll-view :scroll-x="true" style="white-space: nowrap;width: 96%;"
@@ -152,6 +196,14 @@
 		onPullDownRefresh() {
 			this.getList();
 		},
+		 onLoad(options) {
+		    // options 包含 URL 中的查询参数
+		    this.inv = options.inv ? Number(options.inv) : 0; // 获取传递的 inv 参数
+		  },
+		mounted() {
+		  this.linkToStock(); // 组件加载时跳转
+		  this.linkToCoin();    // 组件加载时跳转
+		},
 		methods: {
 			// changeTab(val) {
 			// 	this.curTab = val;
@@ -163,12 +215,14 @@
 				this.inv = num
 				if (num == 1) {
 					this.getData();
-				} 
-				
-				else {
+				}
+				if (num == 2) {
+					this.getList1()
+				} else {
 					this.getList();
 				}
 			},
+
 			async getData() {
 				this.list = [];
 				const result = await this.$http.get(`api/user/collect_list`);
@@ -205,10 +259,18 @@
 			toggleShow() {
 				this.isShow = !this.isShow;
 			},
-			link(code) {
+			// 跳转到股票详情
+			linkToStock(code) {
 				if (!code || code == '') return false;
 				uni.navigateTo({
 					url: `${this.$paths.STOCK_OVERVIEW}?code=${code}`
+				});
+			},
+			// 跳转到币详情
+			linkToCoin(code) {
+				if (!code || code == '') return false;
+				uni.navigateTo({
+					url: `${this.$paths.COIN_OVERVIEW}?code=${code}`
 				});
 			},
 			shouye() {
@@ -226,9 +288,14 @@
 				// uni.showLoading({
 				// 	title: this.$lang.REQUEST_DATA,
 				// });
-				const result = await this.$http.get(`api/goods/top2`, {
+				const result = await this.$http.get(`api/goods/topbi`, {
 					current: this.curTab
 				})
+				this.list = result
+				// 对数据按 current_price 从高到低排序
+				this.list.sort((a, b) => {
+					return b.current_price - a.current_price; // 从高到低排序
+				});
 				if (!result || result.length <= 0) return false;
 				this.list = result
 				console.log(this.list1)
@@ -433,7 +500,9 @@
 		background-position: bottom;
 		background-repeat: no-repeat;
 		background-size: 100%;
-		background-color: #f7d9da
+		background-color: #f7d9da;
+		// transform: scaleX(-1);
+
 	}
 
 	.home-menu .red .home-menu-item-tip1 span {
