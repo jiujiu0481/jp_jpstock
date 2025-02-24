@@ -1,11 +1,16 @@
 <template>
 	<view style="padding:10px;">
+<<<<<<< HEAD
 		<view class="flex padding-10">
 			<!-- <image src="/static/hot.png" mode="widthFix" style="width: 30px;"></image> -->
 			<view class="font-size-17 bold margin-left-5">人気株式</view>
 		</view>
 		<view
 			style="display: flex;align-items: center;justify-content: space-between;border-radius: 15px;padding: 5px;">
+=======
+		<view
+			style="display: flex;align-items: center;justify-content: space-between;background-color: #f2bb8f;border-radius: 5px;padding: 5px;">
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			<block v-for="(item,index) in top1" :key="index" v-if="index<=2">
 				<view
 					style="border-radius: 6px;border:2px solid rgba(0, 0, 0, 0);text-align: center;flex-basis: calc(50% - 12px);margin: 5px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"
@@ -27,6 +32,19 @@
 
 			</block>
 		</view>
+<<<<<<< HEAD
+=======
+		<!-- <view style="margin: 10px;padding:10px 0">
+			<view class="chart" id="chart-type-k-line" style="width: 100%;height: 300rpx;">
+			</view>
+		</view> -->
+
+		<!-- 	<view class="flex padding-10">
+			<image src="/static/hot.png" mode="widthFix" style="width: 30px;"></image>
+			<view class="font-size-17 bold margin-left-5">{{$lang.MARKET_TABS[1]}}</view>
+		</view> -->
+
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 		<view style="height: 1px;background-color: #f2bb8f;margin:0 20rpx;"></view>
 		<MarketHotTop></MarketHotTop>
 

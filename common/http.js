@@ -11,7 +11,7 @@ export const HOST = `api.jpstock.top`;
 // export const HOST = `api.jpmdapp.com`;
 // export const HOST = `api.ekbstock.top`;
 // export const HOST = `api.kpsstock.top`;
-export const WssUrl = 'wss://'+HOST+'/ws'
+export const WssUrl = 'wss://' + HOST + '/ws'
 
 export const BASE_URL = `https://${HOST}`;
 
@@ -138,8 +138,7 @@ export default {
 };
 
 uni.addInterceptor('request', {
-	config(requestConfig) {
-	}
+	config(requestConfig) {}
 })
 
 

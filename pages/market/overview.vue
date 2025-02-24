@@ -1,12 +1,18 @@
 <template>
+<<<<<<< HEAD
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="株式市場"></CustomHeaderSecond>
+=======
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="マーケット"></CustomHeaderSecond>
+
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 		<TabsSeventh :tabs="$lang.MARKET_TABS" @action="changeTab" :acitve="curTab"> </TabsSeventh>
 		<view style="padding-bottom: 20px;background-color: #FFFFFF;">
 			<TabOne v-if="curTab==0" ref="tab0"></TabOne>
-			<MarketHot v-if="curTab==1"></MarketHot>
+			<!-- <MarketHot v-if="curTab==1"></MarketHot> -->
 			<!-- <MarketKPI v-if="curTab==2"></MarketKPI> -->
-			<MarketNews v-if="curTab==2"></MarketNews>
+			<MarketNews v-if="curTab==1"></MarketNews>
 		</view>
 	</view>
 </template>
@@ -117,67 +123,67 @@
 
 
 
-.header {
-		height: 70px;
-		padding: 0 8px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		background: #fff
-	}
+		.header {
+			height: 70px;
+			padding: 0 8px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-box-pack: justify;
+			-webkit-justify-content: space-between;
+			justify-content: space-between;
+			background: #fff
+		}
 
-	.header .header-left {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center
-	}
+		.header .header-left {
+			width: 61px;
+			height: 70px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center
+		}
 
-	.header .header-img {
-		width: 159px;
-		height: 52px;
-		object-fit: contain
-	}
+		.header .header-img {
+			width: 159px;
+			height: 52px;
+			object-fit: contain
+		}
 
-	.header .header-right {
-		width: 61px;
-		height: 70px;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-box-pack: end;
-		-webkit-justify-content: flex-end;
-		justify-content: flex-end
-	}
+		.header .header-right {
+			width: 61px;
+			height: 70px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-box-pack: end;
+			-webkit-justify-content: flex-end;
+			justify-content: flex-end
+		}
 
-	.header .header-ring {
-		width: 20px;
-		height: 20px
-	}
+		.header .header-ring {
+			width: 20px;
+			height: 20px
+		}
 
-	.header .header-search {
-		width: 19px;
-		height: 19px
-	}
+		.header .header-search {
+			width: 19px;
+			height: 19px
+		}
 
-	.header .header-setting {
-		width: 21px;
-		height: 21px;
-		margin-left: 20px
-	}
+		.header .header-setting {
+			width: 21px;
+			height: 21px;
+			margin-left: 20px
+		}
 
 		.right {
 			margin-left: auto;

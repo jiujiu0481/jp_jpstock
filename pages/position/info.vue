@@ -26,7 +26,7 @@
 				<view class="item-right">{{item.order_sn}}</view>
 			</view>
 			<view class="list-item">
-				<view class="item-left">時間を買う</view>
+				<view class="item-left">購入時間</view>
 				<view class="item-right">{{item.buyCT}}</view>
 			</view>
 
@@ -46,19 +46,19 @@
 			</view>
 
 			<view class="list-item">
-				<view class="item-left">保有額</view>
+				<view class="item-left">保有数量</view>
 				<view class="item-right">{{$util.formatNumber(item.buyQTY)}}</view>
 			</view>
 			<view class="list-item">
-				<view class="item-left">元の入金</view>
+				<view class="item-left">購入総額</view>
 				<view class="item-right">{{$util.formatNumber(item.buyAmont)}}</view>
 			</view>
 			<view class="list-item">
-				<view class="item-left">複数のレバレッジ</view>
+				<view class="item-left">レバレッジ</view>
 				<view class="item-right">{{item.lever}}</view>
 			</view>
 			<view class="list-item">
-				<view class="item-left">市場価値</view>
+				<view class="item-left">評価額</view>
 				<view class="item-right">{{$util.formatNumber(item.buyAmont)}}</view>
 			</view>
 			<view class="list-item">

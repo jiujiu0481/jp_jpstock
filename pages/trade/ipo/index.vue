@@ -1,11 +1,16 @@
 <template>
 	<view class="page_bg">
 		<CustomHeaderSecond title="新規公開株式" />
+<<<<<<< HEAD
 		<view style="display: flex;align-items: center;justify-content: center;">
 			<!-- <image src="/static/ipobanner.png" style="width: 100%;" mode="heightFix" :style="$theme.setImageSize(380)">
 			</image> -->
 		</view>
 		<!-- <view class="top">
+=======
+
+		<view class="top">
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			<view class="top-list" @click="$u.route({url:'/pages/trade/ipo/record'});">
 				<view class="top-left"><img :src="$icon.ipo1">抽選申し込み履歴</view>
 				<img :src="$icon.yjt1" class="top-right">

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
 		<view style="display: flex;align-items: center;justify-content: center;">
@@ -13,9 +14,15 @@
 				</view> -->
 			<!-- <view class="short"></view> -->
 			<!-- </view> -->
+=======
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="ブロック取引"></CustomHeaderSecond>
+		<view>
+
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			<view class="nav-box">
 				<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
-				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申請記録</view>
+				<view class="nav-item" :class="inv==1?'active':''" @click="qiehuan(1)">申し込み履歴</view>
 			</view>
 		</view>
 		<TradeLargeList ref="list" v-if="inv==0"></TradeLargeList>

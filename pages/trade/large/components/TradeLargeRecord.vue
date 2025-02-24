@@ -9,7 +9,7 @@
 				<view class="th-td width-20">銘柄</view>
 				<view class="th-td width-20">価格</view>
 				<view class="th-td width-20">申込量</view>
-				<view class="th-td width-20">ション量</view>
+				<view class="th-td width-20">当選数</view>
 				<view class="th-td width-20">{{$lang.TRADE_LARGE_LOG_AMOUNT}}</view>
 			</view>
 
@@ -19,9 +19,16 @@
 				<view class="shares-name-box width-20"><span
 						class="shares-price-num">{{$util.formatMoney(item.price)}}</span></view>
 				<view class="shares-name-box width-20"><span class="shares-name">{{item.num}}</span></view>
+<<<<<<< HEAD
 				<view class="shares-name-box width-20"><span class="shares-name">{{item.success}}</span></view>
 				<view class="shares-name-box width-20"><span
 						class="shares-name">{{$util.formatMoney(item.amount)}}</span></view>
+=======
+				<view class="shares-name-box width-20"><span
+						class="shares-name">{{item.admin_status==0?`配分中`:item.success}}</span></view>
+				<view class="shares-name-box width-20"><span
+						class="shares-name">{{item.admin_status==0?`配分中`:$util.formatMoney(item.total)}}</span></view>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 
 			</view>
 		</template>

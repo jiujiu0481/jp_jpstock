@@ -5,15 +5,24 @@
 	background-repeat: no-repeat;padding-bottom:-330px; background-color:#ededed ;">
 		<header style="display: flex;align-items: center;padding: 24px 28rpx;">
 			<view style="margin-right: auto;">
-				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit"
-					style="width: 16px;height: 16px;"></image>
+				<image src="/static/arrow_left.png" @click="$util.goBack()" mode="aspectFit" style="width: 16px;height: 16px;">
+				</image>
 			</view>
 			<view style=" flex:60%">
 				<view style="height: 56rpx;line-height: 56rpx;text-align: center;color:#FCFCFC;font-size: 28rpx;">
 					銘柄詳細
 				</view>
 			</view>
+<<<<<<< HEAD
 
+=======
+			<view style="margin-left: auto;">
+				<template v-if="stockInfo">
+					<image :src="stockInfo.is_collected==1?$icon.ysc:$icon.sc" mode="aspectFit" style="width: 20px;height: 20px;"
+						@click="handleUnFollow(stockInfo.code)"></image>
+				</template>
+			</view>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 		</header>
 		<template v-if="stockInfo">
 			<view class="common_block" style="padding:24rpx;">
@@ -26,8 +35,13 @@
 						:style="$theme.setStockRiseFall(stockInfo.rate>0,true)">{{stockInfo.code}}</view>
 					<view style="font-size: 27px;font-weight: 700;">{{$util.formatMoney(stockInfo.current_price)}}
 					</view>
+<<<<<<< HEAD
 					<view style="font-weight: 700;" :style="$theme.setStockRiseFall(stockInfo.rate>0)">
 						({{stockInfo.rate}}%)</view>
+=======
+					<view style="font-weight: 700;" :style="$theme.setStockRiseFall(stockInfo.rate>0)">({{stockInfo.rate}}%)
+					</view>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				</view>
 				<view style="font-size: 24rpx;text-align: right;">({{currentTime}})</view>
 			</view>
@@ -65,11 +79,9 @@
 		<template v-if="showBuy">
 			<view class="common_mask" @click="handleClose()"></view>
 			<view class="common_popup" style="padding-bottom: 30rpx;width: 100%;border-radius: 10px;">
-				<view class=""
-					style="display: flex;align-items: center;padding:24rpx;border-bottom: 0.5px solid #ffb2d18f;">
+				<view class="" style="display: flex;align-items: center;padding:24rpx;border-bottom: 0.5px solid #ffb2d18f;">
 					<view style="width: 40rpx;"></view>
-					<view class="flex-1"
-						style="font-size: 36rpx;padding: 0px 20px;text-align: center;font-weight: bold;">
+					<view class="flex-1" style="font-size: 36rpx;padding: 0px 20px;text-align: center;font-weight: bold;">
 						{{$lang.BTN_BUY}}
 					</view>
 					<image src="/static/close.png" :style="$theme.setImageSize(40)" @click="handleClose()"></image>
@@ -79,8 +91,7 @@
 
 					<view style="display: flex;flex-wrap:wrap;padding:0 10px;">
 						<block v-for="(item,index) in quantityList" :key="index">
-							<view
-								style="border-radius: 5px;width:20%;margin:20rpx;padding:10rpx 20rpx;text-align: center;"
+							<view style="border-radius: 5px;width:20%;margin:20rpx;padding:10rpx 20rpx;text-align: center;"
 								:style="setStyle(curQuantity==item)" @click="chooseQTY(item)">
 								{{$util.formatNumber(item)}}
 							</view>
@@ -155,7 +166,8 @@
 	import {
 		init,
 		registerLocale,
-		dispose
+		dispose,
+		utils
 	} from '@/common/klinecharts.min.js';
 
 	export default {
@@ -528,7 +540,23 @@
 			},
 			handleShowKLine(val) {
 				console.log(val);
-
+				this.kLineChart.customApi = {
+					formatDate: (dateTimeFormat, timestamp) => {
+						if (this.curKLine == 0) {
+							return utils.formatDate(
+								dateTimeFormat,
+								timestamp,
+								"HH:mm"
+							)
+						} else {
+							return utils.formatDate(
+								dateTimeFormat,
+								timestamp,
+								'YYYY-MM-DD'
+							)
+						}
+					}
+				};
 				this.curKLine = val;
 				this.genKLineData();
 			},
@@ -606,7 +634,60 @@
 					// 延时,等DOM渲染
 					setTimeout(() => {
 						if (!this.kLineChart) {
-							this.kLineChart = init('chart-type-k-line');
+							this.kLineChart = init('chart-type-k-line', {
+								customApi: {
+									formatDate: (dateTimeFormat, timestamp) => {
+										if (this.curKLine == 0) {
+											return utils.formatDate(
+												dateTimeFormat,
+												timestamp,
+												"HH:mm"
+											)
+										} else {
+											return utils.formatDate(
+												dateTimeFormat,
+												timestamp,
+												'YYYY-MM-DD'
+											)
+										}
+									},
+								},
+								styles: {
+									candle: {
+										tooltip: {
+											custom: [{
+													title: 'Date: ',
+													value: '{time}'
+												},
+												{
+													title: 'open',
+													value: '{open}'
+												},
+												{
+													title: 'high',
+													value: '{high}'
+												},
+												{
+													title: 'low',
+													value: '{low}'
+												},
+												{
+													title: 'close',
+													value: '{close}'
+												},
+												{
+													title: 'volume',
+													value: '{volume}'
+												},
+											],
+											text: {
+												marginTop: 58,
+												marginLeft: 16,
+											},
+										},
+									},
+								},
+							});
 							this.kLineInit(); // 初始化Kline
 						}
 						this.genKLineData(); // 获取并生成KLine数据	
@@ -650,7 +731,8 @@
 				}
 
 
-				this.kLineChart.setPriceVolumePrecision(2, 0)
+				this.kLineChart.setPriceVolumePrecision(2, 0);
+				this.kLineChart.setTimezone(`Asia/Tokyo`);
 				this.kLineChart.applyNewData(result);
 			},
 		},

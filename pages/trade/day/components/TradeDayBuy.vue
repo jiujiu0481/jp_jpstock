@@ -1,8 +1,15 @@
 <template>
 	<view style="font-size: 14px;">
+<<<<<<< HEAD
 		<view>
 			<view style="font-weight: 800;border-bottom:2px solid #d7060f;width: 70px;" :style="{color:$theme.LOG_VALUE}">
 				{{$lang.TRADE_DAY_TIP_INPUT_AMOUNT}}
+=======
+		<view style="padding-bottom: 20px;">
+			<view>
+				<text style="font-weight: 800;border-bottom:2px solid #ffcdd5;"
+					:style="{color:$theme.LOG_VALUE}">{{$lang.TRADE_DAY_TIP_INPUT_AMOUNT}}</text>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			</view>
 
 			<view class="common_input_wrapper">
@@ -10,6 +17,7 @@
 					:placeholder-style="$theme.setPlaceholder()" style="width: 80%;margin-left: 10px;"></input>
 				<view style="color:#999;">{{$lang.CURRENCY_UNIT}}</view>
 			</view>
+
 			<view style="display: flex;align-items: center;justify-content: flex-end;"
 				:style="{color:$theme.LOG_LABEL}">
 				<view style="padding-right: 10px;">{{$lang.ACCOUNT_AMOUNT_AVAILABLE}}:</view>
@@ -18,13 +26,29 @@
 					{{$lang.DEPOSIT_TITLE}}
 				</view>
 			</view>
+
+			<view>
+				<text style="font-weight: 800;border-bottom:2px solid #ffcdd5;"
+					:style="{color:$theme.LOG_VALUE}">{{$lang.COMMON_PERCENT}}</text>
+			</view>
+			<Percent :list="percents" @action="choosePercent" />
 		</view>
+<<<<<<< HEAD
          
 		 <view style="font-weight: 800;border-bottom:2px solid #d7060f;width: 70px;" :style="{color:$theme.LOG_VALUE}">
 		 	取引説明
 		 </view>
 		<view style="padding:10px 0px;border-radius: 10px;"
 			:style="{color:$theme.LOG_VALUE}">
+=======
+
+		<view>
+			<text style="font-weight: 800;border-bottom:2px solid #ffcdd5;"
+				:style="{color:$theme.LOG_VALUE}">取引説明</text>
+		</view>
+
+		<view style="padding:10px 0px;border-radius: 10px;" :style="{color:$theme.LOG_VALUE}">
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			<view style="padding-bottom: 6px;">{{$lang.TRADE_DAY_TIP}}:</view>
 			<block v-for="(item,index) in $lang.TRADE_DAY_TIP_TEXT" :key="index">
 				<view style="padding-bottom: 6px;">{{item}}</view>
@@ -32,7 +56,7 @@
 		</view>
 
 		<view style="position: fixed;bottom: 0;left: 0;right: 0;background-color: #FFFFFF;padding:40rpx">
-			<view class="btn_com"  @click="handleBuy()">
+			<view class="btn_com" @click="handleBuy()">
 				{{$lang.TRADE_DAY_BUY}}
 			</view>
 		</view>
@@ -46,6 +70,8 @@
 			return {
 				amount: '',
 				available: '',
+				percents: [20, 30, 40, 50, 60, 70, 80, 90], // 百分比预置值组
+				curPercent: -1, // 当前百分比
 			}
 		},
 		created() {
@@ -58,7 +84,12 @@
 					url: this.$paths.ACCOUNT_DEPOSIT
 				})
 			},
-
+			// 百分比选择
+			choosePercent(v) {
+				this.curPercent = v;
+				this.amount = (this.available * (this.curPercent / 100)).toFixed(0);
+				console.log(`curPercent`, this.curPercent, this.amount);
+			},
 			// 购买
 			async handleBuy() {
 				if (this.amount == '' || this.amount <= 0) {

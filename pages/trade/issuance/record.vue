@@ -1,9 +1,18 @@
 <template>
+<<<<<<< HEAD
 	<view class="page_bg" >
 		<CustomHeaderSecond title=" 記録" />
 
 		<view style=" background-color: #FFFFFF;min-height: 96vh;width: 95%;border-radius: 10px;padding: 0 10px;">
 			<!-- <TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird> -->
+=======
+	<view class="page_bg_sec">
+		<CustomHeaderSecond title=" 記録" />
+
+		<view
+			style="padding:20rpx 32rpx; background-color: #FFFFFF;min-height: 96vh;width: 85%;border-radius: 10px;margin-left: 10px;">
+			<TabsThird :tabs="tabs" @action="changeTab" :acitve="curTab"></TabsThird>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 
 			<template v-if="curTab==0">
 				<ApplyRecord></ApplyRecord>
@@ -39,8 +48,8 @@
 			}
 		},
 		onLoad(op) {
-			if(op.curTab){
-				this.curTab=op.curTab;
+			if (op.curTab) {
+				this.curTab = op.curTab;
 			}
 		},
 		onShow() {

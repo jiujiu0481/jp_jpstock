@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<scroll-view :scroll-x="true" style="white-space: nowrap;width: 96%;padding:0 10px 0 10px;" @touchmove.stop>
-			<block v-for="(item,index) in $lang.MARKET_HOT_TABS" :key='index'>
+			<block v-for="(item,index) in [`値上がり率`,`値下がり率`]" :key='index'>
 				<view :class="setClass(curTab==index)" @click="changeTab(index)">
 					<view style="position: relative;height: 80rpx;padding: 0 20px;color: transparent;">
 						{{item}}
@@ -28,9 +28,9 @@
 				<view style="padding:10px;display: flex;align-items: center;border-bottom:1px solid #F3F3F3;"
 					@click="link(item.code)">
 					<view style="text-align: center;padding-right: 20rpx;">
-						<CustomLogo :logo="item.logo" :name="item.name"></CustomLogo>
+						<CustomLogo :logo="''" :name="`${index+1}`"></CustomLogo>
 					</view>
-			
+
 					<view style="flex:1 0 86%;">
 						<view :style="{color:$theme.SECOND}" style="font-size: 32rpx;line-height: 1.6;">
 							{{item.name}}
@@ -115,14 +115,14 @@
 				})
 				this.list = !result || result.length <= 0 ? [] : result.map(item => {
 					return {
-						logo: item.logo,
+						// logo: item.logo,
 						name: item.name,
 						code: item.code,
 						price: item.close,
-						rate: item.returns,
-						follow: item.sc,
+						rate: item.rate,
+						// follow: item.sc,
 						gid: item.gid,
-						close: item.close,
+						// close: item.close,
 					}
 				});
 			},

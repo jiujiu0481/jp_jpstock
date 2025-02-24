@@ -6,7 +6,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "PORT",
+		"navigationBarTitleText": "SCHWSCC",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -22,21 +22,35 @@
 				"pagePath": "pages/home/index",
 				"text": "トップ",
 				"iconPath": "static/tarbar0.png",
+<<<<<<< HEAD
 				"selectedIconPath": "static/tarbar0_act.png"
 			},
 			{
 				"pagePath": "pages/market/index",
 				"text": "市場",
+=======
+				"selectedIconPath": "static/tarbar0.png"
+			},
+			{
+				"pagePath": "pages/market/index",
+				"text": "マーケット",
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				"iconPath": "static/tarbar1.png",
 				"selectedIconPath": "static/tarbar1_act.png"
 			},
 			{
+<<<<<<< HEAD
 				"pagePath": "pages/transaction/index",
 				"text": " 出入金履歴 ",
+=======
+				"pagePath": "pages/position/index",
+				"text": "注文·照会",
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				"iconPath": "static/tarbar3.png",
 				"selectedIconPath": "static/tarbar3_act.png"
 			},
 			{
+<<<<<<< HEAD
 				"pagePath": "pages/position/index",
 				"text": " 注文·照会 ",
 				"iconPath": "static/tarbar2.png",
@@ -44,6 +58,15 @@
 			}, {
 				"pagePath": "pages/account/center",
 				"text": "私の",
+=======
+				"pagePath": "pages/transaction/index",
+				"text": "出入金履歴",
+				"iconPath": "static/tarbar2.png",
+				"selectedIconPath": "static/tarbar2_act.png"
+			}, {
+				"pagePath": "pages/news",
+				"text": "ニュース",
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				"iconPath": "static/tarbar4.png",
 				"selectedIconPath": "static/tarbar4_act.png"
 			}
@@ -91,6 +114,23 @@
 			"path": "pages/search/index", // 查询
 			"style": {
 				"navigationBarTitleText": "検索",
+<<<<<<< HEAD
+=======
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/notify/index", // 查询
+			"style": {
+				"navigationBarTitleText": "検索",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/notify/detail", // 查询
+			"style": {
+				"navigationBarTitleText": "検索",
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				"enablePullDownRefresh": true,
 				"navigationStyle": "custom"
 			}

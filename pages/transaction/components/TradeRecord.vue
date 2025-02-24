@@ -23,15 +23,20 @@
 								{{$util.formatMoney(item.after*1)}}
 							</view>
 						</view>
+<<<<<<< HEAD
 
 						<view style="display: flex;align-items: center;justify-content: space-between;">
+=======
+						
+						<!-- <view style="display: flex;align-items: center;justify-content: space-between;">
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 							<view :style="{color:$theme.LOG_LABEL}">
 								損益 評価
 							</view>
 							<view style="font-size: 28rpx;" :style="{color:$theme.LOG_VALUE}">
 								{{$util.formatMoney(item.profit*1)}}
 							</view>
-						</view>
+						</view> -->
 						<view style="display: flex;align-items: center;justify-content: space-between;">
 							<view :style="{color:$theme.LOG_LABEL}">
 								変更前の残高

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<view style="background-image: url(/static/1head.png);background-position: 0 0;background-size: 100% ;
 	background-repeat: no-repeat;margin-bottom: -330px; background-color:#ededed ;">
 		<view class="header">
@@ -6,6 +7,83 @@
 				<img src="/static/logo.png" class="header-img">
 			</view>
 			<view style="width: 260px;">
+=======
+	<view class="page_bg">
+		<!-- <CustomHeader /> -->
+		
+		<view class="header" style="background-image: url('/static/topbackground.png');" >
+			<view class="header-left">
+				<img src="/static/logo2.jpg" class="header-img">
+			</view>
+			<view style=" flex:60%">
+				<view
+					style="background-color: rgba(255,255,255,0.4);height: 56rpx;line-height: 56rpx;text-align: center; border-radius: 24rpx;"
+					@click="$u.route({url:'/pages/search/index'});">
+					<text style="color:#FCFCFC;font-size: 11px;">株名またはコードを入力</text>
+				</view>
+			</view>
+			<view class="header-right">
+				<!-- <img src="/static/search_icon.png" @click="$u.route({url:'/pages/search/index'});" class="header-search"> -->
+				<!-- <img src="/static/search_icon1.png" @click="$u.route({url:'/pages/notify/index'});" class="header-setting"> -->
+				<image v-if="look=== 0" src="/static/search_icon1.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
+				
+				<image v-if="look=== 1" src="/static/search_icon.png" mode="widthFix" style="width: 20px;height: 20px;margin-right: 20px;" @click="$u.route({url:'/pages/notify/index'});"></image>
+			</view>
+		</view>
+
+
+		<view class="page">
+
+			<view style="display: flex;align-items: center;justify-content: center; ">
+				<img src="/static/img/7.7349b6f4.png" class="banner" @click="$u.route({url:'/pages/market/overview'});">
+			</view>
+
+			<!-- 	<view class="title">機能</view> -->
+			<view class="menu" style="background-color: #FFFFFF; padding: 20px   0   10px  0;">
+				<view class="menu-item" @click="linkmarket()">
+					<image src="/static/btn_7.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 株式取引</view>
+				</view>
+
+
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/day/index'});">
+					<image src="/static/btn_1.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 急騰株取引</view>
+				</view>
+
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/large/index'});">
+					<image src="/static/btn_2.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> ブロック取引</view>
+				</view>
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/ipo/index'});">
+					<image src="/static/btn_0.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 新規公開株式</view>
+				</view>
+
+
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/issuance/index'});">
+					<image src="/static/btn_4.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> 機関IPO</view>
+				</view>
+				<view class="menu-item" @click="$u.route({url:'/pages/trade/ea/index'});">
+					<image src="/static/btn_3.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> AI資産運用</view>
+				</view>
+				<view class="menu-item" @click="linkMarketOV()">
+					<image src="/static/btn_5.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;"> マーケット</view>
+				</view>
+				<view class="menu-item" @click="$u.route({url:'/pages/account/center'});">
+					<image src="/static/btn_6.svg" mode="aspectFit" :style="$theme.setImageSize(100)"></image>
+					<view style="margin-top: 6px;">マイページ</view>
+				</view>
+			</view>
+
+
+
+
+			<view>
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 				<view
 					style="border: 2px #FFFFFF solid;border-radius: 20px;width: 100%;display: flex;text-align: center; font-weight: 700;">
 					<view style="padding: 5px;border-radius: 20px 0 20px 20px;flex: 50%;"
@@ -99,8 +177,46 @@
 						<view class="top-one"
 							style="display: flex;align-items: center;justify-content: space-between;margin-top: 12px;">
 
+<<<<<<< HEAD
 							<view class="top-right" :class="kline_data.rate>=0?'red':'green'">
 								{{kline_data.rate_num}}({{kline_data.rate}}%)<span>{{kline_data.close}}</span>
+=======
+
+			<view class="top">
+
+				<view class="top-header">
+					<view class="top-one">
+						<view class="top-select" @click="zhibiao_show=true"><span>{{zhibiao_name}}</span>
+							<img
+								src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAAAiCAMAAAAwC5qWAAAAAXNSR0IArs4c6QAAAG9QTFRFAAAA/wAA/wAA4QA86AA64wBC5gA84QA84QA75QA95QA+5gA/4gA+5AA95QA94wA/5AA+4wI+5AI+5AE+4wE+5AE95AE+5AE+5QE/4wE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+29Nq0gAAACR0Uk5TAAECERYbHiIrMjo9PktPbXuAj7K5w8bI1NXZ5uz09fj5+vv8lkMaAAAAALdJREFUSMedy1cSwjAQA1ATSmih9xbK3v+MrAEPTuLYq9WXNKNnDCczijjUX5fnOYpH++epsKWzI84K05Mrm/uQW04E+48mWnIdEOx/mhZ2bFDv9C23q3fAvNOP2Xdjvq4x39SID2m5D2upb9My364lPqbTfhrVKZ/ScZ/WMS/R7V6m2R9DXqrDXq5DHtFNj+m6R3XV49r3Gu35l0Z7XqWrHte+1+i/12nntZr9luhSGHWycdGNHt51REGZflzGSwAAAABJRU5ErkJggg==">
+						</view>
+						<view class="top-right" :class="kline_data.rate>=0?'red':'green'">
+							{{kline_data.rate_num}}({{kline_data.rate}}%)<span>{{kline_data.close}}</span>
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAAQhQTFRFAAAA/wAA/wAA/wBV/wBAzAAz2wBJ4wA56ABG6wA73wBA4QA85gBA6QBD4gA74wBC5QA+6AA+4gBC5QA74QA74gBA5AA85ABA4gBA4gA/5AA/4gA+5AA/4gA95AA95AA84wA/4wA+5QA+5AA+5QA/5AA+5QA94wA/5AA+5QA+5AA94wI+4wI95QI+4wI95AI+5AI+5AI95QI/4wI+5AI95AI/5AE/5AE+5AE+5QE95AE95AE+5AE+5AE+5AE+5AE+5AE+4wE+5AE+5AE+5AE+5AE+5AE+5AE+5QE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+y48RSQAAAFd0Uk5TAAECAwQFBwkLDRARFBcaGx0hIycrLC8wNDU5PkFHS0xRUldeYWdsbnN0eYCBiImQlZabnaKnq7G2t7u8wMbIzdLV1tna3eHj5+nq7O3v8vP19/n6/P3+hOYpNgAAANhJREFUGBmVwYk2QmEYBdATUSKzEgmZp4oKCSlkHoqc93+T6q66q9v9h8/eUDpOQGy19RCGUKRO5iFUZMcmRLbY9T4DgblPOsoBWI3esOcAVkfsa8ZhsfJLVy0Eo4lHDjiFUYEe6zBI0+s1Cq3ZDw4pQWfkmj570DikX2MJSss/VLgbh0L4nkpZKJxR7W8NPhvUeZ7CkOk3al3AK3BFgx147NPkewEDYk0aVcbgClVpkYErR5tWEj0p2j1NwhF9ocA5HJcU2UbHLmW+5oHFBoVugzgpiaXwH221L+MJdLkO8AAAAABJRU5ErkJggg=="
+								v-if="kline_data.rate>=0">
+
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAARRQTFRFAAAAAP8AAICAVapVQICAM5lmKoCASZJtOY5xM5mAQJWAN5KAM5l3PJZ4OY6AM4yAPZJ5N5B6O5OAN5KAOI+AOpJ8OZWANJB8OZOANZR9NY+AN5F9OJB9N5F7NpJ9N5F+NpN8N5J8OZF8NpR8N5F+NpN+OJJ+OJJ9N5N+N5F9NpN9OJF8N5J8NpN9N5N8N5F+N5J9NpJ+N5J+N5J9N5F9N5J+N5J9NpJ8OJF9OJJ9N5F9N5J9NpJ9N5J9OJJ9N5J9N5J9N5N9N5J+N5J8NpJ9N5J8N5N9N5J9NpJ9N5J9N5J9N5J9N5N9N5J9NpJ9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9N5J9tDxDXAAAAFt0Uk5TAAECAwQFBgcJCgwODxESFBUXGhwgIyQnKCswMzc8PUFCRkhMT1VbYGFmaG1zdn2Cg4iKj5WYn6Slqqywsra8v8TIyc3O0dbY3N/g4+Tm6u3u8fP19/n6+/z9/h0cC3YAAADaSURBVBgZpcGFVgJRFAXQo6KgYmGCHdhF2QoGYGEMFpz//w9RwpnhxV3LvXFIsRX031EoA2D2iyLFXtTsUeJjGj8ClxTYQd24Q6tsJxrWaPMyipZjWsTxZ+CBRgdwm6/Q4LYPHgnqfc7Aq/uaWrvwmyxTI9eFNhtUex2DwimVVqEyVKLCEdQWq2xzH4ZGin6VOegE8/TZh170jR5XARhs0c2ZgNE5XdZhNvLElhPYLLPpcRBWadZVF2AXKvBXEhKxd9bc9EBkm2R5CjIdF+QmpCLPZ5BbGsa/fQMQlu7RIddlYAAAAABJRU5ErkJggg=="
+								v-else>
+						</view>
+					</view>
+					<view class="top-two">
+						<span>高値：{{kline_data.high}}</span><span>安値：{{kline_data.low}}</span><span>始値：{{kline_data.open}}</span><span>終値：{{kline_data.close_end}}</span>
+					</view>
+				</view>
+				<view id="chart" class="top-middle">
+					<view class="chart" id="chart-type-k-line" style="width: 100%;height: 134px;">
+					</view>
+				</view>
+
+
+
+				<!-- 
+				<view class="top-foot">
+					<view class="top-foot-item" v-for="(item,index) in top3_list">
+						<view class="top-foot-box">
+							<view class="top-foot-name">{{item.name}}</view>
+							<view class="top-foot-price" :class="item.returnOfToday>=0?'red':'green'">{{item.price}}
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAgCAMAAABemGpIAAAAAXNSR0IArs4c6QAAAQhQTFRFAAAA/wAA/wAA/wBV/wBAzAAz2wBJ4wA56ABG6wA73wBA4QA85gBA6QBD4gA74wBC5QA+6AA+4gBC5QA74QA74gBA5AA85ABA4gBA4gA/5AA/4gA+5AA/4gA95AA95AA84wA/4wA+5QA+5AA+5QA/5AA+5QA94wA/5AA+5QA+5AA94wI+4wI95QI+4wI95AI+5AI+5AI95QI/4wI+5AI95AI/5AE/5AE+5AE+5QE95AE95AE+5AE+5AE+5AE+5AE+5AE+4wE+5AE+5AE+5AE+5AE+5AE+5AE+5QE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+5AE+y48RSQAAAFd0Uk5TAAECAwQFBwkLDRARFBcaGx0hIycrLC8wNDU5PkFHS0xRUldeYWdsbnN0eYCBiImQlZabnaKnq7G2t7u8wMbIzdLV1tna3eHj5+nq7O3v8vP19/n6/P3+hOYpNgAAANhJREFUGBmVwYk2QmEYBdATUSKzEgmZp4oKCSlkHoqc93+T6q66q9v9h8/eUDpOQGy19RCGUKRO5iFUZMcmRLbY9T4DgblPOsoBWI3esOcAVkfsa8ZhsfJLVy0Eo4lHDjiFUYEe6zBI0+s1Cq3ZDw4pQWfkmj570DikX2MJSss/VLgbh0L4nkpZKJxR7W8NPhvUeZ7CkOk3al3AK3BFgx147NPkewEDYk0aVcbgClVpkYErR5tWEj0p2j1NwhF9ocA5HJcU2UbHLmW+5oHFBoVugzgpiaXwH221L+MJdLkO8AAAAABJRU5ErkJggg=="
 									v-if="kline_data.rate>=0">
 
@@ -311,7 +427,7 @@
 		</view> -->
 
 			<!-- IPO申购成功弹层 -->
-			<!-- <IPOSuccessAlert></IPOSuccessAlert> -->
+			<IPOSuccessAlert></IPOSuccessAlert>
 
 		</view>
 		<!-- <view v-else-if="currentTab === 1">
@@ -328,7 +444,7 @@
 	// import CoinIndex from './components/CoinIndex.vue';
 	// import MarketNews from './components/MarketNews.vue';
 	// import MarketHot from './components/MarketHot.vue';
-	// import IPOSuccessAlert from './components/IPOSuccessAlert.vue';
+	import IPOSuccessAlert from './components/IPOSuccessAlert.vue';
 
 	import {
 		init,
@@ -345,7 +461,7 @@
 			TrackList,
 			// MarketNews,
 			// MarketHot,
-			// IPOSuccessAlert,
+			IPOSuccessAlert,
 		},
 		data() {
 			return {
@@ -358,6 +474,7 @@
 				kLineChart: null, // Kline实例化
 				lishi: [], // k綫數據
 				list: [],
+				gg_list:[],
 				kline_data: "",
 				top3_list: "",
 				dz33: "",
@@ -371,6 +488,7 @@
 				dz33_show: false,
 				news: "",
 				timer: null,
+				look:1,
 			}
 		},
 		computed: {
@@ -395,6 +513,7 @@
 			this.getAccountInfo()
 			this.getToplishi()
 			this.getList()
+			this.getList2()
 			this.top3()
 			this.onSetTimeout()
 			this.isAnimat = true;
@@ -428,7 +547,12 @@
 				this.timer = setInterval(() => {
 					console.log("setInterval");
 					this.getToplishi()
+<<<<<<< HEAD
 					// this.getList()
+=======
+					this.getList()
+					this.getList2()
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 					this.top3()
 				}, 5000);
 			},
@@ -495,6 +619,17 @@
 			getdz_style(zhang_num, returnOfToday) {
 				let bfb = 100 / zhang_num;
 				return 'width: calc(' + bfb + '% - 4px);height: ' + returnOfToday * 100 * 15 + '%;'
+			},
+			async getList2() {
+				const result = await this.$http.get(`api/app/gglist`);
+				if (!result) return false;
+				console.log('gglist',result);
+				result.some(item=>{
+					if(item.look == 0) {
+						this.look = 0;
+					}
+				})
+				this.gg_list = result;
 			},
 			async top3() {
 				// uni.showLoading({

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg">
 		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>				
 			<!-- <image src="/static/ai_icon.png" style="width: 100%;height: 300px;"></image> -->
@@ -7,11 +8,17 @@
 			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>
 		</view>
 		<view class="nav-box" v-if="type==2">
+=======
+	<view :class="isAnimat?'fade_in':'fade_out'" class="page_bg_sec">
+		<CustomHeaderSecond title="急騰株取引"></CustomHeaderSecond>
+		
+		<view class="nav-box">
+>>>>>>> e0e038695daddae3de796d5b9a7ee826e37c6889
 			<view class="nav-item" :class="inv==0?'active':''" @click="qiehuan(0)">株式</view>
 			<view class="nav-item" @click="$u.route({url:'/pages/trade/day/record'});">申請記録</view>
 		</view>
 		<view
-			style="background-color: #FFFFFF;min-height: 90vh;padding:40rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
+			style="background-color: #FFFFFF;min-height: 90vh;padding:20rpx;width: 85%;border-radius: 10px;margin-left: 10px;">
 			<TradeDayBuy></TradeDayBuy>
 		</view>
 	</view>
